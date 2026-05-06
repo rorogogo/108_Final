@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Dashboard</title>
+
+    <style>
+    :root {
+        --elementsize: 75px;
+    }
+
+    #navigation-bar {
+        position: fixed;
+        width: 15%;
+        height: 100%;
+        background: mediumseagreen;
+        display: flex;
+    }
+
+    main {
+        margin-left:15%;
+        /*padding: 5px;*/
+        /*display: flex;*/
+        background-color: mediumorchid;
+    }
+
+    #profile {
+        width:100%;
+        background-color: slategray;
+        padding: 5px;
+    }
+    #profile-pic {
+        width: 100px;
+        display: flex;
+        clip-path: circle(50%);
+        filter: grayscale(1);
+    }
+
+    .block {
+        width: 100%;
+        padding: 5px;
+        display: grid;
+        flex-wrap: wrap;
+        grid-template-columns: repeat(auto-fill, var(--elementsize));
+        justify-content: space-evenly;
+        justify-items: center;
+        background-color: blue;
+    }
+    .element {
+        position: relative;
+        display: inline-block;
+        width: var(--elementsize);
+        margin: 10px 8px 0 8px;
+        vertical-align: text-top;
+        background-color: red;
+        transition: transform 0.22s;
+        /*filter: grayscale(100%);*/
+    }
+    .element:hover {
+        transform: scale(1.2);
+        z-index: 10;
+    }
+    .char-icon {
+        width: 100%;
+        -webkit-user-drag: none;
+        -webkit-user-select: none;
+    }
+    /*
+    .char-icon {
+        transition: transform 0.22s;
+    }
+    .char-icon:hover {
+        transform: scale(1.2);
+        z-index: 10;
+    }*/
+
+    </style>
+</head>
+<body>
+    <div id="navigation-bar">
+        <p>hello</p>
+    </div>
+    <main>
+        <div id="profile">
+            <img id="profile-pic" alt="Profile Picture" src="./image0.jpg">
+            <h1 style="display:flex;">JohnEndfield</h1>
+        </div>
+        <div class="block">
+            <div class="element">
+                <img class="char-icon" alt="Endmin" src="https://web-static.hg-cdn.com/endfield/official-v4/_next/static/media/endministrator1.c391b13d.png">
+            </div>
+            <div class="element">
+                <img class="char-icon" alt="Endmin" src="https://web-static.hg-cdn.com/endfield/official-v4/_next/static/media/endministrator2.5ccb44a8.png">
+            </div>
+            <div class="element">
+                <img class="char-icon" alt="Endmin" src="https://web-static.hg-cdn.com/endfield/official-v4/_next/static/media/prelica.d0bbdb53.png">
+            </div>
+            <div class="element">
+                <img class="char-icon" alt="Endmin" src="https://web-static.hg-cdn.com/endfield/official-v4/_next/static/media/endministrator1.c391b13d.png">
+            </div>
+            <div class="element">
+                <img class="char-icon" alt="Endmin" src="https://web-static.hg-cdn.com/endfield/official-v4/_next/static/media/endministrator1.c391b13d.png">
+            </div>
+            <div class="element">
+                <img class="char-icon" alt="Endmin" src="https://web-static.hg-cdn.com/endfield/official-v4/_next/static/media/endministrator1.c391b13d.png">
+            </div>
+            <div class="element">
+                <img class="char-icon" alt="Endmin" src="https://web-static.hg-cdn.com/endfield/official-v4/_next/static/media/endministrator1.c391b13d.png">
+            </div>
+            <div class="element">
+                <img class="char-icon" alt="Endmin" src="https://web-static.hg-cdn.com/endfield/official-v4/_next/static/media/endministrator1.c391b13d.png">
+            </div>
+            <div class="element">
+                <img class="char-icon" alt="Endmin" src="https://web-static.hg-cdn.com/endfield/official-v4/_next/static/media/endministrator1.c391b13d.png">
+            </div>
+            <div class="element">
+                <img class="char-icon" alt="Endmin" src="https://web-static.hg-cdn.com/endfield/official-v4/_next/static/media/endministrator1.c391b13d.png">
+            </div>
+            <div class="element">
+                <img class="char-icon" alt="Endmin" src="https://web-static.hg-cdn.com/endfield/official-v4/_next/static/media/endministrator1.c391b13d.png">
+            </div>
+            <div class="element">
+                <img class="char-icon" alt="Endmin" src="https://web-static.hg-cdn.com/endfield/official-v4/_next/static/media/endministrator1.c391b13d.png">
+            </div>
+            <div class="element">
+                <img class="char-icon" alt="Endmin" src="https://web-static.hg-cdn.com/endfield/official-v4/_next/static/media/endministrator1.c391b13d.png">
+            </div>
+            <div class="element">
+                <img class="char-icon" alt="Endmin" src="https://web-static.hg-cdn.com/endfield/official-v4/_next/static/media/endministrator1.c391b13d.png">
+            </div>
+            <div class="element">
+                <img class="char-icon" alt="Endmin" src="https://web-static.hg-cdn.com/endfield/official-v4/_next/static/media/endministrator1.c391b13d.png">
+            </div>
+            <div class="element">
+                <img class="char-icon" alt="Endmin" src="https://web-static.hg-cdn.com/endfield/official-v4/_next/static/media/endministrator1.c391b13d.png">
+            </div>
+            <div class="element">
+                <img class="char-icon" alt="Endmin" src="https://web-static.hg-cdn.com/endfield/official-v4/_next/static/media/endministrator1.c391b13d.png">
+            </div>
+            <div class="element">
+                <img class="char-icon" alt="Endmin" src="https://web-static.hg-cdn.com/endfield/official-v4/_next/static/media/endministrator1.c391b13d.png">
+            </div>
+            <div class="element">
+                <img class="char-icon" alt="Endmin" src="https://web-static.hg-cdn.com/endfield/official-v4/_next/static/media/endministrator1.c391b13d.png">
+            </div>
+            <div class="element">
+                <img class="char-icon" alt="Endmin" src="https://web-static.hg-cdn.com/endfield/official-v4/_next/static/media/endministrator1.c391b13d.png">
+            </div>
+            <div class="element">
+                <img class="char-icon" alt="Endmin" src="https://web-static.hg-cdn.com/endfield/official-v4/_next/static/media/endministrator1.c391b13d.png">
+            </div>
+            <div class="element">
+                <img class="char-icon" alt="Endmin" src="https://web-static.hg-cdn.com/endfield/official-v4/_next/static/media/endministrator1.c391b13d.png">
+            </div>
+            <div class="element">
+                <img class="char-icon" alt="Endmin" src="https://web-static.hg-cdn.com/endfield/official-v4/_next/static/media/endministrator1.c391b13d.png">
+            </div>
+            <div class="element">
+                <img class="char-icon" alt="Endmin" src="https://web-static.hg-cdn.com/endfield/official-v4/_next/static/media/endministrator1.c391b13d.png">
+            </div>
+            <div class="element">
+                <img class="char-icon" alt="Endmin" src="https://web-static.hg-cdn.com/endfield/official-v4/_next/static/media/endministrator1.c391b13d.png">
+            </div>
+            <div class="element">
+                <img class="char-icon" alt="Endmin" src="https://web-static.hg-cdn.com/endfield/official-v4/_next/static/media/endministrator1.c391b13d.png">
+            </div>
+            <div class="element">
+                <img class="char-icon" alt="Endmin" src="https://web-static.hg-cdn.com/endfield/official-v4/_next/static/media/endministrator1.c391b13d.png">
+            </div>
+            <div class="element">
+                <img class="char-icon" alt="Endmin" src="https://web-static.hg-cdn.com/endfield/official-v4/_next/static/media/endministrator1.c391b13d.png">
+            </div>
+            <div class="element">
+                <img class="char-icon" alt="Endmin" src="https://web-static.hg-cdn.com/endfield/official-v4/_next/static/media/endministrator1.c391b13d.png">
+            </div>
+            <div class="element">
+                <img class="char-icon" alt="Endmin" src="https://web-static.hg-cdn.com/endfield/official-v4/_next/static/media/endministrator1.c391b13d.png">
+            </div>
+            <div class="element">
+                <img class="char-icon" alt="Endmin" src="https://web-static.hg-cdn.com/endfield/official-v4/_next/static/media/endministrator1.c391b13d.png">
+            </div>
+            <div class="element">
+                <img class="char-icon" alt="Endmin" src="https://web-static.hg-cdn.com/endfield/official-v4/_next/static/media/endministrator1.c391b13d.png">
+            </div>
+            <div class="element">
+                <img class="char-icon" alt="Endmin" src="https://web-static.hg-cdn.com/endfield/official-v4/_next/static/media/endministrator1.c391b13d.png">
+            </div>
+            <div class="element">
+                <img class="char-icon" alt="Endmin" src="https://web-static.hg-cdn.com/endfield/official-v4/_next/static/media/endministrator1.c391b13d.png">
+            </div>
+        </div>
+    </main>
+
+    <script>
+        /*
+        const hoversounds = [
+            new Audio('./hover1.wav'),
+            new Audio('./hover2.wav'),
+        ];
+
+        const element =
+            document.querySelectorAll('.element');
+        element.addEventListener('mouseover', playsound, false);
+
+        function playsound() {
+            const sound = hoversounds[Math.floor(Math.random() * hoversounds.length)];
+            sound.currentTime = 0;
+            sound.play();
+            console.log("done!");
+        }
+
+        function select() {
+            //this.style.filter = (filter === grayscale(100%)) ? 'grayscale(0%)' : 'grayscale(100%)';
+        }*/
+    </script>
+
+</body>
+</html>
