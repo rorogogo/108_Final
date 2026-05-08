@@ -93,7 +93,7 @@
     </div>
     <main>
         <div id="profile">
-            <img id="profile-pic" alt="Profile Picture" src="./image0.jpg">
+            <img id="profile-pic" alt="Profile Picture" src="./static/image0.jpg">
             <h1 style="display:flex;float:left;">   JohnEndfield</h1>
         </div>
         <div class="block">
@@ -198,7 +198,7 @@
         //also updates the object and plays a sound
         const select = (el) => {
             el.classList.toggle('grayscale');
-            const sound = new Audio('./click.wav');
+            const sound = new Audio('./static/click.wav');
             sound.currentTime = 0;
             sound.play();
             obj[el.id] = !obj[el.id];
@@ -214,7 +214,7 @@
                 el.innerHTML = '<img class="char-icon" alt="endmin" src="https://web-static.hg-cdn.com/endfield/official-v4/_next/static/media/endministrator2.5ccb44a8.png">';
                 obj["endmin"] = true;
             }
-            const sound = new Audio('./click.wav');
+            const sound = new Audio('./static/click.wav');
             sound.currentTime = 0;
             sound.play();
         }
@@ -236,7 +236,7 @@
 
         //plays sound when hovering over elements
         function playsound() {
-            const sound = new Audio('./hover.wav');
+            const sound = new Audio('./static/hover.wav');
             sound.currentTime = 0;
             sound.play();
             //console.log("done!");
