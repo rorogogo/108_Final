@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&display=swap" rel="stylesheet">
+    <title>Profile Settings</title>
+
+    <style>
+        * {
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        body {
+            margin: 0;
+            background: #ececec;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .panel {
+            background: white;
+            padding: 30px;
+            border: 3px solid #ffe100;
+            width: 300px;
+        }
+
+        input {
+            width: 100%;
+            margin-bottom: 10px;
+            padding: 8px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background: #111;
+            color: #ffe100;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="panel">
+    <h2>Update Profile</h2>
+
+    <input id="name-input" placeholder="Username">
+    <input id="img-input" placeholder="Profile Image URL">
+
+    <button onclick="saveProfile()">Save</button>
+</div>
+
+<script>
+    // load existing data
+    let user = JSON.parse(localStorage.getItem("user")) || {
+        name: "JohnEndfield",
+        profilePic: "./static/image0.jpg"
+    };
+
+    document.getElementById("name-input").value = user.name;
+    document.getElementById("img-input").value = user.profilePic;
+
+    function saveProfile() {
+        user.name = document.getElementById("name-input").value;
+        user.profilePic = document.getElementById("img-input").value;
+
+        localStorage.setItem("user", JSON.stringify(user));
+
+        alert("Profile updated!");
+    }
+</script>
+
+</body>
+</html>
