@@ -1,9 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&display=swap" rel="stylesheet">
     <title>Dashboard</title>
 
     <style>
+    * {
+        font-family: 'Orbitron', sans-serif;
+    }
+
+    body{
+        overflow-x:hidden;
+        background:
+            linear-gradient(
+                135deg,
+                transparent 0%,
+                transparent 72%,
+                rgba(255,225,0,0.14) 72%,
+                rgba(255,225,0,0.14) 100%
+            ),
+            linear-gradient(
+                -45deg,
+                transparent 0%,
+                transparent 85%,
+                rgba(255,225,0,0.08) 85%,
+                rgba(255,225,0,0.08) 100%
+            ),
+            #ececec;
+    }
+
     :root {
         --elementsize: 150px;
         --elementsize2: calc(var(--elementsize) * 0.784974);
@@ -11,69 +36,160 @@
 
     #navigation-bar {
         position: fixed;
-        width: 14%;
+        width: 240px;
         height: 100%;
-        background: mediumseagreen;
-        display: flex;
+        background: #111;
+        border-right: 4px solid #ffe100;
         z-index: 100;
+        padding:20px;
+        color:white;
+        display:flex;
+        flex-direction:column;
+    }
+
+    #logo{
+
+        font-size:30px;
+        font-weight:700;
+        color:#ffe100;
+        letter-spacing:3px;
+        margin-bottom:40px;
+    }
+
+    .nav-item{
+        padding:14px 18px;
+        margin-bottom:14px;
+        background:#1d1d1d;
+        border-left:4px solid transparent;
+        transition:0.2s;
+        cursor:pointer;
+        clip-path: polygon(
+            0 0,
+            100% 0,
+            100% 82%,
+            92% 100%,
+            0 100%
+        );
+    }
+
+    .nav-item:hover{
+        border-left:4px solid #ffe100;
+        background:#272727;
+    }
+
+    #profile-pic {
+        width: 64px;
+        height: 64px;
+        object-fit: cover;
+        border-radius: 50%;
+        border: 3px solid #ffe100;
     }
 
     main {
-        margin-left:15%;
-        right:0;
-        /*padding: 5px;*/
-        /*display: flex;*/
-        background-color: mediumorchid;
+        margin-left:240px;
+        min-height:100vh;
+        background:
+            linear-gradient(
+                rgba(0,0,0,0.03) 1px,
+                transparent 1px
+            ),
+            linear-gradient(
+                90deg,
+                rgba(0,0,0,0.03) 1px,
+                transparent 1px
+            ),
+            #ececec;
+        background-size:40px 40px;
     }
 
     #profile {
         width:100%;
-        background-color: slategray;
-        padding: 5px 0 0 0;
-    }
-    #profile-pic {
-        width: 100px;
-        display: flex;
-        float: left;
-        clip-path: circle(50%);
-        /*filter: grayscale(1);*/
+        background:#ffffff;
+        border-bottom:4px solid #ffe100;
+        padding:24px 30px;
+        display:flex;
+        align-items:center;
+        gap:20px;
+        clip-path: polygon(
+            0 0,
+            100% 0,
+            100% 88%,
+            98% 100%,
+            0 100%
+        );
     }
 
     .block {
         position: relative;
         width: 100%;
-        padding: 20px 0 20px 20px;
-        left: -20px;
+        padding: 40px;
         display: grid;
-        flex-wrap: wrap;
-        grid-template-columns: repeat(auto-fill, var(--elementsize2));
+        grid-template-columns:
+            repeat(auto-fill, var(--elementsize2));
         justify-content: space-evenly;
         justify-items: center;
-        background-color: blue;
         overflow: hidden;
     }
+        
     .element {
         position: relative;
         display: inline-block;
         height: var(--elementsize);
-        margin: 8px 8px 8px 8px;
-        vertical-align: text-top;
+        margin: 10px;
+        background:white;
+        border:2px solid #d0d0d0;
+        overflow:hidden;
+        cursor:pointer;
+        clip-path: polygon(
+            0 0,
+            100% 0,
+            100% 84%,
+            84% 100%,
+            0 100%
+        );
         /*background-color: lightskyblue;*/
         background-image: url('https://web-static.hg-cdn.com/endfield/official-v4/_next/static/media/card-bg.28c79684.jpg');
         background-size: cover;
         transition: transform 0.22s, filter 0.3s ease;
     }
+    .element::before{
+        content:"";
+        position:absolute;
+        top:0;
+        left:0;
+        width:100%;
+        height:10px;
+        background:#ffe100;
+        z-index:2;
+    }
+
     .element:hover {
         transform: scale(1.32);
         z-index: 10;
+        box-shadow:
+            0 0 18px rgba(245,196,81,0.45);
+        border: 1px solid #f5c451;
     }
+
     .element.grayscale {
         filter: grayscale(100%) brightness(75%);
     }
+
     .char-icon {
         height: var(--elementsize);
         -webkit-user-drag: none;
         -webkit-user-select: none;
+    }
+    .char-name{
+        position:absolute;
+        bottom:0;
+        width:100%;
+        background:rgba(17,17,17,0.88);
+        color:white;
+        font-size:11px;
+        padding:6px;
+        z-index:4;
+        letter-spacing:1px;
     }
 
     /*
@@ -99,81 +215,159 @@
         <div class="block">
             <div class="element" id="special">
                 <img class="char-icon" alt="endmin" src="https://web-static.hg-cdn.com/endfield/official-v4/_next/static/media/endministrator1.c391b13d.png">
+                <div class="char-name">
+                    ENDMIN
+                </div>
             </div>
             <div class="element" id="perlica">
                 <img class="char-icon" alt="perlica" src="https://web-static.hg-cdn.com/endfield/official-v4/_next/static/media/prelica.d0bbdb53.png">
+                <div class="char-name">
+                    PERLICA
+                </div>
             </div>
             <div class="element" id="zhuangfy">
                 <img class="char-icon" alt="zhuangfy" src="https://web-static.hg-cdn.com/endfield/official-v4/_next/static/media/zhuangfy.50a608b8.png">
+                <div class="char-name">
+                    ZHUANG FANGYI
+                </div>
             </div>
             <div class="element" id="chen">
                 <img class="char-icon" alt="chen" src="https://web-static.hg-cdn.com/endfield/official-v4/_next/static/media/chen.b0afd1ba.png">
+                <div class="char-name">
+                    CHEN
+                </div>
             </div>
             <div class="element" id="tangtang">
                 <img class="char-icon" alt="tangtang" src="https://web-static.hg-cdn.com/endfield/official-v4/_next/static/media/tangtang.b5cd99e9.png">
+                <div class="char-name">
+                    TANGTANG
+                </div>      
             </div>
             <div class="element" id="rossi">
                 <img class="char-icon" alt="rossi" src="https://web-static.hg-cdn.com/endfield/official-v4/_next/static/media/rossi.c58b721b.png">
+                <div class="char-name">
+                    ROSSI
+                </div>
             </div>
             <div class="element" id="laevatain">
                 <img class="char-icon" alt="laevatain" src="https://web-static.hg-cdn.com/endfield/official-v4/_next/static/media/laevatain.edd103d4.png">
+                <div class="char-name">
+                    LAEVATAIN
+                </div>
             </div>
             <div class="element" id="yvonne">
                 <img class="char-icon" alt="yvonne" src="https://web-static.hg-cdn.com/endfield/official-v4/_next/static/media/yvonne.9695c304.png">
+                <div class="char-name">
+                    YVONNE
+                </div>
             </div>
             <div class="element" id="gilberta">
                 <img class="char-icon" alt="gilberta" src="https://web-static.hg-cdn.com/endfield/official-v4/_next/static/media/gilberta.724f3503.png">
+                <div class="char-name">
+                    GILBERTA
+                </div>
             </div>
             <div class="element" id="ardelia">
                 <img class="char-icon" alt="ardelia" src="https://web-static.hg-cdn.com/endfield/official-v4/_next/static/media/ardelia.565c75af.png">
+                <div class="char-name">
+                    ARDELIA
+                </div>
             </div>
             <div class="element" id="ember">
                 <img class="char-icon" alt="ember" src="https://web-static.hg-cdn.com/endfield/official-v4/_next/static/media/ember.6391acf9.png">
+                <div class="char-name">
+                    EMBER
+                </div>
             </div>
             <div class="element" id="lastrite">
                 <img class="char-icon" alt="lastrite" src="https://web-static.hg-cdn.com/endfield/official-v4/_next/static/media/lastrite.3860f541.png">
+                <div class="char-name">
+                    LASTRITE
+                </div>
             </div>
             <div class="element" id="lifeng">
                 <img class="char-icon" alt="lifeng" src="https://web-static.hg-cdn.com/endfield/official-v4/_next/static/media/lifeng.ef41bc3a.png">
+                <div class="char-name">
+                    LIFENG
+                </div>
             </div>
             <div class="element" id="pogranichnik">
                 <img class="char-icon" alt="pogranichnik" src="https://web-static.hg-cdn.com/endfield/official-v4/_next/static/media/pogranichnik.80f2ddbb.png">
+                <div class="char-name">
+                    POGRANICHNIK
+                </div>
             </div>
             <div class="element" id="alesh">
                 <img class="char-icon" alt="alesh" src="https://web-static.hg-cdn.com/endfield/official-v4/_next/static/media/alesh.d7f457d2.png">
+                <div class="char-name">
+                    ALESH
+                </div>
             </div>
             <div class="element" id="arclight">
                 <img class="char-icon" alt="arclight" src="https://web-static.hg-cdn.com/endfield/official-v4/_next/static/media/arclight.e31580d7.png">
+                <div class="char-name">
+                    ARCLIGHT
+                </div>
             </div>
             <div class="element" id="avywenna">
                 <img class="char-icon" alt="avywenna" src="https://web-static.hg-cdn.com/endfield/official-v4/_next/static/media/avywenna.2a592659.png">
+                <div class="char-name">
+                    AVYWENNA
+                </div>
             </div>
             <div class="element" id="dapan">
                 <img class="char-icon" alt="dapan" src="https://web-static.hg-cdn.com/endfield/official-v4/_next/static/media/dapan.7cdb6a4e.png">
+                <div class="char-name">
+                    DA PAN
+                </div>
             </div>
             <div class="element" id="snowshine">
                 <img class="char-icon" alt="snowshine" src="https://web-static.hg-cdn.com/endfield/official-v4/_next/static/media/snowshine.bb2c0bdc.png">
+                <div class="char-name">
+                    SNOWSHINE
+                </div>
             </div>
             <div class="element" id="wulfgard">
                 <img class="char-icon" alt="wulfgard" src="https://web-static.hg-cdn.com/endfield/official-v4/_next/static/media/wulfgard.609a252f.png">
+                <div class="char-name">
+                    WULFGARD
+                </div>
             </div>
             <div class="element" id="xaihi">
                 <img class="char-icon" alt="xaihi" src="https://web-static.hg-cdn.com/endfield/official-v4/_next/static/media/xaihi.9ba3eb36.png">
+                <div class="char-name">
+                    XAIHI
+                </div>
             </div>
             <div class="element" id="akekuri">
                 <img class="char-icon" alt="akekuri" src="https://web-static.hg-cdn.com/endfield/official-v4/_next/static/media/akekuri.3603d013.png">
+                <div class="char-name">
+                    AKEKURI
+                </div>
             </div>
             <div class="element" id="antal">
                 <img class="char-icon" alt="antal" src="https://web-static.hg-cdn.com/endfield/official-v4/_next/static/media/antal.763c87e4.png">
+                <div class="char-name">
+                    ANTAL
+                </div>
             </div>
             <div class="element" id="catcher"> <!-- why does catcher have a different portrait width?? -->
                 <img class="char-icon" alt="catcher" style="width:var(--elementsize2);" src="https://web-static.hg-cdn.com/endfield/official-v4/_next/static/media/catcher.bc6bcfaa.png">
+                <div class="char-name">
+                    CATCHER
+                </div>
             </div>
             <div class="element" id="estella">
                 <img class="char-icon" alt="estella" src="https://web-static.hg-cdn.com/endfield/official-v4/_next/static/media/estella.38c423af.png">
+                <div class="char-name">
+                    ESTELLA
+                </div>
             </div>
             <div class="element" id="flourite">
                 <img class="char-icon" alt="flourite" src="https://web-static.hg-cdn.com/endfield/official-v4/_next/static/media/fluorite.5a8add29.png">
+                <div class="char-name">
+                    FLOURITE
+                </div>
             </div>
         </div>
     </main>
