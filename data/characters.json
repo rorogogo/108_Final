@@ -1,0 +1,14 @@
+{
+  "chen": {
+    "roles": ["dps"],
+    "element": "physical"
+  },
+  "perlica": {
+    "roles": ["support"],
+    "element": "electric"
+  },
+  "rossi": {
+    "roles": ["dps"],
+    "element": "physical"
+  }
+}

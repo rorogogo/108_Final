@@ -1,0 +1,12 @@
+[
+  {
+    "name": "Starter Burst Team",
+    "characters": ["chen", "rossi", "perlica", "ember"],
+    "description": "Balanced DPS + support early team"
+  },
+  {
+    "name": "Electric Control",
+    "characters": ["perlica", "arclight", "xaihi", "estella"],
+    "description": "Shock + control synergy"
+  }
+]
