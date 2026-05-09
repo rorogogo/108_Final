@@ -42,35 +42,50 @@
         }
     </style>
 </head>
-
 <body>
+<div id="navigation-bar">
+        <p id="logo">ENDFIELD</p>
 
+            <div class="nav-item" onclick="location.href='/dashboard'">
+                Dashboard
+            </div>
+            <div class="nav-item" onclick="location.href='/profile'">
+                Profile Settings
+            </div>
+            <div style="margin-top:auto;">
+                <div class="nav-item" style="border-left:4px solid #ff3b3b;" onclick="if(confirm('Logout?')) location.href='/logout'">
+                    LOGOUT
+                </div>
+            </div>
+    </div>
 <div class="panel">
     <h2>Update Profile</h2>
-
     <input id="name-input" placeholder="Username">
-    <input id="img-input" placeholder="Profile Image URL">
-
+    <input id="img-input" type="file" accept="image/*">
     <button onclick="saveProfile()">Save</button>
 </div>
 
 <script>
-    // load existing data
     let user = JSON.parse(localStorage.getItem("user")) || {
         name: "JohnEndfield",
         profilePic: "./static/image0.jpg"
     };
-
     document.getElementById("name-input").value = user.name;
-    document.getElementById("img-input").value = user.profilePic;
-
     function saveProfile() {
         user.name = document.getElementById("name-input").value;
-        user.profilePic = document.getElementById("img-input").value;
-
-        localStorage.setItem("user", JSON.stringify(user));
-
-        alert("Profile updated!");
+        const file = document.getElementById("img-input").files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                user.profilePic = e.target.result;
+                localStorage.setItem("user", JSON.stringify(user));
+                alert("Profile updated!");
+            };
+            reader.readAsDataURL(file);
+        } else {
+            localStorage.setItem("user", JSON.stringify(user));
+            alert("Profile updated!");
+        }
     }
 </script>
 

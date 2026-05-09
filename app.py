@@ -111,6 +111,12 @@ def DESTROY():
     DELETE("JohnEndfield")
     return redirect("/")
 
+@app.route("/profile")
+def profile():
+    if not session.get("name"):
+        return redirect("/")
+    return render_template("profile.html")
+
 @app.route("/logout")
 def logout():
     session.clear()
