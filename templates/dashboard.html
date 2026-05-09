@@ -3,14 +3,18 @@
 <head>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&display=swap" rel="stylesheet">
     <title>Dashboard</title>
-
     <style>
     * {
         font-family: 'Orbitron', sans-serif;
     }
-
-    body{
-        overflow-x:hidden;
+    body {
+        overflow-x: hidden;
+        margin: 0;
+        background: #ececec; /* simple base */
+    }
+    main {
+        margin-left: var(--sidebar-width);
+        min-height: 100vh;
         background:
             linear-gradient(
                 135deg,
@@ -26,43 +30,71 @@
                 rgba(255,225,0,0.08) 85%,
                 rgba(255,225,0,0.08) 100%
             ),
+            linear-gradient(rgba(0,0,0,0.03) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(0,0,0,0.03) 1px, transparent 1px),
             #ececec;
+        background-size: auto, auto, 40px 40px, 40px 40px;
+        transition: 0.25s;
     }
-
     :root {
+        --sidebar-width: 240px;
+        --sidebar-collapsed: 70px;
         --elementsize: 150px;
         --elementsize2: calc(var(--elementsize) * 0.784974);
     }
-
     #navigation-bar {
+        box-sizing: border-box;
+        left: 0;
+        top: 0;
         position: fixed;
-        width: 240px;
+        width: var(--sidebar-width);
         height: 100%;
         background: #111;
         border-right: 4px solid #ffe100;
         z-index: 100;
-        padding:20px;
-        color:white;
-        display:flex;
-        flex-direction:column;
+        padding: 20px;
+        color: white;
+        display: flex;
+        flex-direction: column;
+        transition: 0.25s;
     }
-
-    #logo{
-
-        font-size:30px;
-        font-weight:700;
-        color:#ffe100;
-        letter-spacing:3px;
-        margin-bottom:40px;
+    #navigation-bar > * {
+        transition: opacity 0.2s ease;
     }
-
-    .nav-item{
-        padding:14px 18px;
-        margin-bottom:14px;
-        background:#1d1d1d;
-        border-left:4px solid transparent;
-        transition:0.2s;
-        cursor:pointer;
+    body.collapsed #navigation-bar {
+        width: 60px;
+        padding: 10px;
+        overflow: hidden;
+    }
+    /* Hide everything except toggle button */
+    body.collapsed #navigation-bar > *:not(#toggle-btn) {
+        opacity: 0;
+        pointer-events: none;
+    }
+    /* Keep button centered */
+    #toggle-btn {
+        width: 100%;
+        font-size: 20px;
+        background: none;
+        border: none;
+        color: white;
+        cursor: pointer;
+        margin-bottom: 20px;
+    }
+    #logo {
+        font-size: 30px;
+        font-weight: 700;
+        color: #ffe100;
+        letter-spacing: 3px;
+        margin-bottom: 40px;
+    }
+    .nav-item {
+        padding: 14px 18px;
+        margin-bottom: 14px;
+        background: #1d1d1d;
+        border-left: 4px solid transparent;
+        transition: 0.2s;
+        cursor: pointer;
         clip-path: polygon(
             0 0,
             100% 0,
@@ -71,12 +103,10 @@
             0 100%
         );
     }
-
-    .nav-item:hover{
-        border-left:4px solid #ffe100;
-        background:#272727;
+    .nav-item:hover {
+        border-left: 4px solid #ffe100;
+        background: #272727;
     }
-
     #profile-pic {
         width: 64px;
         height: 64px;
@@ -84,32 +114,17 @@
         border-radius: 50%;
         border: 3px solid #ffe100;
     }
-
-    main {
-        margin-left:240px;
-        min-height:100vh;
-        background:
-            linear-gradient(
-                rgba(0,0,0,0.03) 1px,
-                transparent 1px
-            ),
-            linear-gradient(
-                90deg,
-                rgba(0,0,0,0.03) 1px,
-                transparent 1px
-            ),
-            #ececec;
-        background-size:40px 40px;
+    body.collapsed main {
+        margin-left: var(--sidebar-collapsed);
     }
-
     #profile {
-        width:100%;
-        background:#ffffff;
-        border-bottom:4px solid #ffe100;
-        padding:24px 30px;
-        display:flex;
-        align-items:center;
-        gap:20px;
+        width: 100%;
+        background: #ffffff;
+        border-bottom: 4px solid #ffe100;
+        padding: 24px 30px;
+        display: flex;
+        align-items: center;
+        gap: 20px;
         clip-path: polygon(
             0 0,
             100% 0,
@@ -118,28 +133,25 @@
             0 100%
         );
     }
-
     .block {
         position: relative;
         width: 100%;
         padding: 40px;
         display: grid;
-        grid-template-columns:
-            repeat(auto-fill, var(--elementsize2));
+        grid-template-columns: repeat(auto-fill, var(--elementsize2));
         justify-content: space-evenly;
         justify-items: center;
         overflow: hidden;
     }
-        
     .element {
         position: relative;
         display: inline-block;
         height: var(--elementsize);
         margin: 10px;
-        background:white;
-        border:2px solid #d0d0d0;
-        overflow:hidden;
-        cursor:pointer;
+        background: white;
+        border: 2px solid #d0d0d0;
+        overflow: hidden;
+        cursor: pointer;
         clip-path: polygon(
             0 0,
             100% 0,
@@ -147,71 +159,56 @@
             84% 100%,
             0 100%
         );
-        /*background-color: lightskyblue;*/
         background-image: url('https://web-static.hg-cdn.com/endfield/official-v4/_next/static/media/card-bg.28c79684.jpg');
         background-size: cover;
         transition: transform 0.22s, filter 0.3s ease;
     }
-    .element::before{
-        content:"";
-        position:absolute;
-        top:0;
-        left:0;
-        width:100%;
-        height:10px;
-        background:#ffe100;
-        z-index:2;
+    .element::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 10px;
+        background: #ffe100;
+        z-index: 2;
     }
-
     .element:hover {
         transform: scale(1.32);
         z-index: 10;
-        box-shadow:
-            0 0 18px rgba(245,196,81,0.45);
+        box-shadow: 0 0 18px rgba(245,196,81,0.45);
         border: 1px solid #f5c451;
     }
-
     .element.grayscale {
         filter: grayscale(100%) brightness(75%);
     }
-
     .char-icon {
         height: var(--elementsize);
         -webkit-user-drag: none;
         -webkit-user-select: none;
     }
-    .char-name{
-        position:absolute;
-        bottom:0;
-        width:100%;
-        background:rgba(17,17,17,0.88);
-        color:white;
-        font-size:11px;
-        padding:6px;
-        z-index:4;
-        letter-spacing:1px;
+    .char-name {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        background: rgba(17,17,17,0.88);
+        color: white;
+        font-size: 11px;
+        padding: 6px;
+        z-index: 4;
+        letter-spacing: 1px;
     }
-
-    /*
-    .char-icon {
-        transition: transform 0.22s;
-    }
-    .char-icon:hover {
-        transform: scale(1.2);
-        z-index: 10;
-    }*/
-
-    </style>
+</style>
 </head>
 <body>
     <div id="navigation-bar">
+        <button id="toggle-btn" onclick="toggleSidebar()">☰</button>
         <p id="logo">ENDFIELD</p>
-
             <div class="nav-item" onclick="location.href='/dashboard'">
-                Dashboard
+                <span class="nav-text">Dashboard</span>
             </div>
             <div class="nav-item" onclick="location.href='/profile'">
-                Profile Settings
+                <span class="nav-text">Profile Settings</span>
             </div>
             <div style="margin-top:auto;">
                 <div class="nav-item" style="border-left:4px solid #ff3b3b;" onclick="if(confirm('Logout?')) location.href='/logout'">
@@ -384,103 +381,123 @@
         </div>
     </main>
 
-    <script>
+  <script>
+    function toggleSidebar() {
+        document.body.classList.toggle("collapsed");
+    }
 
-        function updateProfile(name, imgUrl) {
-            user.name = name;
-            user.profilePic = imgUrl;
-
-            document.getElementById("profile-name").textContent = user.name;
-            document.getElementById("profile-pic").src = user.profilePic;
-        }
-
-        let user = {
-            name: "JohnEndfield",
-            profilePic: "./static/image0.jpg"
-        };
+    function updateProfile(name, imgUrl) {
+        user.name = name;
+        user.profilePic = imgUrl;
 
         document.getElementById("profile-name").textContent = user.name;
         document.getElementById("profile-pic").src = user.profilePic;
+    }
 
-        //this will eventually be replaced by getting the data from the database
-        let data = //'{ "endmin" : false, "perlica" : true, "zhuangfy" : true, "chen" : false, "tangtang" : false, "rossi" : true, "laevatain" : false, "yvonne" : false, "gilberta" : true, "ardelia" : false, "ember" : false, "lastrite" : true, "lifeng" : true, "pogranichnik" : false, "alesh" : false, "arclight" : false, "avywenna" : false, "dapan" : true, "snowshine" : false, "wulfgard" : false, "xaihi" : false, "akekuri" : false, "antal" : false, "catcher" : false, "estella" : false, "flourite" : true }'
-            '{"endmin":false,"perlica":true,"zhuangfy":true,"chen":false,"tangtang":false,"rossi":true,"laevatain":false,"yvonne":false,"gilberta":true,"ardelia":false,"ember":false,"lastrite":true,"lifeng":true,"pogranichnik":false,"alesh":false,"arclight":false,"avywenna":false,"dapan":true,"snowshine":false,"wulfgard":false,"xaihi":false,"akekuri":false,"antal":false,"catcher":false,"estella":false,"flourite":true}'
-        let obj = JSON.parse(data);
+    let user = {
+        name: "{{ session['name'] }}",
+        profilePic: "./static/image0.jpg"
+    };
 
-        //goes through and selects / deselects chars based on saved data
-        for(const [key, value] of Object.entries(obj).filter(([key]) => key !== 'endmin')) {
-            console.log(key, value);
-            if(!value) {
-                const el = document.getElementById(key);
-                el.classList.toggle('grayscale');
-            }
-        }
+    document.getElementById("profile-name").textContent = user.name;
+    document.getElementById("profile-pic").src = user.profilePic;
 
-        //changes the character icon to grayscale + half brightness when deselected
-        //also updates the object and plays a sound
-        const select = (el) => {
+    //this will eventually be replaced by getting the data from the database
+    let data = `{{ data | safe }}`;
+    let obj = JSON.parse(data);
+
+    //goes through and selects / deselects chars based on saved data
+    for(const [key, value] of Object.entries(obj).filter(([key]) => key !== 'endmin')) {
+        console.log(key, value);
+        if(!value) {
+            const el = document.getElementById(key);
             el.classList.toggle('grayscale');
-            const sound = new Audio('./static/click.wav');
-            sound.currentTime = 0;
-            sound.play();
-            obj[el.id] = !obj[el.id];
-            //console.log(obj[el.id]);
         }
+    }
 
-        //switches the endmin picture when clicked instead of deselecting them
-        const selectspecial = (el) => {
-            if(obj["endmin"]){
-                el.innerHTML = '<img class="char-icon" alt="endmin" src="https://web-static.hg-cdn.com/endfield/official-v4/_next/static/media/endministrator1.c391b13d.png">';
-                obj["endmin"] = false;
-            }else{
-                el.innerHTML = '<img class="char-icon" alt="endmin" src="https://web-static.hg-cdn.com/endfield/official-v4/_next/static/media/endministrator2.5ccb44a8.png">';
-                obj["endmin"] = true;
-            }
-            const sound = new Audio('./static/click.wav');
-            sound.currentTime = 0;
-            sound.play();
-        }
+    //changes the character icon to grayscale + half brightness when deselected
+    //also updates the object and plays a sound
+    const select = (el) => {
+        el.classList.toggle('grayscale');
+        const sound = new Audio('./static/click.wav');
+        sound.currentTime = 0;
+        sound.play();
+        obj[el.id] = !obj[el.id];
 
-        //adding events for playing sound on click and hover
-        const elements =
-            document.querySelectorAll('.element:not(#special)');
-        elements.forEach(el => {
-            el.addEventListener('mouseover', playsound, false);
-            el.addEventListener('click', () => select(el));
+        fetch("/update-characters", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(obj)
         });
+    }
 
-        //special case for endmin; true = guy endmin, false = girl endmin
-        obj["endmin"] = !obj["endmin"];
-        const special = document.getElementById('special');
-        selectspecial(special);
-        special.addEventListener('mouseover', playsound, false);
-        special.addEventListener('click', () => selectspecial(special));
-
-        //plays sound when hovering over elements
-        function playsound() {
-            const sound = new Audio('./static/hover.wav');
-            sound.currentTime = 0;
-            sound.play();
-            //console.log("done!");
+    //switches the endmin picture when clicked instead of deselecting them
+    const selectspecial = (el) => {
+        if(obj["endmin"]){
+            el.innerHTML = '<img class="char-icon" alt="endmin" src="https://web-static.hg-cdn.com/endfield/official-v4/_next/static/media/endministrator1.c391b13d.png">';
+            obj["endmin"] = false;
+        }else{
+            el.innerHTML = '<img class="char-icon" alt="endmin" src="https://web-static.hg-cdn.com/endfield/official-v4/_next/static/media/endministrator2.5ccb44a8.png">';
+            obj["endmin"] = true;
         }
+        const sound = new Audio('./static/click.wav');
+        sound.currentTime = 0;
+        sound.play();
 
-        //Update server with changes
-        function update() {
-            if(data !== JSON.stringify(obj)) {
-                console.log("update():", true);
-                data = JSON.stringify(obj);
-                //update server with new data
-                // TO BE ADDED
-            }else{
-                console.log("update():", false);
-            }
+        fetch("/update-characters", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(obj)
+        });
+    }
+
+    //adding events for playing sound on click and hover
+    const elements =
+        document.querySelectorAll('.element:not(#special)');
+    elements.forEach(el => {
+        el.addEventListener('mouseover', playsound, false);
+        el.addEventListener('click', () => select(el));
+    });
+
+    const special = document.getElementById('special');
+    special.addEventListener('mouseover', playsound, false);
+    special.addEventListener('click', () => selectspecial(special));
+
+    //plays sound when hovering over elements
+    function playsound() {
+        const sound = new Audio('./static/hover.wav');
+        sound.currentTime = 0;
+        sound.play();
+        //console.log("done!");
+    }
+
+    //Update server with changes
+    function update() {
+        if(JSON.stringify(obj) !== data) {
+            console.log("update():", true);
+            data = JSON.stringify(obj);
+
+            fetch("/update-characters", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: data
+            });
+        }else{
+            console.log("update():", false);
         }
+    }
 
-        //calls update every 5 seconds and when leaving the page
-        setInterval(update, 5000);
-        addEventListener("beforeunload", update);
+    //calls update every 5 seconds and when leaving the page
+    setInterval(update, 5000);
+    addEventListener("beforeunload", update);
 
-    </script>
+</script>
 
 </body>
 </html>

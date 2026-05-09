@@ -4,6 +4,7 @@ from flask_session import Session
 from hashlib import sha256
 import random
 import string
+import json
 
 app = Flask(__name__)
 
@@ -94,7 +95,7 @@ def signup_page():
     pw += mrsalt
     pw = sha256(pw.encode()).hexdigest()
     pw = mrsalt + pw
-    data = '{"endmin":false,"perlica":false,"zhuangfy":false,"chen":false,"tangtang":false,"rossi":false,"laevatain":false,"yvonne":false,"gilberta":false,"ardelia":false,"ember":false,"lastrite":false,"lifeng":false,"pogranichnik":false,"alesh":false,"arclight":false,"avywenna":false,"dapan":false,"snowshine":false,"wulfgard":false,"xaihi":false,"akekuri":false,"antal":false,"catcher":false,"estella":false,"flourite":false}'
+    data = '{"endmin":true,"perlica":false,"zhuangfy":false,"chen":false,"tangtang":false,"rossi":false,"laevatain":false,"yvonne":false,"gilberta":false,"ardelia":false,"ember":false,"lastrite":false,"lifeng":false,"pogranichnik":false,"alesh":false,"arclight":false,"avywenna":false,"dapan":false,"snowshine":false,"wulfgard":false,"xaihi":false,"akekuri":false,"antal":false,"catcher":false,"estella":false,"flourite":false}'
 
     POST(name, pw, data)
     return redirect("/")
@@ -104,7 +105,9 @@ def signup_page():
 def dashboard():
     if not session.get("name"):
         return redirect("/")
-    return render_template("dashboard.html")
+
+    user = Users.query.filter_by(username=session["name"]).first()
+    return render_template("dashboard.html", data=user.data)
 
 @app.route("/DESTROY", methods=["GET"])
 def DESTROY():
@@ -115,13 +118,27 @@ def DESTROY():
 def profile():
     if not session.get("name"):
         return redirect("/")
-    return render_template("profile.html")
+
+    user = Users.query.filter_by(username=session["name"]).first()
+    return render_template("profile.html", user=user)
 
 @app.route("/logout")
 def logout():
     session.clear()
     return redirect("/")
 
+@app.route("/update-characters", methods=["POST"])
+def update_characters():
+    if not session.get("name"):
+        return {"error": "not logged in"}, 403
+
+    user = Users.query.filter_by(username=session["name"]).first()
+    new_data = request.json
+
+    user.data = json.dumps(new_data)
+    db.session.commit()
+
+    return {"status": "ok"}
 if __name__ == '__main__':
     app.run()
 
