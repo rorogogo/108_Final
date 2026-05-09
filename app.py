@@ -32,7 +32,7 @@ with app.app_context():
 
 def GET(name):
     x = Users.query.filter_by(username=name).first()
-    return x.password
+    return x.password if x else None
 
 def POST(name, password, data):
     new_user = Users(username=name, password=password, data=data)
@@ -47,9 +47,10 @@ def PUT(name, grade):
     return 1
 
 def DELETE(name):
-    db.session.delete(Users.query.filter_by(username=name).first())
-    db.session.commit()
-    return 1
+    user = Users.query.filter_by(username=name).first()
+    if user:
+        db.session.delete(user)
+        db.session.commit()
 
 # ----------------------------------------------------------
 
@@ -62,6 +63,8 @@ def index():
     pw = request.form.get("password")
 
     dbpw = GET(name)
+    if not dbpw:
+        return redirect("/")
     mrsalt = dbpw[:6]
     pw = pw + mrsalt
     pw = sha256(pw.encode()).hexdigest()
@@ -110,7 +113,7 @@ def DESTROY():
 
 @app.route("/logout")
 def logout():
-    session.pop("name", None)
+    session.clear()
     return redirect("/")
 
 if __name__ == '__main__':

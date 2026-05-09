@@ -205,23 +205,20 @@
 </head>
 <body>
     <div id="navigation-bar">
-    <p id="logo">ENDFIELD</p>
+        <p id="logo">ENDFIELD</p>
 
-    <div class="nav-item" onclick="location.href='index.html'">
-        Dashboard
+            <div class="nav-item" onclick="location.href='/dashboard'">
+                Dashboard
+            </div>
+            <div class="nav-item" onclick="location.href='/profile'">
+                Profile Settings
+            </div>
+            <div style="margin-top:auto;">
+                <div class="nav-item" style="border-left:4px solid #ff3b3b;" onclick="if(confirm('Logout?')) location.href='/logout'">
+                    LOGOUT
+                </div>
+            </div>
     </div>
-
-    <div class="nav-item" onclick="location.href='profile.html'">
-        Profile Settings
-    </div>
-    <div style="margin-top:auto;">
-    <a href="/logout" style="text-decoration:none;">
-        <div class="nav-item" style="border-left:4px solid #ff3b3b;">
-            LOGOUT
-        </div>
-    </a>
-</div>
-</div>
     <main>
         <div id="profile">
             <img id="profile-pic" src="./static/image0.jpg" alt="Profile Picture">
