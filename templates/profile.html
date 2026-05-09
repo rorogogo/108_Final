@@ -119,6 +119,39 @@
 </div>
 
 <script>
+    function saveProfile() {
+        const name = document.getElementById("name-input").value;
+        const file = document.getElementById("img-input").files[0];
+
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                sendToServer(name, e.target.result);
+            };
+            reader.readAsDataURL(file);
+        } else {
+            sendToServer(name, null);
+        }
+    }
+
+    function sendToServer(name, profilePic) {
+        fetch("/update-profile", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                name: name,
+                profilePic: profilePic
+            })
+        })
+        .then(res => res.json())
+        .then(() => {
+            alert("Profile updated!");
+            window.location.href = "/dashboard"; // reload with new data
+        });
+    }
+
     function toggleSidebar() {
         document.body.classList.toggle("collapsed");
     }
@@ -128,22 +161,6 @@
         profilePic: "./static/image0.jpg"
     };
     document.getElementById("name-input").value = user.name;
-    function saveProfile() {
-        user.name = document.getElementById("name-input").value;
-        const file = document.getElementById("img-input").files[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                user.profilePic = e.target.result;
-                localStorage.setItem("user", JSON.stringify(user));
-                alert("Profile updated!");
-            };
-            reader.readAsDataURL(file);
-        } else {
-            localStorage.setItem("user", JSON.stringify(user));
-            alert("Profile updated!");
-        }
-    }
 </script>
 
 </body>

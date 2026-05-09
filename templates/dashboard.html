@@ -396,12 +396,13 @@
     }
 
     let user = {
-        name: "{{ session['name'] }}",
-        profilePic: "./static/image0.jpg"
+        name: "{{ name }}",
+        profilePic: "{{ profile_pic }}"
     };
 
     document.getElementById("profile-name").textContent = user.name;
-    document.getElementById("profile-pic").src = user.profilePic;
+    document.getElementById("profile-pic").src =
+        user.profilePic || "./static/image0.jpg";
 
     //this will eventually be replaced by getting the data from the database
     let data = `{{ data | safe }}`;

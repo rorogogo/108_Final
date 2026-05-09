@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template, redirect, url_for, session
+from flask import Flask, request, render_template, redirect, url_for, session, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from flask_session import Session
 from hashlib import sha256
@@ -21,6 +21,7 @@ class Users(db.Model):
     username = db.Column(db.String(25), unique=True, nullable=False)
     password = db.Column(db.String(70), nullable=False)
     data = db.Column(db.String(425), nullable=False)
+    profile_pic = db.Column(db.Text, nullable=True)
 
     # Return the username when this user is displayed.
     def __str__(self):
@@ -100,6 +101,21 @@ def signup_page():
     POST(name, pw, data)
     return redirect("/")
 
+@app.route("/update-profile", methods=["POST"])
+def update_profile():
+    if not session.get("name"):
+        return {"error": "not logged in"}, 403
+    data = request.get_json()
+    name = data.get("name")
+    profile_pic = data.get("profilePic")
+    user = Users.query.filter_by(username=session["name"]).first()
+    if name:
+        user.username = name
+        session["name"] = name  # keep session in sync
+    if profile_pic:
+        user.profile_pic = profile_pic
+    db.session.commit()
+    return jsonify({"status": "ok"})
 
 @app.route("/dashboard")
 def dashboard():
@@ -107,7 +123,13 @@ def dashboard():
         return redirect("/")
 
     user = Users.query.filter_by(username=session["name"]).first()
-    return render_template("dashboard.html", data=user.data)
+
+    return render_template(
+        "dashboard.html",
+        data=user.data,
+        name=user.username,
+        profile_pic=user.profile_pic
+    )
 
 @app.route("/DESTROY", methods=["GET"])
 def DESTROY():
@@ -139,6 +161,7 @@ def update_characters():
     db.session.commit()
 
     return {"status": "ok"}
+
 if __name__ == '__main__':
     app.run()
 
