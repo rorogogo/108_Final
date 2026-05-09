@@ -1,0 +1,54 @@
+:root {
+    --sidebar-width: 240px;
+    --sidebar-collapsed: 70px;
+}
+
+/* SIDEBAR BASE */
+#navigation-bar {
+    box-sizing: border-box;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: var(--sidebar-width);
+    height: 100%;
+    background: #111;
+    border-right: 4px solid #ffe100;
+    padding: 20px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    transition: width 0.25s ease, padding 0.25s ease;
+    overflow: hidden; /* IMPORTANT */
+}
+
+/* COLLAPSED SIDEBAR */
+body.collapsed #navigation-bar {
+    width: var(--sidebar-collapsed);
+    padding: 10px;
+}
+
+/* THIS is the real fix: hide EVERYTHING inside */
+#navigation-bar * {
+    transition: opacity 0.15s ease;
+}
+
+body.collapsed #navigation-bar * {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* but keep toggle visible */
+body.collapsed #toggle-btn {
+    opacity: 1 !important;
+    pointer-events: auto !important;
+}
+
+/* MAIN SHIFT */
+main {
+    margin-left: var(--sidebar-width);
+    transition: margin-left 0.25s ease;
+}
+
+body.collapsed main {
+    margin-left: var(--sidebar-collapsed);
+}
