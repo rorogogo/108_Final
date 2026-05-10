@@ -136,7 +136,7 @@
     }
     .block {
         position: relative;
-        width: 100%;
+        width: 90%;
         padding: 40px;
         display: grid;
         grid-template-columns: repeat(auto-fill, var(--elementsize2));
@@ -429,35 +429,36 @@
         sound.play();
         obj[el.id] = !obj[el.id];
 
-        fetch("/update-characters", {
+        /*fetch("/update-characters", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify(obj)
-        });
+        });*/
     }
 
     //switches the endmin picture when clicked instead of deselecting them
     const selectspecial = (el) => {
         if(obj["endmin"]){
-            el.innerHTML = '<img class="char-icon" alt="endmin" src="https://web-static.hg-cdn.com/endfield/official-v4/_next/static/media/endministrator1.c391b13d.png">';
+            el.innerHTML = '<img class="char-icon" alt="endmin" src="https://web-static.hg-cdn.com/endfield/official-v4/_next/static/media/endministrator1.c391b13d.png"><div class="char-name">ENDMIN</div>';
             obj["endmin"] = false;
         }else{
-            el.innerHTML = '<img class="char-icon" alt="endmin" src="https://web-static.hg-cdn.com/endfield/official-v4/_next/static/media/endministrator2.5ccb44a8.png">';
+            el.innerHTML = '<img class="char-icon" alt="endmin" src="https://web-static.hg-cdn.com/endfield/official-v4/_next/static/media/endministrator2.5ccb44a8.png"><div class="char-name">ENDMIN</div>';
             obj["endmin"] = true;
         }
         const sound = new Audio('./static/click.wav');
         sound.currentTime = 0;
         sound.play();
 
+		/*
         fetch("/update-characters", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify(obj)
-        });
+        });*/
     }
 
     //adding events for playing sound on click and hover
@@ -483,7 +484,7 @@
     //Update server with changes
     function update() {
         if(JSON.stringify(obj) !== data) {
-            console.log("update():", true);
+            console.log("update():", true, data, JSON.stringify(obj));
             data = JSON.stringify(obj);
 
             fetch("/update-characters", {
@@ -497,10 +498,28 @@
             console.log("update():", false);
         }
     }
+	
+	//special syncronous server update, since "beforeUnload" doesnt work with asyncronous updates
+	function finalupdate() {
+		if(JSON.stringify(obj) !== data) {
+            console.log("update():", true);
+            data = JSON.stringify(obj);
+
+            const request = new XMLHttpRequest();
+			request.open("POST", "/update-characters", false);
+			request.send(data);
+			
+			if(request.status === 200) {
+				console.log(request.responseText);
+			}
+        }else{
+            console.log("update():", false);
+        }
+	}
 
     //calls update every 5 seconds and when leaving the page
     setInterval(update, 5000);
-    addEventListener("beforeunload", update);
+    addEventListener("beforeunload", finalupdate);
 
 </script>
 
