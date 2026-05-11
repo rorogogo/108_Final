@@ -1,0 +1,22 @@
+{
+  "chen": {
+    "build": "Physical DPS",
+    "weapons": ["highest attack weapon", "crit-focused weapon"],
+    "stats": ["attack", "crit rate", "crit damage", "physical damage"]
+  },
+  "rossi": {
+    "build": "Physical DPS",
+    "weapons": ["highest attack weapon", "crit-focused weapon"],
+    "stats": ["attack", "crit rate", "crit damage", "physical damage"]
+  },
+  "perlica": {
+    "build": "Support",
+    "weapons": ["support weapon", "energy-focused weapon"],
+    "stats": ["energy", "support bonus", "skill uptime"]
+  },
+  "default": {
+    "build": "Flexible starter setup",
+    "weapons": ["best leveled weapon", "weapon that supports the character's main role"],
+    "stats": ["attack", "survivability", "role-specific bonus stats"]
+  }
+}

@@ -1,527 +1,255 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/static/sidebar.css">
-    <title>Dashboard</title>
-    <style>
-    * {
-        font-family: 'Orbitron', sans-serif;
-    }
-    body {
-        overflow-x: hidden;
-        margin: 0;
-        background: #ececec; /* simple base */
-    }
-    main {
-        margin-left: var(--sidebar-width);
-        min-height: 100vh;
-        background:
-            linear-gradient(
-                135deg,
-                transparent 0%,
-                transparent 72%,
-                rgba(255,225,0,0.14) 72%,
-                rgba(255,225,0,0.14) 100%
-            ),
-            linear-gradient(
-                -45deg,
-                transparent 0%,
-                transparent 85%,
-                rgba(255,225,0,0.08) 85%,
-                rgba(255,225,0,0.08) 100%
-            ),
-            linear-gradient(rgba(0,0,0,0.03) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(0,0,0,0.03) 1px, transparent 1px),
-            #ececec;
-        background-size: auto, auto, 40px 40px, 40px 40px;
-        transition: 0.25s;
-    }
-    :root {
-        --sidebar-width: 240px;
-        --sidebar-collapsed: 70px;
-        --elementsize: 150px;
-        --elementsize2: calc(var(--elementsize) * 0.784974);
-    }
-    #navigation-bar {
-        box-sizing: border-box;
-        left: 0;
-        top: 0;
-        position: fixed;
-        width: var(--sidebar-width);
-        height: 100%;
-        background: #111;
-        border-right: 4px solid #ffe100;
-        z-index: 100;
-        padding: 20px;
-        color: white;
-        display: flex;
-        flex-direction: column;
-        transition: 0.25s;
-    }
-    #navigation-bar > * {
-        transition: opacity 0.2s ease;
-    }
-    body.collapsed #navigation-bar {
-        width: 60px;
-        padding: 10px;
-        overflow: hidden;
-    }
-    /* Hide everything except toggle button */
-    body.collapsed #navigation-bar > *:not(#toggle-btn) {
-        opacity: 0;
-        pointer-events: none;
-    }
-    /* Keep button centered */
-    #toggle-btn {
-        width: 100%;
-        font-size: 20px;
-        background: none;
-        border: none;
-        color: white;
-        cursor: pointer;
-        margin-bottom: 20px;
-    }
-    #logo {
-        font-size: 30px;
-        font-weight: 700;
-        color: #ffe100;
-        letter-spacing: 3px;
-        margin-bottom: 40px;
-    }
-    .nav-item {
-        padding: 14px 18px;
-        margin-bottom: 14px;
-        background: #1d1d1d;
-        border-left: 4px solid transparent;
-        transition: 0.2s;
-        cursor: pointer;
-        clip-path: polygon(
-            0 0,
-            100% 0,
-            100% 82%,
-            92% 100%,
-            0 100%
-        );
-    }
-    .nav-item:hover {
-        border-left: 4px solid #ffe100;
-        background: #272727;
-    }
-    #profile-pic {
-        width: 64px;
-        height: 64px;
-        object-fit: cover;
-        border-radius: 50%;
-        border: 3px solid #ffe100;
-    }
-    body.collapsed main {
-        margin-left: var(--sidebar-collapsed);
-    }
-    #profile {
-        width: 100%;
-        background: #ffffff;
-        border-bottom: 4px solid #ffe100;
-        padding: 24px 30px;
-        display: flex;
-        align-items: center;
-        gap: 20px;
-        clip-path: polygon(
-            0 0,
-            100% 0,
-            100% 88%,
-            98% 100%,
-            0 100%
-        );
-    }
-    .block {
-        position: relative;
-        width: 90%;
-        padding: 40px;
-        display: grid;
-        grid-template-columns: repeat(auto-fill, var(--elementsize2));
-        justify-content: space-evenly;
-        justify-items: center;
-        overflow: hidden;
-    }
-    .element {
-        position: relative;
-        display: inline-block;
-        height: var(--elementsize);
-        margin: 10px;
-        background: white;
-        border: 2px solid #d0d0d0;
-        overflow: hidden;
-        cursor: pointer;
-        clip-path: polygon(
-            0 0,
-            100% 0,
-            100% 84%,
-            84% 100%,
-            0 100%
-        );
-        background-image: url('https://web-static.hg-cdn.com/endfield/official-v4/_next/static/media/card-bg.28c79684.jpg');
-        background-size: cover;
-        transition: transform 0.22s, filter 0.3s ease;
-    }
-    .element::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 10px;
-        background: #ffe100;
-        z-index: 2;
-    }
-    .element:hover {
-        transform: scale(1.32);
-        z-index: 10;
-        box-shadow: 0 0 18px rgba(245,196,81,0.45);
-        border: 1px solid #f5c451;
-    }
-    .element.grayscale {
-        filter: grayscale(100%) brightness(75%);
-    }
-    .char-icon {
-        height: var(--elementsize);
-        -webkit-user-drag: none;
-        -webkit-user-select: none;
-    }
-    .char-name {
-        position: absolute;
-        bottom: 0;
-        width: 100%;
-        background: rgba(17,17,17,0.88);
-        color: white;
-        font-size: 11px;
-        padding: 6px;
-        z-index: 4;
-        letter-spacing: 1px;
-    }
-</style>
+    <script src="/static/music.js" defer></script>
+    <title>Endfield Roster</title>
 </head>
 <body>
-    <div id="navigation-bar">
-        <button id="toggle-btn" onclick="toggleSidebar()">☰</button>
+    <nav id="navigation-bar" aria-label="Primary navigation">
         <p id="logo">ENDFIELD</p>
-            <div class="nav-item" onclick="location.href='/dashboard'">
-                <span class="nav-text">Dashboard</span>
+        <a class="nav-item active" href="/dashboard">
+            <span class="nav-icon" aria-hidden="true">DB</span>
+            <span class="nav-text">Dashboard</span>
+        </a>
+        <a class="nav-item" href="/teams">
+            <span class="nav-icon" aria-hidden="true">TM</span>
+            <span class="nav-text">Teams</span>
+        </a>
+    </nav>
+
+    <main class="shell">
+        <header class="page-header">
+            <div>
+                <p class="page-kicker">Roster Command</p>
+                <h1 class="page-title">{{ name }}</h1>
             </div>
-            <div class="nav-item" onclick="location.href='/profile'">
-                <span class="nav-text">Profile Settings</span>
-            </div>
-            <div class="nav-item" onclick="location.href='/teams'">
-                <span class="nav-text">Teams</span>
-            </div>
-            <div style="margin-top:auto;">
-                <div class="nav-item" style="border-left:4px solid #ff3b3b;" onclick="if(confirm('Logout?')) location.href='/logout'">
-                    LOGOUT
+            <div class="account-menu" id="account-menu">
+                <button
+                    class="avatar-button"
+                    type="button"
+                    id="account-menu-button"
+                    aria-label="Open account menu"
+                    aria-expanded="false"
+                    onclick="toggleAccountMenu(event)"
+                >
+                    <img class="avatar" src="{{ profile_pic or '/static/image0.jpg' }}" alt="Profile picture">
+                </button>
+                <div class="account-popover" id="account-popover" role="menu" aria-labelledby="account-menu-button">
+                    <div class="account-summary">
+                        <img class="account-avatar" src="{{ profile_pic or '/static/image0.jpg' }}" alt="">
+                        <div>
+                            <strong>{{ name }}</strong>
+                            <span>Account</span>
+                        </div>
+                    </div>
+                    <a class="account-action" href="/profile" role="menuitem">Account Settings</a>
+                    <a class="account-action danger" href="/logout" role="menuitem" onclick="clearChatbotStorage()">Logout</a>
                 </div>
             </div>
-    </div>
-    <main>
-        <div id="profile">
-            <img id="profile-pic" src="./static/image0.jpg" alt="Profile Picture">
-            <h1 id="profile-name"></h1>
-        </div>
-        <div class="block">
-            <div class="element" id="special">
-                <img class="char-icon" alt="endmin" src="https://web-static.hg-cdn.com/endfield/official-v4/_next/static/media/endministrator1.c391b13d.png">
-                <div class="char-name">
-                    ENDMIN
+        </header>
+
+        <section class="content">
+            <div class="toolbar">
+                <div class="stats">
+                    <div class="stat">
+                        <strong id="owned-count">0</strong>
+                        <span>Owned</span>
+                    </div>
+                    <div class="stat">
+                        <strong>{{ characters|length }}</strong>
+                        <span>Total</span>
+                    </div>
+                </div>
+                <div class="button-row">
+                    <span class="status-pill" id="save-status">Saved</span>
+                    <button class="secondary-button" type="button" onclick="saveRoster()">Save</button>
                 </div>
             </div>
-            <div class="element" id="perlica">
-                <img class="char-icon" alt="perlica" src="https://web-static.hg-cdn.com/endfield/official-v4/_next/static/media/prelica.d0bbdb53.png">
-                <div class="char-name">
-                    PERLICA
-                </div>
+
+            <div class="grid" id="character-grid">
+                {% for char_id, character in characters.items() %}
+                {% set is_owned = data.get(char_id, character.get('owned', False)) %}
+                <button
+                    class="character-card {% if not is_owned %}unowned{% endif %}"
+                    type="button"
+                    data-id="{{ char_id }}"
+                    data-alt="{{ character.get('alt_image', '') }}"
+                    aria-pressed="{{ 'true' if is_owned else 'false' }}"
+                >
+                    <img src="{{ character.image }}" alt="{{ character.name }}">
+                    <span class="character-name">{{ character.name }}</span>
+                </button>
+                {% endfor %}
             </div>
-            <div class="element" id="zhuangfy">
-                <img class="char-icon" alt="zhuangfy" src="https://web-static.hg-cdn.com/endfield/official-v4/_next/static/media/zhuangfy.50a608b8.png">
-                <div class="char-name">
-                    ZHUANG FANGYI
-                </div>
-            </div>
-            <div class="element" id="chen">
-                <img class="char-icon" alt="chen" src="https://web-static.hg-cdn.com/endfield/official-v4/_next/static/media/chen.b0afd1ba.png">
-                <div class="char-name">
-                    CHEN
-                </div>
-            </div>
-            <div class="element" id="tangtang">
-                <img class="char-icon" alt="tangtang" src="https://web-static.hg-cdn.com/endfield/official-v4/_next/static/media/tangtang.b5cd99e9.png">
-                <div class="char-name">
-                    TANGTANG
-                </div>      
-            </div>
-            <div class="element" id="rossi">
-                <img class="char-icon" alt="rossi" src="https://web-static.hg-cdn.com/endfield/official-v4/_next/static/media/rossi.c58b721b.png">
-                <div class="char-name">
-                    ROSSI
-                </div>
-            </div>
-            <div class="element" id="laevatain">
-                <img class="char-icon" alt="laevatain" src="https://web-static.hg-cdn.com/endfield/official-v4/_next/static/media/laevatain.edd103d4.png">
-                <div class="char-name">
-                    LAEVATAIN
-                </div>
-            </div>
-            <div class="element" id="yvonne">
-                <img class="char-icon" alt="yvonne" src="https://web-static.hg-cdn.com/endfield/official-v4/_next/static/media/yvonne.9695c304.png">
-                <div class="char-name">
-                    YVONNE
-                </div>
-            </div>
-            <div class="element" id="gilberta">
-                <img class="char-icon" alt="gilberta" src="https://web-static.hg-cdn.com/endfield/official-v4/_next/static/media/gilberta.724f3503.png">
-                <div class="char-name">
-                    GILBERTA
-                </div>
-            </div>
-            <div class="element" id="ardelia">
-                <img class="char-icon" alt="ardelia" src="https://web-static.hg-cdn.com/endfield/official-v4/_next/static/media/ardelia.565c75af.png">
-                <div class="char-name">
-                    ARDELIA
-                </div>
-            </div>
-            <div class="element" id="ember">
-                <img class="char-icon" alt="ember" src="https://web-static.hg-cdn.com/endfield/official-v4/_next/static/media/ember.6391acf9.png">
-                <div class="char-name">
-                    EMBER
-                </div>
-            </div>
-            <div class="element" id="lastrite">
-                <img class="char-icon" alt="lastrite" src="https://web-static.hg-cdn.com/endfield/official-v4/_next/static/media/lastrite.3860f541.png">
-                <div class="char-name">
-                    LASTRITE
-                </div>
-            </div>
-            <div class="element" id="lifeng">
-                <img class="char-icon" alt="lifeng" src="https://web-static.hg-cdn.com/endfield/official-v4/_next/static/media/lifeng.ef41bc3a.png">
-                <div class="char-name">
-                    LIFENG
-                </div>
-            </div>
-            <div class="element" id="pogranichnik">
-                <img class="char-icon" alt="pogranichnik" src="https://web-static.hg-cdn.com/endfield/official-v4/_next/static/media/pogranichnik.80f2ddbb.png">
-                <div class="char-name">
-                    POGRANICHNIK
-                </div>
-            </div>
-            <div class="element" id="alesh">
-                <img class="char-icon" alt="alesh" src="https://web-static.hg-cdn.com/endfield/official-v4/_next/static/media/alesh.d7f457d2.png">
-                <div class="char-name">
-                    ALESH
-                </div>
-            </div>
-            <div class="element" id="arclight">
-                <img class="char-icon" alt="arclight" src="https://web-static.hg-cdn.com/endfield/official-v4/_next/static/media/arclight.e31580d7.png">
-                <div class="char-name">
-                    ARCLIGHT
-                </div>
-            </div>
-            <div class="element" id="avywenna">
-                <img class="char-icon" alt="avywenna" src="https://web-static.hg-cdn.com/endfield/official-v4/_next/static/media/avywenna.2a592659.png">
-                <div class="char-name">
-                    AVYWENNA
-                </div>
-            </div>
-            <div class="element" id="dapan">
-                <img class="char-icon" alt="dapan" src="https://web-static.hg-cdn.com/endfield/official-v4/_next/static/media/dapan.7cdb6a4e.png">
-                <div class="char-name">
-                    DA PAN
-                </div>
-            </div>
-            <div class="element" id="snowshine">
-                <img class="char-icon" alt="snowshine" src="https://web-static.hg-cdn.com/endfield/official-v4/_next/static/media/snowshine.bb2c0bdc.png">
-                <div class="char-name">
-                    SNOWSHINE
-                </div>
-            </div>
-            <div class="element" id="wulfgard">
-                <img class="char-icon" alt="wulfgard" src="https://web-static.hg-cdn.com/endfield/official-v4/_next/static/media/wulfgard.609a252f.png">
-                <div class="char-name">
-                    WULFGARD
-                </div>
-            </div>
-            <div class="element" id="xaihi">
-                <img class="char-icon" alt="xaihi" src="https://web-static.hg-cdn.com/endfield/official-v4/_next/static/media/xaihi.9ba3eb36.png">
-                <div class="char-name">
-                    XAIHI
-                </div>
-            </div>
-            <div class="element" id="akekuri">
-                <img class="char-icon" alt="akekuri" src="https://web-static.hg-cdn.com/endfield/official-v4/_next/static/media/akekuri.3603d013.png">
-                <div class="char-name">
-                    AKEKURI
-                </div>
-            </div>
-            <div class="element" id="antal">
-                <img class="char-icon" alt="antal" src="https://web-static.hg-cdn.com/endfield/official-v4/_next/static/media/antal.763c87e4.png">
-                <div class="char-name">
-                    ANTAL
-                </div>
-            </div>
-            <div class="element" id="catcher"> <!-- why does catcher have a different portrait width?? -->
-                <img class="char-icon" alt="catcher" style="width:var(--elementsize2);" src="https://web-static.hg-cdn.com/endfield/official-v4/_next/static/media/catcher.bc6bcfaa.png">
-                <div class="char-name">
-                    CATCHER
-                </div>
-            </div>
-            <div class="element" id="estella">
-                <img class="char-icon" alt="estella" src="https://web-static.hg-cdn.com/endfield/official-v4/_next/static/media/estella.38c423af.png">
-                <div class="char-name">
-                    ESTELLA
-                </div>
-            </div>
-            <div class="element" id="flourite">
-                <img class="char-icon" alt="flourite" src="https://web-static.hg-cdn.com/endfield/official-v4/_next/static/media/fluorite.5a8add29.png">
-                <div class="char-name">
-                    FLOURITE
-                </div>
-            </div>
-        </div>
+        </section>
     </main>
 
-  <script>
-    function toggleSidebar() {
-        document.body.classList.toggle("collapsed");
-    }
+    <section class="chatbot-widget" id="chatbot-widget" aria-label="Character chatbot">
+        <button class="chatbot-launcher" type="button" onclick="toggleChatbot()" aria-expanded="false" id="chatbot-launcher">
+            BOT
+        </button>
+        <div class="chatbot-panel" id="chatbot-panel">
+            <div class="chatbot-header">
+                <strong>Build Bot</strong>
+                <button class="chatbot-close" type="button" onclick="toggleChatbot(false)" aria-label="Close chatbot">X</button>
+            </div>
+            <div class="chatbot-messages" id="chatbot-messages">
+                <div class="chat-message bot">Ask about your roster, teams, weapons, or builds.</div>
+            </div>
+            <form class="chatbot-form" onsubmit="sendChatbotMessage(event)">
+                <input id="chatbot-input" autocomplete="off" placeholder="Message">
+                <button class="primary-button" type="submit">Send</button>
+            </form>
+        </div>
+    </section>
 
-    function updateProfile(name, imgUrl) {
-        user.name = name;
-        user.profilePic = imgUrl;
+    <button
+        class="sound-toggle floating-mute"
+        id="sound-muted-button"
+        type="button"
+        aria-label="Mute audio"
+        aria-pressed="false"
+        title="Mute audio"
+    >
+        <span class="speaker-icon" id="sound-muted-icon" aria-hidden="true"></span>
+    </button>
 
-        document.getElementById("profile-name").textContent = user.name;
-        document.getElementById("profile-pic").src = user.profilePic;
-    }
+    <script>
+        const clickSound = new Audio("/static/click.wav");
+        const hoverSound = new Audio("/static/hover.wav");
+        const EFFECT_VOLUME = 0.45;
+        let roster = {{ data | tojson }};
+        const characters = {{ characters | tojson }};
+        let lastSaved = JSON.stringify(roster);
+        const soundSettings = {
+            muted: localStorage.getItem("endfieldMusicMuted") === "true"
+        };
+        const muteButton = document.getElementById("sound-muted-button");
 
-    let user = {
-        name: "{{ name }}",
-        profilePic: "{{ profile_pic }}"
-    };
-
-    document.getElementById("profile-name").textContent = user.name;
-    document.getElementById("profile-pic").src =
-        user.profilePic || "./static/image0.jpg";
-
-    //this will eventually be replaced by getting the data from the database
-    let data = `{{ data | safe }}`;
-    let obj = JSON.parse(data);
-
-    //goes through and selects / deselects chars based on saved data
-    for(const [key, value] of Object.entries(obj).filter(([key]) => key !== 'endmin')) {
-        console.log(key, value);
-        if(!value) {
-            const el = document.getElementById(key);
-            el.classList.toggle('grayscale');
+        function setAccountMenu(open) {
+            const menu = document.getElementById("account-menu");
+            const button = document.getElementById("account-menu-button");
+            menu.classList.toggle("open", open);
+            button.setAttribute("aria-expanded", open ? "true" : "false");
         }
-    }
 
-    //changes the character icon to grayscale + half brightness when deselected
-    //also updates the object and plays a sound
-    const select = (el) => {
-        el.classList.toggle('grayscale');
-        const sound = new Audio('./static/click.wav');
-        sound.currentTime = 0;
-        sound.play();
-        obj[el.id] = !obj[el.id];
-
-        /*fetch("/update-characters", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(obj)
-        });*/
-    }
-
-    //switches the endmin picture when clicked instead of deselecting them
-    const selectspecial = (el) => {
-        if(obj["endmin"]){
-            el.innerHTML = '<img class="char-icon" alt="endmin" src="https://web-static.hg-cdn.com/endfield/official-v4/_next/static/media/endministrator1.c391b13d.png"><div class="char-name">ENDMIN</div>';
-            obj["endmin"] = false;
-        }else{
-            el.innerHTML = '<img class="char-icon" alt="endmin" src="https://web-static.hg-cdn.com/endfield/official-v4/_next/static/media/endministrator2.5ccb44a8.png"><div class="char-name">ENDMIN</div>';
-            obj["endmin"] = true;
+        function toggleAccountMenu(event) {
+            event.stopPropagation();
+            const menu = document.getElementById("account-menu");
+            setAccountMenu(!menu.classList.contains("open"));
         }
-        const sound = new Audio('./static/click.wav');
-        sound.currentTime = 0;
-        sound.play();
 
-		/*
-        fetch("/update-characters", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(obj)
-        });*/
-    }
+        function setStatus(text) {
+            document.getElementById("save-status").textContent = text;
+        }
 
-    //adding events for playing sound on click and hover
-    const elements =
-        document.querySelectorAll('.element:not(#special)');
-    elements.forEach(el => {
-        el.addEventListener('mouseover', playsound, false);
-        el.addEventListener('click', () => select(el));
-    });
+        function updateCount() {
+            const owned = Object.values(roster).filter(Boolean).length;
+            document.getElementById("owned-count").textContent = owned;
+        }
 
-    const special = document.getElementById('special');
-    special.addEventListener('mouseover', playsound, false);
-    special.addEventListener('click', () => selectspecial(special));
+        function applySoundSettings() {
+            clickSound.volume = EFFECT_VOLUME;
+            hoverSound.volume = EFFECT_VOLUME;
+            clickSound.muted = soundSettings.muted;
+            hoverSound.muted = soundSettings.muted;
+            muteButton.setAttribute("aria-pressed", soundSettings.muted ? "true" : "false");
+            muteButton.setAttribute("title", soundSettings.muted ? "Unmute audio" : "Mute audio");
+        }
 
-    //plays sound when hovering over elements
-    function playsound() {
-        const sound = new Audio('./static/hover.wav');
-        sound.currentTime = 0;
-        sound.play();
-        //console.log("done!");
-    }
+        function play(sound) {
+            if (soundSettings.muted) {
+                return;
+            }
+            sound.currentTime = 0;
+            sound.play().catch(() => {});
+        }
 
-    //Update server with changes
-    function update() {
-        if(JSON.stringify(obj) !== data) {
-            console.log("update():", true, data, JSON.stringify(obj));
-            data = JSON.stringify(obj);
+        function syncSpecialImage(card) {
+            const charId = card.dataset.id;
+            const altImage = card.dataset.alt;
+            if (charId !== "endmin" || !altImage) {
+                return;
+            }
+            const img = card.querySelector("img");
+            img.src = roster[charId] ? altImage : characters[charId].image;
+        }
+
+        document.querySelectorAll(".character-card").forEach((card) => {
+            const charId = card.dataset.id;
+            if (!(charId in roster)) {
+                roster[charId] = Boolean(characters[charId].owned);
+            }
+            syncSpecialImage(card);
+
+            card.addEventListener("mouseenter", () => play(hoverSound));
+            card.addEventListener("click", () => {
+                roster[charId] = !roster[charId];
+                card.classList.toggle("unowned", !roster[charId]);
+                card.setAttribute("aria-pressed", roster[charId] ? "true" : "false");
+                syncSpecialImage(card);
+                updateCount();
+                setStatus("Unsaved");
+                play(clickSound);
+            });
+        });
+
+        document.addEventListener("endfield-music-mute-change", (event) => {
+            soundSettings.muted = Boolean(event.detail?.muted);
+            applySoundSettings();
+        });
+
+        function saveRoster() {
+            const payload = JSON.stringify(roster);
+            if (payload === lastSaved) {
+                setStatus("Saved");
+                return;
+            }
 
             fetch("/update-characters", {
                 method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: data
-            });
-        }else{
-            console.log("update():", false);
+                headers: { "Content-Type": "application/json" },
+                body: payload
+            }).then((response) => {
+                if (!response.ok) {
+                    throw new Error("Save failed");
+                }
+                lastSaved = payload;
+                setStatus("Saved");
+            }).catch(() => setStatus("Save failed"));
         }
-    }
-	
-	//special syncronous server update, since "beforeUnload" doesnt work with asyncronous updates
-	function finalupdate() {
-		if(JSON.stringify(obj) !== data) {
-            console.log("update():", true);
-            data = JSON.stringify(obj);
 
-            const request = new XMLHttpRequest();
-			request.open("POST", "/update-characters", false);
-			request.send(data);
-			
-			if(request.status === 200) {
-				console.log(request.responseText);
-			}
-        }else{
-            console.log("update():", false);
-        }
-	}
+        window.addEventListener("beforeunload", () => {
+            if (JSON.stringify(roster) !== lastSaved) {
+                navigator.sendBeacon(
+                    "/update-characters",
+                    new Blob([JSON.stringify(roster)], { type: "application/json" })
+                );
+            }
+        });
 
-    //calls update every 5 seconds and when leaving the page
-    setInterval(update, 5000);
-    addEventListener("beforeunload", finalupdate);
+        document.addEventListener("click", (event) => {
+            if (!event.target.closest("#account-menu")) {
+                setAccountMenu(false);
+            }
+        });
 
-</script>
+        document.addEventListener("keydown", (event) => {
+            if (event.key === "Escape") {
+                setAccountMenu(false);
+            }
+        });
 
+        applySoundSettings();
+        updateCount();
+    </script>
+    <script src="/static/sfx.js"></script>
+    <script src="/static/chatbot.js"></script>
 </body>
 </html>

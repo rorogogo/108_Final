@@ -1,14 +1,160 @@
 {
-  "chen": {
-    "roles": ["dps"],
-    "element": "physical"
+  "endmin": {
+    "name": "Endministrator",
+    "roles": ["flex"],
+    "element": "unknown",
+    "owned": true,
+    "image": "https://web-static.hg-cdn.com/endfield/official-v4/_next/static/media/endministrator1.c391b13d.png",
+    "alt_image": "https://web-static.hg-cdn.com/endfield/official-v4/_next/static/media/endministrator2.5ccb44a8.png"
   },
   "perlica": {
+    "name": "Perlica",
     "roles": ["support"],
-    "element": "electric"
+    "element": "electric",
+    "image": "https://web-static.hg-cdn.com/endfield/official-v4/_next/static/media/prelica.d0bbdb53.png"
+  },
+  "zhuangfy": {
+    "name": "Zhuang Fangyi",
+    "roles": ["flex"],
+    "element": "unknown",
+    "image": "https://web-static.hg-cdn.com/endfield/official-v4/_next/static/media/zhuangfy.50a608b8.png"
+  },
+  "chen": {
+    "name": "Chen",
+    "roles": ["dps"],
+    "element": "physical",
+    "image": "https://web-static.hg-cdn.com/endfield/official-v4/_next/static/media/chen.b0afd1ba.png"
+  },
+  "tangtang": {
+    "name": "Tangtang",
+    "roles": ["flex"],
+    "element": "unknown",
+    "image": "https://web-static.hg-cdn.com/endfield/official-v4/_next/static/media/tangtang.b5cd99e9.png"
   },
   "rossi": {
+    "name": "Rossi",
     "roles": ["dps"],
-    "element": "physical"
+    "element": "physical",
+    "image": "https://web-static.hg-cdn.com/endfield/official-v4/_next/static/media/rossi.c58b721b.png"
+  },
+  "laevatain": {
+    "name": "Laevatain",
+    "roles": ["flex"],
+    "element": "unknown",
+    "image": "https://web-static.hg-cdn.com/endfield/official-v4/_next/static/media/laevatain.edd103d4.png"
+  },
+  "yvonne": {
+    "name": "Yvonne",
+    "roles": ["flex"],
+    "element": "unknown",
+    "image": "https://web-static.hg-cdn.com/endfield/official-v4/_next/static/media/yvonne.9695c304.png"
+  },
+  "gilberta": {
+    "name": "Gilberta",
+    "roles": ["flex"],
+    "element": "unknown",
+    "image": "https://web-static.hg-cdn.com/endfield/official-v4/_next/static/media/gilberta.724f3503.png"
+  },
+  "ardelia": {
+    "name": "Ardelia",
+    "roles": ["flex"],
+    "element": "unknown",
+    "image": "https://web-static.hg-cdn.com/endfield/official-v4/_next/static/media/ardelia.565c75af.png"
+  },
+  "ember": {
+    "name": "Ember",
+    "roles": ["flex"],
+    "element": "unknown",
+    "image": "https://web-static.hg-cdn.com/endfield/official-v4/_next/static/media/ember.6391acf9.png"
+  },
+  "lastrite": {
+    "name": "Last Rite",
+    "roles": ["flex"],
+    "element": "unknown",
+    "image": "https://web-static.hg-cdn.com/endfield/official-v4/_next/static/media/lastrite.3860f541.png"
+  },
+  "lifeng": {
+    "name": "Lifeng",
+    "roles": ["flex"],
+    "element": "unknown",
+    "image": "https://web-static.hg-cdn.com/endfield/official-v4/_next/static/media/lifeng.ef41bc3a.png"
+  },
+  "pogranichnik": {
+    "name": "Pogranichnik",
+    "roles": ["flex"],
+    "element": "unknown",
+    "image": "https://web-static.hg-cdn.com/endfield/official-v4/_next/static/media/pogranichnik.80f2ddbb.png"
+  },
+  "alesh": {
+    "name": "Alesh",
+    "roles": ["flex"],
+    "element": "unknown",
+    "image": "https://web-static.hg-cdn.com/endfield/official-v4/_next/static/media/alesh.d7f457d2.png"
+  },
+  "arclight": {
+    "name": "Arclight",
+    "roles": ["flex"],
+    "element": "unknown",
+    "image": "https://web-static.hg-cdn.com/endfield/official-v4/_next/static/media/arclight.e31580d7.png"
+  },
+  "avywenna": {
+    "name": "Avywenna",
+    "roles": ["flex"],
+    "element": "unknown",
+    "image": "https://web-static.hg-cdn.com/endfield/official-v4/_next/static/media/avywenna.2a592659.png"
+  },
+  "dapan": {
+    "name": "Da Pan",
+    "roles": ["flex"],
+    "element": "unknown",
+    "image": "https://web-static.hg-cdn.com/endfield/official-v4/_next/static/media/dapan.7cdb6a4e.png"
+  },
+  "snowshine": {
+    "name": "Snowshine",
+    "roles": ["flex"],
+    "element": "unknown",
+    "image": "https://web-static.hg-cdn.com/endfield/official-v4/_next/static/media/snowshine.bb2c0bdc.png"
+  },
+  "wulfgard": {
+    "name": "Wulfgard",
+    "roles": ["flex"],
+    "element": "unknown",
+    "image": "https://web-static.hg-cdn.com/endfield/official-v4/_next/static/media/wulfgard.609a252f.png"
+  },
+  "xaihi": {
+    "name": "Xaihi",
+    "roles": ["flex"],
+    "element": "unknown",
+    "image": "https://web-static.hg-cdn.com/endfield/official-v4/_next/static/media/xaihi.9ba3eb36.png"
+  },
+  "akekuri": {
+    "name": "Akekuri",
+    "roles": ["flex"],
+    "element": "unknown",
+    "image": "https://web-static.hg-cdn.com/endfield/official-v4/_next/static/media/akekuri.3603d013.png"
+  },
+  "antal": {
+    "name": "Antal",
+    "roles": ["flex"],
+    "element": "unknown",
+    "image": "https://web-static.hg-cdn.com/endfield/official-v4/_next/static/media/antal.763c87e4.png"
+  },
+  "catcher": {
+    "name": "Catcher",
+    "roles": ["flex"],
+    "element": "unknown",
+    "image": "https://web-static.hg-cdn.com/endfield/official-v4/_next/static/media/catcher.bc6bcfaa.png"
+  },
+  "estella": {
+    "name": "Estella",
+    "roles": ["flex"],
+    "element": "unknown",
+    "image": "https://web-static.hg-cdn.com/endfield/official-v4/_next/static/media/estella.38c423af.png"
+  },
+  "flourite": {
+    "name": "Flourite",
+    "roles": ["flex"],
+    "element": "unknown",
+    "image": "https://web-static.hg-cdn.com/endfield/official-v4/_next/static/media/fluorite.5a8add29.png"
   }
 }
