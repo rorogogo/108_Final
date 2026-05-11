@@ -3,3 +3,5 @@ flask_session/
 __pycache__/
 *.pyc
 *.pyo
+*.pyd
+.Python
