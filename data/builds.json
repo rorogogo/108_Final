@@ -1,22 +1,29 @@
 {
-  "chen": {
-    "build": "Physical DPS",
-    "weapons": ["highest attack weapon", "crit-focused weapon"],
-    "stats": ["attack", "crit rate", "crit damage", "physical damage"]
-  },
-  "rossi": {
-    "build": "Physical DPS",
-    "weapons": ["highest attack weapon", "crit-focused weapon"],
-    "stats": ["attack", "crit rate", "crit damage", "physical damage"]
-  },
-  "perlica": {
-    "build": "Support",
-    "weapons": ["support weapon", "energy-focused weapon"],
-    "stats": ["energy", "support bonus", "skill uptime"]
-  },
-  "default": {
-    "build": "Flexible starter setup",
-    "weapons": ["best leveled weapon", "weapon that supports the character's main role"],
-    "stats": ["attack", "survivability", "role-specific bonus stats"]
-  }
+  "akekuri": {"build": "SP Regen Support", "weapons": ["Thermite Cutter", "OBJ Edge of Lightness", "Fortmaker"], "stats": ["attack", "sp recovery", "team attack", "arts intensity", "skill uptime"], "damage_type": "support"},
+  "alesh": {"build": "Cryo Support", "weapons": ["Fortmaker", "Finchaser 3.0", "Wave Tide"], "stats": ["attack", "ultimate gain", "arts intensity", "cryo damage", "skill uptime"], "damage_type": "cryo"},
+  "antal": {"build": "Arts Support", "weapons": ["OBJ Arts Identifier", "Hypernova Auto", "Jiminy 12"], "stats": ["arts intensity", "team damage", "attack", "support bonus"], "damage_type": "arts"},
+  "arclight": {"build": "Sub-DPS", "weapons": ["Thermite Cutter", "OBJ Edge of Lightness", "Twelve Questions", "Prominent Edge"], "stats": ["attack", "sp recovery", "arts intensity", "skill damage", "physical damage"], "damage_type": "physical"},
+  "ardelia": {"build": "Healer Support", "weapons": ["Dreams of the Starry Beach", "Stanza of Memorials", "Monaihe", "Fluorescent Roc"], "stats": ["treatment efficiency", "healing", "ultimate gain", "team attack", "support bonus"], "damage_type": "support"},
+  "avywenna": {"build": "Electric Arts DPS", "weapons": ["JET", "Cohesive Traction", "Aggeloslayer"], "stats": ["attack", "arts damage", "electric damage", "skill damage"], "damage_type": "electric"},
+  "catcher": {"build": "Support Tank", "weapons": ["OBJ Heavy Burden", "Seeker of Dark Lung", "Quencher"], "stats": ["max hp", "defense", "ultimate gain", "support bonus"], "damage_type": "support"},
+  "chen": {"build": "Physical Vulnerability Sub-DPS", "weapons": ["Rapid Ascent", "Sundering Steel", "Aspirant"], "stats": ["attack", "crit rate", "physical damage", "skill damage", "ultimate damage"], "damage_type": "physical"},
+  "dapan": {"build": "Greatsword DPS", "weapons": ["Exemplar", "Sundered Prince", "Ancient Canal", "Industry 0.1"], "stats": ["attack", "crit rate", "physical damage", "arts intensity", "skill damage"], "damage_type": "physical"},
+  "ember": {"build": "Sustain Support", "weapons": ["Thunderberge", "Former Finery", "Finishing Call", "Quencher"], "stats": ["max hp", "healing", "shield", "support bonus", "defense"], "damage_type": "support"},
+  "endmin": {"build": "Physical MC DPS", "weapons": ["Eminent Repute", "Grand Vision", "Sundering Steel"], "stats": ["attack", "physical damage", "crit rate", "vulnerability", "skill damage"], "damage_type": "physical"},
+  "estella": {"build": "Physical Sub-DPS", "weapons": ["OBJ Razorhorn", "Valiant", "Aggeloslayer"], "stats": ["attack", "physical damage", "ultimate gain", "skill damage"], "damage_type": "physical"},
+  "flourite": {"build": "Arts Sub-DPS", "weapons": ["Wedge", "Navigator", "OBJ Velocitous", "Howling Guard"], "stats": ["attack", "crit rate", "arts damage", "ultimate gain", "nature damage"], "damage_type": "arts"},
+  "gilberta": {"build": "Arts Support", "weapons": ["Delivery Guaranteed", "Opus: Etch Figure", "Stanza of Memorials"], "stats": ["ultimate gain", "arts damage", "nature damage", "team damage", "support bonus"], "damage_type": "support"},
+  "laevatain": {"build": "Heat DPS", "weapons": ["Forgeborn Scathe", "Umbral Torch", "Fortmaker", "Wave Tide"], "stats": ["attack", "heat damage", "basic attack damage", "ultimate damage", "arts intensity"], "damage_type": "heat"},
+  "lastrite": {"build": "Cryo Greatsword DPS", "weapons": ["Khravengger", "Sundered Prince", "Seeker of Dark Lung", "Industry 0.1"], "stats": ["attack", "crit rate", "cryo damage", "skill damage", "ultimate gain"], "damage_type": "cryo"},
+  "lifeng": {"build": "Physical Sub-DPS", "weapons": ["Mountain Bearer", "Valiant", "Chimeric Justice", "Pathfinder's Beacon"], "stats": ["attack", "physical damage", "crit rate", "vulnerability", "skill damage"], "damage_type": "physical"},
+  "perlica": {"build": "Electric Arts Support", "weapons": ["Detonation Unit", "Stanza of Memorials", "Wild Wanderer", "Hypernova Auto"], "stats": ["arts intensity", "electric damage", "team damage", "skill uptime", "attack"], "damage_type": "electric"},
+  "pogranichnik": {"build": "SP Regen Support", "weapons": ["Never Rest", "Thermite Cutter", "Eminent Repute", "Sundering Steel"], "stats": ["sp recovery", "team physical damage", "attack", "physical damage", "skill uptime"], "damage_type": "physical"},
+  "rossi": {"build": "Hybrid Physical DPS", "weapons": ["Lupine Scarlet", "Glorious Memory", "Sundering Steel", "Wave Tide"], "stats": ["attack", "crit rate", "physical damage", "heat damage", "skill damage"], "damage_type": "physical"},
+  "snowshine": {"build": "Sustain Support", "weapons": ["Former Finery", "Thunderberge", "Finishing Call", "Quencher"], "stats": ["max hp", "healing", "shield", "support bonus"], "damage_type": "support"},
+  "tangtang": {"build": "Cryo Sub-DPS", "weapons": ["Brigand's Calling", "Home Longing", "Opus: The Living", "Howling Guard"], "stats": ["attack", "cryo damage", "arts damage", "skill damage", "crit rate"], "damage_type": "cryo"},
+  "wulfgard": {"build": "Arts DPS", "weapons": ["Clannibal", "Wedge", "Rational Farewell", "Long Road"], "stats": ["attack", "arts damage", "crit rate", "heat damage", "skill damage"], "damage_type": "arts"},
+  "xaihi": {"build": "Cryo Arts Healer Support", "weapons": ["Chivalric Virtues", "Detonation Unit", "Monaihe", "Freedom to Proselytize"], "stats": ["treatment efficiency", "healing", "ultimate gain", "arts intensity", "team damage"], "damage_type": "support"},
+  "yvonne": {"build": "Single-Target Cryo DPS", "weapons": ["Artzy Tyrannical", "Navigator", "Wedge", "Howling Guard"], "stats": ["attack", "crit rate", "cryo damage", "skill damage", "arts damage"], "damage_type": "cryo"},
+  "zhuangfy": {"build": "Flexible starter setup", "weapons": [], "stats": ["attack", "crit rate", "skill damage"], "damage_type": "unknown"},
+  "default": {"build": "Flexible starter setup", "weapons": ["best leveled weapon", "weapon that supports the character's main role"], "stats": ["attack", "crit rate", "skill damage", "role-specific bonus stats"], "damage_type": "flex"}
 }

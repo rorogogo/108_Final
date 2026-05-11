@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="/static/theme.js"></script>
+    <link rel="stylesheet" href="/static/sidebar.css">
+    <script src="/static/music.js" defer></script>
+    <title>Endfield Weapons</title>
+</head>
+<body>
+    <nav id="navigation-bar" aria-label="Primary navigation">
+        <p id="logo">ENDFIELD</p>
+        <a class="nav-item" href="/dashboard">
+            <span class="nav-icon" aria-hidden="true">DB</span>
+            <span class="nav-text">Dashboard</span>
+        </a>
+        <a class="nav-item" href="/teams">
+            <span class="nav-icon" aria-hidden="true">TM</span>
+            <span class="nav-text">Teams</span>
+        </a>
+        <a class="nav-item active" href="/weapons">
+            <span class="nav-icon" aria-hidden="true">WP</span>
+            <span class="nav-text">Weapons</span>
+        </a>
+    </nav>
+
+    <main class="shell">
+        <header class="page-header">
+            <div>
+                <p class="page-kicker">Arsenal Command</p>
+                <h1 class="page-title">Weapons</h1>
+            </div>
+            <div class="account-menu" id="account-menu">
+                <button class="avatar-button" type="button" id="account-menu-button" aria-label="Open account menu" aria-expanded="false" onclick="toggleAccountMenu(event)">
+                    <img class="avatar" src="{{ profile_pic or '/static/image0.jpg' }}" alt="Profile picture">
+                </button>
+                <div class="account-popover" id="account-popover" role="menu" aria-labelledby="account-menu-button">
+                    <div class="account-summary">
+                        <img class="account-avatar" src="{{ profile_pic or '/static/image0.jpg' }}" alt="">
+                        <div>
+                            <strong>{{ user.username if user else 'Guest' }}</strong>
+                            {% if is_logged_in %}<span>Account</span>{% endif %}
+                        </div>
+                    </div>
+                    {% if is_logged_in %}
+                    <a class="account-action" href="/profile" role="menuitem">Account Settings</a>
+                    <a class="account-action danger" href="/logout" role="menuitem" onclick="clearChatbotStorage()">Logout</a>
+                    {% else %}
+                    <a class="account-action" href="/login" role="menuitem">Log In</a>
+                    <a class="account-action" href="/signup" role="menuitem">Create Account</a>
+                    {% endif %}
+                </div>
+            </div>
+        </header>
+
+        <section class="content">
+            <div class="toolbar">
+                <div class="stats">
+                    <div class="stat">
+                        <strong id="owned-count">{{ owned_count }}</strong>
+                        <span>Owned</span>
+                    </div>
+                    <div class="stat">
+                        <strong id="displayed-count">{{ weapons|length }}</strong>
+                        <span>Displayed</span>
+                    </div>
+                </div>
+                {% if is_logged_in %}
+                <div class="button-row">
+                    <span class="status-pill" id="save-status">Saved</span>
+                    <button class="secondary-button" type="button" onclick="saveWeapons()">Save</button>
+                </div>
+                {% endif %}
+            </div>
+
+            <div class="filter-section">
+                <div class="filter-group">
+                    <h3>Weapon Type</h3>
+                    <div class="filter-buttons">
+                        <button class="filter-button active" data-filter-type="all" onclick="setTypeFilter('all')">All</button>
+                        <button class="filter-button" data-filter-type="sword" onclick="setTypeFilter('sword')">Sword</button>
+                        <button class="filter-button" data-filter-type="greatsword" onclick="setTypeFilter('greatsword')">Greatsword</button>
+                        <button class="filter-button" data-filter-type="polearm" onclick="setTypeFilter('polearm')">Polearm</button>
+                        <button class="filter-button" data-filter-type="handcannon" onclick="setTypeFilter('handcannon')">Handcannon</button>
+                        <button class="filter-button" data-filter-type="arts_unit" onclick="setTypeFilter('arts_unit')">Arts Unit</button>
+                    </div>
+                </div>
+
+                <div class="filter-group">
+                    <h3>Rarity</h3>
+                    <div class="filter-buttons">
+                        <button class="filter-button active" data-filter-rarity="all" onclick="setRarityFilter('all')">All</button>
+                        <button class="filter-button" data-filter-rarity="3" onclick="setRarityFilter('3')">3 Star</button>
+                        <button class="filter-button" data-filter-rarity="4" onclick="setRarityFilter('4')">4 Star</button>
+                        <button class="filter-button" data-filter-rarity="5" onclick="setRarityFilter('5')">5 Star</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid weapon-grid" id="weapon-grid">
+                {% for weapon_id, weapon in weapons.items() %}
+                {% set is_owned = owned.get(weapon_id, False) %}
+                <article
+                    class="weapon-tile {% if not is_owned %}unowned{% endif %}"
+                    data-id="{{ weapon_id }}"
+                    aria-pressed="{{ 'true' if is_owned else 'false' }}"
+                >
+                    <label class="owned-check" aria-label="Mark {{ weapon.name }} as owned">
+                        <input type="checkbox" {% if is_owned %}checked{% endif %}>
+                        <span></span>
+                    </label>
+                    <a class="weapon-link" href="/weapon/{{ weapon_id }}">
+                        <span class="weapon-rarity">{{ weapon.rarity }} star</span>
+                        <strong>{{ weapon.name }}</strong>
+                        <span>{{ weapon.type_label }}</span>
+                        <em>ATK {{ weapon.base_atk }}</em>
+                    </a>
+                </article>
+                {% endfor %}
+            </div>
+        </section>
+    </main>
+
+    <section class="chatbot-widget" id="chatbot-widget" aria-label="Weapon chatbot">
+        <button class="chatbot-launcher" type="button" onclick="toggleChatbot()" aria-expanded="false" id="chatbot-launcher">BOT</button>
+        <div class="chatbot-panel" id="chatbot-panel">
+            <div class="chatbot-header">
+                <strong>Build Bot</strong>
+                <button class="chatbot-close" type="button" onclick="toggleChatbot(false)" aria-label="Close chatbot">X</button>
+            </div>
+            <div class="chatbot-messages" id="chatbot-messages">
+                <div class="chat-message bot">Ask about your roster, teams, weapons, or builds.</div>
+            </div>
+            <form class="chatbot-form" onsubmit="sendChatbotMessage(event)">
+                <input id="chatbot-input" autocomplete="off" placeholder="Message">
+                <button class="primary-button" type="submit">Send</button>
+            </form>
+        </div>
+    </section>
+
+    <button class="sound-toggle floating-mute" id="sound-muted-button" type="button" aria-label="Mute audio" aria-pressed="false" title="Mute audio">
+        <span class="speaker-icon" id="sound-muted-icon" aria-hidden="true"></span>
+    </button>
+
+    <script>
+        let weapons = {{ owned | tojson }};
+        {% raw %}
+        let activeTypeFilters = new Set();
+        let activeRarityFilters = new Set();
+        {% endraw %}
+        let lastSaved = JSON.stringify(weapons);
+        let weaponsData = {};
+        
+        const isLoggedIn = {{ is_logged_in | tojson }};
+        
+        // Fetch weapons data from API
+        fetch('/api/weapons')
+            .then(r => r.json())
+            .then(data => { 
+                weaponsData = data; 
+                renderWeapons();
+            })
+            .catch(e => console.error('Failed to load weapons:', e));
+
+        function setAccountMenu(open) {
+            const menu = document.getElementById("account-menu");
+            const button = document.getElementById("account-menu-button");
+            menu.classList.toggle("open", open);
+            button.setAttribute("aria-expanded", open ? "true" : "false");
+        }
+
+        function toggleAccountMenu(event) {
+            event.stopPropagation();
+            const menu = document.getElementById("account-menu");
+            setAccountMenu(!menu.classList.contains("open"));
+        }
+
+        function setStatus(text) {
+            const saveStatus = document.getElementById("save-status");
+            if (saveStatus) {
+                saveStatus.textContent = text;
+            }
+        }
+
+        function updateCount() {
+            document.getElementById("owned-count").textContent = Object.values(weapons).filter(Boolean).length;
+            updateDisplayedCount();
+        }
+
+        function syncFilterButtons() {
+            document.querySelectorAll("[data-filter-type]").forEach(btn => {
+                const value = btn.dataset.filterType;
+                btn.classList.toggle("active", value === "all" ? activeTypeFilters.size === 0 : activeTypeFilters.has(value));
+            });
+
+            document.querySelectorAll("[data-filter-rarity]").forEach(btn => {
+                const value = btn.dataset.filterRarity;
+                btn.classList.toggle("active", value === "all" ? activeRarityFilters.size === 0 : activeRarityFilters.has(value));
+            });
+        }
+
+        function setTypeFilter(type) {
+            if (type === "all") {
+                activeTypeFilters.clear();
+            } else if (activeTypeFilters.has(type)) {
+                activeTypeFilters.delete(type);
+            } else {
+                activeTypeFilters.add(type);
+            }
+            syncFilterButtons();
+            applyFilters();
+        }
+
+        function setRarityFilter(rarity) {
+            if (rarity === "all") {
+                activeRarityFilters.clear();
+            } else if (activeRarityFilters.has(rarity)) {
+                activeRarityFilters.delete(rarity);
+            } else {
+                activeRarityFilters.add(rarity);
+            }
+            syncFilterButtons();
+            applyFilters();
+        }
+
+        function updateDisplayedCount() {
+            const visibleCards = document.querySelectorAll(".weapon-tile:not([hidden])").length;
+            document.getElementById("displayed-count").textContent = visibleCards;
+        }
+
+        function applyFilters() {
+            const weaponTiles = document.querySelectorAll(".weapon-tile");
+            
+            weaponTiles.forEach(tile => {
+                const weaponId = tile.dataset.id;
+                const weapon = weaponsData[weaponId];
+                
+                if (!weapon) return;
+
+                const typeMatch = activeTypeFilters.size === 0 || activeTypeFilters.has(weapon.type);
+                const rarityMatch = activeRarityFilters.size === 0 || activeRarityFilters.has(String(weapon.rarity));
+
+                const shouldShow = typeMatch && rarityMatch;
+                tile.hidden = !shouldShow;
+            });
+
+            updateDisplayedCount();
+        }
+
+        function setupWeaponListeners() {
+            document.querySelectorAll(".weapon-tile").forEach((card) => {
+                const weaponId = card.dataset.id;
+                const checkbox = card.querySelector(".owned-check input");
+
+                checkbox.addEventListener("click", (event) => {
+                    event.stopPropagation();
+                });
+
+                checkbox.addEventListener("change", () => {
+                    if (!isLoggedIn) {
+                        checkbox.checked = Boolean(weapons[weaponId]);
+                        setStatus("Log in to track weapons");
+                        return;
+                    }
+                    weapons[weaponId] = checkbox.checked;
+                    card.classList.toggle("unowned", !weapons[weaponId]);
+                    card.setAttribute("aria-pressed", weapons[weaponId] ? "true" : "false");
+                    updateCount();
+                    setStatus("Unsaved");
+                });
+            });
+        }
+
+        function renderWeapons() {
+            const grid = document.getElementById("weapon-grid");
+            grid.innerHTML = "";
+            
+            Object.entries(weaponsData).forEach(([weaponId, weapon]) => {
+                const isOwned = weapons[weaponId] || false;
+                
+                const article = document.createElement("article");
+                article.className = `weapon-tile ${isOwned ? "" : "unowned"}`;
+                article.dataset.id = weaponId;
+                article.setAttribute("aria-pressed", isOwned ? "true" : "false");
+                
+                article.innerHTML = `
+                    <label class="owned-check" aria-label="Mark ${weapon.name} as owned">
+                        <input type="checkbox" ${isOwned ? "checked" : ""}>
+                        <span></span>
+                    </label>
+                    <a class="weapon-link" href="/weapon/${weaponId}">
+                        <span class="weapon-rarity">${weapon.rarity} star</span>
+                        <strong>${weapon.name}</strong>
+                        <span>${weapon.type_label}</span>
+                        <em>ATK ${weapon.base_atk}</em>
+                    </a>
+                `;
+                
+                grid.appendChild(article);
+            });
+
+            setupWeaponListeners();
+            syncFilterButtons();
+            applyFilters();
+        }
+
+        function saveWeapons() {
+            if (!isLoggedIn) {
+                setStatus("Log in to save");
+                return;
+            }
+            const payload = JSON.stringify(weapons);
+            if (payload === lastSaved) {
+                setStatus("Saved");
+                return;
+            }
+
+            fetch("/update-weapons", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: payload
+            }).then((response) => {
+                if (!response.ok) {
+                    throw new Error("Save failed");
+                }
+                lastSaved = payload;
+                setStatus("Saved");
+            }).catch(() => setStatus("Save failed"));
+        }
+
+        window.addEventListener("beforeunload", () => {
+            if (isLoggedIn && JSON.stringify(weapons) !== lastSaved) {
+                navigator.sendBeacon(
+                    "/update-weapons",
+                    new Blob([JSON.stringify(weapons)], { type: "application/json" })
+                );
+            }
+        });
+
+        document.addEventListener("click", (event) => {
+            if (!event.target.closest("#account-menu")) {
+                setAccountMenu(false);
+            }
+        });
+
+        document.addEventListener("keydown", (event) => {
+            if (event.key === "Escape") {
+                setAccountMenu(false);
+            }
+        });
+    </script>
+    <script src="/static/sfx.js"></script>
+    <script src="/static/chatbot.js"></script>
+</body>
+</html>

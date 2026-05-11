@@ -11,6 +11,36 @@
     --cyan: #17bebb;
     --red: #e53935;
     --shadow: 0 16px 45px rgba(0, 0, 0, 0.12);
+    --card-bg: #ffffff;
+    --control-bg: #ffffff;
+    --soft-bg: #f3f3f3;
+    --grid-line: rgba(0, 0, 0, 0.035);
+}
+
+html[data-theme="dark"] {
+    --ink: #f2f2f2;
+    --panel: #1a1a1a;
+    --paper: #1a1a1a;
+    --muted: #b7b7b7;
+    --line: #3a3a3a;
+    --yellow: #ffe100;
+    --yellow-soft: rgba(255, 225, 0, 0.08);
+    --cyan: #17bebb;
+    --red: #e53935;
+    --shadow: 0 16px 45px rgba(0, 0, 0, 0.34);
+    --card-bg: #1f1f1f;
+    --control-bg: #262626;
+    --soft-bg: #2d2d2d;
+    --grid-line: rgba(255, 255, 255, 0.045);
+    color-scheme: light;
+}
+
+html[data-theme="dark"] #navigation-bar,
+html[data-theme="dark"] .chatbot-header,
+html[data-theme="dark"] .chatbot-launcher,
+html[data-theme="dark"] .primary-button,
+html[data-theme="dark"] .stat {
+    --ink: #111111;
 }
 
 * {
@@ -22,8 +52,8 @@ body {
     min-height: 100vh;
     background:
         linear-gradient(135deg, transparent 0%, transparent 72%, var(--yellow-soft) 72%, var(--yellow-soft) 100%),
-        linear-gradient(rgba(0, 0, 0, 0.035) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0, 0, 0, 0.035) 1px, transparent 1px),
+        linear-gradient(var(--grid-line) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid-line) 1px, transparent 1px),
         var(--paper);
     background-size: auto, 40px 40px, 40px 40px;
     color: var(--ink);
@@ -57,7 +87,7 @@ button {
     z-index: 20;
     width: var(--sidebar-collapsed);
     padding: 14px 10px;
-    background: var(--ink);
+    background: #111111;
     border-right: 4px solid var(--yellow);
     color: white;
     display: flex;
@@ -151,7 +181,7 @@ button {
 .page-header {
     min-height: 142px;
     padding: 26px 32px;
-    background: white;
+    background: var(--card-bg);
     border-bottom: 4px solid var(--yellow);
     display: flex;
     align-items: center;
@@ -212,7 +242,7 @@ button {
     padding: 12px;
     border: 2px solid var(--yellow);
     border-radius: 8px;
-    background: white;
+    background: var(--card-bg);
     box-shadow: var(--shadow);
     opacity: 0;
     pointer-events: none;
@@ -265,7 +295,7 @@ button {
     text-decoration: none;
     display: flex;
     align-items: center;
-    background: #f3f3f3;
+    background: var(--soft-bg);
     font-size: 12px;
 }
 
@@ -332,7 +362,7 @@ button {
     padding: 10px 14px;
     border: 1px solid var(--line);
     border-radius: 8px;
-    background: white;
+    background: var(--control-bg);
     color: var(--muted);
     font-size: 11px;
 }
@@ -344,27 +374,31 @@ button {
 }
 
 .character-card,
+.weapon-tile,
 .team-card {
     position: relative;
     min-height: 176px;
     overflow: hidden;
     border: 2px solid var(--line);
     border-radius: 8px;
-    background: white;
+    background: var(--card-bg);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
 }
 
-.character-card {
+.character-card,
+.weapon-tile {
     padding: 0;
     transition: transform 0.18s ease, border-color 0.18s ease, filter 0.18s ease;
 }
 
-.character-card:hover {
+.character-card:hover,
+.weapon-tile:hover {
     transform: translateY(-4px);
     border-color: var(--yellow);
 }
 
 .character-card::before,
+.weapon-tile::before,
 .team-card::before {
     position: absolute;
     inset: 0 0 auto;
@@ -374,8 +408,16 @@ button {
     z-index: 2;
 }
 
-.character-card.unowned {
+.character-card.unowned,
+.weapon-tile.unowned {
     filter: grayscale(1) brightness(0.72);
+}
+
+.character-link,
+.weapon-link {
+    color: inherit;
+    text-decoration: none;
+    display: block;
 }
 
 .character-card img {
@@ -385,6 +427,58 @@ button {
     object-position: top center;
     display: block;
     background: #dbdbdb;
+}
+
+.owned-check {
+    position: absolute;
+    top: 12px;
+    right: 10px;
+    z-index: 4;
+    width: 28px;
+    height: 28px;
+    opacity: 0;
+    transform: translateY(-4px);
+    transition: opacity 0.05s ease, transform 0.05s ease;
+}
+
+.character-card:hover .owned-check,
+.weapon-tile:hover .owned-check,
+.owned-check:focus-within {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.owned-check input {
+    position: absolute;
+    opacity: 0;
+    inset: 0;
+    cursor: pointer;
+}
+
+.owned-check span {
+    width: 28px;
+    height: 28px;
+    border: 2px solid var(--ink);
+    border-radius: 6px;
+    background: var(--control-bg);
+    display: block;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.owned-check input:checked + span {
+    background: var(--yellow);
+}
+
+.owned-check input:checked + span::after {
+    content: "";
+    position: absolute;
+    left: 9px;
+    top: 5px;
+    width: 8px;
+    height: 14px;
+    border: solid var(--ink);
+    border-width: 0 3px 3px 0;
+    transform: rotate(45deg);
 }
 
 .character-name {
@@ -399,8 +493,59 @@ button {
     text-transform: uppercase;
 }
 
+.weapon-grid {
+    grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+}
+
+.weapon-tile {
+    min-height: 170px;
+}
+
+.weapon-link {
+    min-height: 170px;
+    padding: 24px 14px 14px;
+    display: grid;
+    align-content: end;
+    gap: 8px;
+}
+
+.weapon-link strong {
+    font-size: 16px;
+    line-height: 1.25;
+}
+
+.weapon-link span,
+.weapon-link em {
+    font-family: Arial, sans-serif;
+    letter-spacing: 0;
+    font-style: normal;
+}
+
+.weapon-link span {
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.weapon-link em {
+    color: var(--ink);
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.weapon-rarity {
+    position: absolute;
+    top: 18px;
+    left: 12px;
+    padding: 5px 7px;
+    border-radius: 8px;
+    background: var(--soft-bg);
+    border-left: 4px solid var(--yellow);
+    color: var(--ink) !important;
+    font-size: 11px !important;
+}
+
 .panel {
-    background: white;
+    background: var(--card-bg);
     border: 3px solid var(--yellow);
     border-radius: 8px;
     box-shadow: var(--shadow);
@@ -417,7 +562,7 @@ button {
 .auth-card {
     width: min(430px, 100%);
     padding: 32px;
-    background: white;
+    background: var(--card-bg);
     border: 3px solid var(--yellow);
     border-radius: 8px;
     box-shadow: var(--shadow);
@@ -446,7 +591,8 @@ button {
     padding: 10px 12px;
     border: 1px solid #c8c8c8;
     border-radius: 8px;
-    background: white;
+    background: var(--control-bg);
+    color: var(--ink);
 }
 
 .field textarea {
@@ -454,6 +600,110 @@ button {
     line-height: 1.5;
     font-family: Arial, sans-serif;
     letter-spacing: 0;
+}
+
+.theme-setting {
+    margin: 8px 0 18px;
+    padding: 14px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: var(--soft-bg);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.theme-setting-text {
+    display: grid;
+    gap: 4px;
+}
+
+.theme-setting-text strong {
+    font-size: 13px;
+}
+
+.theme-setting-text span {
+    color: var(--muted);
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    letter-spacing: 0;
+}
+
+.theme-switch {
+    position: relative;
+    width: 68px;
+    height: 38px;
+    flex: 0 0 auto;
+}
+
+.theme-switch input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.theme-slider {
+    position: absolute;
+    inset: 0;
+    border: 2px solid var(--line);
+    border-radius: 999px;
+    background: var(--control-bg);
+    cursor: pointer;
+    overflow: hidden;
+    transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.theme-slider::before {
+    content: "";
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    left: 7px;
+    top: 8px;
+    border-radius: 50%;
+    background: var(--yellow);
+    box-shadow:
+        0 -11px 0 -7px var(--yellow),
+        0 11px 0 -7px var(--yellow),
+        11px 0 0 -7px var(--yellow),
+        -11px 0 0 -7px var(--yellow),
+        8px 8px 0 -7px var(--yellow),
+        -8px -8px 0 -7px var(--yellow),
+        8px -8px 0 -7px var(--yellow),
+        -8px 8px 0 -7px var(--yellow);
+    transition: transform 0.22s ease, background 0.22s ease, box-shadow 0.22s ease;
+}
+
+.theme-slider::after {
+    content: "";
+    position: absolute;
+    width: 18px;
+    height: 24px;
+    left: 5px;
+    top: 5px;
+    border-radius: 50%;
+    background: #08090c;
+    opacity: 0;
+    transform: translateX(8px);
+    transition: transform 0.22s ease, opacity 0.22s ease, background 0.22s ease;
+}
+
+.theme-switch input:checked + .theme-slider {
+    border-color: var(--yellow);
+    background: #08090c;
+}
+
+.theme-switch input:checked + .theme-slider::before {
+    transform: translateX(34px);
+    background: var(--yellow);
+    box-shadow: none;
+}
+
+.theme-switch input:checked + .theme-slider::after {
+    opacity: 1;
+    transform: translateX(42px);
+    background: #08090c;
 }
 
 .primary-button,
@@ -469,7 +719,7 @@ button {
 }
 
 .secondary-button {
-    background: white;
+    background: var(--control-bg);
     color: var(--ink);
     border: 1px solid var(--line);
 }
@@ -487,7 +737,7 @@ button {
     padding: 8px 12px;
     border: 1px solid var(--line);
     border-radius: 8px;
-    background: white;
+    background: var(--control-bg);
     display: inline-flex;
     align-items: center;
     gap: 10px;
@@ -597,6 +847,266 @@ button {
     width: min(440px, 100%);
 }
 
+.character-detail,
+.weapon-detail {
+    display: grid;
+    grid-template-columns: minmax(240px, 360px) 1fr;
+    gap: 24px;
+    align-items: start;
+}
+
+.character-portrait-panel {
+    min-height: 420px;
+    border: 3px solid var(--yellow);
+    border-radius: 8px;
+    background: var(--card-bg);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+}
+
+.character-portrait-panel img {
+    width: 100%;
+    height: 100%;
+    min-height: 420px;
+    object-fit: cover;
+    object-position: top center;
+    display: block;
+}
+
+.character-detail.not-owned .character-portrait-panel {
+    filter: grayscale(1) brightness(0.72);
+}
+
+.weapon-emblem-panel {
+    min-height: 320px;
+    border: 3px solid var(--yellow);
+    border-radius: 8px;
+    background:
+        linear-gradient(135deg, var(--yellow-soft), transparent 62%),
+        var(--card-bg);
+    box-shadow: var(--shadow);
+    padding: 28px;
+    display: grid;
+    align-content: end;
+    gap: 12px;
+}
+
+.weapon-detail.not-owned .weapon-emblem-panel {
+    filter: grayscale(1) brightness(0.72);
+}
+
+.weapon-emblem-panel span,
+.weapon-emblem-panel em {
+    font-family: Arial, sans-serif;
+    letter-spacing: 0;
+    font-style: normal;
+}
+
+.weapon-emblem-panel span {
+    color: var(--muted);
+    font-size: 14px;
+}
+
+.weapon-emblem-panel strong {
+    font-size: 42px;
+    line-height: 1;
+}
+
+.weapon-emblem-panel em {
+    font-weight: 700;
+}
+
+.character-info-panel h2 {
+    margin: 20px 0 10px;
+    font-size: 32px;
+}
+
+.character-build-list {
+    margin-top: 24px;
+    padding-top: 18px;
+    border-top: 1px solid var(--line);
+}
+
+.character-build-list p {
+    font-family: Arial, sans-serif;
+    letter-spacing: 0;
+    line-height: 1.5;
+}
+
+.weapon-chip-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.weapon-chip {
+    border: 1px solid var(--line);
+    border-left: 4px solid var(--yellow);
+    border-radius: 8px;
+    background: var(--control-bg);
+    padding: 8px 10px;
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    letter-spacing: 0;
+}
+
+.calculator-list {
+    display: grid;
+    gap: 8px;
+}
+
+.calculator-row {
+    min-height: 58px;
+    padding: 10px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: var(--control-bg);
+    color: var(--ink);
+    text-decoration: none;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 12px;
+    align-items: center;
+}
+
+.calculator-row:hover {
+    border-color: var(--yellow);
+}
+
+.calculator-rank {
+    min-width: 34px;
+    min-height: 34px;
+    border-radius: 8px;
+    background: var(--ink);
+    color: var(--yellow);
+    display: grid;
+    place-items: center;
+    font-size: 12px;
+}
+
+.calculator-row strong {
+    display: block;
+    margin-bottom: 4px;
+}
+
+.calculator-row small,
+.calculator-row em {
+    font-family: Arial, sans-serif;
+    letter-spacing: 0;
+}
+
+.calculator-row small {
+    color: var(--muted);
+    line-height: 1.35;
+}
+
+.calculator-row em {
+    min-width: 52px;
+    font-style: normal;
+    font-weight: 700;
+    text-align: right;
+}
+
+.weapon-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 10px;
+}
+
+.weapon-card {
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: var(--control-bg);
+    padding: 12px;
+}
+
+.weapon-card div {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    align-items: baseline;
+}
+
+.weapon-card strong {
+    font-size: 13px;
+}
+
+.weapon-card span,
+.weapon-card p,
+.weapon-card li {
+    font-family: Arial, sans-serif;
+    letter-spacing: 0;
+}
+
+.weapon-card span {
+    color: var(--muted);
+    font-size: 12px;
+    white-space: nowrap;
+}
+
+.weapon-card p {
+    margin: 8px 0 0;
+    color: var(--ink);
+    font-size: 13px;
+}
+
+.weapon-stats {
+    margin: 8px 0 0;
+    padding-left: 18px;
+}
+
+.weapon-stats li {
+    margin: 4px 0;
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.35;
+}
+
+.weapon-detail-stats {
+    margin: 0;
+    padding-left: 20px;
+}
+
+.weapon-detail-stats li {
+    margin: 10px 0;
+    font-family: Arial, sans-serif;
+    letter-spacing: 0;
+    line-height: 1.45;
+}
+
+.weapon-character-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.weapon-character-chip {
+    min-height: 54px;
+    padding: 6px 10px 6px 6px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: var(--control-bg);
+    color: var(--ink);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.weapon-character-chip img {
+    width: 42px;
+    height: 42px;
+    border-radius: 6px;
+    object-fit: cover;
+    object-position: top center;
+}
+
+.weapon-character-chip span {
+    font-family: Arial, sans-serif;
+    letter-spacing: 0;
+    font-size: 13px;
+}
+
 .team-layout {
     display: grid;
     grid-template-columns: minmax(280px, 390px) 1fr;
@@ -647,7 +1157,7 @@ button {
 .member-chip {
     padding: 7px 9px;
     border-radius: 8px;
-    background: #f0f0f0;
+    background: var(--soft-bg);
     border-left: 4px solid var(--cyan);
     font-size: 11px;
 }
@@ -664,7 +1174,7 @@ button {
     height: 34px;
     border: 1px solid var(--line);
     border-radius: 8px;
-    background: white;
+    background: var(--control-bg);
     color: var(--muted);
     display: grid;
     place-items: center;
@@ -697,6 +1207,63 @@ button {
     font-size: 16px;
 }
 
+/* Filter Section Styles */
+.filter-section {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 28px;
+    margin-bottom: 24px;
+    padding: 20px;
+    background: var(--soft-bg);
+    border: 2px solid var(--line);
+    border-radius: 8px;
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.filter-group h3 {
+    margin: 0;
+    font-size: 13px;
+    text-transform: uppercase;
+    color: var(--muted);
+    letter-spacing: 0.5px;
+}
+
+.filter-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.filter-button {
+    padding: 8px 14px;
+    border: 2px solid var(--line);
+    border-radius: 8px;
+    background: var(--control-bg);
+    color: var(--ink);
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.18s ease;
+}
+
+.filter-button:hover {
+    border-color: var(--yellow);
+    color: var(--yellow);
+}
+
+.filter-button.active {
+    background: var(--yellow);
+    border-color: var(--yellow);
+    color: var(--ink);
+    box-shadow: 0 4px 12px rgba(255, 225, 0, 0.24);
+}
+
 .chatbot-widget {
     position: fixed;
     right: 22px;
@@ -723,7 +1290,7 @@ button {
     height: min(540px, calc(100vh - 150px));
     border: 3px solid var(--yellow);
     border-radius: 8px;
-    background: white;
+    background: var(--card-bg);
     box-shadow: var(--shadow);
     display: grid;
     grid-template-rows: auto 1fr auto;
@@ -780,7 +1347,7 @@ button {
 
 .chat-message.bot {
     align-self: flex-start;
-    background: #f0f0f0;
+    background: var(--soft-bg);
     border-left: 4px solid var(--cyan);
 }
 
@@ -805,6 +1372,8 @@ button {
     padding: 10px 12px;
     border: 1px solid #c8c8c8;
     border-radius: 8px;
+    background: var(--control-bg);
+    color: var(--ink);
 }
 
 @media (max-width: 760px) {
@@ -830,8 +1399,15 @@ button {
     }
 
     .toolbar,
+    .character-detail,
+    .weapon-detail,
     .team-layout {
         display: block;
+    }
+
+    .character-portrait-panel,
+    .weapon-emblem-panel {
+        margin-bottom: 18px;
     }
 
     .stats {
