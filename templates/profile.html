@@ -11,7 +11,7 @@
     <script src="/static/music.js" defer></script>
     <title>Endfield Profile</title>
 </head>
-<body>
+<body data-logged-in="true">
     <nav id="navigation-bar" aria-label="Primary navigation">
         <p id="logo">ENDFIELD</p>
         <a class="nav-item" href="/dashboard">
@@ -22,9 +22,17 @@
             <span class="nav-icon" aria-hidden="true">TM</span>
             <span class="nav-text">Teams</span>
         </a>
+        <a class="nav-item" href="/community-builds">
+            <span class="nav-icon" aria-hidden="true">CB</span>
+            <span class="nav-text">Community's Build</span>
+        </a>
         <a class="nav-item" href="/weapons">
             <span class="nav-icon" aria-hidden="true">WP</span>
             <span class="nav-text">Weapons</span>
+        </a>
+        <a class="nav-item" href="/resources">
+            <span class="nav-icon" aria-hidden="true">RS</span>
+            <span class="nav-text">Resources</span>
         </a>
     </nav>
 
@@ -86,11 +94,6 @@
                     <label for="build-input">Weapons and builds</label>
                     <textarea id="build-input" rows="7" placeholder="Example: Chen has my best attack weapon. Perlica uses my support build.">{{ user.build_data or '' }}</textarea>
                 </div>
-
-                <div class="button-row">
-                    <button class="primary-button" type="button" onclick="saveProfile()">Save</button>
-                    <span class="status-pill" id="profile-status">Ready</span>
-                </div>
             </div>
         </section>
     </main>
@@ -125,6 +128,12 @@
 
     <script>
         let selectedImage = null;
+        let saveProfileTimer = null;
+
+        function scheduleProfileSave() {
+            clearTimeout(saveProfileTimer);
+            saveProfileTimer = setTimeout(saveProfile, 500);
+        }
 
         function setAccountMenu(open) {
             const menu = document.getElementById("account-menu");
@@ -151,16 +160,15 @@
                 selectedImage = loadEvent.target.result;
                 document.getElementById("preview").src = selectedImage;
                 document.getElementById("menu-preview").src = selectedImage;
+                scheduleProfileSave();
             };
             reader.readAsDataURL(file);
         });
 
-        function setStatus(text) {
-            document.getElementById("profile-status").textContent = text;
-        }
+        document.getElementById("name-input").addEventListener("input", scheduleProfileSave);
+        document.getElementById("build-input").addEventListener("input", scheduleProfileSave);
 
         function saveProfile() {
-            setStatus("Saving");
             fetch("/update-profile", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
@@ -173,8 +181,7 @@
                 if (!response.ok) {
                     throw new Error("Save failed");
                 }
-                window.location.href = "/dashboard";
-            }).catch(() => setStatus("Save failed"));
+            }).catch(() => {});
         }
 
         document.addEventListener("click", (event) => {

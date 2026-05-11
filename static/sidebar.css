@@ -1126,6 +1126,14 @@ button {
     gap: 16px;
 }
 
+.community-team-list {
+    grid-template-columns: 1fr;
+}
+
+.community-team-list .team-card {
+    width: 100%;
+}
+
 .team-card {
     padding: 22px 18px 18px;
 }
@@ -1145,6 +1153,156 @@ button {
     color: var(--muted);
     font-family: Arial, sans-serif;
     letter-spacing: 0;
+}
+
+.resource-layout {
+    display: grid;
+    gap: 24px;
+}
+
+.resource-region {
+    border-top: 4px solid var(--yellow);
+    padding-top: 16px;
+}
+
+.resource-region-header {
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+}
+
+.resource-region-header h2 {
+    margin: 0;
+}
+
+.resource-list {
+    display: grid;
+    gap: 10px;
+}
+
+.resource-row {
+    min-height: 72px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: var(--card-bg);
+    padding: 12px 14px;
+    display: grid;
+    grid-template-columns: minmax(190px, 0.7fr) 1fr minmax(260px, 1fr);
+    gap: 14px;
+    align-items: center;
+}
+
+.resource-row div {
+    display: grid;
+    gap: 5px;
+}
+
+.resource-row strong {
+    font-size: 14px;
+}
+
+.resource-row span,
+.resource-row p,
+.resource-row small {
+    font-family: Arial, sans-serif;
+    letter-spacing: 0;
+}
+
+.resource-row span {
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.resource-row p {
+    margin: 0;
+    line-height: 1.4;
+}
+
+.resource-row small {
+    color: var(--muted);
+    line-height: 1.4;
+}
+
+.modal-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 60;
+    background: rgba(0, 0, 0, 0.42);
+    padding: 24px;
+    display: grid;
+    place-items: center;
+}
+
+.modal-backdrop[hidden] {
+    display: none;
+}
+
+.modal-card {
+    position: relative;
+    width: min(520px, 100%);
+    border: 3px solid var(--yellow);
+    border-radius: 8px;
+    background: var(--card-bg);
+    box-shadow: var(--shadow);
+    padding: 34px;
+}
+
+.modal-card h2 {
+    margin: 0 0 22px;
+    font-size: 28px;
+}
+
+.modal-card p {
+    margin: 0 0 18px;
+    color: var(--muted);
+    font-family: Arial, sans-serif;
+    letter-spacing: 0;
+    line-height: 1.45;
+}
+
+.modal-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 34px;
+    height: 34px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: var(--control-bg);
+    color: var(--ink);
+}
+
+.modal-login-form {
+    display: grid;
+    gap: 14px;
+}
+
+.modal-login-form .field {
+    margin: 0;
+}
+
+.modal-login-form .primary-button {
+    width: 100%;
+    justify-content: center;
+}
+
+.modal-create-account {
+    width: max-content;
+    margin: 14px auto 0;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: var(--ink);
+    text-decoration: none;
+    display: block;
+}
+
+.modal-create-account:hover {
+    background: transparent;
+    color: var(--ink);
+    text-decoration: underline;
 }
 
 .team-members {
@@ -1408,6 +1566,11 @@ button {
     .character-portrait-panel,
     .weapon-emblem-panel {
         margin-bottom: 18px;
+    }
+
+    .resource-row {
+        grid-template-columns: 1fr;
+        align-items: start;
     }
 
     .stats {

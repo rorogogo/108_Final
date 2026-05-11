@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template, render_template_string, redirect, session, jsonify
+from flask import Flask, request, render_template, redirect, session, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from flask_session import Session
 from sqlalchemy import text
@@ -60,6 +60,9 @@ with open("data/builds.json") as f:
 
 with open("data/weapons.json") as f:
     WEAPONS = json.load(f)
+
+with open("data/resources.json") as f:
+    RESOURCES = json.load(f)
 
 DEFAULT_CHARACTER_DATA = {
     char_id: data.get("owned", False)
@@ -448,11 +451,8 @@ def weapons():
     user = Users.query.filter_by(username=session["name"]).first() if is_logged_in else None
     owned_weapons = get_weapon_data(user)
 
-    with open("templates/weapons.html", encoding="utf-8") as template_file:
-        template_source = template_file.read()
-
-    return render_template_string(
-        template_source,
+    return render_template(
+        "weapons.html",
         weapons=WEAPONS,
         owned=owned_weapons,
         owned_count=sum(1 for is_owned in owned_weapons.values() if is_owned),
@@ -460,10 +460,6 @@ def weapons():
         profile_pic=(user.profile_pic or "") if user else "",
         is_logged_in=is_logged_in
     )
-
-@app.route("/test-weapons")
-def test_weapons_route():
-    return render_template("test_weapons.html", weapons=WEAPONS)
 
 @app.route("/update-weapons", methods=["POST"])
 def update_weapons():
@@ -531,6 +527,21 @@ def teams():
     is_logged_in = bool(session.get("name"))
     user = Users.query.filter_by(username=session["name"]).first() if is_logged_in else None
     owned = json.loads(user.data) if user else PUBLIC_CHARACTER_DATA
+    profile_pic = (user.profile_pic or "") if user else ""
+    return render_template(
+        "teams.html",
+        prebuilt=PREBUILT_TEAMS,
+        characters=CHARACTERS,
+        owned=owned,
+        user=user,
+        profile_pic=profile_pic,
+        is_logged_in=is_logged_in
+    )
+
+@app.route("/community-builds")
+def community_builds():
+    is_logged_in = bool(session.get("name"))
+    user = Users.query.filter_by(username=session["name"]).first() if is_logged_in else None
     user_votes = {
         vote.team_id: vote.value
         for vote in TeamVotes.query.filter_by(user_id=user.id).all()
@@ -546,15 +557,26 @@ def teams():
         }
         for team in Teams.query.order_by(Teams.votes.desc()).all()
     ]
-    profile_pic = (user.profile_pic or "") if user else ""
     return render_template(
-        "teams.html",
+        "community_builds.html",
         teams=teams,
-        prebuilt=PREBUILT_TEAMS,
         characters=CHARACTERS,
-        owned=owned,
         user=user,
-        profile_pic=profile_pic,
+        profile_pic=(user.profile_pic or "") if user else "",
+        is_logged_in=is_logged_in
+    )
+
+@app.route("/resources")
+def resources():
+    is_logged_in = bool(session.get("name"))
+    user = Users.query.filter_by(username=session["name"]).first() if is_logged_in else None
+    total_resources = sum(len(items) for items in RESOURCES.values())
+    return render_template(
+        "resources.html",
+        resources=RESOURCES,
+        total_resources=total_resources,
+        user=user,
+        profile_pic=(user.profile_pic or "") if user else "",
         is_logged_in=is_logged_in
     )
 
@@ -677,6 +699,9 @@ def wants_web_search(message):
     return any(term in lower_message for term in web_terms)
 
 def is_casual_message(message):
+    if is_site_topic(message):
+        return False
+
     lower_message = message.lower()
     casual_patterns = [
         r"\bhello\b",
@@ -718,9 +743,63 @@ def is_site_topic(message):
         or any(term in lower_message for term in topic_terms)
     )
 
-def site_chatbot_context(user):
+def is_resource_question(message):
+    lower_message = message.lower()
+    resource_terms = [
+        "resource",
+        "resources",
+        "material",
+        "materials",
+        "ore",
+        "plant",
+        "seed",
+        "region",
+        "valley",
+        "wuling",
+        "farm",
+        "gather",
+        "where can i find",
+        "where do i find"
+    ]
+    return any(term in lower_message for term in resource_terms)
+
+def is_team_question(message):
+    lower_message = message.lower()
+    return any(term in lower_message for term in ["team", "teams", "squad", "community build", "shared build"])
+
+def compact_weapon(weapon, include_stats=False):
+    data = {
+        "name": weapon.get("name", weapon.get("id")),
+        "type": weapon.get("type_label", weapon.get("type")),
+        "rarity": weapon.get("rarity"),
+        "atk_lv90": weapon.get("base_atk")
+    }
+    if include_stats:
+        data["stats"] = weapon.get("stats", [])[:3]
+    return data
+
+def compact_resources():
+    return {
+        region: [
+            {
+                "name": item.get("name"),
+                "type": item.get("type"),
+                "locations": item.get("locations", [])
+            }
+            for item in items
+        ]
+        for region, items in RESOURCES.items()
+    }
+
+def site_chatbot_context(user, message="", history=None):
+    history = history or []
     owned = json.loads(user.data) if user else PUBLIC_CHARACTER_DATA
     owned_weapon_data = get_weapon_data(user)
+    requested_char = find_character_in_message(message) or last_character_from_history(history)
+    wants_weapon_details = is_weapon_question(message) or bool(requested_char)
+    wants_resources = is_resource_question(message)
+    wants_teams = is_team_question(message)
+
     owned_chars = [
         {
             "id": char_id,
@@ -728,19 +807,14 @@ def site_chatbot_context(user):
             "roles": CHARACTERS.get(char_id, {}).get("roles", []),
             "element": CHARACTERS.get(char_id, {}).get("element", "unknown"),
             "weapon_type": CHARACTERS.get(char_id, {}).get("weapon_type", "unknown"),
-            "recommended_weapons": recommended_weapons_for_character(char_id)[:6],
-            "weapon_calculator": [
-                {
-                    "weapon": item["weapon"].get("name", item["weapon"].get("id")),
-                    "score": item["score"],
-                    "reasons": item["reasons"]
-                }
-                for item in rank_weapons_for_character(char_id)[:5]
-            ]
+            "recommended_weapons": recommended_weapons_for_character(char_id)[:3]
         }
         for char_id, owned_char in owned.items()
         if owned_char
     ]
+    if len(owned_chars) > 12 and not user:
+        owned_chars = owned_chars[:12]
+
     roster = [
         {
             "id": char_id,
@@ -748,39 +822,72 @@ def site_chatbot_context(user):
             "roles": character.get("roles", []),
             "element": character.get("element", "unknown"),
             "weapon_type": character.get("weapon_type", "unknown"),
-            "recommended_weapons": recommended_weapons_for_character(char_id)[:6],
-            "wanted_stats": BUILD_GUIDES.get(char_id, BUILD_GUIDES.get("default", {})).get("stats", []),
             "owned": bool(owned.get(char_id, character.get("owned", False)))
         }
         for char_id, character in CHARACTERS.items()
     ]
-    shared_teams = [
-        {
-            "name": team.name,
-            "characters": [
-                character_name(char_id)
-                for char_id in json.loads(team.characters)
-            ],
-            "creator": team.creator,
-            "votes": team.votes
+
+    character_focus = None
+    weapons = []
+    if requested_char and requested_char in CHARACTERS:
+        guide = BUILD_GUIDES.get(requested_char, BUILD_GUIDES.get("default", {}))
+        rankings = rank_weapons_for_character(requested_char)[:6]
+        character_focus = {
+            "id": requested_char,
+            "name": character_name(requested_char),
+            "build": guide.get("build"),
+            "wanted_stats": guide.get("stats", []),
+            "recommended_weapons": guide.get("weapons", []),
+            "weapon_calculator": [
+                {
+                    "weapon": item["weapon"].get("name", item["weapon"].get("id")),
+                    "score": item["score"],
+                    "reasons": item["reasons"],
+                    "stats": item["weapon"].get("stats", [])[:3]
+                }
+                for item in rankings
+            ]
         }
-        for team in Teams.query.order_by(Teams.votes.desc()).limit(10).all()
-    ]
+        weapons = [
+            compact_weapon(item["weapon"], include_stats=True)
+            for item in rankings
+        ]
+    elif wants_weapon_details:
+        weapons = [
+            compact_weapon(weapon, include_stats=False)
+            for weapon in list(WEAPONS.values())
+        ]
+
+    shared_teams = []
+    if wants_teams:
+        shared_teams = [
+            {
+                "name": team.name,
+                "characters": [
+                    character_name(char_id)
+                    for char_id in json.loads(team.characters)
+                ],
+                "creator": team.creator,
+                "votes": team.votes
+            }
+            for team in Teams.query.order_by(Teams.votes.desc()).limit(6).all()
+        ]
 
     return {
         "user": {
             "username": user.username if user else "Guest",
-            "owned_characters": owned_chars,
+            "owned_characters": owned_chars[:20],
             "owned_weapons": [
                 WEAPONS[weapon_id].get("name", weapon_id)
                 for weapon_id, is_owned in owned_weapon_data.items()
                 if is_owned
-            ],
-            "weapon_and_build_notes": ((user.build_data if user else "") or "")[:3000]
+            ][:20],
+            "weapon_and_build_notes": ((user.build_data if user else "") or "")[:1200]
         },
-        "roster": roster,
-        "starter_build_guides": BUILD_GUIDES,
-        "weapons": list(WEAPONS.values()),
+        "roster": roster if not requested_char else [],
+        "character_focus": character_focus,
+        "weapons": weapons,
+        "natural_resources": compact_resources() if wants_resources else {},
         "starter_teams": PREBUILT_TEAMS,
         "shared_teams": shared_teams
     }
@@ -877,7 +984,7 @@ def groq_chatbot_reply(message, user, history=None):
             "Ask about Endfield news, characters, updates, releases, or official info."
         )
 
-    context = site_chatbot_context(user)
+    context = site_chatbot_context(user, message, history)
     off_topic = not is_site_topic(message) and not is_casual_message(message)
     system_message = (
         "You are Build Bot, a friendly assistant inside an Arknights: Endfield roster website. "
@@ -1080,20 +1187,25 @@ def generate_team():
 
 @app.route("/chatbot", methods=["POST"])
 def chatbot():
-    user = Users.query.filter_by(username=session["name"]).first() if session.get("name") else None
+    if not session.get("name"):
+        return jsonify({
+            "error": "login_required",
+            "reply": "Log in to use the chatbot."
+        }), 401
+
+    user = Users.query.filter_by(username=session["name"]).first()
     data = request.get_json(silent=True) or {}
     message = data.get("message", "")
     history = recent_chat_context(data.get("history", []))
 
+    if is_casual_message(message):
+        return jsonify({"reply": chatbot_reply(message, user, history)})
+
     try:
         reply = groq_chatbot_reply(message, user, history)
     except Exception as error:
-        print(f"Groq chatbot error: {type(error).__name__}: {error}")
-        reply = (
-            f"I could not reach Groq right now ({type(error).__name__}). "
-            "Check the Flask terminal for the exact error. Here is the basic site-data answer: "
-            + chatbot_reply(message, user, history)
-        )
+        print(f"Groq chatbot error: {type(error).__name__}: {error!r}")
+        reply = chatbot_reply(message, user, history)
 
     return jsonify({"reply": reply})
 

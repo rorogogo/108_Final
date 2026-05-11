@@ -11,7 +11,7 @@
     <script src="/static/music.js" defer></script>
     <title>Endfield Teams</title>
 </head>
-<body>
+<body data-logged-in="{{ 'true' if is_logged_in else 'false' }}">
     <nav id="navigation-bar" aria-label="Primary navigation">
         <p id="logo">ENDFIELD</p>
         <a class="nav-item" href="/dashboard">
@@ -22,9 +22,17 @@
             <span class="nav-icon" aria-hidden="true">TM</span>
             <span class="nav-text">Teams</span>
         </a>
+        <a class="nav-item" href="/community-builds">
+            <span class="nav-icon" aria-hidden="true">CB</span>
+            <span class="nav-text">Community's Build</span>
+        </a>
         <a class="nav-item" href="/weapons">
             <span class="nav-icon" aria-hidden="true">WP</span>
             <span class="nav-text">Weapons</span>
+        </a>
+        <a class="nav-item" href="/resources">
+            <span class="nav-icon" aria-hidden="true">RS</span>
+            <span class="nav-text">Resources</span>
         </a>
     </nav>
 
@@ -36,10 +44,6 @@
             </div>
             <div class="header-actions">
                 <div class="stats">
-                    <div class="stat">
-                        <strong>{{ teams|length }}</strong>
-                        <span>Shared</span>
-                    </div>
                     <div class="stat">
                         <strong>{{ prebuilt|length }}</strong>
                         <span>Starter</span>
@@ -125,6 +129,7 @@
                     {% endfor %}
                 </div>
 
+                {% if false %}
                 <div class="toolbar" style="margin-top: 28px;">
                     <h2>Shared Teams</h2>
                 </div>
@@ -163,6 +168,7 @@
                     </article>
                     {% endfor %}
                 </div>
+                {% endif %}
             </div>
         </section>
     </main>
@@ -273,7 +279,7 @@
                 if (!response.ok) {
                     throw new Error("Share failed");
                 }
-                window.location.reload();
+                window.location.href = "/community-builds";
             }).catch(() => setStatus("Failed"));
         }
 

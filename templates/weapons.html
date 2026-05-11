@@ -11,7 +11,7 @@
     <script src="/static/music.js" defer></script>
     <title>Endfield Weapons</title>
 </head>
-<body>
+<body data-logged-in="{{ 'true' if is_logged_in else 'false' }}">
     <nav id="navigation-bar" aria-label="Primary navigation">
         <p id="logo">ENDFIELD</p>
         <a class="nav-item" href="/dashboard">
@@ -22,9 +22,17 @@
             <span class="nav-icon" aria-hidden="true">TM</span>
             <span class="nav-text">Teams</span>
         </a>
+        <a class="nav-item" href="/community-builds">
+            <span class="nav-icon" aria-hidden="true">CB</span>
+            <span class="nav-text">Community's Build</span>
+        </a>
         <a class="nav-item active" href="/weapons">
             <span class="nav-icon" aria-hidden="true">WP</span>
             <span class="nav-text">Weapons</span>
+        </a>
+        <a class="nav-item" href="/resources">
+            <span class="nav-icon" aria-hidden="true">RS</span>
+            <span class="nav-text">Resources</span>
         </a>
     </nav>
 
@@ -69,12 +77,6 @@
                         <span>Displayed</span>
                     </div>
                 </div>
-                {% if is_logged_in %}
-                <div class="button-row">
-                    <span class="status-pill" id="save-status">Saved</span>
-                    <button class="secondary-button" type="button" onclick="saveWeapons()">Save</button>
-                </div>
-                {% endif %}
             </div>
 
             <div class="filter-section">
@@ -148,11 +150,8 @@
 
     <script>
         let weapons = {{ owned | tojson }};
-        {% raw %}
         let activeTypeFilters = new Set();
         let activeRarityFilters = new Set();
-        {% endraw %}
-        let lastSaved = JSON.stringify(weapons);
         let weaponsData = {};
         
         const isLoggedIn = {{ is_logged_in | tojson }};
@@ -179,16 +178,21 @@
             setAccountMenu(!menu.classList.contains("open"));
         }
 
-        function setStatus(text) {
-            const saveStatus = document.getElementById("save-status");
-            if (saveStatus) {
-                saveStatus.textContent = text;
-            }
-        }
-
         function updateCount() {
             document.getElementById("owned-count").textContent = Object.values(weapons).filter(Boolean).length;
             updateDisplayedCount();
+        }
+
+        function saveWeapons() {
+            if (!isLoggedIn) {
+                return;
+            }
+
+            fetch("/update-weapons", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(weapons)
+            }).catch(() => {});
         }
 
         function syncFilterButtons() {
@@ -263,14 +267,13 @@
                 checkbox.addEventListener("change", () => {
                     if (!isLoggedIn) {
                         checkbox.checked = Boolean(weapons[weaponId]);
-                        setStatus("Log in to track weapons");
                         return;
                     }
                     weapons[weaponId] = checkbox.checked;
                     card.classList.toggle("unowned", !weapons[weaponId]);
                     card.setAttribute("aria-pressed", weapons[weaponId] ? "true" : "false");
                     updateCount();
-                    setStatus("Unsaved");
+                    saveWeapons();
                 });
             });
         }
@@ -307,39 +310,6 @@
             syncFilterButtons();
             applyFilters();
         }
-
-        function saveWeapons() {
-            if (!isLoggedIn) {
-                setStatus("Log in to save");
-                return;
-            }
-            const payload = JSON.stringify(weapons);
-            if (payload === lastSaved) {
-                setStatus("Saved");
-                return;
-            }
-
-            fetch("/update-weapons", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: payload
-            }).then((response) => {
-                if (!response.ok) {
-                    throw new Error("Save failed");
-                }
-                lastSaved = payload;
-                setStatus("Saved");
-            }).catch(() => setStatus("Save failed"));
-        }
-
-        window.addEventListener("beforeunload", () => {
-            if (isLoggedIn && JSON.stringify(weapons) !== lastSaved) {
-                navigator.sendBeacon(
-                    "/update-weapons",
-                    new Blob([JSON.stringify(weapons)], { type: "application/json" })
-                );
-            }
-        });
 
         document.addEventListener("click", (event) => {
             if (!event.target.closest("#account-menu")) {
