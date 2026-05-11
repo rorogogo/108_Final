@@ -843,8 +843,37 @@ button {
     font-size: 12px;
 }
 
+.settings-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+    align-items: flex-start;
+}
+
 .profile-form {
     width: min(440px, 100%);
+}
+
+.settings-title {
+    margin: 0 0 16px;
+    font-size: 24px;
+}
+
+.form-status {
+    min-height: 20px;
+    margin: 12px 0 0;
+    color: var(--muted);
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    letter-spacing: 0;
+}
+
+.form-status.success {
+    color: #188f4f;
+}
+
+.form-status.error {
+    color: var(--red);
 }
 
 .character-detail,
@@ -1418,7 +1447,7 @@ button {
 .filter-button.active {
     background: var(--yellow);
     border-color: var(--yellow);
-    color: var(--ink);
+    color: #111;
     box-shadow: 0 4px 12px rgba(255, 225, 0, 0.24);
 }
 
@@ -1514,6 +1543,10 @@ button {
     background: var(--ink);
     color: white;
     border-right: 4px solid var(--yellow);
+}
+
+html[data-theme="dark"] .chat-message.user {
+    color: #111;
 }
 
 .chatbot-form {

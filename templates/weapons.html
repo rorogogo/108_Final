@@ -6,12 +6,13 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&display=swap" rel="stylesheet">
+    <script>window.ENDFIELD_SAVED_THEME = {{ saved_theme | tojson }};</script>
     <script src="/static/theme.js"></script>
     <link rel="stylesheet" href="/static/sidebar.css">
     <script src="/static/music.js" defer></script>
     <title>Endfield Weapons</title>
 </head>
-<body data-logged-in="{{ 'true' if is_logged_in else 'false' }}">
+<body data-logged-in="{{ 'true' if is_logged_in else 'false' }}" data-reset-chatbot="{{ 'true' if reset_chatbot_on_load else 'false' }}">
     <nav id="navigation-bar" aria-label="Primary navigation">
         <p id="logo">ENDFIELD</p>
         <a class="nav-item" href="/dashboard">
@@ -56,7 +57,7 @@
                     </div>
                     {% if is_logged_in %}
                     <a class="account-action" href="/profile" role="menuitem">Account Settings</a>
-                    <a class="account-action danger" href="/logout" role="menuitem" onclick="clearChatbotStorage()">Logout</a>
+                    <a class="account-action danger" href="/logout" role="menuitem" onclick="resetSiteDefaults()">Logout</a>
                     {% else %}
                     <a class="account-action" href="/login" role="menuitem">Log In</a>
                     <a class="account-action" href="/signup" role="menuitem">Create Account</a>
@@ -99,6 +100,7 @@
                         <button class="filter-button" data-filter-rarity="3" onclick="setRarityFilter('3')">3 Star</button>
                         <button class="filter-button" data-filter-rarity="4" onclick="setRarityFilter('4')">4 Star</button>
                         <button class="filter-button" data-filter-rarity="5" onclick="setRarityFilter('5')">5 Star</button>
+                        <button class="filter-button" data-filter-rarity="6" onclick="setRarityFilter('6')">6 Star</button>
                     </div>
                 </div>
             </div>
@@ -267,6 +269,7 @@
                 checkbox.addEventListener("change", () => {
                     if (!isLoggedIn) {
                         checkbox.checked = Boolean(weapons[weaponId]);
+                        openLoginRequiredModal("Log in to Edit");
                         return;
                     }
                     weapons[weaponId] = checkbox.checked;

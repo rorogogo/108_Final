@@ -33,9 +33,5 @@
     {"name": "Aketine Seed", "type": "Seed", "locations": ["Seed-Picking Unit"], "notes": "Produced from Aketine for planting."},
     {"name": "Jincao Seed", "type": "Seed", "locations": ["Seed-Picking Unit"], "notes": "Produced from Jincao for planting."},
     {"name": "Yazhen Seed", "type": "Seed", "locations": ["Seed-Picking Unit"], "notes": "Produced from Yazhen for planting."}
-  ],
-  "Region To Verify": [
-    {"name": "Wood", "type": "Plant", "locations": ["Open world"], "notes": "Listed as a natural resource, but the current source list does not pin it to one region."},
-    {"name": "Precipitation Acid", "type": "Liquid", "locations": ["Open world"], "notes": "Listed in Game8's natural resources index; regional source should be verified."}
   ]
 }

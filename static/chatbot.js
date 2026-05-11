@@ -174,6 +174,9 @@ function closeLoginRequiredModal() {
 
 document.addEventListener("DOMContentLoaded", () => {
     ensureLoginRequiredModal();
+    if (document.body.dataset.resetChatbot === "true") {
+        clearChatbotStorage();
+    }
     loadChatbotMessages();
     if (document.body.dataset.loggedIn === "false") {
         localStorage.setItem(CHATBOT_OPEN_KEY, "false");
