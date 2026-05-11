@@ -6,12 +6,13 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&display=swap" rel="stylesheet">
+    <script>window.ENDFIELD_SAVED_THEME = {{ saved_theme | tojson }};</script>
     <script src="/static/theme.js"></script>
     <link rel="stylesheet" href="/static/sidebar.css">
     <script src="/static/music.js" defer></script>
     <title>Endfield Roster</title>
 </head>
-<body data-logged-in="{{ 'true' if is_logged_in else 'false' }}">
+<body data-logged-in="{{ 'true' if is_logged_in else 'false' }}" data-reset-chatbot="{{ 'true' if reset_chatbot_on_load else 'false' }}">
     <nav id="navigation-bar" aria-label="Primary navigation">
         <p id="logo">ENDFIELD</p>
         <a class="nav-item active" href="/dashboard">
@@ -65,7 +66,7 @@
                     </div>
                     {% if is_logged_in %}
                     <a class="account-action" href="/profile" role="menuitem">Account Settings</a>
-                    <a class="account-action danger" href="/logout" role="menuitem" onclick="clearChatbotStorage()">Logout</a>
+                    <a class="account-action danger" href="/logout" role="menuitem" onclick="resetSiteDefaults()">Logout</a>
                     {% else %}
                     <a class="account-action" href="/login" role="menuitem">Log In</a>
                     <a class="account-action" href="/signup" role="menuitem">Create Account</a>
@@ -90,17 +91,20 @@
 
             <div class="grid" id="character-grid">
                 {% for char_id, character in characters.items() %}
-                {% set is_owned = data.get(char_id, character.get('owned', False)) %}
+                {% set is_starter = char_id == "endmin" %}
+                {% set is_owned = true if is_starter else data.get(char_id, character.get('owned', False)) %}
                 <article
                     class="character-card {% if not is_owned %}unowned{% endif %}"
                     data-id="{{ char_id }}"
                     data-alt="{{ character.get('alt_image', '') }}"
                     aria-pressed="{{ 'true' if is_owned else 'false' }}"
                 >
+                    {% if not is_starter %}
                     <label class="owned-check" aria-label="Mark {{ character.name }} as owned">
                         <input type="checkbox" {% if is_owned %}checked{% endif %}>
                         <span></span>
                     </label>
+                    {% endif %}
                     <a class="character-link" href="/character/{{ char_id }}">
                         <img src="{{ character.image }}" alt="{{ character.name }}">
                         <span class="character-name">{{ character.name }}</span>
@@ -148,6 +152,7 @@
         let roster = {{ data | tojson }};
         const characters = {{ characters | tojson }};
         const isLoggedIn = {{ is_logged_in | tojson }};
+        const ALWAYS_OWNED_CHARACTER = "endmin";
         const soundSettings = {
             muted: localStorage.getItem("endfieldMusicMuted") === "true"
         };
@@ -167,6 +172,7 @@
         }
 
         function updateCount() {
+            roster[ALWAYS_OWNED_CHARACTER] = true;
             const owned = Object.values(roster).filter(Boolean).length;
             document.getElementById("owned-count").textContent = owned;
         }
@@ -175,6 +181,7 @@
             if (!isLoggedIn) {
                 return;
             }
+            roster[ALWAYS_OWNED_CHARACTER] = true;
 
             fetch("/update-characters", {
                 method: "POST",
@@ -215,16 +222,25 @@
             if (!(charId in roster)) {
                 roster[charId] = Boolean(characters[charId].owned);
             }
+            if (charId === ALWAYS_OWNED_CHARACTER) {
+                roster[charId] = true;
+                card.classList.remove("unowned");
+                card.setAttribute("aria-pressed", "true");
+            }
             syncSpecialImage(card);
 
             card.addEventListener("mouseenter", () => play(hoverSound));
             const checkbox = card.querySelector(".owned-check input");
+            if (!checkbox) {
+                return;
+            }
             checkbox.addEventListener("click", (event) => {
                 event.stopPropagation();
             });
             checkbox.addEventListener("change", () => {
                 if (!isLoggedIn) {
                     checkbox.checked = Boolean(roster[charId]);
+                    openLoginRequiredModal("Log in to Edit");
                     return;
                 }
                 roster[charId] = checkbox.checked;

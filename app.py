@@ -3,6 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_session import Session
 from sqlalchemy import text
 from hashlib import sha256
+from hmac import compare_digest
 import os
 import random
 import re
@@ -48,6 +49,18 @@ app.config["GROQ_SEARCH_DOMAINS"] = [
 
 db = SQLAlchemy(app)
 Session(app)
+
+@app.context_processor
+def inject_chatbot_reset():
+    saved_theme = "light"
+    if session.get("name"):
+        user = Users.query.filter_by(username=session["name"]).first()
+        if user:
+            saved_theme = "dark" if user.theme_preference == "dark" else "light"
+    return {
+        "reset_chatbot_on_load": bool(session.pop("reset_chatbot", False)),
+        "saved_theme": saved_theme
+    }
 
 with open("data/characters.json") as f:
     CHARACTERS = json.load(f)
@@ -256,6 +269,7 @@ class Users(db.Model):
     profile_pic = db.Column(db.Text, nullable=True)
     build_data = db.Column(db.Text, nullable=True)
     weapon_data = db.Column(db.Text, nullable=True)
+    theme_preference = db.Column(db.String(10), nullable=False, default="light")
 
     # Return the username when this user is displayed.
     def __str__(self):
@@ -289,6 +303,8 @@ with app.app_context():
         db.session.execute(text("ALTER TABLE users ADD COLUMN build_data TEXT"))
     if "weapon_data" not in columns:
         db.session.execute(text("ALTER TABLE users ADD COLUMN weapon_data TEXT"))
+    if "theme_preference" not in columns:
+        db.session.execute(text("ALTER TABLE users ADD COLUMN theme_preference VARCHAR(10) DEFAULT 'light'"))
     db.session.commit()
 
 #-------------------------------------------------------------
@@ -302,7 +318,8 @@ def POST(name, password, data):
         username=name,
         password=password,
         data=data,
-        weapon_data=json.dumps(DEFAULT_WEAPON_DATA)
+        weapon_data=json.dumps(DEFAULT_WEAPON_DATA),
+        theme_preference="light"
     )
     db.session.add(new_user)
     db.session.commit()
@@ -319,6 +336,18 @@ def DELETE(name):
     if user:
         db.session.delete(user)
         db.session.commit()
+
+def hash_password(password, salt=None):
+    salt = salt or ''.join(random.SystemRandom().choice(string.ascii_letters + string.digits) for _ in range(6))
+    digest = sha256((password + salt).encode()).hexdigest()
+    return salt + digest
+
+def password_matches(password, stored_password):
+    if not stored_password or len(stored_password) < 70:
+        return False
+    salt = stored_password[:6]
+    digest = sha256((password + salt).encode()).hexdigest()
+    return compare_digest(digest, stored_password[-64:])
 
 # ----------------------------------------------------------
 
@@ -337,13 +366,10 @@ def login():
     dbpw = GET(name)
     if not dbpw:
         return redirect("/login")
-    mrsalt = dbpw[:6]
-    pw = pw + mrsalt
-    pw = sha256(pw.encode()).hexdigest()
-
-    if pw == dbpw[-64:]:
+    if password_matches(pw, dbpw):
         print("awesome")
         session["name"] = name
+        session["reset_chatbot"] = True
         return redirect("/dashboard")
     else:
         print("sucks; " + pw + " : " + dbpw[-64:])
@@ -365,13 +391,9 @@ def signup_page():
     if not pw:
         return redirect("/signup?missing")
 
-    mrsalt = ''.join(random.SystemRandom().choice(string.ascii_letters + string.digits) for _ in range(6))
-    pw += mrsalt
-    pw = sha256(pw.encode()).hexdigest()
-    pw = mrsalt + pw
     data = json.dumps(DEFAULT_CHARACTER_DATA)
 
-    POST(name, pw, data)
+    POST(name, hash_password(pw), data)
     return redirect("/login")
 
 @app.route("/update-profile", methods=["POST"])
@@ -382,6 +404,7 @@ def update_profile():
     name = data.get("name", "").strip()
     profile_pic = data.get("profilePic")
     build_data = data.get("buildData")
+    theme = data.get("theme")
     user = Users.query.filter_by(username=session["name"]).first()
     if name:
         existing = Users.query.filter(Users.username == name, Users.id != user.id).first()
@@ -393,17 +416,48 @@ def update_profile():
         user.profile_pic = profile_pic
     if build_data is not None:
         user.build_data = build_data
+    if theme in {"light", "dark"}:
+        user.theme_preference = theme
     db.session.commit()
-    return jsonify({"status": "ok"})
+    return jsonify({"status": "ok", "theme": user.theme_preference})
+
+@app.route("/change-password", methods=["POST"])
+def change_password():
+    if not session.get("name"):
+        return {"error": "not logged in"}, 403
+
+    data = request.get_json(silent=True) or {}
+    old_password = data.get("oldPassword", "")
+    new_password = data.get("newPassword", "")
+    confirm_password = data.get("confirmPassword", "")
+
+    if not old_password or not new_password or not confirm_password:
+        return {"error": "Fill out all password fields."}, 400
+    if new_password != confirm_password:
+        return {"error": "New passwords do not match."}, 400
+    if len(new_password) < 6:
+        return {"error": "New password must be at least 6 characters."}, 400
+
+    user = Users.query.filter_by(username=session["name"]).first()
+    if not user:
+        return {"error": "not logged in"}, 403
+    if not password_matches(old_password, user.password):
+        return {"error": "Old password is incorrect."}, 400
+
+    user.password = hash_password(new_password)
+    db.session.commit()
+    return jsonify({"status": "ok", "message": "Password updated."})
 
 @app.route("/dashboard")
 def dashboard():
     is_logged_in = bool(session.get("name"))
     user = Users.query.filter_by(username=session["name"]).first() if is_logged_in else None
+    character_data = json.loads(user.data) if user else dict(PUBLIC_CHARACTER_DATA)
+    character_data["endmin"] = True
 
     return render_template(
         "dashboard.html",
-        data=json.loads(user.data) if user else PUBLIC_CHARACTER_DATA,
+        data=character_data,
         characters=CHARACTERS,
         name=user.username if user else "Guest",
         profile_pic=user.profile_pic if user else None,
@@ -426,7 +480,7 @@ def profile():
 @app.route("/logout")
 def logout():
     session.clear()
-    return redirect("/dashboard")
+    return redirect("/dashboard?logged_out=1")
 
 @app.route("/update-characters", methods=["POST"])
 def update_characters():
@@ -435,6 +489,7 @@ def update_characters():
 
     user = Users.query.filter_by(username=session["name"]).first()
     new_data = request.json
+    new_data["endmin"] = True
 
     user.data = json.dumps(new_data)
     db.session.commit()
@@ -963,6 +1018,13 @@ def calculator_result_for_weapon(char_id, weapon_name_value):
             return item
     return None
 
+def remove_missing_info_lines(reply):
+    lines = str(reply or "").splitlines()
+    return "\n".join(
+        line for line in lines
+        if not line.strip().lower().lstrip("-*").strip().startswith("missing info:")
+    ).strip()
+
 def groq_chatbot_reply(message, user, history=None):
     history = recent_chat_context(history or [])
     if Groq is None:
@@ -994,8 +1056,7 @@ def groq_chatbot_reply(message, user, history=None):
         "Do not continue off-topic conversations or ask off-topic follow-up questions. "
         "For roster, character, team, weapon, build, game, or Endfield questions, answer only using the SITE DATA provided by the server. "
         "Do not use outside game knowledge, do not invent weapons, builds, stats, character facts, or team synergies. "
-        "If the site data does not contain enough game information, say what is missing and suggest what the user can add "
-        "on the Profile page or roster page. "
+        "If the site data does not contain enough game information, answer with the best recommendation available from the data. "
         "Use the site data silently. Do not mention internal field names, JSON keys, database labels, or phrases like "
         "site_data, starter_build_guides, weapon_and_build_notes, saved teams, or according to the data. "
         "Write naturally, as if you are directly advising the player. "
@@ -1004,7 +1065,8 @@ def groq_chatbot_reply(message, user, history=None):
         "When the user asks for weapon details, include the weapon's Lv.90 ATK and one or two useful stat/effect lines from the weapon data. "
         "Keep answers short and easy to scan. Avoid long paragraphs. "
         "For character build, weapon, gear, or stats advice, start with 'Here's what I would suggest:' and then use a short bullet list. "
-        "Use bullets like Build, Weapon, Stats, Team note, and Missing info when relevant. "
+        "Use bullets like Build, Weapon, Stats, and Team note when relevant. "
+        "Never add a Missing info bullet or ask the user to add roster/profile details at the end of a build answer. "
         "Do not write more than 5 bullets unless the user asks for details. "
         "For weapon-only questions, recommend exactly one best weapon first. Do not list multiple weapons as 'or' options. "
         "If the user says they do not have the weapon you just recommended, use recent chat history and suggest the next best weapon "
@@ -1049,7 +1111,7 @@ def groq_chatbot_reply(message, user, history=None):
         request_args["citation_options"] = "enabled"
 
     completion = client.chat.completions.create(**request_args)
-    return completion.choices[0].message.content.strip()
+    return remove_missing_info_lines(completion.choices[0].message.content.strip())
 
 def chatbot_reply(message, user, history=None):
     history = recent_chat_context(history or [])
@@ -1104,8 +1166,6 @@ def chatbot_reply(message, user, history=None):
                     )
                 if backup_weapon:
                     reply += f"\n- Backup: {backup_weapon}"
-                if not weapon_list:
-                    reply += "\n- Missing info: add weapon options for this character on the Profile page"
                 return reply
 
             reply = (
@@ -1207,7 +1267,7 @@ def chatbot():
         print(f"Groq chatbot error: {type(error).__name__}: {error!r}")
         reply = chatbot_reply(message, user, history)
 
-    return jsonify({"reply": reply})
+    return jsonify({"reply": remove_missing_info_lines(reply)})
 
 if __name__ == '__main__':
     app.run()

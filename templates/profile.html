@@ -6,12 +6,13 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&display=swap" rel="stylesheet">
+    <script>window.ENDFIELD_SAVED_THEME = {{ saved_theme | tojson }};</script>
     <script src="/static/theme.js"></script>
     <link rel="stylesheet" href="/static/sidebar.css">
     <script src="/static/music.js" defer></script>
     <title>Endfield Profile</title>
 </head>
-<body data-logged-in="true">
+<body data-logged-in="true" data-reset-chatbot="{{ 'true' if reset_chatbot_on_load else 'false' }}">
     <nav id="navigation-bar" aria-label="Primary navigation">
         <p id="logo">ENDFIELD</p>
         <a class="nav-item" href="/dashboard">
@@ -62,38 +63,60 @@
                         </div>
                     </div>
                     <a class="account-action" href="/profile" role="menuitem">Account Settings</a>
-                    <a class="account-action danger" href="/logout" role="menuitem" onclick="clearChatbotStorage()">Logout</a>
+                    <a class="account-action danger" href="/logout" role="menuitem" onclick="resetSiteDefaults()">Logout</a>
                 </div>
             </div>
         </header>
 
         <section class="content">
-            <div class="panel profile-form">
-                <div class="field">
-                    <label for="name-input">Username</label>
-                    <input id="name-input" value="{{ user.username }}" maxlength="25" autocomplete="username">
-                </div>
-
-                <div class="field">
-                    <label for="img-input">Profile image</label>
-                    <input id="img-input" type="file" accept="image/*">
-                </div>
-
-                <div class="theme-setting">
-                    <div class="theme-setting-text">
-                        <strong>Dark mode</strong>
-                        <span>Switch the site to a darker moonlit theme.</span>
+            <div class="settings-grid">
+                <div class="panel profile-form">
+                    <div class="field">
+                        <label for="name-input">Username</label>
+                        <input id="name-input" value="{{ user.username }}" maxlength="25" autocomplete="username">
                     </div>
-                    <label class="theme-switch" aria-label="Dark mode">
-                        <input id="dark-mode-input" type="checkbox" onchange="toggleDarkMode()">
-                        <span class="theme-slider" aria-hidden="true"></span>
-                    </label>
+
+                    <div class="field">
+                        <label for="img-input">Profile image</label>
+                        <input id="img-input" type="file" accept="image/*">
+                    </div>
+
+                    <div class="theme-setting">
+                        <div class="theme-setting-text">
+                            <strong>Dark mode</strong>
+                            <span>Switch the site to a darker moonlit theme.</span>
+                        </div>
+                        <label class="theme-switch" aria-label="Dark mode">
+                            <input id="dark-mode-input" type="checkbox" onchange="toggleDarkMode(); markProfileChanged();">
+                            <span class="theme-slider" aria-hidden="true"></span>
+                        </label>
+                    </div>
+
+                    <div class="field">
+                        <label for="build-input">Bio</label>
+                        <textarea id="build-input" rows="7" placeholder="Enter text here.">{{ user.build_data or '' }}</textarea>
+                    </div>
+
+                    <button class="primary-button" id="profile-save-button" type="button" onclick="saveProfile()">Save</button>
                 </div>
 
-                <div class="field">
-                    <label for="build-input">Weapons and builds</label>
-                    <textarea id="build-input" rows="7" placeholder="Example: Chen has my best attack weapon. Perlica uses my support build.">{{ user.build_data or '' }}</textarea>
-                </div>
+                <form class="panel profile-form" id="password-form" onsubmit="changePassword(event)">
+                    <h2 class="settings-title">Change password</h2>
+                    <div class="field">
+                        <label for="old-password-input">Old password</label>
+                        <input id="old-password-input" type="password" autocomplete="current-password">
+                    </div>
+                    <div class="field">
+                        <label for="new-password-input">New password</label>
+                        <input id="new-password-input" type="password" autocomplete="new-password">
+                    </div>
+                    <div class="field">
+                        <label for="confirm-password-input">Confirm new password</label>
+                        <input id="confirm-password-input" type="password" autocomplete="new-password">
+                    </div>
+                    <button class="primary-button" type="submit">Update Password</button>
+                    <p class="form-status" id="password-status" aria-live="polite"></p>
+                </form>
             </div>
         </section>
     </main>
@@ -128,11 +151,11 @@
 
     <script>
         let selectedImage = null;
-        let saveProfileTimer = null;
 
-        function scheduleProfileSave() {
-            clearTimeout(saveProfileTimer);
-            saveProfileTimer = setTimeout(saveProfile, 500);
+        function markProfileChanged() {
+            const button = document.getElementById("profile-save-button");
+            button.textContent = "Save";
+            button.disabled = false;
         }
 
         function setAccountMenu(open) {
@@ -160,28 +183,69 @@
                 selectedImage = loadEvent.target.result;
                 document.getElementById("preview").src = selectedImage;
                 document.getElementById("menu-preview").src = selectedImage;
-                scheduleProfileSave();
+                markProfileChanged();
             };
             reader.readAsDataURL(file);
         });
 
-        document.getElementById("name-input").addEventListener("input", scheduleProfileSave);
-        document.getElementById("build-input").addEventListener("input", scheduleProfileSave);
+        document.getElementById("name-input").addEventListener("input", markProfileChanged);
+        document.getElementById("build-input").addEventListener("input", markProfileChanged);
 
         function saveProfile() {
+            const button = document.getElementById("profile-save-button");
+            button.disabled = true;
             fetch("/update-profile", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
                     name: document.getElementById("name-input").value,
                     profilePic: selectedImage,
-                    buildData: document.getElementById("build-input").value
+                    buildData: document.getElementById("build-input").value,
+                    theme: document.documentElement.dataset.theme === "dark" ? "dark" : "light"
                 })
             }).then((response) => {
                 if (!response.ok) {
                     throw new Error("Save failed");
                 }
-            }).catch(() => {});
+                window.ENDFIELD_SAVED_THEME = document.documentElement.dataset.theme === "dark" ? "dark" : "light";
+                button.textContent = "Saved";
+            }).catch(() => {
+                button.textContent = "Save";
+                button.disabled = false;
+            });
+        }
+
+        function setPasswordStatus(message, type) {
+            const status = document.getElementById("password-status");
+            status.textContent = message;
+            status.className = `form-status ${type || ""}`;
+        }
+
+        function changePassword(event) {
+            event.preventDefault();
+            setPasswordStatus("", "");
+
+            fetch("/change-password", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    oldPassword: document.getElementById("old-password-input").value,
+                    newPassword: document.getElementById("new-password-input").value,
+                    confirmPassword: document.getElementById("confirm-password-input").value
+                })
+            }).then((response) => {
+                return response.json().then((data) => {
+                    if (!response.ok) {
+                        throw new Error(data.error || "Could not update password.");
+                    }
+                    return data;
+                });
+            }).then((data) => {
+                document.getElementById("password-form").reset();
+                setPasswordStatus(data.message || "Password updated.", "success");
+            }).catch((error) => {
+                setPasswordStatus(error.message, "error");
+            });
         }
 
         document.addEventListener("click", (event) => {
