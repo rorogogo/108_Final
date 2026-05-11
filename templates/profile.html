@@ -6,6 +6,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="/static/theme.js"></script>
     <link rel="stylesheet" href="/static/sidebar.css">
     <script src="/static/music.js" defer></script>
     <title>Endfield Profile</title>
@@ -20,6 +21,10 @@
         <a class="nav-item" href="/teams">
             <span class="nav-icon" aria-hidden="true">TM</span>
             <span class="nav-text">Teams</span>
+        </a>
+        <a class="nav-item" href="/weapons">
+            <span class="nav-icon" aria-hidden="true">WP</span>
+            <span class="nav-text">Weapons</span>
         </a>
     </nav>
 
@@ -64,6 +69,17 @@
                 <div class="field">
                     <label for="img-input">Profile image</label>
                     <input id="img-input" type="file" accept="image/*">
+                </div>
+
+                <div class="theme-setting">
+                    <div class="theme-setting-text">
+                        <strong>Dark mode</strong>
+                        <span>Switch the site to a darker moonlit theme.</span>
+                    </div>
+                    <label class="theme-switch" aria-label="Dark mode">
+                        <input id="dark-mode-input" type="checkbox" onchange="toggleDarkMode()">
+                        <span class="theme-slider" aria-hidden="true"></span>
+                    </label>
                 </div>
 
                 <div class="field">

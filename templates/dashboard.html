@@ -6,6 +6,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="/static/theme.js"></script>
     <link rel="stylesheet" href="/static/sidebar.css">
     <script src="/static/music.js" defer></script>
     <title>Endfield Roster</title>
@@ -21,13 +22,17 @@
             <span class="nav-icon" aria-hidden="true">TM</span>
             <span class="nav-text">Teams</span>
         </a>
+        <a class="nav-item" href="/weapons">
+            <span class="nav-icon" aria-hidden="true">WP</span>
+            <span class="nav-text">Weapons</span>
+        </a>
     </nav>
 
     <main class="shell">
         <header class="page-header">
             <div>
                 <p class="page-kicker">Roster Command</p>
-                <h1 class="page-title">{{ name }}</h1>
+                <h1 class="page-title">Dashboard</h1>
             </div>
             <div class="account-menu" id="account-menu">
                 <button
@@ -45,11 +50,18 @@
                         <img class="account-avatar" src="{{ profile_pic or '/static/image0.jpg' }}" alt="">
                         <div>
                             <strong>{{ name }}</strong>
+                            {% if is_logged_in %}
                             <span>Account</span>
+                            {% endif %}
                         </div>
                     </div>
+                    {% if is_logged_in %}
                     <a class="account-action" href="/profile" role="menuitem">Account Settings</a>
                     <a class="account-action danger" href="/logout" role="menuitem" onclick="clearChatbotStorage()">Logout</a>
+                    {% else %}
+                    <a class="account-action" href="/login" role="menuitem">Log In</a>
+                    <a class="account-action" href="/signup" role="menuitem">Create Account</a>
+                    {% endif %}
                 </div>
             </div>
         </header>
@@ -66,25 +78,32 @@
                         <span>Total</span>
                     </div>
                 </div>
+                {% if is_logged_in %}
                 <div class="button-row">
                     <span class="status-pill" id="save-status">Saved</span>
                     <button class="secondary-button" type="button" onclick="saveRoster()">Save</button>
                 </div>
+                {% endif %}
             </div>
 
             <div class="grid" id="character-grid">
                 {% for char_id, character in characters.items() %}
                 {% set is_owned = data.get(char_id, character.get('owned', False)) %}
-                <button
+                <article
                     class="character-card {% if not is_owned %}unowned{% endif %}"
-                    type="button"
                     data-id="{{ char_id }}"
                     data-alt="{{ character.get('alt_image', '') }}"
                     aria-pressed="{{ 'true' if is_owned else 'false' }}"
-				>
-                    <img src="{{ character.image }}" alt="{{ character.name }}" draggable="false">
-                    <span class="character-name">{{ character.name }}</span>
-                </button>
+                >
+                    <label class="owned-check" aria-label="Mark {{ character.name }} as owned">
+                        <input type="checkbox" {% if is_owned %}checked{% endif %}>
+                        <span></span>
+                    </label>
+                    <a class="character-link" href="/character/{{ char_id }}">
+                        <img src="{{ character.image }}" alt="{{ character.name }}">
+                        <span class="character-name">{{ character.name }}</span>
+                    </a>
+                </article>
                 {% endfor %}
             </div>
         </section>
@@ -121,9 +140,12 @@
     </button>
 
     <script>
+        const clickSound = new Audio("/static/click.wav");
+        const hoverSound = new Audio("/static/hover.wav");
         const EFFECT_VOLUME = 0.45;
         let roster = {{ data | tojson }};
         const characters = {{ characters | tojson }};
+        const isLoggedIn = {{ is_logged_in | tojson }};
         let lastSaved = JSON.stringify(roster);
         const soundSettings = {
             muted: localStorage.getItem("endfieldMusicMuted") === "true"
@@ -144,7 +166,10 @@
         }
 
         function setStatus(text) {
-            document.getElementById("save-status").textContent = text;
+            const saveStatus = document.getElementById("save-status");
+            if (saveStatus) {
+                saveStatus.textContent = text;
+            }
         }
 
         function updateCount() {
@@ -153,16 +178,18 @@
         }
 
         function applySoundSettings() {
+            clickSound.volume = EFFECT_VOLUME;
+            hoverSound.volume = EFFECT_VOLUME;
+            clickSound.muted = soundSettings.muted;
+            hoverSound.muted = soundSettings.muted;
             muteButton.setAttribute("aria-pressed", soundSettings.muted ? "true" : "false");
             muteButton.setAttribute("title", soundSettings.muted ? "Unmute audio" : "Mute audio");
         }
 
-        function play(path) {
+        function play(sound) {
             if (soundSettings.muted) {
                 return;
             }
-			let sound = new Audio(path);
-			sound.volume = EFFECT_VOLUME;
             sound.currentTime = 0;
             sound.play().catch(() => {});
         }
@@ -170,45 +197,40 @@
         function syncSpecialImage(card) {
             const charId = card.dataset.id;
             const altImage = card.dataset.alt;
+            if (charId !== "endmin" || !altImage) {
+                return;
+            }
             const img = card.querySelector("img");
             img.src = roster[charId] ? altImage : characters[charId].image;
         }
 
-        document.querySelectorAll(".character-card:not([data-id='endmin'])").forEach((card) => {
+        document.querySelectorAll(".character-card").forEach((card) => {
             const charId = card.dataset.id;
             if (!(charId in roster)) {
                 roster[charId] = Boolean(characters[charId].owned);
             }
+            syncSpecialImage(card);
 
-            card.addEventListener("mouseenter", () => play("/static/hover.wav"));
-            card.addEventListener("click", () => {
-                roster[charId] = !roster[charId];
+            card.addEventListener("mouseenter", () => play(hoverSound));
+            const checkbox = card.querySelector(".owned-check input");
+            checkbox.addEventListener("click", (event) => {
+                event.stopPropagation();
+            });
+            checkbox.addEventListener("change", () => {
+                if (!isLoggedIn) {
+                    checkbox.checked = Boolean(roster[charId]);
+                    setStatus("Log in to track your roster");
+                    return;
+                }
+                roster[charId] = checkbox.checked;
                 card.classList.toggle("unowned", !roster[charId]);
                 card.setAttribute("aria-pressed", roster[charId] ? "true" : "false");
+                syncSpecialImage(card);
                 updateCount();
                 setStatus("Unsaved");
-                play("/static/click.wav");
+                play(clickSound);
             });
         });
-		
-		//adds special
-		document.querySelectorAll(".character-card:is([data-id='endmin'])").forEach((card) => {
-			const charId = card.dataset.id;
-			card.classList.toggle("unowned", false);
-			if (!(charId in roster)) {
-                roster[charId] = Boolean(characters[charId].owned);
-            }
-			syncSpecialImage(card);
-		
-			card.addEventListener("mouseenter", () => play("/static/hover.wav"));
-            card.addEventListener("click", () => {
-                roster[charId] = !roster[charId];
-				syncSpecialImage(card);
-                card.setAttribute("aria-pressed", roster[charId] ? "true" : "false");
-                setStatus("Unsaved");
-                play("/static/click.wav");
-            });
-		});
 
         document.addEventListener("endfield-music-mute-change", (event) => {
             soundSettings.muted = Boolean(event.detail?.muted);
@@ -216,6 +238,10 @@
         });
 
         function saveRoster() {
+            if (!isLoggedIn) {
+                setStatus("Log in to save");
+                return;
+            }
             const payload = JSON.stringify(roster);
             if (payload === lastSaved) {
                 setStatus("Saved");
@@ -236,7 +262,7 @@
         }
 
         window.addEventListener("beforeunload", () => {
-            if (JSON.stringify(roster) !== lastSaved) {
+            if (isLoggedIn && JSON.stringify(roster) !== lastSaved) {
                 navigator.sendBeacon(
                     "/update-characters",
                     new Blob([JSON.stringify(roster)], { type: "application/json" })

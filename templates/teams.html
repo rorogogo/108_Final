@@ -6,6 +6,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="/static/theme.js"></script>
     <link rel="stylesheet" href="/static/sidebar.css">
     <script src="/static/music.js" defer></script>
     <title>Endfield Teams</title>
@@ -20,6 +21,10 @@
         <a class="nav-item active" href="/teams">
             <span class="nav-icon" aria-hidden="true">TM</span>
             <span class="nav-text">Teams</span>
+        </a>
+        <a class="nav-item" href="/weapons">
+            <span class="nav-icon" aria-hidden="true">WP</span>
+            <span class="nav-text">Weapons</span>
         </a>
     </nav>
 
@@ -49,18 +54,23 @@
                         aria-expanded="false"
                         onclick="toggleAccountMenu(event)"
                     >
-                        <img class="avatar" src="{{ user.profile_pic or '/static/image0.jpg' }}" alt="Profile picture">
+                        <img class="avatar" src="{{ profile_pic or '/static/image0.jpg' }}" alt="Profile picture">
                     </button>
                     <div class="account-popover" id="account-popover" role="menu" aria-labelledby="account-menu-button">
                         <div class="account-summary">
-                            <img class="account-avatar" src="{{ user.profile_pic or '/static/image0.jpg' }}" alt="">
+                            <img class="account-avatar" src="{{ profile_pic or '/static/image0.jpg' }}" alt="">
                             <div>
-                                <strong>{{ user.username }}</strong>
-                                <span>Account</span>
+                                <strong>{{ user.username if user else 'Guest' }}</strong>
+                                <span>{{ 'Account' if is_logged_in else 'Public view' }}</span>
                             </div>
                         </div>
+                        {% if is_logged_in %}
                         <a class="account-action" href="/profile" role="menuitem">Account Settings</a>
                         <a class="account-action danger" href="/logout" role="menuitem" onclick="clearChatbotStorage()">Logout</a>
+                        {% else %}
+                        <a class="account-action" href="/login" role="menuitem">Log In</a>
+                        <a class="account-action" href="/signup" role="menuitem">Create Account</a>
+                        {% endif %}
                     </div>
                 </div>
             </div>
@@ -187,6 +197,7 @@
 
     <script>
         const characters = {{ characters | tojson }};
+        const isLoggedIn = {{ is_logged_in | tojson }};
 
         function setAccountMenu(open) {
             const menu = document.getElementById("account-menu");
@@ -220,6 +231,10 @@
         }
 
         function generateTeam() {
+            if (!isLoggedIn) {
+                setStatus("Log in to generate");
+                return;
+            }
             setStatus("Generating");
             fetch("/generate-team", {
                 method: "POST",
@@ -236,6 +251,10 @@
         }
 
         function createTeam() {
+            if (!isLoggedIn) {
+                setStatus("Log in to share");
+                return;
+            }
             const unique = new Set(selectedTeam());
             if (unique.size !== 4) {
                 setStatus("Use 4 unique");
@@ -259,6 +278,10 @@
         }
 
         function voteTeam(teamId, value) {
+            if (!isLoggedIn) {
+                setStatus("Log in to vote");
+                return;
+            }
             fetch("/vote-team", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },

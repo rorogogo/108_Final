@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="/static/theme.js"></script>
+    <link rel="stylesheet" href="/static/sidebar.css">
+    <script src="/static/music.js" defer></script>
+    <title>{{ weapon.name }} - Endfield</title>
+</head>
+<body>
+    <nav id="navigation-bar" aria-label="Primary navigation">
+        <p id="logo">ENDFIELD</p>
+        <a class="nav-item" href="/dashboard">
+            <span class="nav-icon" aria-hidden="true">DB</span>
+            <span class="nav-text">Dashboard</span>
+        </a>
+        <a class="nav-item" href="/teams">
+            <span class="nav-icon" aria-hidden="true">TM</span>
+            <span class="nav-text">Teams</span>
+        </a>
+        <a class="nav-item active" href="/weapons">
+            <span class="nav-icon" aria-hidden="true">WP</span>
+            <span class="nav-text">Weapons</span>
+        </a>
+    </nav>
+
+    <main class="shell">
+        <header class="page-header">
+            <div>
+                <p class="page-kicker">Weapon Profile</p>
+                <h1 class="page-title">{{ weapon.name }}</h1>
+            </div>
+            <div class="account-menu" id="account-menu">
+                <button class="avatar-button" type="button" id="account-menu-button" aria-label="Open account menu" aria-expanded="false" onclick="toggleAccountMenu(event)">
+                    <img class="avatar" src="{{ profile_pic or '/static/image0.jpg' }}" alt="Profile picture">
+                </button>
+                <div class="account-popover" id="account-popover" role="menu" aria-labelledby="account-menu-button">
+                    <div class="account-summary">
+                        <img class="account-avatar" src="{{ profile_pic or '/static/image0.jpg' }}" alt="">
+                        <div>
+                            <strong>{{ user.username if user else 'Guest' }}</strong>
+                            {% if is_logged_in %}<span>Account</span>{% endif %}
+                        </div>
+                    </div>
+                    {% if is_logged_in %}
+                    <a class="account-action" href="/profile" role="menuitem">Account Settings</a>
+                    <a class="account-action danger" href="/logout" role="menuitem" onclick="clearChatbotStorage()">Logout</a>
+                    {% else %}
+                    <a class="account-action" href="/login" role="menuitem">Log In</a>
+                    <a class="account-action" href="/signup" role="menuitem">Create Account</a>
+                    {% endif %}
+                </div>
+            </div>
+        </header>
+
+        <section class="content weapon-detail {% if not owned %}not-owned{% endif %}">
+            <div class="weapon-emblem-panel">
+                <span>{{ weapon.type_label }}</span>
+                <strong>{{ weapon.rarity }} star</strong>
+                <em>ATK Lv.90 {{ weapon.base_atk }}</em>
+            </div>
+            <div class="panel character-info-panel">
+                <div class="button-row">
+                    <span class="status-pill">{{ 'Owned' if owned else 'Not owned' }}</span>
+                    {% if not is_logged_in %}
+                    <a class="secondary-button" href="/login">Log in to track</a>
+                    {% endif %}
+                </div>
+
+                <h2>{{ weapon.name }}</h2>
+                <div class="team-members">
+                    <span class="member-chip">{{ weapon.type_label }}</span>
+                    <span class="member-chip">{{ weapon.rarity }} star</span>
+                    <span class="member-chip">ATK {{ weapon.base_atk }}</span>
+                </div>
+
+                <div class="character-build-list">
+                    <h3>Weapon Stats</h3>
+                    <ul class="weapon-detail-stats">
+                        {% for stat in weapon.stats %}
+                        <li>{{ stat }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+
+                {% if compatible_characters %}
+                <div class="character-build-list">
+                    <h3>Compatible Characters</h3>
+                    <div class="weapon-character-list">
+                        {% for character in compatible_characters %}
+                        <a class="weapon-character-chip" href="/character/{{ character.id }}">
+                            <img src="{{ character.image }}" alt="">
+                            <span>{{ character.name }}</span>
+                        </a>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </section>
+    </main>
+
+    <section class="chatbot-widget" id="chatbot-widget" aria-label="Weapon chatbot">
+        <button class="chatbot-launcher" type="button" onclick="toggleChatbot()" aria-expanded="false" id="chatbot-launcher">BOT</button>
+        <div class="chatbot-panel" id="chatbot-panel">
+            <div class="chatbot-header">
+                <strong>Build Bot</strong>
+                <button class="chatbot-close" type="button" onclick="toggleChatbot(false)" aria-label="Close chatbot">X</button>
+            </div>
+            <div class="chatbot-messages" id="chatbot-messages"></div>
+            <form class="chatbot-form" onsubmit="sendChatbotMessage(event)">
+                <input id="chatbot-input" autocomplete="off" placeholder="Message">
+                <button class="primary-button" type="submit">Send</button>
+            </form>
+        </div>
+    </section>
+
+    <button class="sound-toggle floating-mute" id="sound-muted-button" type="button" aria-label="Mute audio" aria-pressed="false" title="Mute audio">
+        <span class="speaker-icon" id="sound-muted-icon" aria-hidden="true"></span>
+    </button>
+
+    <script>
+        function setAccountMenu(open) {
+            const menu = document.getElementById("account-menu");
+            const button = document.getElementById("account-menu-button");
+            menu.classList.toggle("open", open);
+            button.setAttribute("aria-expanded", open ? "true" : "false");
+        }
+
+        function toggleAccountMenu(event) {
+            event.stopPropagation();
+            const menu = document.getElementById("account-menu");
+            setAccountMenu(!menu.classList.contains("open"));
+        }
+
+        document.addEventListener("click", (event) => {
+            if (!event.target.closest("#account-menu")) {
+                setAccountMenu(false);
+            }
+        });
+
+        document.addEventListener("keydown", (event) => {
+            if (event.key === "Escape") {
+                setAccountMenu(false);
+            }
+        });
+    </script>
+    <script src="/static/sfx.js"></script>
+    <script src="/static/chatbot.js"></script>
+</body>
+</html>

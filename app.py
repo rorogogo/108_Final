@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template, redirect, session, jsonify
+from flask import Flask, request, render_template, render_template_string, redirect, session, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from flask_session import Session
 from sqlalchemy import text
@@ -9,6 +9,7 @@ import re
 import string
 import json
 import itertools
+from difflib import SequenceMatcher
 
 try:
     from dotenv import load_dotenv
@@ -57,14 +58,192 @@ with open("data/teams.json") as f:
 with open("data/builds.json") as f:
     BUILD_GUIDES = json.load(f)
 
+with open("data/weapons.json") as f:
+    WEAPONS = json.load(f)
+
 DEFAULT_CHARACTER_DATA = {
     char_id: data.get("owned", False)
     for char_id, data in CHARACTERS.items()
 }
 DEFAULT_CHARACTER_DATA["endmin"] = True
+PUBLIC_CHARACTER_DATA = {
+    char_id: True
+    for char_id in CHARACTERS
+}
+DEFAULT_WEAPON_DATA = {
+    weapon_id: False
+    for weapon_id in WEAPONS
+}
+PUBLIC_WEAPON_DATA = {
+    weapon_id: True
+    for weapon_id in WEAPONS
+}
 
 def get_character(char_id):
     return CHARACTERS.get(char_id, None)
+
+def get_weapon(weapon_id):
+    return WEAPONS.get(weapon_id, None)
+
+def get_weapon_data(user):
+    if not user:
+        return PUBLIC_WEAPON_DATA.copy()
+    try:
+        data = json.loads(user.weapon_data or "{}")
+    except json.JSONDecodeError:
+        data = {}
+    return {
+        weapon_id: bool(data.get(weapon_id, False))
+        for weapon_id in WEAPONS
+    }
+
+def sort_weapons(weapons):
+    return sorted(
+        weapons,
+        key=lambda weapon: (weapon.get("rarity", 0), weapon.get("base_atk", 0), weapon.get("id", "")),
+        reverse=True
+    )
+
+def weapons_for_type(weapon_type):
+    if not weapon_type:
+        return []
+    return sort_weapons([
+        weapon
+        for weapon in WEAPONS.values()
+        if weapon.get("type") == weapon_type
+    ])
+
+def characters_for_weapon_type(weapon_type):
+    return [
+        {
+            "id": char_id,
+            "name": character.get("name", char_id),
+            "image": character.get("image")
+        }
+        for char_id, character in CHARACTERS.items()
+        if character.get("weapon_type") == weapon_type
+    ]
+
+def weapon_name(weapon_id):
+    weapon = WEAPONS.get(weapon_id)
+    if not weapon:
+        return weapon_id
+    return weapon.get("name") or weapon.get("id", weapon_id)
+
+def normalize_label(value):
+    return re.sub(r"[^a-z0-9]+", " ", value.lower()).strip()
+
+def find_weapon_by_name(name):
+    wanted = normalize_label(name)
+    for weapon_id, weapon in WEAPONS.items():
+        if normalize_label(weapon.get("name", weapon_id)) == wanted:
+            return weapon_id, weapon
+    return None, None
+
+def weapon_text(weapon):
+    return " ".join([
+        weapon.get("name", ""),
+        weapon.get("type_label", ""),
+        " ".join(weapon.get("stats", []))
+    ]).lower()
+
+STAT_ALIASES = {
+    "attack": ["attack", "atk"],
+    "crit rate": ["critical rate", "crit rate"],
+    "crit damage": ["critical damage", "crit damage"],
+    "physical damage": ["physical dmg", "physical damage"],
+    "heat damage": ["heat dmg", "heat damage", "combustion"],
+    "cryo damage": ["cryo dmg", "cryo damage", "solidification"],
+    "electric damage": ["electric dmg", "electric damage", "electrification"],
+    "nature damage": ["nature dmg", "nature damage", "corrosion"],
+    "arts damage": ["arts dmg", "arts damage"],
+    "arts intensity": ["arts intensity"],
+    "skill damage": ["skill dmg", "skill damage", "battle skill"],
+    "ultimate damage": ["ultimate dmg", "ultimate damage", "ultimate"],
+    "ultimate gain": ["ultimate gain", "ultimate gain efficiency"],
+    "sp recovery": ["sp recovery", "skill sp"],
+    "skill uptime": ["sp recovery", "ultimate gain", "battle skill"],
+    "team damage": ["team", "allies", "ally"],
+    "team attack": ["team atk", "allies atk", "team attack", "ally"],
+    "support bonus": ["team", "allies", "healing", "shield", "treatment"],
+    "healing": ["healing", "treatment", "hp treatment"],
+    "treatment efficiency": ["treatment efficiency", "healing"],
+    "shield": ["shield", "protected"],
+    "max hp": ["max hp", "hp"],
+    "defense": ["defense", "def"],
+    "vulnerability": ["vulnerable", "vulnerability"]
+}
+
+def stat_match_score(stat, text):
+    terms = STAT_ALIASES.get(stat.lower(), [stat.lower()])
+    return sum(1 for term in terms if term in text)
+
+def score_weapon_for_character(char_id, weapon, guide=None):
+    guide = guide or BUILD_GUIDES.get(char_id, BUILD_GUIDES.get("default", {}))
+    preferred_stats = guide.get("stats", [])
+    recommended = guide.get("weapons", [])
+    weapon_label = weapon.get("name", weapon.get("id", ""))
+    text = weapon_text(weapon)
+
+    score = weapon.get("base_atk", 0) * 0.08 + weapon.get("rarity", 0) * 7
+    reasons = [
+        f"{weapon.get('rarity', '?')} star",
+        f"ATK {weapon.get('base_atk', '?')}"
+    ]
+
+    for index, recommended_name in enumerate(recommended):
+        similarity = SequenceMatcher(None, normalize_label(recommended_name), normalize_label(weapon_label)).ratio()
+        if similarity >= 0.9:
+            bonus = max(28 - index * 6, 8)
+            score += bonus
+            reasons.append("listed as a top recommendation" if index == 0 else "listed as a recommended option")
+            break
+
+    matched_stats = []
+    for stat in preferred_stats:
+        matches = stat_match_score(stat, text)
+        if matches:
+            score += matches * 8
+            matched_stats.append(stat)
+
+    if matched_stats:
+        reasons.append("matches " + ", ".join(matched_stats[:3]))
+
+    return {
+        "weapon": weapon,
+        "score": round(score, 1),
+        "reasons": reasons[:4]
+    }
+
+def rank_weapons_for_character(char_id):
+    character = CHARACTERS.get(char_id, {})
+    guide = BUILD_GUIDES.get(char_id, BUILD_GUIDES.get("default", {}))
+    compatible = weapons_for_type(character.get("weapon_type"))
+    rankings = [
+        score_weapon_for_character(char_id, weapon, guide)
+        for weapon in compatible
+    ]
+    return sorted(
+        rankings,
+        key=lambda item: item["score"],
+        reverse=True
+    )
+
+def recommended_weapons_for_character(char_id):
+    guide = BUILD_GUIDES.get(char_id, {})
+    ranked_names = [
+        item["weapon"].get("name", item["weapon"].get("id"))
+        for item in rank_weapons_for_character(char_id)
+    ]
+    combined = guide.get("weapons", []) + ranked_names
+
+    seen = set()
+    recommendations = []
+    for weapon in combined:
+        if weapon and weapon not in seen:
+            seen.add(weapon)
+            recommendations.append(weapon)
+    return recommendations
 
 class Users(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -73,6 +252,7 @@ class Users(db.Model):
     data = db.Column(db.Text, nullable=False)
     profile_pic = db.Column(db.Text, nullable=True)
     build_data = db.Column(db.Text, nullable=True)
+    weapon_data = db.Column(db.Text, nullable=True)
 
     # Return the username when this user is displayed.
     def __str__(self):
@@ -104,7 +284,9 @@ with app.app_context():
     ]
     if "build_data" not in columns:
         db.session.execute(text("ALTER TABLE users ADD COLUMN build_data TEXT"))
-        db.session.commit()
+    if "weapon_data" not in columns:
+        db.session.execute(text("ALTER TABLE users ADD COLUMN weapon_data TEXT"))
+    db.session.commit()
 
 #-------------------------------------------------------------
 
@@ -113,7 +295,12 @@ def GET(name):
     return x.password if x else None
 
 def POST(name, password, data):
-    new_user = Users(username=name, password=password, data=data)
+    new_user = Users(
+        username=name,
+        password=password,
+        data=data,
+        weapon_data=json.dumps(DEFAULT_WEAPON_DATA)
+    )
     db.session.add(new_user)
     db.session.commit()
     return 1
@@ -132,8 +319,12 @@ def DELETE(name):
 
 # ----------------------------------------------------------
 
-@app.route('/', methods=["GET", "POST"])
+@app.route("/")
 def index():
+    return redirect("/dashboard")
+
+@app.route("/login", methods=["GET", "POST"])
+def login():
     if request.method == "GET":
         return render_template("login.html")
 
@@ -142,7 +333,7 @@ def index():
 
     dbpw = GET(name)
     if not dbpw:
-        return redirect("/")
+        return redirect("/login")
     mrsalt = dbpw[:6]
     pw = pw + mrsalt
     pw = sha256(pw.encode()).hexdigest()
@@ -153,7 +344,7 @@ def index():
         return redirect("/dashboard")
     else:
         print("sucks; " + pw + " : " + dbpw[-64:])
-        return redirect("/")
+        return redirect("/login")
 
 
 @app.route("/signup", methods=["GET", "POST"])
@@ -178,7 +369,7 @@ def signup_page():
     data = json.dumps(DEFAULT_CHARACTER_DATA)
 
     POST(name, pw, data)
-    return redirect("/")
+    return redirect("/login")
 
 @app.route("/update-profile", methods=["POST"])
 def update_profile():
@@ -204,17 +395,16 @@ def update_profile():
 
 @app.route("/dashboard")
 def dashboard():
-    if not session.get("name"):
-        return redirect("/")
-
-    user = Users.query.filter_by(username=session["name"]).first()
+    is_logged_in = bool(session.get("name"))
+    user = Users.query.filter_by(username=session["name"]).first() if is_logged_in else None
 
     return render_template(
         "dashboard.html",
-        data=json.loads(user.data),
+        data=json.loads(user.data) if user else PUBLIC_CHARACTER_DATA,
         characters=CHARACTERS,
-        name=user.username,
-        profile_pic=user.profile_pic
+        name=user.username if user else "Guest",
+        profile_pic=user.profile_pic if user else None,
+        is_logged_in=is_logged_in
     )
 
 @app.route("/DESTROY", methods=["GET"])
@@ -225,7 +415,7 @@ def DESTROY():
 @app.route("/profile")
 def profile():
     if not session.get("name"):
-        return redirect("/")
+        return redirect("/login")
 
     user = Users.query.filter_by(username=session["name"]).first()
     return render_template("profile.html", user=user)
@@ -233,7 +423,7 @@ def profile():
 @app.route("/logout")
 def logout():
     session.clear()
-    return redirect("/")
+    return redirect("/dashboard")
 
 @app.route("/update-characters", methods=["POST"])
 def update_characters():
@@ -248,17 +438,103 @@ def update_characters():
 
     return {"status": "ok"}
 
-@app.route("/teams")
-def teams():
+@app.route("/api/weapons")
+def api_weapons():
+    return jsonify(WEAPONS)
+
+@app.route("/weapons")
+def weapons():
+    is_logged_in = bool(session.get("name"))
+    user = Users.query.filter_by(username=session["name"]).first() if is_logged_in else None
+    owned_weapons = get_weapon_data(user)
+
+    with open("templates/weapons.html", encoding="utf-8") as template_file:
+        template_source = template_file.read()
+
+    return render_template_string(
+        template_source,
+        weapons=WEAPONS,
+        owned=owned_weapons,
+        owned_count=sum(1 for is_owned in owned_weapons.values() if is_owned),
+        user=user,
+        profile_pic=(user.profile_pic or "") if user else "",
+        is_logged_in=is_logged_in
+    )
+
+@app.route("/test-weapons")
+def test_weapons_route():
+    return render_template("test_weapons.html", weapons=WEAPONS)
+
+@app.route("/update-weapons", methods=["POST"])
+def update_weapons():
     if not session.get("name"):
-        return redirect("/")
+        return {"error": "not logged in"}, 403
 
     user = Users.query.filter_by(username=session["name"]).first()
-    owned = json.loads(user.data)
+    new_data = request.json or {}
+    user.weapon_data = json.dumps({
+        weapon_id: bool(new_data.get(weapon_id, False))
+        for weapon_id in WEAPONS
+    })
+    db.session.commit()
+
+    return {"status": "ok"}
+
+@app.route("/weapon/<weapon_id>")
+def weapon_detail(weapon_id):
+    weapon = get_weapon(weapon_id)
+    if not weapon:
+        return redirect("/weapons")
+
+    is_logged_in = bool(session.get("name"))
+    user = Users.query.filter_by(username=session["name"]).first() if is_logged_in else None
+    owned_weapons = get_weapon_data(user)
+
+    return render_template(
+        "weapon.html",
+        weapon_id=weapon_id,
+        weapon=weapon,
+        owned=owned_weapons.get(weapon_id, weapon.get("owned", False)),
+        compatible_characters=characters_for_weapon_type(weapon.get("type")),
+        user=user,
+        profile_pic=(user.profile_pic or "") if user else "",
+        is_logged_in=is_logged_in
+    )
+
+@app.route("/character/<char_id>")
+def character_detail(char_id):
+    character = get_character(char_id)
+    if not character:
+        return redirect("/dashboard")
+
+    is_logged_in = bool(session.get("name"))
+    user = Users.query.filter_by(username=session["name"]).first() if is_logged_in else None
+    owned = json.loads(user.data) if user else PUBLIC_CHARACTER_DATA
+    guide = BUILD_GUIDES.get(char_id, BUILD_GUIDES.get("default", {}))
+
+    return render_template(
+        "character.html",
+        char_id=char_id,
+        character=character,
+        guide=guide,
+        compatible_weapons=weapons_for_type(character.get("weapon_type")),
+        recommended_weapons=recommended_weapons_for_character(char_id)[:5],
+        weapon_rankings=rank_weapons_for_character(char_id)[:8],
+        owned=owned.get(char_id, character.get("owned", False)),
+        user=user,
+        profile_pic=(user.profile_pic or "") if user else "",
+        is_logged_in=is_logged_in
+    )
+
+@app.route("/teams")
+def teams():
+    is_logged_in = bool(session.get("name"))
+    user = Users.query.filter_by(username=session["name"]).first() if is_logged_in else None
+    owned = json.loads(user.data) if user else PUBLIC_CHARACTER_DATA
     user_votes = {
         vote.team_id: vote.value
         for vote in TeamVotes.query.filter_by(user_id=user.id).all()
-    }
+    } if user else {}
     teams = [
         {
             "id": team.id,
@@ -270,13 +546,16 @@ def teams():
         }
         for team in Teams.query.order_by(Teams.votes.desc()).all()
     ]
+    profile_pic = (user.profile_pic or "") if user else ""
     return render_template(
         "teams.html",
         teams=teams,
         prebuilt=PREBUILT_TEAMS,
         characters=CHARACTERS,
         owned=owned,
-        user=user
+        user=user,
+        profile_pic=profile_pic,
+        is_logged_in=is_logged_in
     )
 
 @app.route("/vote-team", methods=["POST"])
@@ -440,13 +719,24 @@ def is_site_topic(message):
     )
 
 def site_chatbot_context(user):
-    owned = json.loads(user.data)
+    owned = json.loads(user.data) if user else PUBLIC_CHARACTER_DATA
+    owned_weapon_data = get_weapon_data(user)
     owned_chars = [
         {
             "id": char_id,
             "name": character_name(char_id),
             "roles": CHARACTERS.get(char_id, {}).get("roles", []),
-            "element": CHARACTERS.get(char_id, {}).get("element", "unknown")
+            "element": CHARACTERS.get(char_id, {}).get("element", "unknown"),
+            "weapon_type": CHARACTERS.get(char_id, {}).get("weapon_type", "unknown"),
+            "recommended_weapons": recommended_weapons_for_character(char_id)[:6],
+            "weapon_calculator": [
+                {
+                    "weapon": item["weapon"].get("name", item["weapon"].get("id")),
+                    "score": item["score"],
+                    "reasons": item["reasons"]
+                }
+                for item in rank_weapons_for_character(char_id)[:5]
+            ]
         }
         for char_id, owned_char in owned.items()
         if owned_char
@@ -457,6 +747,9 @@ def site_chatbot_context(user):
             "name": character.get("name", char_id),
             "roles": character.get("roles", []),
             "element": character.get("element", "unknown"),
+            "weapon_type": character.get("weapon_type", "unknown"),
+            "recommended_weapons": recommended_weapons_for_character(char_id)[:6],
+            "wanted_stats": BUILD_GUIDES.get(char_id, BUILD_GUIDES.get("default", {})).get("stats", []),
             "owned": bool(owned.get(char_id, character.get("owned", False)))
         }
         for char_id, character in CHARACTERS.items()
@@ -476,12 +769,18 @@ def site_chatbot_context(user):
 
     return {
         "user": {
-            "username": user.username,
+            "username": user.username if user else "Guest",
             "owned_characters": owned_chars,
-            "weapon_and_build_notes": (user.build_data or "")[:3000]
+            "owned_weapons": [
+                WEAPONS[weapon_id].get("name", weapon_id)
+                for weapon_id, is_owned in owned_weapon_data.items()
+                if is_owned
+            ],
+            "weapon_and_build_notes": ((user.build_data if user else "") or "")[:3000]
         },
         "roster": roster,
         "starter_build_guides": BUILD_GUIDES,
+        "weapons": list(WEAPONS.values()),
         "starter_teams": PREBUILT_TEAMS,
         "shared_teams": shared_teams
     }
@@ -550,6 +849,13 @@ def choose_weapon(weapons, history, message):
     backup_index = weapon_index + 1 if weapon_index + 1 < len(weapons) else None
     return weapons[weapon_index], weapons[backup_index] if backup_index is not None else None
 
+def calculator_result_for_weapon(char_id, weapon_name_value):
+    normalized = normalize_label(weapon_name_value or "")
+    for item in rank_weapons_for_character(char_id):
+        if normalize_label(item["weapon"].get("name", "")) == normalized:
+            return item
+    return None
+
 def groq_chatbot_reply(message, user, history=None):
     history = recent_chat_context(history or [])
     if Groq is None:
@@ -586,6 +892,9 @@ def groq_chatbot_reply(message, user, history=None):
         "Use the site data silently. Do not mention internal field names, JSON keys, database labels, or phrases like "
         "site_data, starter_build_guides, weapon_and_build_notes, saved teams, or according to the data. "
         "Write naturally, as if you are directly advising the player. "
+        "When recommending weapons, use the character's recommended weapon list first, then compatible weapons of the same weapon type as backups. "
+        "Use the weapon_calculator scores and reasons when the user asks why a weapon is good or asks for the strongest option. "
+        "When the user asks for weapon details, include the weapon's Lv.90 ATK and one or two useful stat/effect lines from the weapon data. "
         "Keep answers short and easy to scan. Avoid long paragraphs. "
         "For character build, weapon, gear, or stats advice, start with 'Here's what I would suggest:' and then use a short bullet list. "
         "Use bullets like Build, Weapon, Stats, Team note, and Missing info when relevant. "
@@ -654,9 +963,9 @@ def chatbot_reply(message, user, history=None):
             "Ask me about your roster, teams, weapons, builds, or character plans."
         )
 
-    owned = json.loads(user.data)
+    owned = json.loads(user.data) if user else PUBLIC_CHARACTER_DATA
     owned_chars = [char_id for char_id, owned_char in owned.items() if owned_char]
-    build_notes = (user.build_data or "").strip()
+    build_notes = ((user.build_data if user else "") or "").strip()
     requested_char = find_character_in_message(clean_message) or last_character_from_history(history)
 
     build_terms = ["weapon", "build", "gear", "stats", "put on", "equip", "equipment", "loadout"]
@@ -664,7 +973,7 @@ def chatbot_reply(message, user, history=None):
         if requested_char:
             guide = BUILD_GUIDES.get(requested_char, BUILD_GUIDES.get("default", {}))
             owned_text = "You own this character." if requested_char in owned_chars else "You have not marked this character as owned."
-            weapon_list = guide.get("weapons", [])
+            weapon_list = recommended_weapons_for_character(requested_char)
             weapon, backup_weapon = choose_weapon(weapon_list, history, clean_message)
             stats = ", ".join(guide.get("stats", []))
 
@@ -680,6 +989,12 @@ def chatbot_reply(message, user, history=None):
                     f"- Weapon: {weapon or 'use the best option you have available'}\n"
                     f"- Why: it fits a {guide.get('build', 'flexible')} setup"
                 )
+                calculator_result = calculator_result_for_weapon(requested_char, weapon)
+                if calculator_result:
+                    reply += (
+                        f"\n- Calculator: {calculator_result['score']} score, "
+                        + ", ".join(calculator_result["reasons"][:3])
+                    )
                 if backup_weapon:
                     reply += f"\n- Backup: {backup_weapon}"
                 if not weapon_list:
@@ -765,10 +1080,7 @@ def generate_team():
 
 @app.route("/chatbot", methods=["POST"])
 def chatbot():
-    if not session.get("name"):
-        return {"error": "not logged in"}, 403
-
-    user = Users.query.filter_by(username=session["name"]).first()
+    user = Users.query.filter_by(username=session["name"]).first() if session.get("name") else None
     data = request.get_json(silent=True) or {}
     message = data.get("message", "")
     history = recent_chat_context(data.get("history", []))
