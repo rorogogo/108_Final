@@ -9,7 +9,7 @@
     <script src="/static/theme.js"></script>
     <link rel="stylesheet" href="/static/sidebar.css">
     <script src="/static/music.js" defer></script>
-    <title>{{ weapon.name }} - Endfield</title>
+    <title>Endfield Resources</title>
 </head>
 <body data-logged-in="{{ 'true' if is_logged_in else 'false' }}">
     <nav id="navigation-bar" aria-label="Primary navigation">
@@ -26,11 +26,11 @@
             <span class="nav-icon" aria-hidden="true">CB</span>
             <span class="nav-text">Community's Build</span>
         </a>
-        <a class="nav-item active" href="/weapons">
+        <a class="nav-item" href="/weapons">
             <span class="nav-icon" aria-hidden="true">WP</span>
             <span class="nav-text">Weapons</span>
         </a>
-        <a class="nav-item" href="/resources">
+        <a class="nav-item active" href="/resources">
             <span class="nav-icon" aria-hidden="true">RS</span>
             <span class="nav-text">Resources</span>
         </a>
@@ -39,80 +39,69 @@
     <main class="shell">
         <header class="page-header">
             <div>
-                <p class="page-kicker">Weapon Profile</p>
-                <h1 class="page-title">{{ weapon.name }}</h1>
+                <p class="page-kicker">Talos-II Index</p>
+                <h1 class="page-title">Resources</h1>
             </div>
-            <div class="account-menu" id="account-menu">
-                <button class="avatar-button" type="button" id="account-menu-button" aria-label="Open account menu" aria-expanded="false" onclick="toggleAccountMenu(event)">
-                    <img class="avatar" src="{{ profile_pic or '/static/image0.jpg' }}" alt="Profile picture">
-                </button>
-                <div class="account-popover" id="account-popover" role="menu" aria-labelledby="account-menu-button">
-                    <div class="account-summary">
-                        <img class="account-avatar" src="{{ profile_pic or '/static/image0.jpg' }}" alt="">
-                        <div>
-                            <strong>{{ user.username if user else 'Guest' }}</strong>
-                            {% if is_logged_in %}<span>Account</span>{% endif %}
-                        </div>
+            <div class="header-actions">
+                <div class="stats">
+                    <div class="stat">
+                        <strong>{{ total_resources }}</strong>
+                        <span>Listed</span>
                     </div>
-                    {% if is_logged_in %}
-                    <a class="account-action" href="/profile" role="menuitem">Account Settings</a>
-                    <a class="account-action danger" href="/logout" role="menuitem" onclick="clearChatbotStorage()">Logout</a>
-                    {% else %}
-                    <a class="account-action" href="/login" role="menuitem">Log In</a>
-                    <a class="account-action" href="/signup" role="menuitem">Create Account</a>
-                    {% endif %}
+                    <div class="stat">
+                        <strong>{{ resources|length }}</strong>
+                        <span>Groups</span>
+                    </div>
+                </div>
+                <div class="account-menu" id="account-menu">
+                    <button class="avatar-button" type="button" id="account-menu-button" aria-label="Open account menu" aria-expanded="false" onclick="toggleAccountMenu(event)">
+                        <img class="avatar" src="{{ profile_pic or '/static/image0.jpg' }}" alt="Profile picture">
+                    </button>
+                    <div class="account-popover" id="account-popover" role="menu" aria-labelledby="account-menu-button">
+                        <div class="account-summary">
+                            <img class="account-avatar" src="{{ profile_pic or '/static/image0.jpg' }}" alt="">
+                            <div>
+                                <strong>{{ user.username if user else 'Guest' }}</strong>
+                                {% if is_logged_in %}<span>Account</span>{% endif %}
+                            </div>
+                        </div>
+                        {% if is_logged_in %}
+                        <a class="account-action" href="/profile" role="menuitem">Account Settings</a>
+                        <a class="account-action danger" href="/logout" role="menuitem" onclick="clearChatbotStorage()">Logout</a>
+                        {% else %}
+                        <a class="account-action" href="/login" role="menuitem">Log In</a>
+                        <a class="account-action" href="/signup" role="menuitem">Create Account</a>
+                        {% endif %}
+                    </div>
                 </div>
             </div>
         </header>
 
-        <section class="content weapon-detail {% if not owned %}not-owned{% endif %}">
-            <div class="weapon-emblem-panel">
-                <span>{{ weapon.type_label }}</span>
-                <strong>{{ weapon.rarity }} star</strong>
-                <em>ATK Lv.90 {{ weapon.base_atk }}</em>
-            </div>
-            <div class="panel character-info-panel">
-                <div class="button-row">
-                    <span class="status-pill">{{ 'Owned' if owned else 'Not owned' }}</span>
-                    {% if not is_logged_in %}
-                    <a class="secondary-button" href="/login">Log in to track</a>
-                    {% endif %}
+        <section class="content resource-layout">
+            {% for region, items in resources.items() %}
+            <section class="resource-region">
+                <div class="resource-region-header">
+                    <h2>{{ region }}</h2>
+                    <span class="status-pill">{{ items|length }} resources</span>
                 </div>
-
-                <h2>{{ weapon.name }}</h2>
-                <div class="team-members">
-                    <span class="member-chip">{{ weapon.type_label }}</span>
-                    <span class="member-chip">{{ weapon.rarity }} star</span>
-                    <span class="member-chip">ATK {{ weapon.base_atk }}</span>
+                <div class="resource-list">
+                    {% for item in items %}
+                    <article class="resource-row">
+                        <div>
+                            <strong>{{ item.name }}</strong>
+                            <span>{{ item.type }}</span>
+                        </div>
+                        <p>{{ item.locations | join(', ') }}</p>
+                        <small>{{ item.notes }}</small>
+                    </article>
+                    {% endfor %}
                 </div>
-
-                <div class="character-build-list">
-                    <h3>Weapon Stats</h3>
-                    <ul class="weapon-detail-stats">
-                        {% for stat in weapon.stats %}
-                        <li>{{ stat }}</li>
-                        {% endfor %}
-                    </ul>
-                </div>
-
-                {% if compatible_characters %}
-                <div class="character-build-list">
-                    <h3>Compatible Characters</h3>
-                    <div class="weapon-character-list">
-                        {% for character in compatible_characters %}
-                        <a class="weapon-character-chip" href="/character/{{ character.id }}">
-                            <img src="{{ character.image }}" alt="">
-                            <span>{{ character.name }}</span>
-                        </a>
-                        {% endfor %}
-                    </div>
-                </div>
-                {% endif %}
-            </div>
+            </section>
+            {% endfor %}
         </section>
     </main>
 
-    <section class="chatbot-widget" id="chatbot-widget" aria-label="Weapon chatbot">
+    <section class="chatbot-widget" id="chatbot-widget" aria-label="Resources chatbot">
         <button class="chatbot-launcher" type="button" onclick="toggleChatbot()" aria-expanded="false" id="chatbot-launcher">BOT</button>
         <div class="chatbot-panel" id="chatbot-panel">
             <div class="chatbot-header">

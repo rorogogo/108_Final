@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="/static/theme.js"></script>
+    <link rel="stylesheet" href="/static/sidebar.css">
+    <script src="/static/music.js" defer></script>
+    <title>Community Builds - Endfield</title>
+</head>
+<body data-logged-in="{{ 'true' if is_logged_in else 'false' }}">
+    <nav id="navigation-bar" aria-label="Primary navigation">
+        <p id="logo">ENDFIELD</p>
+        <a class="nav-item" href="/dashboard">
+            <span class="nav-icon" aria-hidden="true">DB</span>
+            <span class="nav-text">Dashboard</span>
+        </a>
+        <a class="nav-item" href="/teams">
+            <span class="nav-icon" aria-hidden="true">TM</span>
+            <span class="nav-text">Teams</span>
+        </a>
+        <a class="nav-item active" href="/community-builds">
+            <span class="nav-icon" aria-hidden="true">CB</span>
+            <span class="nav-text">Community Builds</span>
+        </a>
+        <a class="nav-item" href="/weapons">
+            <span class="nav-icon" aria-hidden="true">WP</span>
+            <span class="nav-text">Weapons</span>
+        </a>
+        <a class="nav-item" href="/resources">
+            <span class="nav-icon" aria-hidden="true">RS</span>
+            <span class="nav-text">Resources</span>
+        </a>
+    </nav>
+
+    <main class="shell">
+        <header class="page-header">
+            <div>
+                <p class="page-kicker">Community Command</p>
+                <h1 class="page-title">Community Builds</h1>
+            </div>
+            <div class="header-actions">
+                <div class="stats">
+                    <div class="stat">
+                        <strong>{{ teams|length }}</strong>
+                        <span>Shared</span>
+                    </div>
+                </div>
+                <div class="account-menu" id="account-menu">
+                    <button class="avatar-button" type="button" id="account-menu-button" aria-label="Open account menu" aria-expanded="false" onclick="toggleAccountMenu(event)">
+                        <img class="avatar" src="{{ profile_pic or '/static/image0.jpg' }}" alt="Profile picture">
+                    </button>
+                    <div class="account-popover" id="account-popover" role="menu" aria-labelledby="account-menu-button">
+                        <div class="account-summary">
+                            <img class="account-avatar" src="{{ profile_pic or '/static/image0.jpg' }}" alt="">
+                            <div>
+                                <strong>{{ user.username if user else 'Guest' }}</strong>
+                                {% if is_logged_in %}<span>Account</span>{% endif %}
+                            </div>
+                        </div>
+                        {% if is_logged_in %}
+                        <a class="account-action" href="/profile" role="menuitem">Account Settings</a>
+                        <a class="account-action danger" href="/logout" role="menuitem" onclick="clearChatbotStorage()">Logout</a>
+                        {% else %}
+                        <a class="account-action" href="/login" role="menuitem">Log In</a>
+                        <a class="account-action" href="/signup" role="menuitem">Create Account</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <section class="content">
+            <div class="toolbar">
+                <h2>Shared Teams</h2>
+            </div>
+            <div class="team-list" id="shared-teams">
+                {% for team in teams %}
+                <article class="team-card team-card-with-votes" data-team-id="{{ team.id }}">
+                    <div class="vote-controls" aria-label="Vote on {{ team.name }}">
+                        <button
+                            class="vote-button up {% if team.user_vote == 1 %}active{% endif %}"
+                            type="button"
+                            aria-label="Upvote"
+                            onclick="voteTeam({{ team.id }}, 1)"
+                        >▲</button>
+                        <strong class="vote-score" id="team-score-{{ team.id }}">{{ team.votes }}</strong>
+                        <button
+                            class="vote-button down {% if team.user_vote == -1 %}active{% endif %}"
+                            type="button"
+                            aria-label="Downvote"
+                            onclick="voteTeam({{ team.id }}, -1)"
+                        >▼</button>
+                    </div>
+                    <div>
+                        <h3>{{ team.name }}</h3>
+                        <div class="team-members">
+                            {% for char_id in team.characters %}
+                            <span class="member-chip">{{ characters.get(char_id, {}).get('name', char_id) }}</span>
+                            {% endfor %}
+                        </div>
+                        <p>By {{ team.creator }}</p>
+                    </div>
+                </article>
+                {% else %}
+                <article class="team-card">
+                    <h3>No community builds yet</h3>
+                    <p>Create one from the Teams builder.</p>
+                </article>
+                {% endfor %}
+            </div>
+        </section>
+    </main>
+
+    <section class="chatbot-widget" id="chatbot-widget" aria-label="Community chatbot">
+        <button class="chatbot-launcher" type="button" onclick="toggleChatbot()" aria-expanded="false" id="chatbot-launcher">BOT</button>
+        <div class="chatbot-panel" id="chatbot-panel">
+            <div class="chatbot-header">
+                <strong>Build Bot</strong>
+                <button class="chatbot-close" type="button" onclick="toggleChatbot(false)" aria-label="Close chatbot">X</button>
+            </div>
+            <div class="chatbot-messages" id="chatbot-messages"></div>
+            <form class="chatbot-form" onsubmit="sendChatbotMessage(event)">
+                <input id="chatbot-input" autocomplete="off" placeholder="Message">
+                <button class="primary-button" type="submit">Send</button>
+            </form>
+        </div>
+    </section>
+
+    <button class="sound-toggle floating-mute" id="sound-muted-button" type="button" aria-label="Mute audio" aria-pressed="false" title="Mute audio">
+        <span class="speaker-icon" id="sound-muted-icon" aria-hidden="true"></span>
+    </button>
+
+    <script>
+        const isLoggedIn = {{ is_logged_in | tojson }};
+
+        function setAccountMenu(open) {
+            const menu = document.getElementById("account-menu");
+            const button = document.getElementById("account-menu-button");
+            menu.classList.toggle("open", open);
+            button.setAttribute("aria-expanded", open ? "true" : "false");
+        }
+
+        function toggleAccountMenu(event) {
+            event.stopPropagation();
+            const menu = document.getElementById("account-menu");
+            setAccountMenu(!menu.classList.contains("open"));
+        }
+
+        function voteTeam(teamId, value) {
+            if (!isLoggedIn) {
+                openLoginRequiredModal("Please Log In first");
+                return;
+            }
+            fetch("/vote-team", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ team_id: teamId, value })
+            }).then((response) => {
+                if (!response.ok) {
+                    throw new Error("Vote failed");
+                }
+                return response.json();
+            }).then((data) => {
+                document.getElementById(`team-score-${teamId}`).textContent = data.votes;
+                const card = document.querySelector(`[data-team-id="${teamId}"]`);
+                card.querySelector(".vote-button.up").classList.toggle("active", data.user_vote === 1);
+                card.querySelector(".vote-button.down").classList.toggle("active", data.user_vote === -1);
+            }).catch(() => {});
+        }
+
+        document.addEventListener("click", (event) => {
+            if (!event.target.closest("#account-menu")) {
+                setAccountMenu(false);
+            }
+        });
+
+        document.addEventListener("keydown", (event) => {
+            if (event.key === "Escape") {
+                setAccountMenu(false);
+            }
+        });
+    </script>
+    <script src="/static/sfx.js"></script>
+    <script src="/static/chatbot.js"></script>
+</body>
+</html>

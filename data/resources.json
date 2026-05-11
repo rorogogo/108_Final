@@ -1,0 +1,41 @@
+{
+  "Valley IV": [
+    {"name": "Firebuckle", "type": "Plant", "locations": ["The Hub", "Aburrey Quarry", "Origin Lodespring"], "notes": "Gathered in Valley IV and usable in AIC farming loops."},
+    {"name": "Citrome", "type": "Plant", "locations": ["All areas of Valley IV"], "notes": "Common Valley IV fruit; can also be planted through AIC farming."},
+    {"name": "Aketine", "type": "Plant", "locations": ["Valley Pass", "Originium Science Park", "The Hub", "Origin Lodespring", "Power Plateau"], "notes": "Valley IV plant resource used in production chains."},
+    {"name": "Buckflower", "type": "Plant", "locations": ["Valley IV"], "notes": "Can be gathered or planted in the AIC."},
+    {"name": "Sandleaf", "type": "Plant", "locations": ["Power Plateau"], "notes": "Late Valley IV resource; Game8 lists 17 around Power Plateau."},
+    {"name": "Tartpepper", "type": "Plant", "locations": ["Originium Science Park"], "notes": "Listed in Originium Science Park resource tables."},
+    {"name": "Reed Rye", "type": "Plant", "locations": ["Originium Science Park"], "notes": "Listed in Originium Science Park resource tables."},
+    {"name": "Amethyst Ore", "type": "Ore", "locations": ["The Hub", "Valley Pass", "Aburrey Quarry"], "notes": "Game8 lists 12 Valley IV mining spots."},
+    {"name": "Ferrium Ore", "type": "Ore", "locations": ["The Hub", "Originium Science Park", "Origin Lodespring", "Power Plateau"], "notes": "Can be mined manually or with Electric Mining Rig Mk II."},
+    {"name": "Originium Ore", "type": "Ore", "locations": ["Mineral Beds"], "notes": "Obtained by destroying ore formations or using Mining Rigs."},
+    {"name": "Cuprium Ore", "type": "Ore", "locations": ["Mineral Beds"], "notes": "Listed as a natural ore; exact regional nodes should be verified on the map."}
+  ],
+  "Wuling": [
+    {"name": "Jincao", "type": "Plant", "locations": ["Jingyu Valley"], "notes": "Listed among Jingyu Valley resources."},
+    {"name": "Yazhen", "type": "Plant", "locations": ["Jingyu Valley"], "notes": "Listed among Jingyu Valley resources."},
+    {"name": "Fluffed Jincao", "type": "Plant", "locations": ["Jingyu Valley"], "notes": "Listed among Jingyu Valley resources."},
+    {"name": "Thorny Yazhen", "type": "Plant", "locations": ["Wuling"], "notes": "Listed as a natural plant; precise area should be checked on the interactive map."},
+    {"name": "Umbraline", "type": "Plant", "locations": ["Wuling"], "notes": "Listed as a natural plant; precise area should be checked on the interactive map."},
+    {"name": "Clean Water", "type": "Liquid", "locations": ["Jingyu Valley"], "notes": "Listed among Jingyu Valley resources and natural liquids."},
+    {"name": "Redjade Ginseng", "type": "Plant", "locations": ["Eco-Farm", "Seed-Picking Unit"], "notes": "Game8 lists AIC seed-picking and farming as the acquisition route."},
+    {"name": "Amber Rice", "type": "Plant", "locations": ["Eco-Farm", "Seed-Picking Unit"], "notes": "Harvested from the Eco-Farm after seed production."}
+  ],
+  "AIC / Cultivation": [
+    {"name": "Tartpepper Seed", "type": "Seed", "locations": ["Seed-Picking Unit"], "notes": "Produced from Tartpepper for planting."},
+    {"name": "Reed Rye Seed", "type": "Seed", "locations": ["Seed-Picking Unit"], "notes": "Produced from Reed Rye for planting."},
+    {"name": "Redjade Ginseng Seed", "type": "Seed", "locations": ["Seed-Picking Unit"], "notes": "Produced from Redjade Ginseng for planting."},
+    {"name": "Amber Rice Seed", "type": "Seed", "locations": ["Seed-Picking Unit"], "notes": "Produced from Amber Rice for planting."},
+    {"name": "Buckflower Seed", "type": "Seed", "locations": ["Seed-Picking Unit"], "notes": "Produced from Buckflower for planting."},
+    {"name": "Citrome Seed", "type": "Seed", "locations": ["Seed-Picking Unit"], "notes": "Produced from Citrome for planting."},
+    {"name": "Sandleaf Seed", "type": "Seed", "locations": ["Seed-Picking Unit"], "notes": "Produced from Sandleaf for planting."},
+    {"name": "Aketine Seed", "type": "Seed", "locations": ["Seed-Picking Unit"], "notes": "Produced from Aketine for planting."},
+    {"name": "Jincao Seed", "type": "Seed", "locations": ["Seed-Picking Unit"], "notes": "Produced from Jincao for planting."},
+    {"name": "Yazhen Seed", "type": "Seed", "locations": ["Seed-Picking Unit"], "notes": "Produced from Yazhen for planting."}
+  ],
+  "Region To Verify": [
+    {"name": "Wood", "type": "Plant", "locations": ["Open world"], "notes": "Listed as a natural resource, but the current source list does not pin it to one region."},
+    {"name": "Precipitation Acid", "type": "Liquid", "locations": ["Open world"], "notes": "Listed in Game8's natural resources index; regional source should be verified."}
+  ]
+}
