@@ -154,8 +154,6 @@
     </button>
 
     <script>
-        const clickSound = new Audio("/static/click.wav");
-        const hoverSound = new Audio("/static/hover.wav");
         const EFFECT_VOLUME = 0.45;
         let roster = {{ data | tojson }};
         const characters = {{ characters | tojson }};
@@ -199,18 +197,16 @@
         }
 
         function applySoundSettings() {
-            clickSound.volume = EFFECT_VOLUME;
-            hoverSound.volume = EFFECT_VOLUME;
-            clickSound.muted = soundSettings.muted;
-            hoverSound.muted = soundSettings.muted;
             muteButton.setAttribute("aria-pressed", soundSettings.muted ? "true" : "false");
             muteButton.setAttribute("title", soundSettings.muted ? "Unmute audio" : "Mute audio");
         }
 
-        function play(sound) {
+        function play(path) {
             if (soundSettings.muted) {
                 return;
             }
+			const sound = new Audio(path);
+			sound.volume = EFFECT_VOLUME;
             sound.currentTime = 0;
             sound.play().catch(() => {});
         }
@@ -237,7 +233,7 @@
             }
             syncSpecialImage(card);
 
-            card.addEventListener("mouseenter", () => play(hoverSound));
+            card.addEventListener("mouseenter", () => play("/static/hover.wav"));
             const checkbox = card.querySelector(".owned-check input");
             if (!checkbox) {
                 return;
@@ -257,7 +253,7 @@
                 syncSpecialImage(card);
                 updateCount();
                 saveRoster();
-                play(clickSound);
+                play("/static/click.wav");
             });
         });
 

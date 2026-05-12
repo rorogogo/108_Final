@@ -96,6 +96,15 @@
                 <div class="resource-list">
                     {% for item in items %}
                     <article class="resource-row">
+
+                        {% if item.image %}
+                        <img 
+                            src="{{ item.image }}" 
+                            alt="{{ item.name }}"
+                            class="resource-image"
+                        >
+                        {% endif %}
+
                         <div>
                             <strong>{{ item.name }}</strong>
                             <span>{{ item.type }}</span>
