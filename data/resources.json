@@ -1,37 +1,37 @@
 {
   "Valley IV": [
-    {"name": "Firebuckle", "type": "Plant", "locations": ["The Hub", "Aburrey Quarry", "Origin Lodespring"], "notes": "Gathered in Valley IV and usable in AIC farming loops."},
-    {"name": "Citrome", "type": "Plant", "locations": ["All areas of Valley IV"], "notes": "Common Valley IV fruit; can also be planted through AIC farming."},
-    {"name": "Aketine", "type": "Plant", "locations": ["Valley Pass", "Originium Science Park", "The Hub", "Origin Lodespring", "Power Plateau"], "notes": "Valley IV plant resource used in production chains."},
-    {"name": "Buckflower", "type": "Plant", "locations": ["Valley IV"], "notes": "Can be gathered or planted in the AIC."},
-    {"name": "Sandleaf", "type": "Plant", "locations": ["Power Plateau"], "notes": "Late Valley IV resource; Game8 lists 17 around Power Plateau."},
-    {"name": "Tartpepper", "type": "Plant", "locations": ["Originium Science Park"], "notes": "Listed in Originium Science Park resource tables."},
-    {"name": "Reed Rye", "type": "Plant", "locations": ["Originium Science Park"], "notes": "Listed in Originium Science Park resource tables."},
-    {"name": "Amethyst Ore", "type": "Ore", "locations": ["The Hub", "Valley Pass", "Aburrey Quarry"], "notes": "Game8 lists 12 Valley IV mining spots."},
-    {"name": "Ferrium Ore", "type": "Ore", "locations": ["The Hub", "Originium Science Park", "Origin Lodespring", "Power Plateau"], "notes": "Can be mined manually or with Electric Mining Rig Mk II."},
-    {"name": "Originium Ore", "type": "Ore", "locations": ["Mineral Beds"], "notes": "Obtained by destroying ore formations or using Mining Rigs."},
-    {"name": "Cuprium Ore", "type": "Ore", "locations": ["Mineral Beds"], "notes": "Listed as a natural ore; exact regional nodes should be verified on the map."}
+    {"name": "Firebuckle", "type": "Plant", "locations": ["The Hub", "Aburrey Quarry", "Origin Lodespring"], "notes": "Gathered in Valley IV and usable in AIC farming loops.", "image": "https://cdn.end.wiki/images/materials/item-plant-moss-spc-1__122x120__fc6bf2913103.webp"},
+    {"name": "Citrome", "type": "Plant", "locations": ["All areas of Valley IV"], "notes": "Common Valley IV fruit; can also be planted through AIC farming.", "image": "https://cdn.end.wiki/images/materials/item-plant-moss-2__126x126__79433d690160.webp"},
+    {"name": "Aketine", "type": "Plant", "locations": ["Valley Pass", "Originium Science Park", "The Hub", "Origin Lodespring", "Power Plateau"], "notes": "Valley IV plant resource used in production chains.", "image": "https://cdn.end.wiki/images/materials/item-plant-bbflower-1__126x126__8f15f21cc86e.webp"},
+    {"name": "Buckflower", "type": "Plant", "locations": ["Valley IV"], "notes": "Can be gathered or planted in the AIC.", "image": "https://cdn.end.wiki/images/materials/item-plant-moss-1__126x119__95c3f6bb7fb2.webp"},
+    {"name": "Sandleaf", "type": "Plant", "locations": ["Power Plateau"], "notes": "Late Valley IV resource; Game8 lists 17 around Power Plateau.", "image": "https://cdn.end.wiki/images/materials/item-plant-moss-3__128x128__aaf6a2e25b21.webp"},
+    {"name": "Tartpepper", "type": "Plant", "locations": ["Originium Science Park"], "notes": "Listed in Originium Science Park resource tables.", "image": "https://cdn.end.wiki/images/materials/item-plant-sp-2__113x122__e219e00c232b.webp"},
+    {"name": "Reed Rye", "type": "Plant", "locations": ["Originium Science Park"], "notes": "Listed in Originium Science Park resource tables.", "image": "https://cdn.end.wiki/images/materials/item-plant-sp-1__128x128__a962b69b4157.webp"},
+    {"name": "Amethyst Ore", "type": "Ore", "locations": ["The Hub", "Valley Pass", "Aburrey Quarry"], "notes": "Game8 lists 12 Valley IV mining spots.", "image": "https://cdn.end.wiki/images/materials/item-quartz-sand__126x111__bd49a956911f.webp"},
+    {"name": "Ferrium Ore", "type": "Ore", "locations": ["The Hub", "Originium Science Park", "Origin Lodespring", "Power Plateau"], "notes": "Can be mined manually or with Electric Mining Rig Mk II.", "image": "https://cdn.end.wiki/images/materials/item-iron-ore__106x120__1f682db4fd8d.webp"},
+    {"name": "Originium Ore", "type": "Ore", "locations": ["Mineral Beds"], "notes": "Obtained by destroying ore formations or using Mining Rigs.", "image": "https://cdn.end.wiki/images/materials/item-originium-ore__128x128__e76abdfbe1cc.webp"},
+    {"name": "Cuprium Ore", "type": "Ore", "locations": ["Mineral Beds"], "notes": "Listed as a natural ore; exact regional nodes should be verified on the map.", "image": "https://cdn.end.wiki/images/materials/item-copper-ore__105x115__03e4cdfd0106.webp"}
   ],
   "Wuling": [
-    {"name": "Jincao", "type": "Plant", "locations": ["Jingyu Valley"], "notes": "Listed among Jingyu Valley resources."},
-    {"name": "Yazhen", "type": "Plant", "locations": ["Jingyu Valley"], "notes": "Listed among Jingyu Valley resources."},
-    {"name": "Fluffed Jincao", "type": "Plant", "locations": ["Jingyu Valley"], "notes": "Listed among Jingyu Valley resources."},
-    {"name": "Thorny Yazhen", "type": "Plant", "locations": ["Wuling"], "notes": "Listed as a natural plant; precise area should be checked on the interactive map."},
-    {"name": "Umbraline", "type": "Plant", "locations": ["Wuling"], "notes": "Listed as a natural plant; precise area should be checked on the interactive map."},
-    {"name": "Clean Water", "type": "Liquid", "locations": ["Jingyu Valley"], "notes": "Listed among Jingyu Valley resources and natural liquids."},
-    {"name": "Redjade Ginseng", "type": "Plant", "locations": ["Eco-Farm", "Seed-Picking Unit"], "notes": "Game8 lists AIC seed-picking and farming as the acquisition route."},
-    {"name": "Amber Rice", "type": "Plant", "locations": ["Eco-Farm", "Seed-Picking Unit"], "notes": "Harvested from the Eco-Farm after seed production."}
+    {"name": "Jincao", "type": "Plant", "locations": ["Jingyu Valley"], "notes": "Listed among Jingyu Valley resources.", "image": "https://cdn.end.wiki/images/materials/item-plant-grass-1__128x128__4452cbed5268.webp"},
+    {"name": "Yazhen", "type": "Plant", "locations": ["Jingyu Valley"], "notes": "Listed among Jingyu Valley resources.", "image": "https://cdn.end.wiki/images/materials/item-plant-grass-2__128x128__cd39bf707310.webp"},
+    {"name": "Fluffed Jincao", "type": "Plant", "locations": ["Jingyu Valley"], "notes": "Listed among Jingyu Valley resources.", "image": "https://cdn.end.wiki/images/materials/item-plant-grass-spc-1__128x128__39eaee4b56b1.webp"},
+    {"name": "Thorny Yazhen", "type": "Plant", "locations": ["Wuling"], "notes": "Listed as a natural plant; precise area should be checked on the interactive map.", "image": "https://cdn.end.wiki/images/materials/item-plant-grass-spc-2__117x118__bc5b6dd4db3a.webp"},
+    {"name": "Umbraline", "type": "Plant", "locations": ["Wuling"], "notes": "Listed as a natural plant; precise area should be checked on the interactive map.", "image": "https://cdn.end.wiki/images/materials/item-plant-moss-spc-2__122x126__8e14c09f7f5f.webp"},
+    {"name": "Clean Water", "type": "Liquid", "locations": ["Jingyu Valley"], "notes": "Listed among Jingyu Valley resources and natural liquids.", "image": "https://cdn.end.wiki/images/materials/item-liquid-water__126x126__e141c54eeb6b.webp"},
+    {"name": "Redjade Ginseng", "type": "Plant", "locations": ["Eco-Farm", "Seed-Picking Unit"], "notes": "Game8 lists AIC seed-picking and farming as the acquisition route.", "image": "https://cdn.end.wiki/images/materials/item-plant-sp-3__111x123__947adfcae56b.webp"},
+    {"name": "Amber Rice", "type": "Plant", "locations": ["Eco-Farm", "Seed-Picking Unit"], "notes": "Harvested from the Eco-Farm after seed production.", "image": "https://cdn.end.wiki/images/materials/item-plant-sp-4__126x126__7b74a9f60cfe.webp"}
   ],
   "AIC / Cultivation": [
-    {"name": "Tartpepper Seed", "type": "Seed", "locations": ["Seed-Picking Unit"], "notes": "Produced from Tartpepper for planting."},
-    {"name": "Reed Rye Seed", "type": "Seed", "locations": ["Seed-Picking Unit"], "notes": "Produced from Reed Rye for planting."},
-    {"name": "Redjade Ginseng Seed", "type": "Seed", "locations": ["Seed-Picking Unit"], "notes": "Produced from Redjade Ginseng for planting."},
-    {"name": "Amber Rice Seed", "type": "Seed", "locations": ["Seed-Picking Unit"], "notes": "Produced from Amber Rice for planting."},
-    {"name": "Buckflower Seed", "type": "Seed", "locations": ["Seed-Picking Unit"], "notes": "Produced from Buckflower for planting."},
-    {"name": "Citrome Seed", "type": "Seed", "locations": ["Seed-Picking Unit"], "notes": "Produced from Citrome for planting."},
-    {"name": "Sandleaf Seed", "type": "Seed", "locations": ["Seed-Picking Unit"], "notes": "Produced from Sandleaf for planting."},
-    {"name": "Aketine Seed", "type": "Seed", "locations": ["Seed-Picking Unit"], "notes": "Produced from Aketine for planting."},
-    {"name": "Jincao Seed", "type": "Seed", "locations": ["Seed-Picking Unit"], "notes": "Produced from Jincao for planting."},
-    {"name": "Yazhen Seed", "type": "Seed", "locations": ["Seed-Picking Unit"], "notes": "Produced from Yazhen for planting."}
+    {"name": "Tartpepper Seed", "type": "Seed", "locations": ["Seed-Picking Unit"], "notes": "Produced from Tartpepper for planting.", "image": "https://cdn.end.wiki/images/materials/item-plant-sp-seed-2__126x110__ecfddf32fbda.webp"},
+    {"name": "Reed Rye Seed", "type": "Seed", "locations": ["Seed-Picking Unit"], "notes": "Produced from Reed Rye for planting.", "image": "https://cdn.end.wiki/images/materials/item-plant-sp-seed-1__126x126__d2319aa6b48a.webp"},
+    {"name": "Redjade Ginseng Seed", "type": "Seed", "locations": ["Seed-Picking Unit"], "notes": "Produced from Redjade Ginseng for planting.", "image": "https://cdn.end.wiki/images/materials/item-plant-sp-seed-3__126x108__9aa09aa9852f.webp"},
+    {"name": "Amber Rice Seed", "type": "Seed", "locations": ["Seed-Picking Unit"], "notes": "Produced from Amber Rice for planting.", "image": "https://cdn.end.wiki/images/materials/item-plant-sp-seed-4__128x128__7973229406eb.webp"},
+    {"name": "Buckflower Seed", "type": "Seed", "locations": ["Seed-Picking Unit"], "notes": "Produced from Buckflower for planting.", "image": "https://cdn.end.wiki/images/materials/item-plant-moss-seed-1__128x128__7a5f78b8de9a.webp"},
+    {"name": "Citrome Seed", "type": "Seed", "locations": ["Seed-Picking Unit"], "notes": "Produced from Citrome for planting.", "image": "https://cdn.end.wiki/images/materials/item-plant-moss-seed-2__126x126__798ef3f72ef7.webp"},
+    {"name": "Sandleaf Seed", "type": "Seed", "locations": ["Seed-Picking Unit"], "notes": "Produced from Sandleaf for planting.", "image": "https://cdn.end.wiki/images/materials/item-plant-moss-seed-3__128x128__f2f6bb31b68e.webp"},
+    {"name": "Aketine Seed", "type": "Seed", "locations": ["Seed-Picking Unit"], "notes": "Produced from Aketine for planting.", "image": "https://cdn.end.wiki/images/materials/item-plant-bbflower-seed-1__126x111__50181ca4d12a.webp"},
+    {"name": "Jincao Seed", "type": "Seed", "locations": ["Seed-Picking Unit"], "notes": "Produced from Jincao for planting.", "image": "https://cdn.end.wiki/images/materials/item-plant-grass-seed-1__126x126__186d03647799.webp"},
+    {"name": "Yazhen Seed", "type": "Seed", "locations": ["Seed-Picking Unit"], "notes": "Produced from Yazhen for planting.", "image": "https://cdn.end.wiki/images/materials/item-plant-grass-seed-2__112x118__77c9acfff8b5.webp"}
   ]
 }
