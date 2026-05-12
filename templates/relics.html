@@ -10,7 +10,7 @@
     <script src="/static/theme.js"></script>
     <link rel="stylesheet" href="/static/sidebar.css">
     <script src="/static/music.js" defer></script>
-    <title>Endfield Relics</title>
+    <title>Endfield Gear</title>
 </head>
 <body data-logged-in="{{ 'true' if is_logged_in else 'false' }}" data-reset-chatbot="{{ 'true' if reset_chatbot_on_load else 'false' }}">
     <nav id="navigation-bar" aria-label="Primary navigation">
@@ -25,7 +25,7 @@
         </a>
         <a class="nav-item" href="/community-builds">
             <span class="nav-icon" aria-hidden="true">CB</span>
-            <span class="nav-text">Community's Build</span>
+            <span class="nav-text">Shared Builds</span>
         </a>
         <a class="nav-item" href="/weapons">
             <span class="nav-icon" aria-hidden="true">WP</span>
@@ -33,11 +33,11 @@
         </a>
         <a class="nav-item" href="/optimizer">
             <span class="nav-icon" aria-hidden="true">OP</span>
-            <span class="nav-text">Character Optimizer</span>
+            <span class="nav-text">Optimizer</span>
         </a>
-        <a class="nav-item active" href="/relics">
-            <span class="nav-icon" aria-hidden="true">RL</span>
-            <span class="nav-text">Relics</span>
+        <a class="nav-item active" href="/gear">
+            <span class="nav-icon" aria-hidden="true">GR</span>
+            <span class="nav-text">Gear</span>
         </a>
         <a class="nav-item" href="/resources">
             <span class="nav-icon" aria-hidden="true">RS</span>
@@ -49,7 +49,7 @@
         <header class="page-header">
             <div>
                 <p class="page-kicker">Gear Archive</p>
-                <h1 class="page-title">Relics</h1>
+                <h1 class="page-title">Gear</h1>
             </div>
             <div class="header-actions">
                 <div class="stats">
@@ -89,16 +89,6 @@
         <section class="content">
             <div class="filter-section">
                 <div class="filter-group">
-                    <h3>Tier</h3>
-                    <div class="filter-buttons">
-                        <button class="filter-button active" type="button" data-filter-tier="all" onclick="setTierFilter('all')">All</button>
-                        <button class="filter-button" type="button" data-filter-tier="0" onclick="setTierFilter('0')">Tier 0</button>
-                        <button class="filter-button" type="button" data-filter-tier="1" onclick="setTierFilter('1')">Tier 1</button>
-                        <button class="filter-button" type="button" data-filter-tier="2" onclick="setTierFilter('2')">Tier 2</button>
-                        <button class="filter-button" type="button" data-filter-tier="3" onclick="setTierFilter('3')">Tier 3</button>
-                    </div>
-                </div>
-                <div class="filter-group">
                     <h3>Rarity</h3>
                     <div class="filter-buttons">
                         <button class="filter-button active" type="button" data-filter-rarity="all" onclick="setRarityFilter('all')">All</button>
@@ -112,7 +102,7 @@
 
             <div class="relic-grid" id="relic-grid">
                 {% for relic in relic_sets %}
-                <article class="relic-card" data-tier="{{ relic.tier }}" data-rarity="{{ relic.rarity }}">
+                <a class="relic-card" href="/relic/{{ relic.id }}" data-tier="{{ relic.tier }}" data-rarity="{{ relic.rarity }}">
                     <div class="relic-image-slot">
                         {% if relic.image %}
                         <img src="{{ relic.image }}" alt="{{ relic.name }}">
@@ -123,24 +113,25 @@
                     <div class="relic-card-header">
                         <div>
                             <strong>{{ relic.name }}</strong>
-                            <span>Tier {{ relic.tier }} / {{ relic.rarity }}</span>
+                            <span>{{ relic.rarity }}</span>
                         </div>
                         <em class="rarity-badge rarity-{{ relic.rarity | lower }}">{{ relic.rarity }}</em>
                     </div>
                     <p><strong>Bonus:</strong> {{ relic.bonus_stat }}</p>
                     <p><strong>Effect:</strong> {{ relic.set_effect }}</p>
+                    <p><strong>Gear:</strong> {{ relic.piece_count }} pieces</p>
                     <div class="weapon-chip-list">
                         {% for tag in relic.tags[:5] %}
                         <span class="weapon-chip">{{ tag }}</span>
                         {% endfor %}
                     </div>
-                </article>
+                </a>
                 {% endfor %}
             </div>
         </section>
     </main>
 
-    <section class="chatbot-widget" id="chatbot-widget" aria-label="Relics chatbot">
+    <section class="chatbot-widget" id="chatbot-widget" aria-label="Gear chatbot">
         <button class="chatbot-launcher" type="button" onclick="toggleChatbot()" aria-expanded="false" id="chatbot-launcher">BOT</button>
         <div class="chatbot-panel" id="chatbot-panel">
             <div class="chatbot-header">
@@ -160,7 +151,6 @@
     </button>
 
     <script>
-        let activeTierFilters = new Set();
         let activeRarityFilters = new Set();
 
         function setAccountMenu(open) {
@@ -177,10 +167,6 @@
         }
 
         function updateFilterButtons() {
-            document.querySelectorAll("[data-filter-tier]").forEach((button) => {
-                const value = button.dataset.filterTier;
-                button.classList.toggle("active", value === "all" ? activeTierFilters.size === 0 : activeTierFilters.has(value));
-            });
             document.querySelectorAll("[data-filter-rarity]").forEach((button) => {
                 const value = button.dataset.filterRarity;
                 button.classList.toggle("active", value === "all" ? activeRarityFilters.size === 0 : activeRarityFilters.has(value));
@@ -190,9 +176,8 @@
         function applyFilters() {
             let displayed = 0;
             document.querySelectorAll(".relic-card").forEach((card) => {
-                const tierMatch = activeTierFilters.size === 0 || activeTierFilters.has(card.dataset.tier);
                 const rarityMatch = activeRarityFilters.size === 0 || activeRarityFilters.has(card.dataset.rarity);
-                const visible = tierMatch && rarityMatch;
+                const visible = rarityMatch;
                 card.hidden = !visible;
                 if (visible) {
                     displayed += 1;
@@ -200,17 +185,6 @@
             });
             document.getElementById("displayed-count").textContent = displayed;
             updateFilterButtons();
-        }
-
-        function setTierFilter(tier) {
-            if (tier === "all") {
-                activeTierFilters.clear();
-            } else if (activeTierFilters.has(tier)) {
-                activeTierFilters.delete(tier);
-            } else {
-                activeTierFilters.add(tier);
-            }
-            applyFilters();
         }
 
         function setRarityFilter(rarity) {

@@ -10,7 +10,7 @@
     <script src="/static/theme.js"></script>
     <link rel="stylesheet" href="/static/sidebar.css">
     <script src="/static/music.js" defer></script>
-    <title>Community Builds - Endfield</title>
+    <title>Shared Builds - Endfield</title>
 </head>
 <body data-logged-in="{{ 'true' if is_logged_in else 'false' }}" data-reset-chatbot="{{ 'true' if reset_chatbot_on_load else 'false' }}">
     <nav id="navigation-bar" aria-label="Primary navigation">
@@ -25,7 +25,7 @@
         </a>
         <a class="nav-item active" href="/community-builds">
             <span class="nav-icon" aria-hidden="true">CB</span>
-            <span class="nav-text">Community Builds</span>
+            <span class="nav-text">Shared Builds</span>
         </a>
         <a class="nav-item" href="/weapons">
             <span class="nav-icon" aria-hidden="true">WP</span>
@@ -33,11 +33,11 @@
         </a>
         <a class="nav-item" href="/optimizer">
             <span class="nav-icon" aria-hidden="true">OP</span>
-            <span class="nav-text">Character Optimizer</span>
+            <span class="nav-text">Optimizer</span>
         </a>
-        <a class="nav-item" href="/relics">
-            <span class="nav-icon" aria-hidden="true">RL</span>
-            <span class="nav-text">Relics</span>
+        <a class="nav-item" href="/gear">
+            <span class="nav-icon" aria-hidden="true">GR</span>
+            <span class="nav-text">Gear</span>
         </a>
         <a class="nav-item" href="/resources">
             <span class="nav-icon" aria-hidden="true">RS</span>
@@ -48,8 +48,8 @@
     <main class="shell">
         <header class="page-header">
             <div>
-                <p class="page-kicker">Community Command</p>
-                <h1 class="page-title">Community Builds</h1>
+                <p class="page-kicker">Shared Builds</p>
+                <h1 class="page-title">Shared Builds</h1>
             </div>
             <div class="header-actions">
                 <div class="stats">
@@ -116,7 +116,7 @@
                 </article>
                 {% else %}
                 <article class="team-card">
-                    <h3>No community builds yet</h3>
+                    <h3>No shared builds yet</h3>
                     <p>Create one from the Teams builder.</p>
                 </article>
                 {% endfor %}
@@ -124,7 +124,7 @@
         </section>
     </main>
 
-    <section class="chatbot-widget" id="chatbot-widget" aria-label="Community chatbot">
+    <section class="chatbot-widget" id="chatbot-widget" aria-label="Shared chatbot">
         <button class="chatbot-launcher" type="button" onclick="toggleChatbot()" aria-expanded="false" id="chatbot-launcher">BOT</button>
         <div class="chatbot-panel" id="chatbot-panel">
             <div class="chatbot-header">

@@ -10,7 +10,7 @@
     <script src="/static/theme.js"></script>
     <link rel="stylesheet" href="/static/sidebar.css">
     <script src="/static/music.js" defer></script>
-    <title>Character Optimizer - Endfield</title>
+    <title>Optimizer - Endfield</title>
 </head>
 <body data-logged-in="{{ 'true' if is_logged_in else 'false' }}" data-reset-chatbot="{{ 'true' if reset_chatbot_on_load else 'false' }}">
     <nav id="navigation-bar" aria-label="Primary navigation">
@@ -25,7 +25,7 @@
         </a>
         <a class="nav-item" href="/community-builds">
             <span class="nav-icon" aria-hidden="true">CB</span>
-            <span class="nav-text">Community's Build</span>
+            <span class="nav-text">Shared Builds</span>
         </a>
         <a class="nav-item" href="/weapons">
             <span class="nav-icon" aria-hidden="true">WP</span>
@@ -33,11 +33,11 @@
         </a>
         <a class="nav-item active" href="/optimizer">
             <span class="nav-icon" aria-hidden="true">OP</span>
-            <span class="nav-text">Character Optimizer</span>
+            <span class="nav-text">Optimizer</span>
         </a>
-        <a class="nav-item" href="/relics">
-            <span class="nav-icon" aria-hidden="true">RL</span>
-            <span class="nav-text">Relics</span>
+        <a class="nav-item" href="/gear">
+            <span class="nav-icon" aria-hidden="true">GR</span>
+            <span class="nav-text">Gear</span>
         </a>
         <a class="nav-item" href="/resources">
             <span class="nav-icon" aria-hidden="true">RS</span>
@@ -49,7 +49,7 @@
         <header class="page-header">
             <div>
                 <p class="page-kicker">Build Lab</p>
-                <h1 class="page-title">Character Optimizer</h1>
+                <h1 class="page-title">Optimizer</h1>
             </div>
             <div class="account-menu" id="account-menu">
                 <button class="avatar-button" type="button" id="account-menu-button" aria-label="Open account menu" aria-expanded="false" onclick="toggleAccountMenu(event)">
@@ -91,38 +91,35 @@
                 </div>
 
                 <div class="field">
-                    <label for="optimizer-focus">Current stats / focus</label>
-                    <textarea id="optimizer-focus" rows="4" placeholder="attack, arts intensity, crit rate"></textarea>
+                    <label for="optimizer-preferred-stats">Preferred stats</label>
+                    <ul id="optimizer-preferred-stats" class="preferred-stats" aria-live="polite"><li>Select a character to see suggested stats.</li></ul>
                 </div>
 
                 <div class="field">
-                    <label for="optimizer-current-relic">Current relic set</label>
+                    <label for="optimizer-current-relic">Current gear set</label>
                     <select id="optimizer-current-relic"></select>
                 </div>
 
                 <div class="character-build-list build-optimizer">
-                    <h3>Relic sets to compare</h3>
-                    <div class="optimizer-weapon-list" id="optimizer-relic-list"></div>
+                    <h3>Gear sets</h3>
+                    <p class="muted">All available gear sets will be considered when optimizing.</p>
                 </div>
 
-                <div class="character-build-list build-optimizer">
-                    <h3>Weapons you have</h3>
-                    <div class="optimizer-weapon-list" id="optimizer-weapon-list"></div>
+                <div class="button-row" style="margin-top:20px">
+                    <button class="primary-button" type="submit">Optimize Character</button>
                 </div>
-
-                <button class="primary-button" type="submit">Optimize Character</button>
             </form>
 
             <section class="panel optimizer-result-panel">
                 <div class="optimizer-result empty" id="optimizer-result">
                     <h3>Select a character and current setup.</h3>
-                    <p>The optimizer will compare your current weapon against the weapons you mark as available.</p>
+                    <p>The optimizer will compare your current weapon against weapons that character can use.</p>
                 </div>
             </section>
         </section>
     </main>
 
-    <section class="chatbot-widget" id="chatbot-widget" aria-label="Character optimizer chatbot">
+    <section class="chatbot-widget" id="chatbot-widget" aria-label="Optimizer chatbot">
         <button class="chatbot-launcher" type="button" onclick="toggleChatbot()" aria-expanded="false" id="chatbot-launcher">BOT</button>
         <div class="chatbot-panel" id="chatbot-panel">
             <div class="chatbot-header">
@@ -145,7 +142,14 @@
         const characters = {{ characters | tojson }};
         const weapons = {{ weapons | tojson }};
         const relicSets = {{ relic_sets | tojson }};
-        const ownedWeapons = {{ owned_weapons | tojson }};
+
+        // Role -> suggested stats (fallbacks if character data doesn't include them)
+        const preferredStatsByRole = {
+            "dps": "attack, crit rate, crit damage",
+            "sub-dps": "attack, combo skill damage, crit rate",
+            "support": "arts intensity, energy recharge, hp",
+            "flex": "attack, arts intensity, crit rate"
+        };
 
         function setAccountMenu(open) {
             const menu = document.getElementById("account-menu");
@@ -170,29 +174,39 @@
 
         function renderOptimizerWeapons() {
             const currentSelect = document.getElementById("optimizer-current-weapon");
-            const list = document.getElementById("optimizer-weapon-list");
             const compatible = compatibleWeapons();
 
             currentSelect.innerHTML = compatible.map((weapon) => (
                 `<option value="${weapon.id}">${weapon.name} (${weapon.rarity} star, ATK ${weapon.base_atk})</option>`
             )).join("");
 
-            list.innerHTML = compatible.map((weapon) => {
-                const checked = ownedWeapons[weapon.id] ? "checked" : "";
-                return `
-                    <label class="optimizer-weapon">
-                        <input type="checkbox" value="${weapon.id}" ${checked}>
-                        <span>
-                            <strong>${weapon.name}</strong>
-                            <em>${weapon.rarity} star / ATK ${weapon.base_atk}</em>
-                        </span>
-                    </label>
-                `;
-            }).join("");
+            // also update preferred stats when weapons/character change
+            updatePreferredStats();
+        }
 
-            if (!list.querySelector("input:checked")) {
-                list.querySelector("input")?.setAttribute("checked", "checked");
+        function updatePreferredStats() {
+            const charId = document.getElementById("optimizer-character").value;
+            const char = characters[charId] || {};
+            let stats = [];
+
+            // Prefer an explicit field if present on the character
+            if (char.preferred_stats) {
+                if (Array.isArray(char.preferred_stats)) {
+                    stats = char.preferred_stats.slice();
+                } else {
+                    stats = String(char.preferred_stats).split(",").map(s => s.trim()).filter(Boolean);
+                }
+            } else if (char.roles && char.roles.length) {
+                // use first role to look up suggestions
+                const role = char.roles[0];
+                const fallback = preferredStatsByRole[role] || preferredStatsByRole["flex"];
+                stats = String(fallback).split(",").map(s => s.trim()).filter(Boolean);
+            } else {
+                stats = String(preferredStatsByRole["flex"]).split(",").map(s => s.trim()).filter(Boolean);
             }
+
+            const el = document.getElementById("optimizer-preferred-stats");
+            el.innerHTML = stats.length ? stats.map(s => `<li>${s}</li>`).join("") : `<li>role-specific stats</li>`;
         }
 
         function sortedRelicSets() {
@@ -202,22 +216,11 @@
 
         function renderOptimizerRelics() {
             const currentSelect = document.getElementById("optimizer-current-relic");
-            const list = document.getElementById("optimizer-relic-list");
             const relics = sortedRelicSets();
 
             currentSelect.innerHTML = relics.map((relic) => (
                 `<option value="${relic.id}">${relic.name} (Tier ${relic.tier}, ${relic.rarity})</option>`
             )).join("");
-
-            list.innerHTML = relics.map((relic) => `
-                <label class="optimizer-weapon">
-                    <input type="checkbox" value="${relic.id}" checked>
-                    <span>
-                        <strong>${relic.name}</strong>
-                        <em>Tier ${relic.tier} / ${relic.bonus_stat}</em>
-                    </span>
-                </label>
-            `).join("");
         }
 
         function weaponDetailsList(weapon) {
@@ -232,8 +235,8 @@
                 return "";
             }
             return `
-                <p><strong>Relic bonus:</strong> ${relic.bonus_stat}</p>
-                <p><strong>Relic effect:</strong> ${relic.set_effect}</p>
+                <p><strong>Gear bonus:</strong> ${relic.bonus_stat}</p>
+                <p><strong>Gear effect:</strong> ${relic.set_effect}</p>
             `;
         }
 
@@ -243,23 +246,28 @@
             const current = data.current
                 ? `<p><strong>Current:</strong> ${data.current.name} (${data.current.score} score)</p>`
                 : "<p><strong>Current:</strong> No current compatible weapon selected.</p>";
-            const replacement = data.replacement
-                ? `
+            let replacement = "";
+            if (data.replacement) {
+                replacement = `
                     <p><strong>Replace with:</strong> ${data.replacement.name} (${data.replacement.rarity} star, ATK ${data.replacement.base_atk})</p>
                     <p><strong>Why:</strong> ${data.replacement.reasons.join(", ")}</p>
                     ${weaponDetailsList(data.replacement)}
-                `
-                : `<p><strong>Replace with:</strong> Keep your current weapon. Nothing selected scored higher.</p>`;
+                `;
+            } else if (data.current) {
+                replacement = `<p><strong>Replace with:</strong> You already have the best weapon available.</p>`;
+            } else {
+                replacement = `<p><strong>Replace with:</strong> Keep your current weapon. Nothing selected scored higher.</p>`;
+            }
             const currentRelic = data.currentRelic
-                ? `<p><strong>Current relic:</strong> ${data.currentRelic.name} (${data.currentRelic.score} score)</p>`
-                : "<p><strong>Current relic:</strong> No current relic set selected.</p>";
+                ? `<p><strong>Current gear:</strong> ${data.currentRelic.name} (${data.currentRelic.score} score)</p>`
+                : "<p><strong>Current gear:</strong> No current gear set selected.</p>";
             const relicReplacement = data.replacementRelic
                 ? `
-                    <p><strong>Relic upgrade:</strong> ${data.replacementRelic.name} (${data.replacementRelic.score} score)</p>
-                    <p><strong>Relic why:</strong> ${data.replacementRelic.reasons.join(", ")}</p>
+                    <p><strong>Gear upgrade:</strong> ${data.replacementRelic.name} (${data.replacementRelic.score} score)</p>
+                    <p><strong>Gear why:</strong> ${data.replacementRelic.reasons.join(", ")}</p>
                     ${relicDetails(data.replacementRelic)}
                 `
-                : `<p><strong>Relic upgrade:</strong> Keep your current relic set. Nothing selected scored higher.</p>`;
+                : `<p><strong>Gear upgrade:</strong> Keep your current gear set. Nothing selected scored higher.</p>`;
 
             result.classList.remove("empty");
             result.innerHTML = `
@@ -277,21 +285,9 @@
         function runCharacterOptimizer(event) {
             event.preventDefault();
             const result = document.getElementById("optimizer-result");
-            const weaponIds = Array.from(document.querySelectorAll("#optimizer-weapon-list input:checked"))
-                .map((input) => input.value);
-            const relicSetIds = Array.from(document.querySelectorAll("#optimizer-relic-list input:checked"))
-                .map((input) => input.value);
-
-            if (!weaponIds.length) {
-                result.classList.remove("empty");
-                result.innerHTML = "<h3>Select at least one weapon you have.</h3>";
-                return;
-            }
-            if (!relicSetIds.length) {
-                result.classList.remove("empty");
-                result.innerHTML = "<h3>Select at least one relic set to compare.</h3>";
-                return;
-            }
+            // Use all available relic sets for comparison (no manual selection required)
+            const relicSetIds = sortedRelicSets().map((r) => r.id);
+            const focusStats = Array.from(document.querySelectorAll("#optimizer-preferred-stats li")).map(li => li.textContent.trim()).filter(Boolean).join(", ");
 
             fetch("/api/character-optimizer", {
                 method: "POST",
@@ -299,10 +295,9 @@
                 body: JSON.stringify({
                     characterId: document.getElementById("optimizer-character").value,
                     currentWeaponId: document.getElementById("optimizer-current-weapon").value,
-                    weaponIds,
                     currentRelicId: document.getElementById("optimizer-current-relic").value,
                     relicSetIds,
-                    focusStats: document.getElementById("optimizer-focus").value
+                    focusStats: focusStats
                 })
             }).then((response) => {
                 return response.json().then((data) => {

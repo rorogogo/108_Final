@@ -10,7 +10,7 @@
     <script src="/static/theme.js"></script>
     <link rel="stylesheet" href="/static/sidebar.css">
     <script src="/static/music.js" defer></script>
-    <title>Endfield Resources</title>
+    <title>{{ gear.name }} - Endfield</title>
 </head>
 <body data-logged-in="{{ 'true' if is_logged_in else 'false' }}" data-reset-chatbot="{{ 'true' if reset_chatbot_on_load else 'false' }}">
     <nav id="navigation-bar" aria-label="Primary navigation">
@@ -35,11 +35,11 @@
             <span class="nav-icon" aria-hidden="true">OP</span>
             <span class="nav-text">Optimizer</span>
         </a>
-        <a class="nav-item" href="/gear">
+        <a class="nav-item active" href="/gear">
             <span class="nav-icon" aria-hidden="true">GR</span>
             <span class="nav-text">Gear</span>
         </a>
-        <a class="nav-item active" href="/resources">
+        <a class="nav-item" href="/resources">
             <span class="nav-icon" aria-hidden="true">RS</span>
             <span class="nav-text">Resources</span>
         </a>
@@ -48,78 +48,86 @@
     <main class="shell">
         <header class="page-header">
             <div>
-                <p class="page-kicker">Talos-II Index</p>
-                <h1 class="page-title">Resources</h1>
+                <a class="page-back-link" href="/gear">
+                    <span aria-hidden="true">&larr;</span>
+                    Back to Gear
+                </a>
+                <p class="page-kicker">{{ gear.type }} Gear</p>
+                <h1 class="page-title">{{ gear.name }}</h1>
             </div>
-            <div class="header-actions">
-                <div class="stats">
-                    <div class="stat">
-                        <strong>{{ total_resources }}</strong>
-                        <span>Listed</span>
-                    </div>
-                    <div class="stat">
-                        <strong>{{ resources|length }}</strong>
-                        <span>Groups</span>
-                    </div>
-                </div>
-                <div class="account-menu" id="account-menu">
-                    <button class="avatar-button" type="button" id="account-menu-button" aria-label="Open account menu" aria-expanded="false" onclick="toggleAccountMenu(event)">
-                        <img class="avatar" src="{{ profile_pic or '/static/image0.jpg' }}" alt="Profile picture">
-                    </button>
-                    <div class="account-popover" id="account-popover" role="menu" aria-labelledby="account-menu-button">
-                        <div class="account-summary">
-                            <img class="account-avatar" src="{{ profile_pic or '/static/image0.jpg' }}" alt="">
-                            <div>
-                                <strong>{{ user.username if user else 'Guest' }}</strong>
-                                {% if is_logged_in %}<span>Account</span>{% endif %}
-                            </div>
+            <div class="account-menu" id="account-menu">
+                <button class="avatar-button" type="button" id="account-menu-button" aria-label="Open account menu" aria-expanded="false" onclick="toggleAccountMenu(event)">
+                    <img class="avatar" src="{{ profile_pic or '/static/image0.jpg' }}" alt="Profile picture">
+                </button>
+                <div class="account-popover" id="account-popover" role="menu" aria-labelledby="account-menu-button">
+                    <div class="account-summary">
+                        <img class="account-avatar" src="{{ profile_pic or '/static/image0.jpg' }}" alt="">
+                        <div>
+                            <strong>{{ user.username if user else 'Guest' }}</strong>
+                            {% if is_logged_in %}<span>Account</span>{% endif %}
                         </div>
-                        {% if is_logged_in %}
-                        <a class="account-action" href="/profile" role="menuitem">Account Settings</a>
-                        <a class="account-action danger" href="/logout" role="menuitem" onclick="resetSiteDefaults()">Logout</a>
-                        {% else %}
-                        <a class="account-action" href="/login" role="menuitem">Log In</a>
-                        <a class="account-action" href="/signup" role="menuitem">Create Account</a>
-                        {% endif %}
                     </div>
+                    {% if is_logged_in %}
+                    <a class="account-action" href="/profile" role="menuitem">Account Settings</a>
+                    <a class="account-action danger" href="/logout" role="menuitem" onclick="resetSiteDefaults()">Logout</a>
+                    {% else %}
+                    <a class="account-action" href="/login" role="menuitem">Log In</a>
+                    <a class="account-action" href="/signup" role="menuitem">Create Account</a>
+                    {% endif %}
                 </div>
             </div>
         </header>
 
-        <section class="content resource-layout">
-            {% for region, items in resources.items() %}
-            <section class="resource-region">
-                <div class="resource-region-header">
-                    <h2>{{ region }}</h2>
-                    <span class="status-pill">{{ items|length }} resources</span>
+        <section class="content relic-detail">
+            <div class="relic-detail-emblem">
+                <div class="relic-image-slot relic-image-large">
+                    {% if gear.image %}
+                    <img src="{{ gear.image }}" alt="{{ gear.name }}">
+                    {% else %}
+                    <span>IMG</span>
+                    {% endif %}
                 </div>
-                <div class="resource-list">
-                    {% for item in items %}
-                    <article class="resource-row">
+                <span>{{ gear.type }}</span>
+                <strong>{{ gear.rarity }}</strong>
+            </div>
 
-                        {% if item.image %}
-                        <img 
-                            src="{{ item.image }}" 
-                            alt="{{ item.name }}"
-                            class="resource-image"
-                        >
-                        {% endif %}
-
-                        <div>
-                            <strong>{{ item.name }}</strong>
-                            <span>{{ item.type }}</span>
-                        </div>
-                        <p>{{ item.locations | join(', ') }}</p>
-                        <small>{{ item.notes }}</small>
-                    </article>
-                    {% endfor %}
+            <div class="panel character-info-panel">
+                <div class="button-row">
+                    <span class="status-pill">Lv. {{ gear.level }}</span>
                 </div>
-            </section>
-            {% endfor %}
+
+                <h2>{{ gear.name }}</h2>
+                <div class="team-members">
+                    <span class="member-chip">{{ gear.type }}</span>
+                    <span class="member-chip">{{ gear.rarity }}</span>
+                    <span class="member-chip">Lv. {{ gear.level }}</span>
+                    {% if relic %}<span class="member-chip">{{ relic.name }}</span>{% endif %}
+                </div>
+
+                <div class="character-build-list">
+                    <h3>Stats</h3>
+                    <ul class="weapon-detail-stats gear-stat-list">
+                        {% for stat in gear.stats %}
+                        <li>{{ stat }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+
+                <div class="character-build-list">
+                    <h3>Set</h3>
+                    <p><strong>Gear Set:</strong> {{ gear.gear_set }}</p>
+                    {% if relic %}
+                    <p><strong>Bonus:</strong> {{ relic.bonus_stat }}</p>
+                    <p><strong>Effect:</strong> {{ relic.set_effect }}</p>
+                    {% else %}
+                    <p>{{ gear.set_effect_text }}</p>
+                    {% endif %}
+                </div>
+            </div>
         </section>
     </main>
 
-    <section class="chatbot-widget" id="chatbot-widget" aria-label="Resources chatbot">
+    <section class="chatbot-widget" id="chatbot-widget" aria-label="Gear chatbot">
         <button class="chatbot-launcher" type="button" onclick="toggleChatbot()" aria-expanded="false" id="chatbot-launcher">BOT</button>
         <div class="chatbot-panel" id="chatbot-panel">
             <div class="chatbot-header">

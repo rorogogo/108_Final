@@ -80,6 +80,15 @@ with open("data/resources.json") as f:
 with open("data/relic_sets.json") as f:
     RELIC_SETS = json.load(f)
 
+with open("data/gear_items.json") as f:
+    GEAR_ITEMS = json.load(f)
+
+GEAR_TYPE_ORDER = {
+    "Armor": 0,
+    "Gloves": 1,
+    "Kit": 2
+}
+
 DEFAULT_CHARACTER_DATA = {
     char_id: data.get("owned", False)
     for char_id, data in CHARACTERS.items()
@@ -103,6 +112,39 @@ def get_character(char_id):
 
 def get_weapon(weapon_id):
     return WEAPONS.get(weapon_id, None)
+
+def get_gear_item(gear_id):
+    return GEAR_ITEMS.get(gear_id, None)
+
+def sort_gear_items(items):
+    return sorted(
+        items,
+        key=lambda gear: (
+            GEAR_TYPE_ORDER.get(gear.get("type", ""), 99),
+            -int(gear.get("level", 0)),
+            gear.get("name", "")
+        )
+    )
+
+def gear_pieces_for_set(relic_id):
+    return sort_gear_items([
+        gear
+        for gear in GEAR_ITEMS.values()
+        if gear.get("set_id") == relic_id
+    ])
+
+def gear_groups_for_set(relic_id):
+    pieces = gear_pieces_for_set(relic_id)
+    return [
+        (gear_type, [gear for gear in pieces if gear.get("type") == gear_type])
+        for gear_type in GEAR_TYPE_ORDER
+        if any(gear.get("type") == gear_type for gear in pieces)
+    ]
+
+def relic_with_piece_count(relic):
+    relic_data = dict(relic)
+    relic_data["piece_count"] = len(gear_pieces_for_set(relic.get("id")))
+    return relic_data
 
 def get_weapon_data(user):
     if not user:
@@ -763,10 +805,11 @@ def character_optimizer_api():
         for weapon_id, weapon in WEAPONS.items()
         if weapon.get("type") == character.get("weapon_type")
     }
+    submitted_weapon_ids = data.get("weaponIds", [])
     selected_weapon_ids = [
-        weapon_id for weapon_id in data.get("weaponIds", [])
+        weapon_id for weapon_id in submitted_weapon_ids
         if weapon_id in compatible_ids
-    ]
+    ] if submitted_weapon_ids else list(compatible_ids)
     current_weapon_id = data.get("currentWeaponId")
     if current_weapon_id in compatible_ids and current_weapon_id not in selected_weapon_ids:
         selected_weapon_ids.append(current_weapon_id)
@@ -904,12 +947,13 @@ def resources():
         is_logged_in=is_logged_in
     )
 
+@app.route("/gear")
 @app.route("/relics")
 def relics():
     is_logged_in = bool(session.get("name"))
     user = Users.query.filter_by(username=session["name"]).first() if is_logged_in else None
     relic_list = sorted(
-        RELIC_SETS.values(),
+        [relic_with_piece_count(relic) for relic in RELIC_SETS.values()],
         key=lambda relic: (relic.get("tier", 0), relic.get("name", "")),
         reverse=True
     )
@@ -917,6 +961,41 @@ def relics():
         "relics.html",
         relic_sets=relic_list,
         total_relics=len(relic_list),
+        user=user,
+        profile_pic=(user.profile_pic or "") if user else "",
+        is_logged_in=is_logged_in
+    )
+
+@app.route("/relic/<relic_id>")
+def relic_detail(relic_id):
+    relic = RELIC_SETS.get(relic_id)
+    if not relic:
+        return redirect("/gear")
+
+    is_logged_in = bool(session.get("name"))
+    user = Users.query.filter_by(username=session["name"]).first() if is_logged_in else None
+    return render_template(
+        "relic.html",
+        relic=relic,
+        gear_groups=gear_groups_for_set(relic_id),
+        user=user,
+        profile_pic=(user.profile_pic or "") if user else "",
+        is_logged_in=is_logged_in
+    )
+
+@app.route("/gear/<gear_id>")
+def gear_detail(gear_id):
+    gear = get_gear_item(gear_id)
+    if not gear:
+        return redirect("/gear")
+
+    relic = RELIC_SETS.get(gear.get("set_id", ""))
+    is_logged_in = bool(session.get("name"))
+    user = Users.query.filter_by(username=session["name"]).first() if is_logged_in else None
+    return render_template(
+        "gear.html",
+        gear=gear,
+        relic=relic,
         user=user,
         profile_pic=(user.profile_pic or "") if user else "",
         is_logged_in=is_logged_in

@@ -283,5 +283,34 @@
       "team damage"
     ],
     "image": "https://cdn.end.wiki/images/materials/item-equip-t4-suit-atk02-body-01__113x126__b5afb53c28a2.webp"
+  },
+  "qingbo": {
+    "id": "qingbo",
+    "name": "Qingbo",
+    "tier": 3,
+    "rarity": "Gold",
+    "bonus_stat": "Wearer's Combo Skill Cooldown Reduction +15%",
+    "set_effect": "When the wearer casts a combo skill, the wearer gains Skill DMG Dealt +20% for every skill for 15s. This effect can reach 2 stacks. Duration of each stack is counted separately.",
+    "tags": [
+      "combo skill",
+      "skill damage",
+      "skill uptime"
+    ],
+    "image": "https://img.game8.co/4471169/c83ee4bf10aa73c8b0bb2ba1822df310.png/show"
+  },
+  "xiranflow": {
+    "id": "xiranflow",
+    "name": "Xiranflow",
+    "tier": 3,
+    "rarity": "Gold",
+    "bonus_stat": "Wearer's ATK +10%",
+    "set_effect": "Whenever the wearer consumes Electrification or Corrosion, the wearer gains buff stacks equal to the Status Level of the Arts Reaction consumed. Each stack gives Electric DMG Dealt and Nature DMG Dealt +15% for 25s, up to 3 stacks. Duration of each stack is counted separately.",
+    "tags": [
+      "attack",
+      "electric damage",
+      "nature damage",
+      "arts reaction"
+    ],
+    "image": "https://img.game8.co/4471088/6372b3b8a4943d2fe2b2046276610a80.png/show"
   }
 }
