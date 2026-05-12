@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700&display=swap" rel="stylesheet">
+    <script>window.ENDFIELD_SAVED_THEME = {{ saved_theme | tojson }};</script>
+    <script src="/static/theme.js"></script>
+    <link rel="stylesheet" href="/static/sidebar.css">
+    <script src="/static/music.js" defer></script>
+    <title>Character Optimizer - Endfield</title>
+</head>
+<body data-logged-in="{{ 'true' if is_logged_in else 'false' }}" data-reset-chatbot="{{ 'true' if reset_chatbot_on_load else 'false' }}">
+    <nav id="navigation-bar" aria-label="Primary navigation">
+        <p id="logo">ENDFIELD</p>
+        <a class="nav-item" href="/dashboard">
+            <span class="nav-icon" aria-hidden="true">DB</span>
+            <span class="nav-text">Dashboard</span>
+        </a>
+        <a class="nav-item" href="/teams">
+            <span class="nav-icon" aria-hidden="true">TM</span>
+            <span class="nav-text">Teams</span>
+        </a>
+        <a class="nav-item" href="/community-builds">
+            <span class="nav-icon" aria-hidden="true">CB</span>
+            <span class="nav-text">Community's Build</span>
+        </a>
+        <a class="nav-item" href="/weapons">
+            <span class="nav-icon" aria-hidden="true">WP</span>
+            <span class="nav-text">Weapons</span>
+        </a>
+        <a class="nav-item active" href="/optimizer">
+            <span class="nav-icon" aria-hidden="true">OP</span>
+            <span class="nav-text">Character Optimizer</span>
+        </a>
+        <a class="nav-item" href="/relics">
+            <span class="nav-icon" aria-hidden="true">RL</span>
+            <span class="nav-text">Relics</span>
+        </a>
+        <a class="nav-item" href="/resources">
+            <span class="nav-icon" aria-hidden="true">RS</span>
+            <span class="nav-text">Resources</span>
+        </a>
+    </nav>
+
+    <main class="shell">
+        <header class="page-header">
+            <div>
+                <p class="page-kicker">Build Lab</p>
+                <h1 class="page-title">Character Optimizer</h1>
+            </div>
+            <div class="account-menu" id="account-menu">
+                <button class="avatar-button" type="button" id="account-menu-button" aria-label="Open account menu" aria-expanded="false" onclick="toggleAccountMenu(event)">
+                    <img class="avatar" src="{{ profile_pic or '/static/image0.jpg' }}" alt="Profile picture">
+                </button>
+                <div class="account-popover" id="account-popover" role="menu" aria-labelledby="account-menu-button">
+                    <div class="account-summary">
+                        <img class="account-avatar" src="{{ profile_pic or '/static/image0.jpg' }}" alt="">
+                        <div>
+                            <strong>{{ user.username if user else 'Guest' }}</strong>
+                            {% if is_logged_in %}<span>Account</span>{% endif %}
+                        </div>
+                    </div>
+                    {% if is_logged_in %}
+                    <a class="account-action" href="/profile" role="menuitem">Account Settings</a>
+                    <a class="account-action danger" href="/logout" role="menuitem" onclick="resetSiteDefaults()">Logout</a>
+                    {% else %}
+                    <a class="account-action" href="/login" role="menuitem">Log In</a>
+                    <a class="account-action" href="/signup" role="menuitem">Create Account</a>
+                    {% endif %}
+                </div>
+            </div>
+        </header>
+
+        <section class="content optimizer-layout">
+            <form class="panel optimizer-form" onsubmit="runCharacterOptimizer(event)">
+                <div class="field">
+                    <label for="optimizer-character">Character</label>
+                    <select id="optimizer-character" onchange="renderOptimizerWeapons()">
+                        {% for char_id, character in characters.items() %}
+                        <option value="{{ char_id }}">{{ character.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="field">
+                    <label for="optimizer-current-weapon">Current weapon</label>
+                    <select id="optimizer-current-weapon"></select>
+                </div>
+
+                <div class="field">
+                    <label for="optimizer-focus">Current stats / focus</label>
+                    <textarea id="optimizer-focus" rows="4" placeholder="attack, arts intensity, crit rate"></textarea>
+                </div>
+
+                <div class="field">
+                    <label for="optimizer-current-relic">Current relic set</label>
+                    <select id="optimizer-current-relic"></select>
+                </div>
+
+                <div class="character-build-list build-optimizer">
+                    <h3>Relic sets to compare</h3>
+                    <div class="optimizer-weapon-list" id="optimizer-relic-list"></div>
+                </div>
+
+                <div class="character-build-list build-optimizer">
+                    <h3>Weapons you have</h3>
+                    <div class="optimizer-weapon-list" id="optimizer-weapon-list"></div>
+                </div>
+
+                <button class="primary-button" type="submit">Optimize Character</button>
+            </form>
+
+            <section class="panel optimizer-result-panel">
+                <div class="optimizer-result empty" id="optimizer-result">
+                    <h3>Select a character and current setup.</h3>
+                    <p>The optimizer will compare your current weapon against the weapons you mark as available.</p>
+                </div>
+            </section>
+        </section>
+    </main>
+
+    <section class="chatbot-widget" id="chatbot-widget" aria-label="Character optimizer chatbot">
+        <button class="chatbot-launcher" type="button" onclick="toggleChatbot()" aria-expanded="false" id="chatbot-launcher">BOT</button>
+        <div class="chatbot-panel" id="chatbot-panel">
+            <div class="chatbot-header">
+                <strong>Build Bot</strong>
+                <button class="chatbot-close" type="button" onclick="toggleChatbot(false)" aria-label="Close chatbot">X</button>
+            </div>
+            <div class="chatbot-messages" id="chatbot-messages"></div>
+            <form class="chatbot-form" onsubmit="sendChatbotMessage(event)">
+                <input id="chatbot-input" autocomplete="off" placeholder="Message">
+                <button class="primary-button" type="submit">Send</button>
+            </form>
+        </div>
+    </section>
+
+    <button class="sound-toggle floating-mute" id="sound-muted-button" type="button" aria-label="Mute audio" aria-pressed="false" title="Mute audio">
+        <span class="speaker-icon" id="sound-muted-icon" aria-hidden="true"></span>
+    </button>
+
+    <script>
+        const characters = {{ characters | tojson }};
+        const weapons = {{ weapons | tojson }};
+        const relicSets = {{ relic_sets | tojson }};
+        const ownedWeapons = {{ owned_weapons | tojson }};
+
+        function setAccountMenu(open) {
+            const menu = document.getElementById("account-menu");
+            const button = document.getElementById("account-menu-button");
+            menu.classList.toggle("open", open);
+            button.setAttribute("aria-expanded", open ? "true" : "false");
+        }
+
+        function toggleAccountMenu(event) {
+            event.stopPropagation();
+            const menu = document.getElementById("account-menu");
+            setAccountMenu(!menu.classList.contains("open"));
+        }
+
+        function compatibleWeapons() {
+            const charId = document.getElementById("optimizer-character").value;
+            const weaponType = characters[charId]?.weapon_type;
+            return Object.values(weapons)
+                .filter((weapon) => weapon.type === weaponType)
+                .sort((a, b) => b.rarity - a.rarity || b.base_atk - a.base_atk || a.name.localeCompare(b.name));
+        }
+
+        function renderOptimizerWeapons() {
+            const currentSelect = document.getElementById("optimizer-current-weapon");
+            const list = document.getElementById("optimizer-weapon-list");
+            const compatible = compatibleWeapons();
+
+            currentSelect.innerHTML = compatible.map((weapon) => (
+                `<option value="${weapon.id}">${weapon.name} (${weapon.rarity} star, ATK ${weapon.base_atk})</option>`
+            )).join("");
+
+            list.innerHTML = compatible.map((weapon) => {
+                const checked = ownedWeapons[weapon.id] ? "checked" : "";
+                return `
+                    <label class="optimizer-weapon">
+                        <input type="checkbox" value="${weapon.id}" ${checked}>
+                        <span>
+                            <strong>${weapon.name}</strong>
+                            <em>${weapon.rarity} star / ATK ${weapon.base_atk}</em>
+                        </span>
+                    </label>
+                `;
+            }).join("");
+
+            if (!list.querySelector("input:checked")) {
+                list.querySelector("input")?.setAttribute("checked", "checked");
+            }
+        }
+
+        function sortedRelicSets() {
+            return Object.values(relicSets)
+                .sort((a, b) => b.tier - a.tier || a.name.localeCompare(b.name));
+        }
+
+        function renderOptimizerRelics() {
+            const currentSelect = document.getElementById("optimizer-current-relic");
+            const list = document.getElementById("optimizer-relic-list");
+            const relics = sortedRelicSets();
+
+            currentSelect.innerHTML = relics.map((relic) => (
+                `<option value="${relic.id}">${relic.name} (Tier ${relic.tier}, ${relic.rarity})</option>`
+            )).join("");
+
+            list.innerHTML = relics.map((relic) => `
+                <label class="optimizer-weapon">
+                    <input type="checkbox" value="${relic.id}" checked>
+                    <span>
+                        <strong>${relic.name}</strong>
+                        <em>Tier ${relic.tier} / ${relic.bonus_stat}</em>
+                    </span>
+                </label>
+            `).join("");
+        }
+
+        function weaponDetailsList(weapon) {
+            if (!weapon?.stats?.length) {
+                return "";
+            }
+            return `<ul class="weapon-stats">${weapon.stats.map((stat) => `<li>${stat}</li>`).join("")}</ul>`;
+        }
+
+        function relicDetails(relic) {
+            if (!relic) {
+                return "";
+            }
+            return `
+                <p><strong>Relic bonus:</strong> ${relic.bonus_stat}</p>
+                <p><strong>Relic effect:</strong> ${relic.set_effect}</p>
+            `;
+        }
+
+        function renderOptimizerResult(data) {
+            const result = document.getElementById("optimizer-result");
+            const statList = data.stats?.length ? data.stats.join(", ") : "role-specific stats";
+            const current = data.current
+                ? `<p><strong>Current:</strong> ${data.current.name} (${data.current.score} score)</p>`
+                : "<p><strong>Current:</strong> No current compatible weapon selected.</p>";
+            const replacement = data.replacement
+                ? `
+                    <p><strong>Replace with:</strong> ${data.replacement.name} (${data.replacement.rarity} star, ATK ${data.replacement.base_atk})</p>
+                    <p><strong>Why:</strong> ${data.replacement.reasons.join(", ")}</p>
+                    ${weaponDetailsList(data.replacement)}
+                `
+                : `<p><strong>Replace with:</strong> Keep your current weapon. Nothing selected scored higher.</p>`;
+            const currentRelic = data.currentRelic
+                ? `<p><strong>Current relic:</strong> ${data.currentRelic.name} (${data.currentRelic.score} score)</p>`
+                : "<p><strong>Current relic:</strong> No current relic set selected.</p>";
+            const relicReplacement = data.replacementRelic
+                ? `
+                    <p><strong>Relic upgrade:</strong> ${data.replacementRelic.name} (${data.replacementRelic.score} score)</p>
+                    <p><strong>Relic why:</strong> ${data.replacementRelic.reasons.join(", ")}</p>
+                    ${relicDetails(data.replacementRelic)}
+                `
+                : `<p><strong>Relic upgrade:</strong> Keep your current relic set. Nothing selected scored higher.</p>`;
+
+            result.classList.remove("empty");
+            result.innerHTML = `
+                <h3>Here's what I would change:</h3>
+                <p><strong>Character:</strong> ${data.character}</p>
+                <p><strong>Build:</strong> ${data.build}</p>
+                ${current}
+                ${replacement}
+                ${currentRelic}
+                ${relicReplacement}
+                <p><strong>Stats to improve:</strong> ${statList}</p>
+            `;
+        }
+
+        function runCharacterOptimizer(event) {
+            event.preventDefault();
+            const result = document.getElementById("optimizer-result");
+            const weaponIds = Array.from(document.querySelectorAll("#optimizer-weapon-list input:checked"))
+                .map((input) => input.value);
+            const relicSetIds = Array.from(document.querySelectorAll("#optimizer-relic-list input:checked"))
+                .map((input) => input.value);
+
+            if (!weaponIds.length) {
+                result.classList.remove("empty");
+                result.innerHTML = "<h3>Select at least one weapon you have.</h3>";
+                return;
+            }
+            if (!relicSetIds.length) {
+                result.classList.remove("empty");
+                result.innerHTML = "<h3>Select at least one relic set to compare.</h3>";
+                return;
+            }
+
+            fetch("/api/character-optimizer", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    characterId: document.getElementById("optimizer-character").value,
+                    currentWeaponId: document.getElementById("optimizer-current-weapon").value,
+                    weaponIds,
+                    currentRelicId: document.getElementById("optimizer-current-relic").value,
+                    relicSetIds,
+                    focusStats: document.getElementById("optimizer-focus").value
+                })
+            }).then((response) => {
+                return response.json().then((data) => {
+                    if (!response.ok) {
+                        throw new Error(data.message || data.error || "Could not optimize this character.");
+                    }
+                    return data;
+                });
+            }).then(renderOptimizerResult).catch((error) => {
+                result.classList.remove("empty");
+                result.innerHTML = `<h3>${error.message}</h3>`;
+            });
+        }
+
+        document.addEventListener("click", (event) => {
+            if (!event.target.closest("#account-menu")) {
+                setAccountMenu(false);
+            }
+        });
+
+        document.addEventListener("keydown", (event) => {
+            if (event.key === "Escape") {
+                setAccountMenu(false);
+            }
+        });
+
+        renderOptimizerWeapons();
+        renderOptimizerRelics();
+    </script>
+    <script src="/static/sfx.js"></script>
+    <script src="/static/chatbot.js"></script>
+</body>
+</html>
