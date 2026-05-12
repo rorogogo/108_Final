@@ -77,6 +77,9 @@ with open("data/weapons.json") as f:
 with open("data/resources.json") as f:
     RESOURCES = json.load(f)
 
+with open("data/relic_sets.json") as f:
+    RELIC_SETS = json.load(f)
+
 DEFAULT_CHARACTER_DATA = {
     char_id: data.get("owned", False)
     for char_id, data in CHARACTERS.items()
@@ -175,6 +178,8 @@ STAT_ALIASES = {
     "arts damage": ["arts dmg", "arts damage"],
     "arts intensity": ["arts intensity"],
     "skill damage": ["skill dmg", "skill damage", "battle skill"],
+    "battle skill": ["battle skill"],
+    "combo skill": ["combo skill"],
     "ultimate damage": ["ultimate dmg", "ultimate damage", "ultimate"],
     "ultimate gain": ["ultimate gain", "ultimate gain efficiency"],
     "sp recovery": ["sp recovery", "skill sp"],
@@ -187,7 +192,8 @@ STAT_ALIASES = {
     "shield": ["shield", "protected"],
     "max hp": ["max hp", "hp"],
     "defense": ["defense", "def"],
-    "vulnerability": ["vulnerable", "vulnerability"]
+    "vulnerability": ["vulnerable", "vulnerability"],
+    "physical status": ["physical status", "physical"]
 }
 
 def stat_match_score(stat, text):
@@ -260,6 +266,158 @@ def recommended_weapons_for_character(char_id):
             seen.add(weapon)
             recommendations.append(weapon)
     return recommendations
+
+def parse_focus_stats(value):
+    if isinstance(value, list):
+        pieces = value
+    else:
+        pieces = re.split(r"[,/\n]+", str(value or ""))
+    return [
+        piece.strip().lower()
+        for piece in pieces
+        if piece and piece.strip()
+    ][:6]
+
+def optimize_character_build(char_id, selected_weapon_ids=None, extra_focus=None, selected_relic_ids=None):
+    character = CHARACTERS.get(char_id, {})
+    guide = BUILD_GUIDES.get(char_id, BUILD_GUIDES.get("default", {}))
+    compatible_type = character.get("weapon_type")
+    selected_ids = set(selected_weapon_ids or [])
+    focus_stats = parse_focus_stats(extra_focus)
+    pool = [
+        weapon
+        for weapon_id, weapon in WEAPONS.items()
+        if weapon.get("type") == compatible_type and (not selected_ids or weapon_id in selected_ids)
+    ]
+
+    rankings = []
+    for weapon in pool:
+        item = score_weapon_for_character(char_id, weapon, guide)
+        score = item["score"]
+        reasons = list(item["reasons"])
+        matched_focus = []
+        text = weapon_text(weapon)
+        for stat in focus_stats:
+            matches = stat_match_score(stat, text)
+            if matches:
+                score += matches * 6
+                matched_focus.append(stat)
+        if matched_focus:
+            reasons.append("matches your focus: " + ", ".join(matched_focus[:3]))
+        rankings.append({
+            "weapon": weapon,
+            "score": round(score, 1),
+            "reasons": reasons[:5]
+        })
+
+    rankings = sorted(rankings, key=lambda item: item["score"], reverse=True)
+    best = rankings[0] if rankings else None
+    backup = rankings[1] if len(rankings) > 1 else None
+    relic_rankings = rank_relic_sets_for_character(
+        char_id,
+        selected_relic_ids=selected_relic_ids,
+        extra_focus=focus_stats
+    )
+    return {
+        "character": character.get("name", char_id),
+        "build": guide.get("build", "Flexible starter setup"),
+        "stats": guide.get("stats", []),
+        "focus": focus_stats,
+        "best": best,
+        "backup": backup,
+        "rankings": rankings[:5],
+        "relic_rankings": relic_rankings[:5]
+    }
+
+def optimizer_weapon_payload(item):
+    if not item:
+        return None
+    weapon = item["weapon"]
+    return {
+        "id": weapon.get("id"),
+        "name": weapon.get("name"),
+        "rarity": weapon.get("rarity"),
+        "base_atk": weapon.get("base_atk"),
+        "stats": weapon.get("stats", [])[:3],
+        "score": item["score"],
+        "reasons": item["reasons"]
+    }
+
+def relic_text(relic):
+    return " ".join([
+        relic.get("name", ""),
+        relic.get("bonus_stat", ""),
+        relic.get("set_effect", ""),
+        " ".join(relic.get("tags", []))
+    ]).lower()
+
+def score_relic_set_for_character(char_id, relic, guide=None, extra_focus=None):
+    guide = guide or BUILD_GUIDES.get(char_id, BUILD_GUIDES.get("default", {}))
+    preferred_stats = guide.get("stats", [])
+    focus_stats = parse_focus_stats(extra_focus)
+    damage_type = guide.get("damage_type", "")
+    tags = [tag.lower() for tag in relic.get("tags", [])]
+    text = relic_text(relic)
+
+    score = relic.get("tier", 0) * 12
+    reasons = [
+        f"Tier {relic.get('tier', '?')}",
+        relic.get("bonus_stat", "set bonus")
+    ]
+
+    matched = []
+    for stat in preferred_stats + focus_stats:
+        stat = stat.lower()
+        matches = stat_match_score(stat, text) or stat in tags
+        if matches:
+            score += 10
+            matched.append(stat)
+
+    if damage_type and damage_type != "unknown":
+        damage_tag = f"{damage_type} damage"
+        if damage_tag in tags or stat_match_score(damage_tag, text):
+            score += 14
+            matched.append(damage_tag)
+        elif damage_type == "support" and any(tag in tags for tag in ["support bonus", "team damage", "healing", "treatment efficiency"]):
+            score += 14
+            matched.append("support role")
+
+    if matched:
+        reasons.append("matches " + ", ".join(dict.fromkeys(matched).keys())[:80])
+
+    return {
+        "relic": relic,
+        "score": round(score, 1),
+        "reasons": reasons[:4]
+    }
+
+def rank_relic_sets_for_character(char_id, selected_relic_ids=None, extra_focus=None):
+    selected_ids = set(selected_relic_ids or [])
+    relics = [
+        relic
+        for relic_id, relic in RELIC_SETS.items()
+        if not selected_ids or relic_id in selected_ids
+    ]
+    rankings = [
+        score_relic_set_for_character(char_id, relic, extra_focus=extra_focus)
+        for relic in relics
+    ]
+    return sorted(rankings, key=lambda item: item["score"], reverse=True)
+
+def optimizer_relic_payload(item):
+    if not item:
+        return None
+    relic = item["relic"]
+    return {
+        "id": relic.get("id"),
+        "name": relic.get("name"),
+        "tier": relic.get("tier"),
+        "rarity": relic.get("rarity"),
+        "bonus_stat": relic.get("bonus_stat"),
+        "set_effect": relic.get("set_effect"),
+        "score": item["score"],
+        "reasons": item["reasons"]
+    }
 
 class Users(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -577,6 +735,117 @@ def character_detail(char_id):
         is_logged_in=is_logged_in
     )
 
+@app.route("/optimizer")
+def character_optimizer():
+    is_logged_in = bool(session.get("name"))
+    user = Users.query.filter_by(username=session["name"]).first() if is_logged_in else None
+    return render_template(
+        "optimizer.html",
+        characters=CHARACTERS,
+        weapons=WEAPONS,
+        relic_sets=RELIC_SETS,
+        owned_weapons=get_weapon_data(user) if user else {},
+        user=user,
+        profile_pic=(user.profile_pic or "") if user else "",
+        is_logged_in=is_logged_in
+    )
+
+@app.route("/api/character-optimizer", methods=["POST"])
+def character_optimizer_api():
+    data = request.get_json(silent=True) or {}
+    char_id = data.get("characterId")
+    if char_id not in CHARACTERS:
+        return {"error": "character not found"}, 404
+
+    character = CHARACTERS.get(char_id, {})
+    compatible_ids = {
+        weapon_id
+        for weapon_id, weapon in WEAPONS.items()
+        if weapon.get("type") == character.get("weapon_type")
+    }
+    selected_weapon_ids = [
+        weapon_id for weapon_id in data.get("weaponIds", [])
+        if weapon_id in compatible_ids
+    ]
+    current_weapon_id = data.get("currentWeaponId")
+    if current_weapon_id in compatible_ids and current_weapon_id not in selected_weapon_ids:
+        selected_weapon_ids.append(current_weapon_id)
+
+    selected_relic_ids = [
+        relic_id for relic_id in data.get("relicSetIds", [])
+        if relic_id in RELIC_SETS
+    ]
+    current_relic_id = data.get("currentRelicId")
+    if current_relic_id in RELIC_SETS and current_relic_id not in selected_relic_ids:
+        selected_relic_ids.append(current_relic_id)
+
+    result = optimize_character_build(
+        char_id,
+        selected_weapon_ids=selected_weapon_ids,
+        extra_focus=data.get("focusStats", ""),
+        selected_relic_ids=selected_relic_ids
+    )
+    if not result["best"]:
+        return {
+            "error": "no compatible weapons",
+            "message": "Select at least one compatible weapon for this character."
+        }, 400
+
+    current_item = next(
+        (
+            item for item in result["rankings"]
+            if item["weapon"].get("id") == current_weapon_id
+        ),
+        None
+    )
+    replacement_item = next(
+        (
+            item for item in result["rankings"]
+            if item["weapon"].get("id") != current_weapon_id
+            and (not current_item or item["score"] > current_item["score"])
+        ),
+        None
+    )
+    best_available = result["best"]
+    if not replacement_item and (not current_item or best_available["weapon"].get("id") != current_weapon_id):
+        replacement_item = best_available
+
+    current_relic = next(
+        (
+            item for item in result["relic_rankings"]
+            if item["relic"].get("id") == current_relic_id
+        ),
+        None
+    )
+    best_relic = result["relic_rankings"][0] if result["relic_rankings"] else None
+    replacement_relic = next(
+        (
+            item for item in result["relic_rankings"]
+            if item["relic"].get("id") != current_relic_id
+            and (not current_relic or item["score"] > current_relic["score"])
+        ),
+        None
+    )
+    if not replacement_relic and best_relic and (not current_relic or best_relic["relic"].get("id") != current_relic_id):
+        replacement_relic = best_relic
+
+    return jsonify({
+        "character": result["character"],
+        "build": result["build"],
+        "stats": result["stats"],
+        "focus": result["focus"],
+        "current": optimizer_weapon_payload(current_item),
+        "replacement": optimizer_weapon_payload(replacement_item),
+        "best": optimizer_weapon_payload(best_available),
+        "rankings": [optimizer_weapon_payload(item) for item in result["rankings"][:5]],
+        "isUpgrade": bool(replacement_item and (not current_item or replacement_item["score"] > current_item["score"])),
+        "currentRelic": optimizer_relic_payload(current_relic),
+        "replacementRelic": optimizer_relic_payload(replacement_relic),
+        "bestRelic": optimizer_relic_payload(best_relic),
+        "relicRankings": [optimizer_relic_payload(item) for item in result["relic_rankings"][:5]],
+        "isRelicUpgrade": bool(replacement_relic and (not current_relic or replacement_relic["score"] > current_relic["score"]))
+    })
+
 @app.route("/teams")
 def teams():
     is_logged_in = bool(session.get("name"))
@@ -630,6 +899,24 @@ def resources():
         "resources.html",
         resources=RESOURCES,
         total_resources=total_resources,
+        user=user,
+        profile_pic=(user.profile_pic or "") if user else "",
+        is_logged_in=is_logged_in
+    )
+
+@app.route("/relics")
+def relics():
+    is_logged_in = bool(session.get("name"))
+    user = Users.query.filter_by(username=session["name"]).first() if is_logged_in else None
+    relic_list = sorted(
+        RELIC_SETS.values(),
+        key=lambda relic: (relic.get("tier", 0), relic.get("name", "")),
+        reverse=True
+    )
+    return render_template(
+        "relics.html",
+        relic_sets=relic_list,
+        total_relics=len(relic_list),
         user=user,
         profile_pic=(user.profile_pic or "") if user else "",
         is_logged_in=is_logged_in
@@ -781,6 +1068,10 @@ def is_site_topic(message):
         "put on",
         "equip",
         "equipment",
+        "relic",
+        "relics",
+        "gear set",
+        "gear sets",
         "loadout",
         "character",
         "owned",
@@ -833,6 +1124,15 @@ def compact_weapon(weapon, include_stats=False):
         data["stats"] = weapon.get("stats", [])[:3]
     return data
 
+def compact_relic_set(relic):
+    return {
+        "name": relic.get("name"),
+        "tier": relic.get("tier"),
+        "rarity": relic.get("rarity"),
+        "bonus_stat": relic.get("bonus_stat"),
+        "set_effect": relic.get("set_effect")
+    }
+
 def compact_resources():
     return {
         region: [
@@ -852,6 +1152,7 @@ def site_chatbot_context(user, message="", history=None):
     owned_weapon_data = get_weapon_data(user)
     requested_char = find_character_in_message(message) or last_character_from_history(history)
     wants_weapon_details = is_weapon_question(message) or bool(requested_char)
+    wants_relics = is_relic_question(message) or bool(requested_char)
     wants_resources = is_resource_question(message)
     wants_teams = is_team_question(message)
 
@@ -901,6 +1202,16 @@ def site_chatbot_context(user, message="", history=None):
                     "stats": item["weapon"].get("stats", [])[:3]
                 }
                 for item in rankings
+            ],
+            "relic_set_calculator": [
+                {
+                    "relic_set": item["relic"].get("name"),
+                    "score": item["score"],
+                    "reasons": item["reasons"],
+                    "bonus_stat": item["relic"].get("bonus_stat"),
+                    "set_effect": item["relic"].get("set_effect")
+                }
+                for item in rank_relic_sets_for_character(requested_char)[:5]
             ]
         }
         weapons = [
@@ -942,6 +1253,10 @@ def site_chatbot_context(user, message="", history=None):
         "roster": roster if not requested_char else [],
         "character_focus": character_focus,
         "weapons": weapons,
+        "relic_sets": [
+            compact_relic_set(relic)
+            for relic in RELIC_SETS.values()
+        ] if wants_relics else [],
         "natural_resources": compact_resources() if wants_resources else {},
         "starter_teams": PREBUILT_TEAMS,
         "shared_teams": shared_teams
@@ -966,6 +1281,11 @@ def last_character_from_history(history):
         if char_id:
             return char_id
     return None
+
+def is_relic_question(message):
+    lower_message = message.lower()
+    relic_terms = ["relic", "relics", "gear set", "gear sets", "set bonus", "gear"]
+    return any(term in lower_message for term in relic_terms)
 
 def is_weapon_question(message):
     lower_message = message.lower()
@@ -1051,21 +1371,21 @@ def groq_chatbot_reply(message, user, history=None):
     system_message = (
         "You are Build Bot, a friendly assistant inside an Arknights: Endfield roster website. "
         "You can answer greetings warmly, but you must always guide the conversation back to Arknights: Endfield, "
-        "the user's roster, teams, weapons, or builds. "
+        "the user's roster, teams, weapons, relic/gear sets, or builds. "
         "For off-topic questions, give at most one short friendly sentence, then pivot back to Endfield. "
         "Do not continue off-topic conversations or ask off-topic follow-up questions. "
-        "For roster, character, team, weapon, build, game, or Endfield questions, answer only using the SITE DATA provided by the server. "
-        "Do not use outside game knowledge, do not invent weapons, builds, stats, character facts, or team synergies. "
+        "For roster, character, team, weapon, relic/gear set, build, game, or Endfield questions, answer only using the SITE DATA provided by the server. "
+        "Do not use outside game knowledge, do not invent weapons, relic sets, builds, stats, character facts, or team synergies. "
         "If the site data does not contain enough game information, answer with the best recommendation available from the data. "
         "Use the site data silently. Do not mention internal field names, JSON keys, database labels, or phrases like "
         "site_data, starter_build_guides, weapon_and_build_notes, saved teams, or according to the data. "
         "Write naturally, as if you are directly advising the player. "
         "When recommending weapons, use the character's recommended weapon list first, then compatible weapons of the same weapon type as backups. "
-        "Use the weapon_calculator scores and reasons when the user asks why a weapon is good or asks for the strongest option. "
+        "Use the weapon_calculator and relic_set_calculator scores and reasons when the user asks why a weapon or relic set is good or asks for the strongest option. "
         "When the user asks for weapon details, include the weapon's Lv.90 ATK and one or two useful stat/effect lines from the weapon data. "
         "Keep answers short and easy to scan. Avoid long paragraphs. "
-        "For character build, weapon, gear, or stats advice, start with 'Here's what I would suggest:' and then use a short bullet list. "
-        "Use bullets like Build, Weapon, Stats, and Team note when relevant. "
+        "For character build, weapon, relic set, gear, or stats advice, start with 'Here's what I would suggest:' and then use a short bullet list. "
+        "Use bullets like Build, Weapon, Relic set, Stats, and Team note when relevant. "
         "Never add a Missing info bullet or ask the user to add roster/profile details at the end of a build answer. "
         "Do not write more than 5 bullets unless the user asks for details. "
         "For weapon-only questions, recommend exactly one best weapon first. Do not list multiple weapons as 'or' options. "
@@ -1137,7 +1457,7 @@ def chatbot_reply(message, user, history=None):
     build_notes = ((user.build_data if user else "") or "").strip()
     requested_char = find_character_in_message(clean_message) or last_character_from_history(history)
 
-    build_terms = ["weapon", "build", "gear", "stats", "put on", "equip", "equipment", "loadout"]
+    build_terms = ["weapon", "build", "gear", "relic", "relics", "gear set", "stats", "put on", "equip", "equipment", "loadout"]
     if any(word in lower_message for word in build_terms) or user_rejected_previous_weapon(clean_message):
         if requested_char:
             guide = BUILD_GUIDES.get(requested_char, BUILD_GUIDES.get("default", {}))
@@ -1145,6 +1465,8 @@ def chatbot_reply(message, user, history=None):
             weapon_list = recommended_weapons_for_character(requested_char)
             weapon, backup_weapon = choose_weapon(weapon_list, history, clean_message)
             stats = ", ".join(guide.get("stats", []))
+            relic_rankings = rank_relic_sets_for_character(requested_char)[:2]
+            relic_set = relic_rankings[0]["relic"].get("name") if relic_rankings else "use a set that supports their main role"
 
             if is_weapon_question(clean_message) or user_rejected_previous_weapon(clean_message):
                 if user_rejected_previous_weapon(clean_message) and weapon:
@@ -1156,6 +1478,7 @@ def chatbot_reply(message, user, history=None):
                     f"{intro}\n"
                     f"- Character: {character_name(requested_char)}\n"
                     f"- Weapon: {weapon or 'use the best option you have available'}\n"
+                    f"- Relic set: {relic_set}\n"
                     f"- Why: it fits a {guide.get('build', 'flexible')} setup"
                 )
                 calculator_result = calculator_result_for_weapon(requested_char, weapon)
@@ -1173,6 +1496,7 @@ def chatbot_reply(message, user, history=None):
                 f"- Character: {character_name(requested_char)}\n"
                 f"- Build: {guide.get('build', 'Flexible starter option')}\n"
                 f"- Weapon: {weapon or 'use the best option you have available'}\n"
+                f"- Relic set: {relic_set}\n"
                 f"- Stats: {stats or 'focus on stats that support their main role'}\n"
                 f"- Note: {owned_text}"
             )

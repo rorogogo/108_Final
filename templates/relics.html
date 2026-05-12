@@ -10,7 +10,7 @@
     <script src="/static/theme.js"></script>
     <link rel="stylesheet" href="/static/sidebar.css">
     <script src="/static/music.js" defer></script>
-    <title>Community Builds - Endfield</title>
+    <title>Endfield Relics</title>
 </head>
 <body data-logged-in="{{ 'true' if is_logged_in else 'false' }}" data-reset-chatbot="{{ 'true' if reset_chatbot_on_load else 'false' }}">
     <nav id="navigation-bar" aria-label="Primary navigation">
@@ -23,9 +23,9 @@
             <span class="nav-icon" aria-hidden="true">TM</span>
             <span class="nav-text">Teams</span>
         </a>
-        <a class="nav-item active" href="/community-builds">
+        <a class="nav-item" href="/community-builds">
             <span class="nav-icon" aria-hidden="true">CB</span>
-            <span class="nav-text">Community Builds</span>
+            <span class="nav-text">Community's Build</span>
         </a>
         <a class="nav-item" href="/weapons">
             <span class="nav-icon" aria-hidden="true">WP</span>
@@ -35,7 +35,7 @@
             <span class="nav-icon" aria-hidden="true">OP</span>
             <span class="nav-text">Character Optimizer</span>
         </a>
-        <a class="nav-item" href="/relics">
+        <a class="nav-item active" href="/relics">
             <span class="nav-icon" aria-hidden="true">RL</span>
             <span class="nav-text">Relics</span>
         </a>
@@ -48,14 +48,18 @@
     <main class="shell">
         <header class="page-header">
             <div>
-                <p class="page-kicker">Community Command</p>
-                <h1 class="page-title">Community Builds</h1>
+                <p class="page-kicker">Gear Archive</p>
+                <h1 class="page-title">Relics</h1>
             </div>
             <div class="header-actions">
                 <div class="stats">
                     <div class="stat">
-                        <strong>{{ teams|length }}</strong>
-                        <span>Shared</span>
+                        <strong id="displayed-count">{{ total_relics }}</strong>
+                        <span>Displayed</span>
+                    </div>
+                    <div class="stat">
+                        <strong>{{ total_relics }}</strong>
+                        <span>Sets</span>
                     </div>
                 </div>
                 <div class="account-menu" id="account-menu">
@@ -83,48 +87,60 @@
         </header>
 
         <section class="content">
-            <div class="toolbar">
-                <h2>Shared Teams</h2>
+            <div class="filter-section">
+                <div class="filter-group">
+                    <h3>Tier</h3>
+                    <div class="filter-buttons">
+                        <button class="filter-button active" type="button" data-filter-tier="all" onclick="setTierFilter('all')">All</button>
+                        <button class="filter-button" type="button" data-filter-tier="0" onclick="setTierFilter('0')">Tier 0</button>
+                        <button class="filter-button" type="button" data-filter-tier="1" onclick="setTierFilter('1')">Tier 1</button>
+                        <button class="filter-button" type="button" data-filter-tier="2" onclick="setTierFilter('2')">Tier 2</button>
+                        <button class="filter-button" type="button" data-filter-tier="3" onclick="setTierFilter('3')">Tier 3</button>
+                    </div>
+                </div>
+                <div class="filter-group">
+                    <h3>Rarity</h3>
+                    <div class="filter-buttons">
+                        <button class="filter-button active" type="button" data-filter-rarity="all" onclick="setRarityFilter('all')">All</button>
+                        <button class="filter-button" type="button" data-filter-rarity="Green" onclick="setRarityFilter('Green')">Green</button>
+                        <button class="filter-button" type="button" data-filter-rarity="Blue" onclick="setRarityFilter('Blue')">Blue</button>
+                        <button class="filter-button" type="button" data-filter-rarity="Purple" onclick="setRarityFilter('Purple')">Purple</button>
+                        <button class="filter-button" type="button" data-filter-rarity="Gold" onclick="setRarityFilter('Gold')">Gold</button>
+                    </div>
+                </div>
             </div>
-            <div class="team-list" id="shared-teams">
-                {% for team in teams %}
-                <article class="team-card team-card-with-votes" data-team-id="{{ team.id }}">
-                    <div class="vote-controls" aria-label="Vote on {{ team.name }}">
-                        <button
-                            class="vote-button up {% if team.user_vote == 1 %}active{% endif %}"
-                            type="button"
-                            aria-label="Upvote"
-                            onclick="voteTeam({{ team.id }}, 1)"
-                        >▲</button>
-                        <strong class="vote-score" id="team-score-{{ team.id }}">{{ team.votes }}</strong>
-                        <button
-                            class="vote-button down {% if team.user_vote == -1 %}active{% endif %}"
-                            type="button"
-                            aria-label="Downvote"
-                            onclick="voteTeam({{ team.id }}, -1)"
-                        >▼</button>
+
+            <div class="relic-grid" id="relic-grid">
+                {% for relic in relic_sets %}
+                <article class="relic-card" data-tier="{{ relic.tier }}" data-rarity="{{ relic.rarity }}">
+                    <div class="relic-image-slot">
+                        {% if relic.image %}
+                        <img src="{{ relic.image }}" alt="{{ relic.name }}">
+                        {% else %}
+                        <span>IMG</span>
+                        {% endif %}
                     </div>
-                    <div>
-                        <h3>{{ team.name }}</h3>
-                        <div class="team-members">
-                            {% for char_id in team.characters %}
-                            <span class="member-chip">{{ characters.get(char_id, {}).get('name', char_id) }}</span>
-                            {% endfor %}
+                    <div class="relic-card-header">
+                        <div>
+                            <strong>{{ relic.name }}</strong>
+                            <span>Tier {{ relic.tier }} / {{ relic.rarity }}</span>
                         </div>
-                        <p>By {{ team.creator }}</p>
+                        <em class="rarity-badge rarity-{{ relic.rarity | lower }}">{{ relic.rarity }}</em>
                     </div>
-                </article>
-                {% else %}
-                <article class="team-card">
-                    <h3>No community builds yet</h3>
-                    <p>Create one from the Teams builder.</p>
+                    <p><strong>Bonus:</strong> {{ relic.bonus_stat }}</p>
+                    <p><strong>Effect:</strong> {{ relic.set_effect }}</p>
+                    <div class="weapon-chip-list">
+                        {% for tag in relic.tags[:5] %}
+                        <span class="weapon-chip">{{ tag }}</span>
+                        {% endfor %}
+                    </div>
                 </article>
                 {% endfor %}
             </div>
         </section>
     </main>
 
-    <section class="chatbot-widget" id="chatbot-widget" aria-label="Community chatbot">
+    <section class="chatbot-widget" id="chatbot-widget" aria-label="Relics chatbot">
         <button class="chatbot-launcher" type="button" onclick="toggleChatbot()" aria-expanded="false" id="chatbot-launcher">BOT</button>
         <div class="chatbot-panel" id="chatbot-panel">
             <div class="chatbot-header">
@@ -144,7 +160,8 @@
     </button>
 
     <script>
-        const isLoggedIn = {{ is_logged_in | tojson }};
+        let activeTierFilters = new Set();
+        let activeRarityFilters = new Set();
 
         function setAccountMenu(open) {
             const menu = document.getElementById("account-menu");
@@ -159,26 +176,52 @@
             setAccountMenu(!menu.classList.contains("open"));
         }
 
-        function voteTeam(teamId, value) {
-            if (!isLoggedIn) {
-                openLoginRequiredModal("Please Log In first");
-                return;
-            }
-            fetch("/vote-team", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ team_id: teamId, value })
-            }).then((response) => {
-                if (!response.ok) {
-                    throw new Error("Vote failed");
+        function updateFilterButtons() {
+            document.querySelectorAll("[data-filter-tier]").forEach((button) => {
+                const value = button.dataset.filterTier;
+                button.classList.toggle("active", value === "all" ? activeTierFilters.size === 0 : activeTierFilters.has(value));
+            });
+            document.querySelectorAll("[data-filter-rarity]").forEach((button) => {
+                const value = button.dataset.filterRarity;
+                button.classList.toggle("active", value === "all" ? activeRarityFilters.size === 0 : activeRarityFilters.has(value));
+            });
+        }
+
+        function applyFilters() {
+            let displayed = 0;
+            document.querySelectorAll(".relic-card").forEach((card) => {
+                const tierMatch = activeTierFilters.size === 0 || activeTierFilters.has(card.dataset.tier);
+                const rarityMatch = activeRarityFilters.size === 0 || activeRarityFilters.has(card.dataset.rarity);
+                const visible = tierMatch && rarityMatch;
+                card.hidden = !visible;
+                if (visible) {
+                    displayed += 1;
                 }
-                return response.json();
-            }).then((data) => {
-                document.getElementById(`team-score-${teamId}`).textContent = data.votes;
-                const card = document.querySelector(`[data-team-id="${teamId}"]`);
-                card.querySelector(".vote-button.up").classList.toggle("active", data.user_vote === 1);
-                card.querySelector(".vote-button.down").classList.toggle("active", data.user_vote === -1);
-            }).catch(() => {});
+            });
+            document.getElementById("displayed-count").textContent = displayed;
+            updateFilterButtons();
+        }
+
+        function setTierFilter(tier) {
+            if (tier === "all") {
+                activeTierFilters.clear();
+            } else if (activeTierFilters.has(tier)) {
+                activeTierFilters.delete(tier);
+            } else {
+                activeTierFilters.add(tier);
+            }
+            applyFilters();
+        }
+
+        function setRarityFilter(rarity) {
+            if (rarity === "all") {
+                activeRarityFilters.clear();
+            } else if (activeRarityFilters.has(rarity)) {
+                activeRarityFilters.delete(rarity);
+            } else {
+                activeRarityFilters.add(rarity);
+            }
+            applyFilters();
         }
 
         document.addEventListener("click", (event) => {

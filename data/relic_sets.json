@@ -1,0 +1,287 @@
+{
+  "aic_light": {
+    "id": "aic_light",
+    "name": "AIC Light",
+    "tier": 0,
+    "rarity": "Green",
+    "bonus_stat": "Wearer's HP +500",
+    "set_effect": "When the wearer defeats an enemy, ATK +20 for 5s.",
+    "tags": [
+      "hp",
+      "attack",
+      "starter"
+    ],
+    "image": ""
+  },
+  "aic_heavy": {
+    "id": "aic_heavy",
+    "name": "AIC Heavy",
+    "tier": 0,
+    "rarity": "Green",
+    "bonus_stat": "Wearer's HP +500",
+    "set_effect": "When the wearer defeats an enemy, restore 100 HP. Effect trigger cooldown: 5s.",
+    "tags": [
+      "hp",
+      "healing",
+      "survivability",
+      "starter"
+    ],
+    "image": ""
+  },
+  "roving_msgr": {
+    "id": "roving_msgr",
+    "name": "Roving MSGR",
+    "tier": 1,
+    "rarity": "Blue",
+    "bonus_stat": "Wearer's Agility +50",
+    "set_effect": "When the wearer's HP is above 80%, Physical DMG +20%.",
+    "tags": [
+      "agility",
+      "physical damage",
+      "attack"
+    ],
+    "image": ""
+  },
+  "armored_msgr": {
+    "id": "armored_msgr",
+    "name": "Armored MSGR",
+    "tier": 1,
+    "rarity": "Blue",
+    "bonus_stat": "Wearer's Strength +50",
+    "set_effect": "When the wearer's HP is below 50%, the wearer gains 30% DMG Reduction against all types of DMG.",
+    "tags": [
+      "strength",
+      "defense",
+      "max hp",
+      "survivability"
+    ],
+    "image": ""
+  },
+  "mordvolt_resistant": {
+    "id": "mordvolt_resistant",
+    "name": "Mordvolt Resistant",
+    "tier": 1,
+    "rarity": "Blue",
+    "bonus_stat": "Wearer's Will +50",
+    "set_effect": "When the wearer's HP is below 50%, Treatment Effect +30%.",
+    "tags": [
+      "will",
+      "treatment efficiency",
+      "healing",
+      "support bonus"
+    ],
+    "image": ""
+  },
+  "mordvolt_insulation": {
+    "id": "mordvolt_insulation",
+    "name": "Mordvolt Insulation",
+    "tier": 1,
+    "rarity": "Blue",
+    "bonus_stat": "Wearer's Intellect +50",
+    "set_effect": "When the wearer's HP is above 80%, Arts DMG +20%.",
+    "tags": [
+      "intellect",
+      "arts damage",
+      "attack"
+    ],
+    "image": ""
+  },
+  "aburreys_legacy": {
+    "id": "aburreys_legacy",
+    "name": "Aburrey's Legacy",
+    "tier": 2,
+    "rarity": "Purple",
+    "bonus_stat": "Wearer's Skill DMG +24%",
+    "set_effect": "When the wearer casts a battle skill, combo skill, or ultimate, gain ATK +5% for 15s. The buff from each skill type is unique and does not stack with itself.",
+    "tags": [
+      "skill damage",
+      "battle skill",
+      "combo skill",
+      "ultimate damage",
+      "attack"
+    ],
+    "image": ""
+  },
+  "catastrophe": {
+    "id": "catastrophe",
+    "name": "Catastrophe",
+    "tier": 2,
+    "rarity": "Purple",
+    "bonus_stat": "Wearer's Ultimate Gain Efficiency +20%",
+    "set_effect": "At the start of battle, the wearer immediately recovers 50 SP.",
+    "tags": [
+      "ultimate gain",
+      "sp recovery",
+      "ultimate damage",
+      "skill uptime"
+    ],
+    "image": ""
+  },
+  "aethertech": {
+    "id": "aethertech",
+    "name": "Aethertech",
+    "tier": 3,
+    "rarity": "Gold",
+    "bonus_stat": "Wearer's ATK +8%",
+    "set_effect": "After the wearer applies Vulnerability, the wearer gains Physical DMG +8% for 15s. This effect can reach 4 stacks. If the target already has 4 stacks of Vulnerability, the wearer gains an additional Physical DMG +16% for 10s. This effect cannot stack.",
+    "tags": [
+      "attack",
+      "physical damage",
+      "vulnerability"
+    ],
+    "image": ""
+  },
+  "bonekrusha": {
+    "id": "bonekrusha",
+    "name": "Bonekrusha",
+    "tier": 3,
+    "rarity": "Gold",
+    "bonus_stat": "Wearer's ATK +15%",
+    "set_effect": "When the wearer casts a combo skill, gain 1 stack of Bonekrushing Smash that grants the wearer's next battle skill DMG +30%. Bonekrushing Smash can stack 2 times.",
+    "tags": [
+      "attack",
+      "skill damage",
+      "combo skill",
+      "battle skill"
+    ],
+    "image": ""
+  },
+  "eternal_xiranite": {
+    "id": "eternal_xiranite",
+    "name": "Eternal Xiranite",
+    "tier": 3,
+    "rarity": "Gold",
+    "bonus_stat": "Wearer's HP +1000",
+    "set_effect": "When the wearer applies Amp, Protected, Susceptible, or Weakened, other teammates also gain ATK +16% for 15s. This effect cannot stack.",
+    "tags": [
+      "max hp",
+      "team damage",
+      "team attack",
+      "support bonus",
+      "attack"
+    ],
+    "image": ""
+  },
+  "frontiers": {
+    "id": "frontiers",
+    "name": "Frontiers",
+    "tier": 3,
+    "rarity": "Gold",
+    "bonus_stat": "Wearer's Combo Skill Cooldown Reduction +15%",
+    "set_effect": "After the wearer recovers SP with a skill, the team gains DMG +16% for 15s. This effect cannot stack.",
+    "tags": [
+      "sp recovery",
+      "skill uptime",
+      "team damage",
+      "support bonus"
+    ],
+    "image": ""
+  },
+  "hot_work": {
+    "id": "hot_work",
+    "name": "Hot Work",
+    "tier": 3,
+    "rarity": "Gold",
+    "bonus_stat": "Wearer's Arts Intensity +30",
+    "set_effect": "After the wearer applies Combustion, Heat DMG +50% for 10s. After the wearer applies Corrosion, Nature DMG +50% for 10s. The aforementioned effects cannot stack.",
+    "tags": [
+      "arts intensity",
+      "heat damage",
+      "nature damage",
+      "arts damage"
+    ],
+    "image": ""
+  },
+  "lynx": {
+    "id": "lynx",
+    "name": "LYNX",
+    "tier": 3,
+    "rarity": "Gold",
+    "bonus_stat": "Wearer's HP Treatment Efficiency +20%",
+    "set_effect": "After the wearer gives HP treatment to an allied target, that target also gains 15% DMG Reduction against all types of DMG for 10s. If the treatment exceeds the target's Max HP, the target gains 30% DMG Reduction instead. These effects cannot stack.",
+    "tags": [
+      "treatment efficiency",
+      "healing",
+      "defense",
+      "support bonus"
+    ],
+    "image": ""
+  },
+  "mi_security": {
+    "id": "mi_security",
+    "name": "MI Security",
+    "tier": 3,
+    "rarity": "Gold",
+    "bonus_stat": "Wearer's Critical Rate +5%",
+    "set_effect": "After the wearer scores a critical hit, gain ATK +5% for 5s. This effect can reach 5 stacks. At max stacks, grant an additional Critical Rate +5%. This effect cannot stack.",
+    "tags": [
+      "crit rate",
+      "attack",
+      "skill damage"
+    ],
+    "image": ""
+  },
+  "pulser_labs": {
+    "id": "pulser_labs",
+    "name": "Pulser Labs",
+    "tier": 3,
+    "rarity": "Gold",
+    "bonus_stat": "Wearer's Arts Intensity +30",
+    "set_effect": "After the wearer applies Electrification, Electric DMG +50% for 10s. After the wearer applies Solidification, Cryo DMG +50% for 10s. The aforementioned effects cannot stack.",
+    "tags": [
+      "arts intensity",
+      "electric damage",
+      "cryo damage",
+      "arts damage"
+    ],
+    "image": ""
+  },
+  "swordmancer": {
+    "id": "swordmancer",
+    "name": "Swordmancer",
+    "tier": 3,
+    "rarity": "Gold",
+    "bonus_stat": "Wearer's Stagger Efficiency Bonus +20%",
+    "set_effect": "After the wearer applies a Physical Status, the wearer also performs 1 hit that deals 250% ATK of Physical DMG and 10 Stagger. Effect trigger cooldown: 15s.",
+    "tags": [
+      "physical damage",
+      "physical status",
+      "stagger",
+      "skill damage"
+    ],
+    "image": ""
+  },
+  "tide_surge": {
+    "id": "tide_surge",
+    "name": "Tide Surge",
+    "tier": 3,
+    "rarity": "Gold",
+    "bonus_stat": "Wearer's Arts Intensity +24",
+    "set_effect": "When the wearer applies 3 stacks of Arts Infliction and triggers an Arts Burst, the Arts Burst deals DMG +100% and reduces the target's matching Elemental Resistance for 10s. This effect cannot stack.",
+    "tags": [
+      "arts intensity",
+      "arts damage",
+      "arts burst",
+      "electric damage",
+      "cryo damage",
+      "heat damage",
+      "nature damage"
+    ],
+    "image": ""
+  },
+  "type_50_yinglung": {
+    "id": "type_50_yinglung",
+    "name": "Type 50 Yinglung",
+    "tier": 3,
+    "rarity": "Gold",
+    "bonus_stat": "Wearer's ATK +15%",
+    "set_effect": "When any operator in the team casts a battle skill, the wearer gains 1 stack of Yinglung's Edge that gives DMG +20% to the wearer's next combo skill. Yinglung's Edge can stack 3 times.",
+    "tags": [
+      "attack",
+      "combo skill",
+      "skill damage",
+      "team damage"
+    ],
+    "image": ""
+  }
+}
