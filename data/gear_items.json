@@ -1,0 +1,3950 @@
+{
+  "basic_armor": {
+    "id": "basic_armor",
+    "name": "Basic Armor",
+    "type": "Armor",
+    "rarity": "White",
+    "level": 10,
+    "stats": [
+      "Defense: 8",
+      "Strength: 15",
+      "Agility: 10",
+      "HP: 46"
+    ],
+    "gear_set": "Basic Gear Pack",
+    "set_id": "",
+    "set_effect_text": "No 3-pc Set Effect",
+    "image": "https://img.game8.co/4393322/67a18d62e3a18bbb22a7de0fded30ed0.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575883",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576226"
+  },
+  "basic_ppe": {
+    "id": "basic_ppe",
+    "name": "Basic PPE",
+    "type": "Armor",
+    "rarity": "White",
+    "level": 10,
+    "stats": [
+      "Defense: 8",
+      "Intellect: 15",
+      "Will: 10",
+      "HP: 46"
+    ],
+    "gear_set": "Basic Gear Pack",
+    "set_id": "",
+    "set_effect_text": "No 3-pc Set Effect",
+    "image": "https://img.game8.co/4393347/39791ffce756f40a40b137896a235009.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575917",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576226"
+  },
+  "miner_armor": {
+    "id": "miner_armor",
+    "name": "Miner Armor",
+    "type": "Armor",
+    "rarity": "Green",
+    "level": 20,
+    "stats": [
+      "Defense: 16",
+      "Strength: 27",
+      "Intellect: 18",
+      "HP: 125"
+    ],
+    "gear_set": "Miner \u03b1 Gear Pack",
+    "set_id": "",
+    "set_effect_text": "No 3-pc Set Effect",
+    "image": "https://img.game8.co/4393313/ffcbe10ad0c6a2783988a2bf657cfe52.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575935",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576226"
+  },
+  "miner_overalls": {
+    "id": "miner_overalls",
+    "name": "Miner Overalls",
+    "type": "Armor",
+    "rarity": "Green",
+    "level": 20,
+    "stats": [
+      "Defense: 16",
+      "Intellect: 27",
+      "Will: 18",
+      "HP: 125"
+    ],
+    "gear_set": "Miner \u03b1 Gear Pack",
+    "set_id": "",
+    "set_effect_text": "No 3-pc Set Effect",
+    "image": "https://img.game8.co/4393350/c3a273fd4eae1181da86f1acbb6e499f.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575934",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576226"
+  },
+  "aic_heavy_armor": {
+    "id": "aic_heavy_armor",
+    "name": "AIC Heavy Armor",
+    "type": "Armor",
+    "rarity": "Green",
+    "level": 28,
+    "stats": [
+      "Defense: 22",
+      "Strength: 30",
+      "Agility: 30",
+      "Final DMG Reduction: 3.90%"
+    ],
+    "gear_set": "AIC Heavy",
+    "set_id": "aic_heavy",
+    "set_effect_text": "Bonus Stat: Wearer's HP +500 \nSet Effect: When the wearer defeats an enemy, restore 100 HP. Effect trigger cooldown: 5s.",
+    "image": "https://img.game8.co/4393331/9d90954c863b70e70a56f2769bebab27.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575940",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576226"
+  },
+  "aic_light_armor": {
+    "id": "aic_light_armor",
+    "name": "AIC Light Armor",
+    "type": "Armor",
+    "rarity": "Green",
+    "level": 28,
+    "stats": [
+      "Defense: 22",
+      "Intellect: 30",
+      "Will: 30",
+      "Battle Skill DMG Bonus: 8.10%"
+    ],
+    "gear_set": "AIC Light",
+    "set_id": "aic_light",
+    "set_effect_text": "Bonus Stat: Wearer's HP +500 \nSet Effect: When the wearer defeats an enemy, ATK +20 for 5s.",
+    "image": "https://img.game8.co/4393338/49deec1c3405bf920ba22811fa4bfb29.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575941",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576226"
+  },
+  "miner_cleansuit": {
+    "id": "miner_cleansuit",
+    "name": "Miner Cleansuit",
+    "type": "Armor",
+    "rarity": "Green",
+    "level": 28,
+    "stats": [
+      "Defense: 22",
+      "Agility: 25",
+      "Will: 37",
+      "HP: 9.0%"
+    ],
+    "gear_set": "Miner \u03b1 Gear Pack",
+    "set_id": "",
+    "set_effect_text": "No 3-pc Set Effect",
+    "image": "https://img.game8.co/4393354/20db937342aa6732f152d47445b7acd1.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575918",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576226"
+  },
+  "miner_vest": {
+    "id": "miner_vest",
+    "name": "Miner Vest",
+    "type": "Armor",
+    "rarity": "Green",
+    "level": 28,
+    "stats": [
+      "Defense: 22",
+      "Agility: 37",
+      "Intellect: 25",
+      "HP: 9.0%"
+    ],
+    "gear_set": "Miner \u03b1 Gear Pack",
+    "set_id": "",
+    "set_effect_text": "No 3-pc Set Effect",
+    "image": "https://img.game8.co/4393326/ed851378237b4bcda9308d040988669f.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575919",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576226"
+  },
+  "prototype_heavy_armor": {
+    "id": "prototype_heavy_armor",
+    "name": "Prototype Heavy Armor",
+    "type": "Armor",
+    "rarity": "Green",
+    "level": 28,
+    "stats": [
+      "Defense: 22",
+      "Strength: 37",
+      "Intellect: 25",
+      "Attack: 11"
+    ],
+    "gear_set": "Miner \u03b1 Gear Pack",
+    "set_id": "",
+    "set_effect_text": "No 3-pc Set Effect",
+    "image": "https://img.game8.co/4393318/2d7b7c2cbca3a47bf513cd26c6b4cfff.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575921",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576226"
+  },
+  "prototype_heavy_armor_t1": {
+    "id": "prototype_heavy_armor_t1",
+    "name": "Prototype Heavy Armor T1",
+    "type": "Armor",
+    "rarity": "Green",
+    "level": 28,
+    "stats": [
+      "Defense: 22",
+      "Agility: 37",
+      "Will: 25",
+      "Attack: 11"
+    ],
+    "gear_set": "Miner \u03b1 Gear Pack",
+    "set_id": "",
+    "set_effect_text": "No 3-pc Set Effect",
+    "image": "https://img.game8.co/4393314/88a2b023eb458fb219362f3dbc849c10.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575920",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576226"
+  },
+  "armored_msgr_jacket": {
+    "id": "armored_msgr_jacket",
+    "name": "Armored MSGR Jacket",
+    "type": "Armor",
+    "rarity": "Blue",
+    "level": 36,
+    "stats": [
+      "Defense: 28",
+      "Strength: 44",
+      "Agility: 29",
+      "HP: 10.5%"
+    ],
+    "gear_set": "Armored MSGR",
+    "set_id": "armored_msgr",
+    "set_effect_text": "Bonus Stat: Wearer's Strength +50 \nSet Effect: When the wearer's HP is below 50%, the wearer gains 30% DMG Reduction against all types of DMG.",
+    "image": "https://img.game8.co/4393349/9713c5ad72144b54421df0e7f7fec258.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575956",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576226"
+  },
+  "mordvolt_insulation_vest": {
+    "id": "mordvolt_insulation_vest",
+    "name": "Mordvolt Insulation Vest",
+    "type": "Armor",
+    "rarity": "Blue",
+    "level": 36,
+    "stats": [
+      "Defense: 28",
+      "Strength: 29",
+      "Intellect: 44",
+      "Attack: 16"
+    ],
+    "gear_set": "Mordvolt Insulation",
+    "set_id": "mordvolt_insulation",
+    "set_effect_text": "Bonus Stat: Wearer's Intellect +50 \nSet Effect: When the wearer's HP is above 80%, Arts DMG +20%.",
+    "image": "https://img.game8.co/4393329/c99aeeea75b4bf3f0ff86de15825c896.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575954",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576226"
+  },
+  "mordvolt_resistant_vest": {
+    "id": "mordvolt_resistant_vest",
+    "name": "Mordvolt Resistant Vest",
+    "type": "Armor",
+    "rarity": "Blue",
+    "level": 36,
+    "stats": [
+      "Defense: 28",
+      "Agility: 29",
+      "Will: 44",
+      "HP: 10.5%"
+    ],
+    "gear_set": "Mordvolt Resistant",
+    "set_id": "mordvolt_resistant",
+    "set_effect_text": "Bonus Stat: Wearer's Will +50 \nSet Effect: When the wearer's HP is below 50%, Treatment Effect +30%.",
+    "image": "https://img.game8.co/4393312/b3c76d5d451fdad999622c8d3e8f3cbf.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575953",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576226"
+  },
+  "roving_msgr_jacket": {
+    "id": "roving_msgr_jacket",
+    "name": "Roving MSGR Jacket",
+    "type": "Armor",
+    "rarity": "Blue",
+    "level": 36,
+    "stats": [
+      "Defense: 28",
+      "Agility: 44",
+      "Intellect: 29",
+      "Attack: 16"
+    ],
+    "gear_set": "Roving MSGR",
+    "set_id": "roving_msgr",
+    "set_effect_text": "Bonus Stat: Wearer's Agility +50 \nSet Effect: When the wearer's HP is above 80%, Physical DMG +20%",
+    "image": "https://img.game8.co/4393351/2dd942550fbfb437b8ffd3880dba471b.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575955",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576226"
+  },
+  "aburrey_heavy_armor": {
+    "id": "aburrey_heavy_armor",
+    "name": "Aburrey Heavy Armor",
+    "type": "Armor",
+    "rarity": "Purple",
+    "level": 50,
+    "stats": [
+      "Defense: 40",
+      "Strength: 61",
+      "Agility: 41",
+      "All Skill DMG: 9.8%"
+    ],
+    "gear_set": "Aburrey's Legacy",
+    "set_id": "aburreys_legacy",
+    "set_effect_text": "Bonus Stat: Wearer's Skill DMG +24% \nSet Effect: When the wearer casts a battle skill, combo skill, or ultimate, gain ATK +5% for 15s. The buff from each of the three skill types is unique and does not stack with itself.",
+    "image": "https://img.game8.co/4393663/46abfce41842a2f381a765fd02d9bc3b.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575952",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576226"
+  },
+  "aburrey_heavy_armor_t1": {
+    "id": "aburrey_heavy_armor_t1",
+    "name": "Aburrey Heavy Armor T1",
+    "type": "Armor",
+    "rarity": "Purple",
+    "level": 50,
+    "stats": [
+      "Defense: 40",
+      "Strength: 41",
+      "Agility: 61",
+      "Combo Skill DMG Bonus: 14.7%"
+    ],
+    "gear_set": "Aburrey's Legacy",
+    "set_id": "aburreys_legacy",
+    "set_effect_text": "Bonus Stat: Wearer's Skill DMG +24% \nSet Effect: When the wearer casts a battle skill, combo skill, or ultimate, gain ATK +5% for 15s. The buff from each of the three skill types is unique and does not stack with itself.",
+    "image": "https://img.game8.co/4393660/52455368ecc98ae61ed04807a0a57264.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575952",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576226"
+  },
+  "aburrey_light_armor": {
+    "id": "aburrey_light_armor",
+    "name": "Aburrey Light Armor",
+    "type": "Armor",
+    "rarity": "Purple",
+    "level": 50,
+    "stats": [
+      "Defense: 40",
+      "Strength: 41",
+      "Intellect: 61",
+      "Ultimate Gain Efficiency: 8.8%"
+    ],
+    "gear_set": "Aburrey's Legacy",
+    "set_id": "aburreys_legacy",
+    "set_effect_text": "Bonus Stat: Wearer's Skill DMG +24% \nSet Effect: When the wearer casts a battle skill, combo skill, or ultimate, gain ATK +5% for 15s. The buff from each of the three skill types is unique and does not stack with itself.",
+    "image": "https://img.game8.co/4393659/c73bd2ae286a6bc027b8dde85a5603f0.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575952",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576226"
+  },
+  "aburrey_light_armor_t1": {
+    "id": "aburrey_light_armor_t1",
+    "name": "Aburrey Light Armor T1",
+    "type": "Armor",
+    "rarity": "Purple",
+    "level": 50,
+    "stats": [
+      "Defense: 40",
+      "Agility: 41",
+      "Will: 61",
+      "Battle Skill DMG Bonus: 14.7%"
+    ],
+    "gear_set": "Aburrey's Legacy",
+    "set_id": "aburreys_legacy",
+    "set_effect_text": "Bonus Stat: Wearer's Skill DMG +24% \nSet Effect: When the wearer casts a battle skill, combo skill, or ultimate, gain ATK +5% for 15s. The buff from each of the three skill types is unique and does not stack with itself.",
+    "image": "https://img.game8.co/4393661/7d5af9b2186a02a9a41e1ea0fdd98aaa.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575952",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576226"
+  },
+  "armored_msgr_jacket_t1": {
+    "id": "armored_msgr_jacket_t1",
+    "name": "Armored MSGR Jacket T1",
+    "type": "Armor",
+    "rarity": "Purple",
+    "level": 50,
+    "stats": [
+      "Defense: 40",
+      "Strength: 61",
+      "Will: 41",
+      "HP: 14.7%"
+    ],
+    "gear_set": "Armored MSGR",
+    "set_id": "armored_msgr",
+    "set_effect_text": "Bonus Stat: Wearer's Strength +50 \nSet Effect: When the wearer's HP is below 50%, the wearer gains 30% DMG Reduction against all types of DMG.",
+    "image": "https://img.game8.co/4393628/17fd2b296913f0d51eb4bf5d97540899.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575956",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576226"
+  },
+  "catastrophe_heavy_armor": {
+    "id": "catastrophe_heavy_armor",
+    "name": "Catastrophe Heavy Armor",
+    "type": "Armor",
+    "rarity": "Purple",
+    "level": 50,
+    "stats": [
+      "Defense: 40",
+      "Strength: 61",
+      "Intellect: 41",
+      "Ultimate DMG Bonus: 18.4%"
+    ],
+    "gear_set": "Catastrophe",
+    "set_id": "catastrophe",
+    "set_effect_text": "Bonus Stat: Wearer's Ultimate Gain Efficiency +20%. \nSet Effect: At the start of battle, the wearer immediately recovers 50 SP.",
+    "image": "https://img.game8.co/4393654/6efeeb59cac488b1c62d02a5da3bf4ea.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575942",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576226"
+  },
+  "catastrophe_heavy_armor_t1": {
+    "id": "catastrophe_heavy_armor_t1",
+    "name": "Catastrophe Heavy Armor T1",
+    "type": "Armor",
+    "rarity": "Purple",
+    "level": 50,
+    "stats": [
+      "Defense: 40",
+      "Strength: 61",
+      "Will: 41",
+      "Ultimate Gain Efficiency: 8.8%"
+    ],
+    "gear_set": "Catastrophe",
+    "set_id": "catastrophe",
+    "set_effect_text": "Bonus Stat: Wearer's Ultimate Gain Efficiency +20%. \nSet Effect: At the start of battle, the wearer immediately recovers 50 SP.",
+    "image": "https://img.game8.co/4393662/772d0d840e832b1826c129383a77f781.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575942",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576226"
+  },
+  "miner_armor_t1": {
+    "id": "miner_armor_t1",
+    "name": "Miner Armor T1",
+    "type": "Armor",
+    "rarity": "Purple",
+    "level": 50,
+    "stats": [
+      "Defense: 40",
+      "Strength: 65",
+      "Will: 43",
+      "Critical Rate: 3.90%"
+    ],
+    "gear_set": "Miner \u03b3 Gear Pack",
+    "set_id": "",
+    "set_effect_text": "No 3-pc Set Effect",
+    "image": "https://img.game8.co/4393632/6634d0754c0f4af779bea8b57178b45c.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575933",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576226"
+  },
+  "miner_overalls_t1": {
+    "id": "miner_overalls_t1",
+    "name": "Miner Overalls T1",
+    "type": "Armor",
+    "rarity": "Purple",
+    "level": 50,
+    "stats": [
+      "Defense: 40",
+      "Agility: 43",
+      "Intellect: 65",
+      "Attack: 7.80%"
+    ],
+    "gear_set": "Miner \u03b3 Gear Pack",
+    "set_id": "",
+    "set_effect_text": "No 3-pc Set Effect",
+    "image": "https://img.game8.co/4393625/9f862249f0f6db0b838f8cd5992092f4.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575932",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576226"
+  },
+  "mordvolt_insulation_vest_t1": {
+    "id": "mordvolt_insulation_vest_t1",
+    "name": "Mordvolt Insulation Vest T1",
+    "type": "Armor",
+    "rarity": "Purple",
+    "level": 50,
+    "stats": [
+      "Defense: 40",
+      "Agility: 41",
+      "Intellect: 61",
+      "Basic Attack DMG Bonus: 9.8%"
+    ],
+    "gear_set": "Mordvolt Insulation",
+    "set_id": "mordvolt_insulation",
+    "set_effect_text": "Bonus Stat: Wearer's Intellect +50 \nSet Effect: When the wearer's HP is above 80%, Arts DMG +20%.",
+    "image": "https://img.game8.co/4393639/6f168a372526b4c8c517fd4395c9353e.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575954",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576226"
+  },
+  "mordvolt_insulation_vest_t2": {
+    "id": "mordvolt_insulation_vest_t2",
+    "name": "Mordvolt Insulation Vest T2",
+    "type": "Armor",
+    "rarity": "Purple",
+    "level": 50,
+    "stats": [
+      "Defense: 40",
+      "Intellect: 61",
+      "Will: 41",
+      "HP: 14.7%"
+    ],
+    "gear_set": "Mordvolt Insulation",
+    "set_id": "mordvolt_insulation",
+    "set_effect_text": "Bonus Stat: Wearer's Intellect +50 \nSet Effect: When the wearer's HP is above 80%, Arts DMG +20%.",
+    "image": "https://img.game8.co/4393641/98505a1bd84258ec336933175c832cc0.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575954",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576226"
+  },
+  "mordvolt_resistant_vest_t1": {
+    "id": "mordvolt_resistant_vest_t1",
+    "name": "Mordvolt Resistant Vest T1",
+    "type": "Armor",
+    "rarity": "Purple",
+    "level": 50,
+    "stats": [
+      "Defense: 40",
+      "Intellect: 41",
+      "Will: 61",
+      "HP: 14.7%"
+    ],
+    "gear_set": "Mordvolt Resistant",
+    "set_id": "mordvolt_resistant",
+    "set_effect_text": "Bonus Stat: Wearer's Will +50 \nSet Effect: When the wearer's HP is below 50%, Treatment Effect +30%.",
+    "image": "https://img.game8.co/4393643/c6491722f5e8e078f202f732466409de.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575953",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576226"
+  },
+  "roving_msgr_jacket_t1": {
+    "id": "roving_msgr_jacket_t1",
+    "name": "Roving MSGR Jacket T1",
+    "type": "Armor",
+    "rarity": "Purple",
+    "level": 50,
+    "stats": [
+      "Defense: 40",
+      "Agility: 61",
+      "Intellect: 41",
+      "HP: 14.7%"
+    ],
+    "gear_set": "Roving MSGR",
+    "set_id": "roving_msgr",
+    "set_effect_text": "Bonus Stat: Wearer's Agility +50 \nSet Effect: When the wearer's HP is above 80%, Physical DMG +20%",
+    "image": "https://img.game8.co/4393635/75df247675602fd1e911da152c2f0020.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575955",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576226"
+  },
+  "aethertech_plating": {
+    "id": "aethertech_plating",
+    "name": "Aethertech Plating",
+    "type": "Armor",
+    "rarity": "Gold",
+    "level": 70,
+    "stats": [
+      "Defense: 56",
+      "Strength: 87",
+      "Will: 58",
+      "DMG Bonus vs. Staggered: 20.7%"
+    ],
+    "gear_set": "Aethertech",
+    "set_id": "aethertech",
+    "set_effect_text": "Bonus Stat: Wearer's ATK +8% \nSet Effect: After the wearer applies Vulnerability, the wearer gains Physical DMG +8% for 15s. This effect can reach 4 stacks. If the target already has 4 stack(s) of Vulnerability, the wearer gains an additional Physical DMG +16% for 10s. This effect cannot stack.",
+    "image": "https://img.game8.co/4395106/6ffc70d0ab4d6a217ef88db3fbc02773.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575945",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576226"
+  },
+  "bonekrusha_heavy_armor": {
+    "id": "bonekrusha_heavy_armor",
+    "name": "Bonekrusha Heavy Armor",
+    "type": "Armor",
+    "rarity": "Gold",
+    "level": 70,
+    "stats": [
+      "Defense: 56",
+      "Agility: 87",
+      "Intellect: 58",
+      "Ultimate Gain Efficiency: 12.30%"
+    ],
+    "gear_set": "Bonekrusha",
+    "set_id": "bonekrusha",
+    "set_effect_text": "Bonus Stat: Wearer's ATK +15% \nSet Effect: When the wearer casts a combo skill, gain 1 stack of Bonekrushing Smash that grants the wearer's next battle skill DMG +30%. Bonekrushing Smash can stack 2 time(s).",
+    "image": "https://img.game8.co/4395086/994c29baca07b75506e13109db18e9b0.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575946",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576226"
+  },
+  "bonekrusha_heavy_armor_t1": {
+    "id": "bonekrusha_heavy_armor_t1",
+    "name": "Bonekrusha Heavy Armor T1",
+    "type": "Armor",
+    "rarity": "Gold",
+    "level": 70,
+    "stats": [
+      "Defense: 56",
+      "Strength: 58",
+      "Agility: 87",
+      "Combo Skill DMG Bonus: 20.70%"
+    ],
+    "gear_set": "Bonekrusha",
+    "set_id": "bonekrusha",
+    "set_effect_text": "Bonus Stat: Wearer's ATK +15% \nSet Effect: When the wearer casts a combo skill, gain 1 stack of Bonekrushing Smash that grants the wearer's next battle skill DMG +30%. Bonekrushing Smash can stack 2 time(s).",
+    "image": "https://img.game8.co/4395088/46878dcdff7f6b6d32257017f37e4b95.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575946",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576226"
+  },
+  "bonekrusha_heavy_armor_t2": {
+    "id": "bonekrusha_heavy_armor_t2",
+    "name": "Bonekrusha Heavy Armor T2",
+    "type": "Armor",
+    "rarity": "Gold",
+    "level": 70,
+    "stats": [
+      "Defense: 56",
+      "Strength: 58",
+      "Agility: 87",
+      "Cryo and Electric DMG Dealt Bonus: 11.50%"
+    ],
+    "gear_set": "Bonekrusha",
+    "set_id": "bonekrusha",
+    "set_effect_text": "Bonus Stat: Wearer's ATK +15% \nSet Effect: When the wearer casts a combo skill, gain 1 stack of Bonekrushing Smash that grants the wearer's next battle skill DMG +30%. Bonekrushing Smash can stack 2 time(s).",
+    "image": "https://img.game8.co/4437724/bb7a8dc09c4891cfe857a979b540a0a2.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575946",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576226"
+  },
+  "bonekrusha_poncho": {
+    "id": "bonekrusha_poncho",
+    "name": "Bonekrusha Poncho",
+    "type": "Armor",
+    "rarity": "Gold",
+    "level": 70,
+    "stats": [
+      "Defense: 56",
+      "Strength: 58",
+      "Will: 87",
+      "Combo Skill DMG Bonus: 20.70%"
+    ],
+    "gear_set": "Bonekrusha",
+    "set_id": "bonekrusha",
+    "set_effect_text": "Bonus Stat: Wearer's ATK +15% \nSet Effect: When the wearer casts a combo skill, gain 1 stack of Bonekrushing Smash that grants the wearer's next battle skill DMG +30%. Bonekrushing Smash can stack 2 time(s).",
+    "image": "https://img.game8.co/4395087/706910cfe4434f29b191957477b38c3d.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575946",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576226"
+  },
+  "bonekrusha_poncho_t1": {
+    "id": "bonekrusha_poncho_t1",
+    "name": "Bonekrusha Poncho T1",
+    "type": "Armor",
+    "rarity": "Gold",
+    "level": 70,
+    "stats": [
+      "Defense: 56",
+      "Agility: 58",
+      "Will: 87",
+      "Ultimate Gain Efficiency: 12.3%"
+    ],
+    "gear_set": "Bonekrusha",
+    "set_id": "bonekrusha",
+    "set_effect_text": "Bonus Stat: Wearer's ATK +15% \nSet Effect: When the wearer casts a combo skill, gain 1 stack of Bonekrushing Smash that grants the wearer's next battle skill DMG +30%. Bonekrushing Smash can stack 2 time(s).",
+    "image": "https://img.game8.co/4395083/de860369d97638548d485b41033b9baf.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575946",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576226"
+  },
+  "eternal_xiranite_armor": {
+    "id": "eternal_xiranite_armor",
+    "name": "Eternal Xiranite Armor",
+    "type": "Armor",
+    "rarity": "Gold",
+    "level": 70,
+    "stats": [
+      "Defense: 56",
+      "Intellect: 58",
+      "Will: 87",
+      "Arts Intensity: 20"
+    ],
+    "gear_set": "Eternal Xiranite",
+    "set_id": "eternal_xiranite",
+    "set_effect_text": "Bonus Stat: Wearer's HP +1000 \nSet Effect: After the wearer applies Amp, Protected, Susceptibility, or Weakened, other teammates also gain DMG Dealt +16% for 15s. This effect cannot stack.",
+    "image": "https://img.game8.co/4394810/8f711f64ff96ab802a45554e87504a13.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575958",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576226"
+  },
+  "frontiers_armor": {
+    "id": "frontiers_armor",
+    "name": "Frontiers Armor",
+    "type": "Armor",
+    "rarity": "Gold",
+    "level": 70,
+    "stats": [
+      "Defense: 56",
+      "Strength: 87",
+      "Intellect: 58",
+      "Ultimate DMG Bonus: 25.9%"
+    ],
+    "gear_set": "Frontiers",
+    "set_id": "frontiers",
+    "set_effect_text": "Bonus Stat: Wearer's Combo Skill Cooldown Reduction +15%. \nSet Effect: After the wearer recovers SP with a skill, the team gains DMG +16% for 15s. This effect cannot stack.",
+    "image": "https://img.game8.co/4394947/21d88a11679241cfab03d8bae0f63fa1.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575948",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576226"
+  },
+  "frontiers_armor_t1": {
+    "id": "frontiers_armor_t1",
+    "name": "Frontiers Armor T1",
+    "type": "Armor",
+    "rarity": "Gold",
+    "level": 70,
+    "stats": [
+      "Defense: 56",
+      "Strength: 87",
+      "Agility: 58",
+      "Battle Skill DMG Bonus: 20.70%"
+    ],
+    "gear_set": "Frontiers",
+    "set_id": "frontiers",
+    "set_effect_text": "Bonus Stat: Wearer's Combo Skill Cooldown Reduction +15%. \nSet Effect: After the wearer recovers SP with a skill, the team gains DMG +16% for 15s. This effect cannot stack.",
+    "image": "https://img.game8.co/4394951/5591a507eb1b01ad474c1408efa6d0a3.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575948",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576226"
+  },
+  "frontiers_armor_t2": {
+    "id": "frontiers_armor_t2",
+    "name": "Frontiers Armor T2",
+    "type": "Armor",
+    "rarity": "Gold",
+    "level": 70,
+    "stats": [
+      "Defense: 56",
+      "Agility: 87",
+      "Intellect: 58",
+      "Battle Skill DMG Bonus: 20.70%"
+    ],
+    "gear_set": "Frontiers",
+    "set_id": "frontiers",
+    "set_effect_text": "Bonus Stat: Wearer's Combo Skill Cooldown Reduction +15%. \nSet Effect: After the wearer recovers SP with a skill, the team gains DMG +16% for 15s. This effect cannot stack.",
+    "image": "https://img.game8.co/4394952/b8a12eef953d7e7b92ed67b9d88a4c36.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575948",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576226"
+  },
+  "frontiers_armor_t3": {
+    "id": "frontiers_armor_t3",
+    "name": "Frontiers Armor T3",
+    "type": "Armor",
+    "rarity": "Gold",
+    "level": 70,
+    "stats": [
+      "Defense: 56",
+      "Agility: 87",
+      "Intellect: 58",
+      "Secondary Attribute: 10.4%"
+    ],
+    "gear_set": "Frontiers",
+    "set_id": "frontiers",
+    "set_effect_text": "Bonus Stat: Wearer's Combo Skill Cooldown Reduction +15%. \nSet Effect: After the wearer recovers SP with a skill, the team gains DMG +16% for 15s. This effect cannot stack.",
+    "image": "https://img.game8.co/4394949/e32abe6904aed8829db08c2fb236191e.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575948",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576226"
+  },
+  "frontiers_protection_suit": {
+    "id": "frontiers_protection_suit",
+    "name": "Frontiers Protection Suit",
+    "type": "Armor",
+    "rarity": "Gold",
+    "level": 70,
+    "stats": [
+      "Defense: 56",
+      "Agility: 58",
+      "Intellect: 87",
+      "Ultimate Gain Efficiency: 12.30%"
+    ],
+    "gear_set": "Frontiers",
+    "set_id": "frontiers",
+    "set_effect_text": "Bonus Stat: Wearer's Combo Skill Cooldown Reduction +15%. \nSet Effect: After the wearer recovers SP with a skill, the team gains DMG +16% for 15s. This effect cannot stack.",
+    "image": "https://img.game8.co/4438145/f12fc8d43c170bf5b3aef36a81ced6eb.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575948",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576226"
+  },
+  "hot_work_exo_rig": {
+    "id": "hot_work_exo_rig",
+    "name": "Hot Work Exo-Rig",
+    "type": "Armor",
+    "rarity": "Gold",
+    "level": 70,
+    "stats": [
+      "Defense: 56",
+      "Intellect: 87",
+      "Will: 58",
+      "Heat and Nature DMG Dealt Bonus: 11.50%"
+    ],
+    "gear_set": "Hot Work",
+    "set_id": "hot_work",
+    "set_effect_text": "Bonus Stat: Wearer's Arts Intensity +30 \nSet Effect: After the wearer applies Combustion, Heat DMG +50% for 10s. After the wearer applies Corrosion, Nature DMG +50% for 10s. The aforementioned effects cannot stack.",
+    "image": "https://img.game8.co/4442640/f0daa7bf65a060aa0ab7778789c0f977.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575949",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576226"
+  },
+  "hot_work_exoskeleton": {
+    "id": "hot_work_exoskeleton",
+    "name": "Hot Work Exoskeleton",
+    "type": "Armor",
+    "rarity": "Gold",
+    "level": 70,
+    "stats": [
+      "Defense: 56",
+      "Strength: 87",
+      "Agility: 58",
+      "Heat and Nature DMG Dealt Bonus: 11.5%"
+    ],
+    "gear_set": "Hot Work",
+    "set_id": "hot_work",
+    "set_effect_text": "Bonus Stat: Wearer's Arts Intensity +30 \nSet Effect: After the wearer applies Combustion, Heat DMG +50% for 10s. After the wearer applies Corrosion, Nature DMG +50% for 10s. The aforementioned effects cannot stack.",
+    "image": "https://img.game8.co/4394887/bb58ea46c70bba309eddd81fcf3eb028.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575949",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576226"
+  },
+  "lynx_cuirass": {
+    "id": "lynx_cuirass",
+    "name": "LYNX Cuirass",
+    "type": "Armor",
+    "rarity": "Gold",
+    "level": 70,
+    "stats": [
+      "Defense: 56",
+      "Intellect: 58",
+      "Will: 87",
+      "Treatment Bonus: 10.4%"
+    ],
+    "gear_set": "LYNX",
+    "set_id": "lynx",
+    "set_effect_text": "Bonus Stat: Wearer's HP Treatment Efficiency +20% \nSet Effect: After the wearer gives HP treatment to an allied target, that target also gains 15% DMG Reduction against all types of DMG for 10s. If the said treatment exceeds the target's Max HP, the target gains 30% DMG Reduction against all types of DMG. The aforementioned effects cannot stack.",
+    "image": "https://img.game8.co/4491544/bb9be8ec4a69ec4fbfe955290d3c3dfb.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575944",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576226"
+  },
+  "lynx_heavy_armor": {
+    "id": "lynx_heavy_armor",
+    "name": "LYNX Heavy Armor",
+    "type": "Armor",
+    "rarity": "Gold",
+    "level": 70,
+    "stats": [
+      "Defense: 56",
+      "Strength: 87",
+      "Will: 58",
+      "Treatment Bonus: 10.4%"
+    ],
+    "gear_set": "LYNX",
+    "set_id": "lynx",
+    "set_effect_text": "Bonus Stat: Wearer's HP Treatment Efficiency +20% \nSet Effect: After the wearer gives HP treatment to an allied target, that target also gains 15% DMG Reduction against all types of DMG for 10s. If the said treatment exceeds the target's Max HP, the target gains 30% DMG Reduction against all types of DMG. The aforementioned effects cannot stack.",
+    "image": "https://img.game8.co/4491547/7afee8894388c41421528515715f3bc8.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575944",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576226"
+  },
+  "mi_security_armor": {
+    "id": "mi_security_armor",
+    "name": "MI Security Armor",
+    "type": "Armor",
+    "rarity": "Gold",
+    "level": 70,
+    "stats": [
+      "Defense: 56",
+      "Strength: 58",
+      "Agility: 87",
+      "Arts Intensity: 20"
+    ],
+    "gear_set": "MI Security",
+    "set_id": "mi_security",
+    "set_effect_text": "Bonus Stat: Wearer's Critical Rate +5% \nSet Effect: After the wearer scores a critical hit, gain ATK +5% for 5s. This effect can reach 5 stacks. At max stacks, grant an additional Critical Rate +5%. This effect cannot stack.",
+    "image": "https://img.game8.co/4394867/4dfd8188eed9ff1fb04c28b61c6d2d66.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575950",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576226"
+  },
+  "mi_security_armor_t1": {
+    "id": "mi_security_armor_t1",
+    "name": "MI Security Armor T1",
+    "type": "Armor",
+    "rarity": "Gold",
+    "level": 70,
+    "stats": [
+      "Defense: 56",
+      "Agility: 87",
+      "Intellect: 58",
+      "Ultimate Gain Efficiency: 12.30%"
+    ],
+    "gear_set": "MI Security",
+    "set_id": "mi_security",
+    "set_effect_text": "Bonus Stat: Wearer's Critical Rate +5% \nSet Effect: After the wearer scores a critical hit, gain ATK +5% for 5s. This effect can reach 5 stacks. At max stacks, grant an additional Critical Rate +5%. This effect cannot stack.",
+    "image": "https://img.game8.co/4438147/479c9376597d4ea4d451d3bd75d665c5.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575950",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576226"
+  },
+  "mi_security_overalls": {
+    "id": "mi_security_overalls",
+    "name": "MI Security Overalls",
+    "type": "Armor",
+    "rarity": "Gold",
+    "level": 70,
+    "stats": [
+      "Defense: 56",
+      "Agility: 58",
+      "Intellect: 87",
+      "Basic Attack DMG Bonus: 13.8%"
+    ],
+    "gear_set": "MI Security",
+    "set_id": "mi_security",
+    "set_effect_text": "Bonus Stat: Wearer's Critical Rate +5% \nSet Effect: After the wearer scores a critical hit, gain ATK +5% for 5s. This effect can reach 5 stacks. At max stacks, grant an additional Critical Rate +5%. This effect cannot stack.",
+    "image": "https://img.game8.co/4394868/899952f4a464ae638fabdd4c03c8fe1a.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575950",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576226"
+  },
+  "mi_security_overalls_t1": {
+    "id": "mi_security_overalls_t1",
+    "name": "MI Security Overalls T1",
+    "type": "Armor",
+    "rarity": "Gold",
+    "level": 70,
+    "stats": [
+      "Defense: 56",
+      "Intellect: 87",
+      "Will: 58",
+      "Critical Rate: 5.2%"
+    ],
+    "gear_set": "MI Security",
+    "set_id": "mi_security",
+    "set_effect_text": "Bonus Stat: Wearer's Critical Rate +5% \nSet Effect: After the wearer scores a critical hit, gain ATK +5% for 5s. This effect can reach 5 stacks. At max stacks, grant an additional Critical Rate +5%. This effect cannot stack.",
+    "image": "https://img.game8.co/4394868/899952f4a464ae638fabdd4c03c8fe1a.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575950",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576226"
+  },
+  "mi_security_overalls_t2": {
+    "id": "mi_security_overalls_t2",
+    "name": "MI Security Overalls T2",
+    "type": "Armor",
+    "rarity": "Gold",
+    "level": 70,
+    "stats": [
+      "Defense: 56",
+      "Agility: 58",
+      "Will: 87",
+      "Battle Skill DMG Bonus: 20.7%"
+    ],
+    "gear_set": "MI Security",
+    "set_id": "mi_security",
+    "set_effect_text": "Bonus Stat: Wearer's Critical Rate +5% \nSet Effect: After the wearer scores a critical hit, gain ATK +5% for 5s. This effect can reach 5 stacks. At max stacks, grant an additional Critical Rate +5%. This effect cannot stack.",
+    "image": "https://img.game8.co/4394868/899952f4a464ae638fabdd4c03c8fe1a.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575950",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576226"
+  },
+  "pulser_labs_disruptor_suit": {
+    "id": "pulser_labs_disruptor_suit",
+    "name": "Pulser Labs Disruptor Suit",
+    "type": "Armor",
+    "rarity": "Gold",
+    "level": 70,
+    "stats": [
+      "Defense: 56",
+      "Intellect: 87",
+      "Will: 58",
+      "Arts Intensity: 20"
+    ],
+    "gear_set": "Pulser Labs",
+    "set_id": "pulser_labs",
+    "set_effect_text": "Bonus Stat: Wearer's Arts Intensity +30 \nSet Effect: After the wearer applies Electrification, Electric DMG +50% for 10s. After the wearer applies Solidification, Cryo DMG +50% for 10s. The aforementioned effects cannot stack.",
+    "image": "https://img.game8.co/4394990/7557de62678e3cf526260dfea5c40c28.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575947",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576226"
+  },
+  "qingbo_heavy_armor": {
+    "id": "qingbo_heavy_armor",
+    "name": "Qingbo Heavy Armor",
+    "type": "Armor",
+    "rarity": "Gold",
+    "level": 70,
+    "stats": [
+      "Defense: 56",
+      "Strength: 58",
+      "Agility: 87",
+      "Ultimate Gain Efficiency: 12.30%"
+    ],
+    "gear_set": "Qingbo",
+    "set_id": "qingbo",
+    "set_effect_text": "Bonus Stat: Wearer's Combo Skill Cooldown Reduction +15%. \nSet Effect: When the wearer casts a combo skill, the wearer gains Skill DMG Dealt +20% (for every skill) for 15s. This effect can reach 2 stacks. Duration of each stack is counted separately.",
+    "image": "https://img.game8.co/4471169/c83ee4bf10aa73c8b0bb2ba1822df310.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/594199",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576226"
+  },
+  "qingbo_light_armor": {
+    "id": "qingbo_light_armor",
+    "name": "Qingbo Light Armor",
+    "type": "Armor",
+    "rarity": "Gold",
+    "level": 70,
+    "stats": [
+      "Defense: 56",
+      "Intellect: 87",
+      "Will: 58",
+      "Arts Intensity: 20"
+    ],
+    "gear_set": "Qingbo",
+    "set_id": "qingbo",
+    "set_effect_text": "Bonus Stat: Wearer's Combo Skill Cooldown Reduction +15%. \nSet Effect: When the wearer casts a combo skill, the wearer gains Skill DMG Dealt +20% (for every skill) for 15s. This effect can reach 2 stacks. Duration of each stack is counted separately.",
+    "image": "https://img.game8.co/4471126/8da8c70a834ea6d513b1ba6f7eacbeac.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/594199",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576226"
+  },
+  "redeemer_armor": {
+    "id": "redeemer_armor",
+    "name": "Redeemer Armor",
+    "type": "Armor",
+    "rarity": "Gold",
+    "level": 70,
+    "stats": [
+      "Defense: 56",
+      "Intellect: 115",
+      "Ultimate Gain Efficiency: 12.90%"
+    ],
+    "gear_set": "Redeemer Gear Pack",
+    "set_id": "",
+    "set_effect_text": "No 3-pc Set Effect",
+    "image": "https://img.game8.co/4442659/0dc8946cacc6503f2cb18e2685662512.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/587154",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576226"
+  },
+  "redeemer_plates": {
+    "id": "redeemer_plates",
+    "name": "Redeemer Plates",
+    "type": "Armor",
+    "rarity": "Gold",
+    "level": 70,
+    "stats": [
+      "Defense: 56",
+      "Agility: 115",
+      "Basic Attack DMG Bonus: 14.40%"
+    ],
+    "gear_set": "Redeemer Gear Pack",
+    "set_id": "",
+    "set_effect_text": "No 3-pc Set Effect",
+    "image": "https://img.game8.co/4442651/142d6f363f375a59afeb68cf5b849fb3.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/587153",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576226"
+  },
+  "swordmancer_heavy_armor": {
+    "id": "swordmancer_heavy_armor",
+    "name": "Swordmancer Heavy Armor",
+    "type": "Armor",
+    "rarity": "Gold",
+    "level": 70,
+    "stats": [
+      "Defense: 56",
+      "Strength: 58",
+      "Agility: 87",
+      "Arts Intensity: 20"
+    ],
+    "gear_set": "Swordmancer",
+    "set_id": "swordmancer",
+    "set_effect_text": "Bonus Stat: Wearer's Stagger Efficiency Bonus +20% \nSet Effect: After the wearer applies a Physical Status, the wearer also performs 1 hit that deals 250% ATK of Physical DMG and [10 Stagger]. Effect trigger cooldown: 15s.",
+    "image": "https://img.game8.co/4394521/8ac3162c89e8b24d8c11e1306128d42c.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575943",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576226"
+  },
+  "swordmancer_heavy_armor_t1": {
+    "id": "swordmancer_heavy_armor_t1",
+    "name": "Swordmancer Heavy Armor T1",
+    "type": "Armor",
+    "rarity": "Gold",
+    "level": 70,
+    "stats": [
+      "Defense: 56",
+      "Strength: 58",
+      "Agility: 87",
+      "Physical DMG Bonus: 11.50%"
+    ],
+    "gear_set": "Swordmancer",
+    "set_id": "swordmancer",
+    "set_effect_text": "Bonus Stat: Wearer's Stagger Efficiency Bonus +20% \nSet Effect: After the wearer applies a Physical Status, the wearer also performs 1 hit that deals 250% ATK of Physical DMG and [10 Stagger]. Effect trigger cooldown: 15s.",
+    "image": "https://img.game8.co/4471208/d8aa96abe6942fbf6f1def976406d0de.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575943",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576226"
+  },
+  "swordmancer_light_armor": {
+    "id": "swordmancer_light_armor",
+    "name": "Swordmancer Light Armor",
+    "type": "Armor",
+    "rarity": "Gold",
+    "level": 70,
+    "stats": [
+      "Defense: 56",
+      "Strength: 87",
+      "Will: 58",
+      "Ultimate Gain Efficiency: 12.30%"
+    ],
+    "gear_set": "Swordmancer",
+    "set_id": "swordmancer",
+    "set_effect_text": "Bonus Stat: Wearer's Stagger Efficiency Bonus +20% \nSet Effect: After the wearer applies a Physical Status, the wearer also performs 1 hit that deals 250% ATK of Physical DMG and [10 Stagger]. Effect trigger cooldown: 15s.",
+    "image": "https://img.game8.co/4442649/bb7c5e2b1a634f662be6381abcf56fdd.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575943",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576226"
+  },
+  "tide_fall_light_armor": {
+    "id": "tide_fall_light_armor",
+    "name": "Tide Fall Light Armor",
+    "type": "Armor",
+    "rarity": "Gold",
+    "level": 70,
+    "stats": [
+      "Defense: 56",
+      "Strength: 58",
+      "Intellect: 87",
+      "Ultimate Gain Efficiency: 12.3%"
+    ],
+    "gear_set": "Tide Surge",
+    "set_id": "tide_surge",
+    "set_effect_text": "Bonus Stat: Wearer's Skill DMG Dealt +20% \nSet Effect: After the wearer applies 2 or more stacks of Arts Infliction on the enemy, the wearer gains Arts DMG Dealt +35% for 15s. This effect cannot stack.",
+    "image": "https://img.game8.co/4394827/70e0481ca1c613963aa5faf750611b4a.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575957",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576226"
+  },
+  "type_50_yinglung_heavy_armor": {
+    "id": "type_50_yinglung_heavy_armor",
+    "name": "Type 50 Yinglung Heavy Armor",
+    "type": "Armor",
+    "rarity": "Gold",
+    "level": 70,
+    "stats": [
+      "Defense: 56",
+      "Strength: 87",
+      "Will: 58",
+      "Physical DMG Bonus: 11.5%"
+    ],
+    "gear_set": "Type 50 Yinglung",
+    "set_id": "type_50_yinglung",
+    "set_effect_text": "Bonus Stat: Wearer's ATK +15% \nSet Effect: When any operator in the team casts a battle skill, the wearer gains 1 stack of Yinglung's Edge that gives DMG +20% to the wearer's next combo skill. Yinglung's Edge can stack 3 time(s).",
+    "image": "https://img.game8.co/4394857/84f1f91125e9282a4a30c31b51e74aef.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575951",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576226"
+  },
+  "type_50_yinglung_heavy_armor_t1": {
+    "id": "type_50_yinglung_heavy_armor_t1",
+    "name": "Type 50 Yinglung Heavy Armor T1",
+    "type": "Armor",
+    "rarity": "Gold",
+    "level": 70,
+    "stats": [
+      "Defense: 56",
+      "Strength: 58",
+      "Agility: 87",
+      "Ultimate Gain Efficiency: 12.30%"
+    ],
+    "gear_set": "Type 50 Yinglung",
+    "set_id": "type_50_yinglung",
+    "set_effect_text": "Bonus Stat: Wearer's ATK +15% \nSet Effect: When any operator in the team casts a battle skill, the wearer gains 1 stack of Yinglung's Edge that gives DMG +20% to the wearer's next combo skill. Yinglung's Edge can stack 3 time(s).",
+    "image": "https://img.game8.co/4438228/d44d53d79f8a8622cd81031cd3d2b772.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575951",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576226"
+  },
+  "type_50_yinglung_heavy_armor_t2": {
+    "id": "type_50_yinglung_heavy_armor_t2",
+    "name": "Type 50 Yinglung Heavy Armor T2",
+    "type": "Armor",
+    "rarity": "Gold",
+    "level": 70,
+    "stats": [
+      "Defense: 56",
+      "Agility: 87",
+      "Intellect: 58",
+      "Combo Skill DMG Bonus: 20.70%"
+    ],
+    "gear_set": "Type 50 Yinglung",
+    "set_id": "type_50_yinglung",
+    "set_effect_text": "Bonus Stat: Wearer's ATK +15% \nSet Effect: When any operator in the team casts a battle skill, the wearer gains 1 stack of Yinglung's Edge that gives DMG +20% to the wearer's next combo skill. Yinglung's Edge can stack 3 time(s).",
+    "image": "https://img.game8.co/4438229/5b11a8003f065b6e61db7bb1a5328617.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575951",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576226"
+  },
+  "type_50_yinglung_light_armor": {
+    "id": "type_50_yinglung_light_armor",
+    "name": "Type 50 Yinglung Light Armor",
+    "type": "Armor",
+    "rarity": "Gold",
+    "level": 70,
+    "stats": [
+      "Defense: 56",
+      "Strength: 58",
+      "Will: 87",
+      "All Skill DMG Dealt Bonus: 13.8%"
+    ],
+    "gear_set": "Type 50 Yinglung",
+    "set_id": "type_50_yinglung",
+    "set_effect_text": "Bonus Stat: Wearer's ATK +15% \nSet Effect: When any operator in the team casts a battle skill, the wearer gains 1 stack of Yinglung's Edge that gives DMG +20% to the wearer's next combo skill. Yinglung's Edge can stack 3 time(s).",
+    "image": "https://img.game8.co/4394855/53289a02ab6664e9df5070ec2812b477.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575951",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576226"
+  },
+  "xiranflow_light_armor": {
+    "id": "xiranflow_light_armor",
+    "name": "Xiranflow Light Armor",
+    "type": "Armor",
+    "rarity": "Gold",
+    "level": 70,
+    "stats": [
+      "Defense: 56",
+      "Intellect: 58",
+      "Will: 87",
+      "Cryo and Electric DMG Dealt Bonus: 11.50%"
+    ],
+    "gear_set": "Xiranflow",
+    "set_id": "xiranflow",
+    "set_effect_text": "Bonus Stat: Wearer's ATK +10% \nSet Effect: Whenever the wearer consumes Electrification or Corrosion, the wearer gains a number of buff stacks equal to the Status Level of the Arts Reaction consumed, with each buff stack giving Electric DMG Dealt and Nature DMG Dealt +15% for 25s. The number of buff stacks maxes out at 3 stacks. Duration of each stack is counted separately.",
+    "image": "https://img.game8.co/4471088/6372b3b8a4943d2fe2b2046276610a80.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/594210",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576226"
+  },
+  "basic_gauntlets": {
+    "id": "basic_gauntlets",
+    "name": "Basic Gauntlets",
+    "type": "Gloves",
+    "rarity": "White",
+    "level": 10,
+    "stats": [
+      "Defense: 6",
+      "Strength: 11",
+      "Agility: 7",
+      "HP: 77"
+    ],
+    "gear_set": "Basic Gear Pack",
+    "set_id": "",
+    "set_effect_text": "No 3-pc Set Effect",
+    "image": "https://img.game8.co/4393340/eb4e16595d7dd5d3c43e9fcc3b98236f.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575916",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576227"
+  },
+  "basic_gloves": {
+    "id": "basic_gloves",
+    "name": "Basic Gloves",
+    "type": "Gloves",
+    "rarity": "White",
+    "level": 10,
+    "stats": [
+      "Defense: 6",
+      "Intellect: 11",
+      "Will: 7",
+      "HP: 77"
+    ],
+    "gear_set": "Basic Gear Pack",
+    "set_id": "",
+    "set_effect_text": "No 3-pc Set Effect",
+    "image": "https://img.game8.co/4393324/cecd09fde065b3153759d4703480e56f.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575915",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576227"
+  },
+  "miner_gauntlets": {
+    "id": "miner_gauntlets",
+    "name": "Miner Gauntlets",
+    "type": "Gloves",
+    "rarity": "Green",
+    "level": 20,
+    "stats": [
+      "Defense: 12",
+      "Strength: 20",
+      "Agility: 13",
+      "HP: 11%"
+    ],
+    "gear_set": "Miner \u03b1 Gear Pack",
+    "set_id": "",
+    "set_effect_text": "No 3-pc Set Effect",
+    "image": "https://img.game8.co/4393352/ecf3ca1ce1c2e298414e8abb0cc5245c.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575922",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576227"
+  },
+  "miner_gloves": {
+    "id": "miner_gloves",
+    "name": "Miner Gloves",
+    "type": "Gloves",
+    "rarity": "Green",
+    "level": 20,
+    "stats": [
+      "Defense: 12",
+      "Intellect: 20",
+      "Will: 13",
+      "HP: 11%"
+    ],
+    "gear_set": "Miner \u03b1 Gear Pack",
+    "set_id": "",
+    "set_effect_text": "No 3-pc Set Effect",
+    "image": "https://img.game8.co/4393341/b52810f1623a4a8c568c2514a44c3317.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575923",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576227"
+  },
+  "aic_gauntlets": {
+    "id": "aic_gauntlets",
+    "name": "AIC Gauntlets",
+    "type": "Gloves",
+    "rarity": "Green",
+    "level": 28,
+    "stats": [
+      "Defense: 16",
+      "Strength: 23",
+      "Will: 23",
+      "Final DMG Reduction: 6.30%"
+    ],
+    "gear_set": "AIC Heavy",
+    "set_id": "aic_heavy",
+    "set_effect_text": "Bonus Stat: Wearer's HP +500 \nSet Effect: When the wearer defeats an enemy, restore 100 HP. Effect trigger cooldown: 5s.",
+    "image": "https://img.game8.co/4393327/466126ed36c45cbfbe1806a8f03eb5db.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575940",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576227"
+  },
+  "aic_tactical_gloves": {
+    "id": "aic_tactical_gloves",
+    "name": "AIC Tactical Gloves",
+    "type": "Gloves",
+    "rarity": "Green",
+    "level": 28,
+    "stats": [
+      "Defense: 16",
+      "Agility: 23",
+      "Intellect: 23",
+      "Combo Skill DMG Bonus: 13.50%"
+    ],
+    "gear_set": "AIC Light",
+    "set_id": "aic_light",
+    "set_effect_text": "Bonus Stat: Wearer's HP +500 \nSet Effect: When the wearer defeats an enemy, ATK +20 for 5s.",
+    "image": "https://img.game8.co/4393332/2ec78911a00823afa439eafa85ea686b.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575941",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576227"
+  },
+  "miner_fists": {
+    "id": "miner_fists",
+    "name": "Miner Fists",
+    "type": "Gloves",
+    "rarity": "Green",
+    "level": 28,
+    "stats": [
+      "Defense: 16",
+      "Agility: 18",
+      "Will: 28",
+      "HP: 15%"
+    ],
+    "gear_set": "Miner \u03b1 Gear Pack",
+    "set_id": "",
+    "set_effect_text": "No 3-pc Set Effect",
+    "image": "https://img.game8.co/4393343/13d2b93ba8e27bd622c2f269d8f01466.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575924",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576227"
+  },
+  "miner_wrists": {
+    "id": "miner_wrists",
+    "name": "Miner Wrists",
+    "type": "Gloves",
+    "rarity": "Green",
+    "level": 28,
+    "stats": [
+      "Defense: 16",
+      "Strength: 18",
+      "Agility: 28",
+      "HP: 15%"
+    ],
+    "gear_set": "Miner \u03b1 Gear Pack",
+    "set_id": "",
+    "set_effect_text": "No 3-pc Set Effect",
+    "image": "https://img.game8.co/4393348/352a05df663633f87cf266574e8f5261.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575925",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576227"
+  },
+  "armored_msgr_gloves": {
+    "id": "armored_msgr_gloves",
+    "name": "Armored MSGR Gloves",
+    "type": "Gloves",
+    "rarity": "Blue",
+    "level": 36,
+    "stats": [
+      "Defense: 21",
+      "Strength: 33",
+      "Will: 22",
+      "Final DMG Reduction: 8.0%"
+    ],
+    "gear_set": "Armored MSGR",
+    "set_id": "armored_msgr",
+    "set_effect_text": "Bonus Stat: Wearer's Strength +50 \nSet Effect: When the wearer's HP is below 50%, the wearer gains 30% DMG Reduction against all types of DMG.",
+    "image": "https://img.game8.co/4393346/5032bf9d958d21cb36d64d3f3167fce3.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575956",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576227"
+  },
+  "miner_gauntlets_t1": {
+    "id": "miner_gauntlets_t1",
+    "name": "Miner Gauntlets T1",
+    "type": "Gloves",
+    "rarity": "Blue",
+    "level": 36,
+    "stats": [
+      "Defense: 21",
+      "Strength: 36",
+      "Will: 24",
+      "Attack: 9.5%"
+    ],
+    "gear_set": "Miner \u03b2 Gear Pack",
+    "set_id": "",
+    "set_effect_text": "No 3-pc Set Effect",
+    "image": "https://img.game8.co/4393342/799649a5c6b8f6b53fb7f279a55ef06e.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575929",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576227"
+  },
+  "miner_gloves_t1": {
+    "id": "miner_gloves_t1",
+    "name": "Miner Gloves T1",
+    "type": "Gloves",
+    "rarity": "Blue",
+    "level": 36,
+    "stats": [
+      "Defense: 21",
+      "Agility: 24",
+      "Intellect: 36",
+      "HP: 19.0%"
+    ],
+    "gear_set": "Miner \u03b2 Gear Pack",
+    "set_id": "",
+    "set_effect_text": "No 3-pc Set Effect",
+    "image": "https://img.game8.co/4393337/04a2b58d793473d635d8e9e2c2fd6bdc.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575927",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576227"
+  },
+  "mordvolt_insulation_gloves": {
+    "id": "mordvolt_insulation_gloves",
+    "name": "Mordvolt Insulation Gloves",
+    "type": "Gloves",
+    "rarity": "Blue",
+    "level": 36,
+    "stats": [
+      "Defense: 21",
+      "Intellect: 33",
+      "Will: 22",
+      "Arts DMG Dealt Bonus: 9.2%"
+    ],
+    "gear_set": "Mordvolt Insulation",
+    "set_id": "mordvolt_insulation",
+    "set_effect_text": "Bonus Stat: Wearer's Intellect +50 \nSet Effect: When the wearer's HP is above 80%, Arts DMG +20%.",
+    "image": "https://img.game8.co/4393353/e0a70dec143905366a160fcb3c2ad972.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575954",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576227"
+  },
+  "mordvolt_resistant_gloves": {
+    "id": "mordvolt_resistant_gloves",
+    "name": "Mordvolt Resistant Gloves",
+    "type": "Gloves",
+    "rarity": "Blue",
+    "level": 36,
+    "stats": [
+      "Defense: 21",
+      "Intellect: 22",
+      "Will: 33",
+      "Treatment Bonus: 8.8%"
+    ],
+    "gear_set": "Mordvolt Resistant",
+    "set_id": "mordvolt_resistant",
+    "set_effect_text": "Bonus Stat: Wearer's Will +50 \nSet Effect: When the wearer's HP is below 50%, Treatment Effect +30%.",
+    "image": "https://img.game8.co/4393309/93b0933efa788b9dd99347c86d20da44.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575953",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576227"
+  },
+  "roving_msgr_fists": {
+    "id": "roving_msgr_fists",
+    "name": "Roving MSGR Fists",
+    "type": "Gloves",
+    "rarity": "Blue",
+    "level": 36,
+    "stats": [
+      "Defense: 21",
+      "Strength: 22",
+      "Agility: 33",
+      "Physical DMG Bonus: 9.7%"
+    ],
+    "gear_set": "Roving MSGR",
+    "set_id": "roving_msgr",
+    "set_effect_text": "Bonus Stat: Wearer's Agility +50 \nSet Effect: When the wearer's HP is above 80%, Physical DMG +20%",
+    "image": "https://img.game8.co/4393330/8a89b9971d03a409e35bff6563bf7f77.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575955",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576227"
+  },
+  "aburrey_gauntlets": {
+    "id": "aburrey_gauntlets",
+    "name": "Aburrey Gauntlets",
+    "type": "Gloves",
+    "rarity": "Purple",
+    "level": 50,
+    "stats": [
+      "Defense: 30",
+      "Strength: 46",
+      "Will: 30",
+      "DMG Bonus vs. Staggered: 24.50%"
+    ],
+    "gear_set": "Aburrey's Legacy",
+    "set_id": "aburreys_legacy",
+    "set_effect_text": "Bonus Stat: Wearer's Skill DMG +24% \nSet Effect: When the wearer casts a battle skill, combo skill, or ultimate, gain ATK +5% for 15s. The buff from each of the three skill types is unique and does not stack with itself.",
+    "image": "https://img.game8.co/4393664/147bfcb7e78d73b34c9a72ca61e4a181.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575952",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576227"
+  },
+  "armored_msgr_gloves_t1": {
+    "id": "armored_msgr_gloves_t1",
+    "name": "Armored MSGR Gloves T1",
+    "type": "Gloves",
+    "rarity": "Purple",
+    "level": 50,
+    "stats": [
+      "Defense: 30",
+      "Strength: 46",
+      "Agility: 30",
+      "Attack: 12.30%"
+    ],
+    "gear_set": "Armored MSGR",
+    "set_id": "armored_msgr",
+    "set_effect_text": "Bonus Stat: Wearer's Strength +50 \nSet Effect: When the wearer's HP is below 50%, the wearer gains 30% DMG Reduction against all types of DMG.",
+    "image": "https://img.game8.co/4393627/7a802563bc0cc8011b411f82d81d0d59.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575956",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576227"
+  },
+  "armored_msgr_gloves_t2": {
+    "id": "armored_msgr_gloves_t2",
+    "name": "Armored MSGR Gloves T2",
+    "type": "Gloves",
+    "rarity": "Purple",
+    "level": 50,
+    "stats": [
+      "Defense: 30",
+      "Strength: 46",
+      "Agility: 30",
+      "Combo Skill DMG Bonus: 24.50%"
+    ],
+    "gear_set": "Armored MSGR",
+    "set_id": "armored_msgr",
+    "set_effect_text": "Bonus Stat: Wearer's Strength +50 \nSet Effect: When the wearer's HP is below 50%, the wearer gains 30% DMG Reduction against all types of DMG.",
+    "image": "https://img.game8.co/4393629/2f54b64086560a496f328111a3942a56.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575956",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576227"
+  },
+  "catastrophe_gloves": {
+    "id": "catastrophe_gloves",
+    "name": "Catastrophe Gloves",
+    "type": "Gloves",
+    "rarity": "Purple",
+    "level": 50,
+    "stats": [
+      "Defense: 30",
+      "Intellect: 30",
+      "Will: 46",
+      "Arts Intensity: 24"
+    ],
+    "gear_set": "Catastrophe",
+    "set_id": "catastrophe",
+    "set_effect_text": "Bonus Stat: Wearer's Ultimate Gain Efficiency +20%. \nSet Effect: At the start of battle, the wearer immediately recovers 50 SP.",
+    "image": "https://img.game8.co/4393657/bc150814316ec81328df73572bbd07b4.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575942",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576227"
+  },
+  "miner_fists_t1": {
+    "id": "miner_fists_t1",
+    "name": "Miner Fists T1",
+    "type": "Gloves",
+    "rarity": "Purple",
+    "level": 50,
+    "stats": [
+      "Defense: 30",
+      "Intellect: 32",
+      "Will: 49",
+      "Ultimate Gain Efficiency: 15.50%"
+    ],
+    "gear_set": "Miner \u03b3 Gear Pack",
+    "set_id": "",
+    "set_effect_text": "No 3-pc Set Effect",
+    "image": "https://img.game8.co/4393631/d5595c9bd85c11d65488c280dc64a099.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575928",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576227"
+  },
+  "miner_gloves_t2": {
+    "id": "miner_gloves_t2",
+    "name": "Miner Gloves T2",
+    "type": "Gloves",
+    "rarity": "Purple",
+    "level": 50,
+    "stats": [
+      "Defense: 30",
+      "Agility: 32",
+      "Intellect: 49",
+      "Attack: 13%"
+    ],
+    "gear_set": "Miner \u03b3 Gear Pack",
+    "set_id": "",
+    "set_effect_text": "No 3-pc Set Effect",
+    "image": "https://img.game8.co/4393630/8535ddf09335b92e51e0e4958729683f.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575926",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576227"
+  },
+  "mordvolt_insulation_gloves_t1": {
+    "id": "mordvolt_insulation_gloves_t1",
+    "name": "Mordvolt Insulation Gloves T1",
+    "type": "Gloves",
+    "rarity": "Purple",
+    "level": 50,
+    "stats": [
+      "Defense: 30",
+      "Strength: 30",
+      "Intellect: 46",
+      "Attack: 12.30%"
+    ],
+    "gear_set": "Mordvolt Insulation",
+    "set_id": "mordvolt_insulation",
+    "set_effect_text": "Bonus Stat: Wearer's Intellect +50 \nSet Effect: When the wearer's HP is above 80%, Arts DMG +20%.",
+    "image": "https://img.game8.co/4393640/5d14525aac1fd3d1a55bffea2bc0df68.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575954",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576227"
+  },
+  "mordvolt_resistant_gloves_t1": {
+    "id": "mordvolt_resistant_gloves_t1",
+    "name": "Mordvolt Resistant Gloves T1",
+    "type": "Gloves",
+    "rarity": "Purple",
+    "level": 50,
+    "stats": [
+      "Defense: 30",
+      "Agility: 30",
+      "Will: 46",
+      "Attack: 12.30%"
+    ],
+    "gear_set": "Mordvolt Resistant",
+    "set_id": "mordvolt_resistant",
+    "set_effect_text": "Bonus Stat: Wearer's Will +50 \nSet Effect: When the wearer's HP is below 50%, Treatment Effect +30%.",
+    "image": "https://img.game8.co/4393642/1b4eac4e04b9856501f2f861c7944181.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575953",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576227"
+  },
+  "roving_msgr_fists_t1": {
+    "id": "roving_msgr_fists_t1",
+    "name": "Roving MSGR Fists T1",
+    "type": "Gloves",
+    "rarity": "Purple",
+    "level": 50,
+    "stats": [
+      "Defense: 30",
+      "Strength: 30",
+      "Agility: 46",
+      "Attack: 12.30%"
+    ],
+    "gear_set": "Roving MSGR",
+    "set_id": "roving_msgr",
+    "set_effect_text": "Bonus Stat: Wearer's Agility +50 \nSet Effect: When the wearer's HP is above 80%, Physical DMG +20%",
+    "image": "https://img.game8.co/4393634/809c660d1895454e7aceca6c1662c62d.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575955",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576227"
+  },
+  "aethertech_gloves": {
+    "id": "aethertech_gloves",
+    "name": "Aethertech Gloves",
+    "type": "Gloves",
+    "rarity": "Gold",
+    "level": 70,
+    "stats": [
+      "Defense: 42",
+      "Strength: 43",
+      "Agility: 65",
+      "Arts Intensity: 34"
+    ],
+    "gear_set": "Aethertech",
+    "set_id": "aethertech",
+    "set_effect_text": "Bonus Stat: Wearer's ATK +8% \nSet Effect: After the wearer applies Vulnerability, the wearer gains Physical DMG +8% for 15s. This effect can reach 4 stacks. If the target already has 4 stack(s) of Vulnerability, the wearer gains an additional Physical DMG +16% for 10s. This effect cannot stack.",
+    "image": "https://img.game8.co/4395104/8a12a6656294c7a5bfa412df21e6af97.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575945",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576227"
+  },
+  "aethertech_light_gloves": {
+    "id": "aethertech_light_gloves",
+    "name": "Aethertech Light Gloves",
+    "type": "Gloves",
+    "rarity": "Gold",
+    "level": 70,
+    "stats": [
+      "Defense: 42",
+      "Agility: 43",
+      "Will: 65",
+      "All Skill DMG Dealt Bonus: 23.00%"
+    ],
+    "gear_set": "Aethertech",
+    "set_id": "aethertech",
+    "set_effect_text": "Bonus Stat: Wearer's ATK +8% \nSet Effect: After the wearer applies Vulnerability, the wearer gains Physical DMG +8% for 15s. This effect can reach 4 stacks. If the target already has 4 stack(s) of Vulnerability, the wearer gains an additional Physical DMG +16% for 10s. This effect cannot stack.",
+    "image": "https://img.game8.co/4442647/2e6ba4ec103b3468fd806457ae20e1e4.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575945",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576227"
+  },
+  "bonekrusha_gloves": {
+    "id": "bonekrusha_gloves",
+    "name": "Bonekrusha Gloves",
+    "type": "Gloves",
+    "rarity": "Gold",
+    "level": 70,
+    "stats": [
+      "Defense: 42",
+      "Agility: 43",
+      "Will: 65",
+      "Cryo and Electric DMG Dealt Bonus: 19.20%"
+    ],
+    "gear_set": "Bonekrusha",
+    "set_id": "bonekrusha",
+    "set_effect_text": "Bonus Stat: Wearer's ATK +15% \nSet Effect: When the wearer casts a combo skill, gain 1 stack of Bonekrushing Smash that grants the wearer's next battle skill DMG +30%. Bonekrushing Smash can stack 2 time(s).",
+    "image": "https://img.game8.co/4471185/22108564780d80d124026f5405ca5b2e.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575946",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576227"
+  },
+  "bonekrusha_wristband": {
+    "id": "bonekrusha_wristband",
+    "name": "Bonekrusha Wristband",
+    "type": "Gloves",
+    "rarity": "Gold",
+    "level": 70,
+    "stats": [
+      "Defense: 42",
+      "Strength: 65",
+      "Agility: 43",
+      "Heat and Nature DMG Dealt Bonus: 19.20%"
+    ],
+    "gear_set": "Bonekrusha",
+    "set_id": "bonekrusha",
+    "set_effect_text": "Bonus Stat: Wearer's ATK +15% \nSet Effect: When the wearer casts a combo skill, gain 1 stack of Bonekrushing Smash that grants the wearer's next battle skill DMG +30%. Bonekrushing Smash can stack 2 time(s).",
+    "image": "https://img.game8.co/4438142/f55d6c9626bcb15353ff3cb78d5b739e.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575946",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576227"
+  },
+  "bonekrusha_wristband_t1": {
+    "id": "bonekrusha_wristband_t1",
+    "name": "Bonekrusha Wristband T1",
+    "type": "Gloves",
+    "rarity": "Gold",
+    "level": 70,
+    "stats": [
+      "Defense: 42",
+      "Strength: 43",
+      "Agility: 65",
+      "Cryo and Electric DMG Dealt Bonus: 19.20%"
+    ],
+    "gear_set": "Bonekrusha",
+    "set_id": "bonekrusha",
+    "set_effect_text": "Bonus Stat: Wearer's ATK +15% \nSet Effect: When the wearer casts a combo skill, gain 1 stack of Bonekrushing Smash that grants the wearer's next battle skill DMG +30%. Bonekrushing Smash can stack 2 time(s).",
+    "image": "https://img.game8.co/4437722/7ca6b0d8aab1c4b76b4f1bf71e2a408c.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575946",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576227"
+  },
+  "eternal_xiranite_gloves": {
+    "id": "eternal_xiranite_gloves",
+    "name": "Eternal Xiranite Gloves",
+    "type": "Gloves",
+    "rarity": "Gold",
+    "level": 70,
+    "stats": [
+      "Defense: 42",
+      "Strength: 43",
+      "Intellect: 65",
+      "Ultimate Gain Efficiency: 20.5%"
+    ],
+    "gear_set": "Eternal Xiranite",
+    "set_id": "eternal_xiranite",
+    "set_effect_text": "Bonus Stat: Wearer's HP +1000 \nSet Effect: After the wearer applies Amp, Protected, Susceptibility, or Weakened, other teammates also gain DMG Dealt +16% for 15s. This effect cannot stack.",
+    "image": "https://img.game8.co/4394809/62f90b3bffff0fc19fd0407ca2b7b4f2.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575958",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576227"
+  },
+  "eternal_xiranite_gloves_t1": {
+    "id": "eternal_xiranite_gloves_t1",
+    "name": "Eternal Xiranite Gloves T1",
+    "type": "Gloves",
+    "rarity": "Gold",
+    "level": 70,
+    "stats": [
+      "Defense: 42",
+      "Intellect: 65",
+      "Will: 43",
+      "Ultimate Gain Efficiency: 20.5%"
+    ],
+    "gear_set": "Eternal Xiranite",
+    "set_id": "eternal_xiranite",
+    "set_effect_text": "Bonus Stat: Wearer's HP +1000 \nSet Effect: After the wearer applies Amp, Protected, Susceptibility, or Weakened, other teammates also gain DMG Dealt +16% for 15s. This effect cannot stack.",
+    "image": "https://img.game8.co/4394811/f89de8252f80b75137bb9d546f3d52f0.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575958",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576227"
+  },
+  "frontiers_blight_res_gloves": {
+    "id": "frontiers_blight_res_gloves",
+    "name": "Frontiers Blight RES Gloves",
+    "type": "Gloves",
+    "rarity": "Gold",
+    "level": 70,
+    "stats": [
+      "Defense: 42",
+      "Agility: 65",
+      "Intellect: 43",
+      "Battle Skill DMG Bonus: 34.5%"
+    ],
+    "gear_set": "Frontiers",
+    "set_id": "frontiers",
+    "set_effect_text": "Bonus Stat: Wearer's Combo Skill Cooldown Reduction +15%. \nSet Effect: After the wearer recovers SP with a skill, the team gains DMG +16% for 15s. This effect cannot stack.",
+    "image": "https://img.game8.co/4394948/fe78a098f0f15b4eb12b84a0836ddbaf.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575948",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576227"
+  },
+  "frontiers_fiber_gloves": {
+    "id": "frontiers_fiber_gloves",
+    "name": "Frontiers Fiber Gloves",
+    "type": "Gloves",
+    "rarity": "Gold",
+    "level": 70,
+    "stats": [
+      "Defense: 52",
+      "Strength: 43",
+      "Will: 65",
+      "All Skill DMG Dealt Bonus: 23.00%"
+    ],
+    "gear_set": "Frontiers",
+    "set_id": "frontiers",
+    "set_effect_text": "Bonus Stat: Wearer's Combo Skill Cooldown Reduction +15%. \nSet Effect: After the wearer recovers SP with a skill, the team gains DMG +16% for 15s. This effect cannot stack.",
+    "image": "https://img.game8.co/4438230/5ab3c4948155a6f1e4a92dea761d2a1e.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575948",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576227"
+  },
+  "frontiers_fiber_gloves_t1": {
+    "id": "frontiers_fiber_gloves_t1",
+    "name": "Frontiers Fiber Gloves T1",
+    "type": "Gloves",
+    "rarity": "Gold",
+    "level": 70,
+    "stats": [
+      "Defense: 42",
+      "Agility: 43",
+      "Intellect: 65",
+      "Ultimate Gain Efficiency: 20.50%"
+    ],
+    "gear_set": "Frontiers",
+    "set_id": "frontiers",
+    "set_effect_text": "Bonus Stat: Wearer's Combo Skill Cooldown Reduction +15%. \nSet Effect: After the wearer recovers SP with a skill, the team gains DMG +16% for 15s. This effect cannot stack.",
+    "image": "https://img.game8.co/4471134/68bcaca9235a9c02b7c96730dd7eb67e.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575948",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576227"
+  },
+  "hot_work_gauntlets": {
+    "id": "hot_work_gauntlets",
+    "name": "Hot Work Gauntlets",
+    "type": "Gloves",
+    "rarity": "Gold",
+    "level": 70,
+    "stats": [
+      "Defense: 42",
+      "Strength: 43",
+      "Intellect: 65",
+      "Heat and Nature DMG Dealt Bonus: 19.2%"
+    ],
+    "gear_set": "Hot Work",
+    "set_id": "hot_work",
+    "set_effect_text": "Bonus Stat: Wearer's Arts Intensity +30 \nSet Effect: After the wearer applies Combustion, Heat DMG +50% for 10s. After the wearer applies Corrosion, Nature DMG +50% for 10s. The aforementioned effects cannot stack.",
+    "image": "https://img.game8.co/4394886/0259655713f90dfcd01db510f2867ce3.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575949",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576227"
+  },
+  "hot_work_gauntlets_t1": {
+    "id": "hot_work_gauntlets_t1",
+    "name": "Hot Work Gauntlets T1",
+    "type": "Gloves",
+    "rarity": "Gold",
+    "level": 70,
+    "stats": [
+      "Defense: 42",
+      "Intellect: 43",
+      "Will: 65",
+      "Heat and Nature DMG Dealt Bonus: 19.2%"
+    ],
+    "gear_set": "Hot Work",
+    "set_id": "hot_work",
+    "set_effect_text": "Bonus Stat: Wearer's Arts Intensity +30 \nSet Effect: After the wearer applies Combustion, Heat DMG +50% for 10s. After the wearer applies Corrosion, Nature DMG +50% for 10s. The aforementioned effects cannot stack.",
+    "image": "https://img.game8.co/4394888/959346a5402ea53c839537b1c3ac8600.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575949",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576227"
+  },
+  "hot_work_gloves": {
+    "id": "hot_work_gloves",
+    "name": "Hot Work Gloves",
+    "type": "Gloves",
+    "rarity": "Gold",
+    "level": 70,
+    "stats": [
+      "Defense: 42",
+      "Strength: 65",
+      "Will: 43",
+      "Arts Intensity: 34"
+    ],
+    "gear_set": "Hot Work",
+    "set_id": "hot_work",
+    "set_effect_text": "Bonus Stat: Wearer's Arts Intensity +30 \nSet Effect: After the wearer applies Combustion, Heat DMG +50% for 10s. After the wearer applies Corrosion, Nature DMG +50% for 10s. The aforementioned effects cannot stack.",
+    "image": "https://img.game8.co/4442648/0d0c25024a4bf88e1ef797f2cff27ee4.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575949",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576227"
+  },
+  "lynx_gauntlets": {
+    "id": "lynx_gauntlets",
+    "name": "LYNX Gauntlets",
+    "type": "Gloves",
+    "rarity": "Gold",
+    "level": 70,
+    "stats": [
+      "Defense: 42",
+      "Strength: 43",
+      "Will: 65",
+      "Treatment Bonus: 17.30%"
+    ],
+    "gear_set": "LYNX",
+    "set_id": "lynx",
+    "set_effect_text": "Bonus Stat: Wearer's HP Treatment Efficiency +20% \nSet Effect: After the wearer gives HP treatment to an allied target, that target also gains 15% DMG Reduction against all types of DMG for 10s. If the said treatment exceeds the target's Max HP, the target gains 30% DMG Reduction against all types of DMG. The aforementioned effects cannot stack.",
+    "image": "https://img.game8.co/4491549/59c02c22d3f78f66fb14298e67ee5a84.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575944",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576227"
+  },
+  "lynx_gloves": {
+    "id": "lynx_gloves",
+    "name": "LYNX Gloves",
+    "type": "Gloves",
+    "rarity": "Gold",
+    "level": 70,
+    "stats": [
+      "Defense: 42",
+      "Strength: 65",
+      "Will: 43",
+      "Ultimate Gain Efficiency: 20.5%"
+    ],
+    "gear_set": "LYNX",
+    "set_id": "lynx",
+    "set_effect_text": "Bonus Stat: Wearer's HP Treatment Efficiency +20% \nSet Effect: After the wearer gives HP treatment to an allied target, that target also gains 15% DMG Reduction against all types of DMG for 10s. If the said treatment exceeds the target's Max HP, the target gains 30% DMG Reduction against all types of DMG. The aforementioned effects cannot stack.",
+    "image": "https://img.game8.co/4491548/990e8935fdb968d8a677285038eec4fe.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575944",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576227"
+  },
+  "mi_security_gloves": {
+    "id": "mi_security_gloves",
+    "name": "MI Security Gloves",
+    "type": "Gloves",
+    "rarity": "Gold",
+    "level": 70,
+    "stats": [
+      "Defense: 42",
+      "Strength: 43",
+      "Agility: 65",
+      "Battle Skill DMG Bonus: 34.5%"
+    ],
+    "gear_set": "MI Security",
+    "set_id": "mi_security",
+    "set_effect_text": "Bonus Stat: Wearer's Critical Rate +5% \nSet Effect: After the wearer scores a critical hit, gain ATK +5% for 5s. This effect can reach 5 stacks. At max stacks, grant an additional Critical Rate +5%. This effect cannot stack.",
+    "image": "https://img.game8.co/4394870/b05ecc2bf2f82f275113dd792dbe1483.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575950",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576227"
+  },
+  "mi_security_gloves_t1": {
+    "id": "mi_security_gloves_t1",
+    "name": "MI Security Gloves T1",
+    "type": "Gloves",
+    "rarity": "Gold",
+    "level": 70,
+    "stats": [
+      "Defense: 42",
+      "Agility: 65",
+      "Intellect: 43",
+      "Ultimate DMG Bonus: 43.10%"
+    ],
+    "gear_set": "MI Security",
+    "set_id": "mi_security",
+    "set_effect_text": "Bonus Stat: Wearer's Critical Rate +5% \nSet Effect: After the wearer scores a critical hit, gain ATK +5% for 5s. This effect can reach 5 stacks. At max stacks, grant an additional Critical Rate +5%. This effect cannot stack.",
+    "image": "https://img.game8.co/4438144/456da4dcf9998886aeaff24a074b6524.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575950",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576227"
+  },
+  "mi_security_hands_ppe": {
+    "id": "mi_security_hands_ppe",
+    "name": "MI Security Hands PPE",
+    "type": "Gloves",
+    "rarity": "Gold",
+    "level": 70,
+    "stats": [
+      "Defense: 42",
+      "Agility: 43",
+      "Intellect: 65",
+      "Basic Attack DMG Bonus: 23%"
+    ],
+    "gear_set": "MI Security",
+    "set_id": "mi_security",
+    "set_effect_text": "Bonus Stat: Wearer's Critical Rate +5% \nSet Effect: After the wearer scores a critical hit, gain ATK +5% for 5s. This effect can reach 5 stacks. At max stacks, grant an additional Critical Rate +5%. This effect cannot stack.",
+    "image": "https://img.game8.co/4394869/44d9c19d97449d760abfdec33257897f.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575950",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576227"
+  },
+  "mi_security_hands_ppe_t1": {
+    "id": "mi_security_hands_ppe_t1",
+    "name": "MI Security Hands PPE T1",
+    "type": "Gloves",
+    "rarity": "Gold",
+    "level": 70,
+    "stats": [
+      "Defense: 42",
+      "Intellect: 65",
+      "Will: 43",
+      "Critical Rate: 8.6%"
+    ],
+    "gear_set": "MI Security",
+    "set_id": "mi_security",
+    "set_effect_text": "Bonus Stat: Wearer's Critical Rate +5% \nSet Effect: After the wearer scores a critical hit, gain ATK +5% for 5s. This effect can reach 5 stacks. At max stacks, grant an additional Critical Rate +5%. This effect cannot stack.",
+    "image": "https://img.game8.co/4394871/b828955d8d1f7fa99088d4c62c99ff78.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575950",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576227"
+  },
+  "pulser_labs_gloves": {
+    "id": "pulser_labs_gloves",
+    "name": "Pulser Labs Gloves",
+    "type": "Gloves",
+    "rarity": "Gold",
+    "level": 70,
+    "stats": [
+      "Defense: 42",
+      "Intellect: 43",
+      "Will: 65",
+      "Cryo and Electric DMG Dealt Bonus: 19.2%"
+    ],
+    "gear_set": "Pulser Labs",
+    "set_id": "pulser_labs",
+    "set_effect_text": "Bonus Stat: Wearer's Arts Intensity +30 \nSet Effect: After the wearer applies Electrification, Electric DMG +50% for 10s. After the wearer applies Solidification, Cryo DMG +50% for 10s. The aforementioned effects cannot stack.",
+    "image": "https://img.game8.co/4394992/62635dda1fbbec2be8b1ff78a379fa45.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575947",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576227"
+  },
+  "qingbo_gauntlets": {
+    "id": "qingbo_gauntlets",
+    "name": "Qingbo Gauntlets",
+    "type": "Gloves",
+    "rarity": "Gold",
+    "level": 70,
+    "stats": [
+      "Defense: 42",
+      "Strength: 43",
+      "Agility: 65",
+      "All Skill DMG Dealt Bonus: 23.00%"
+    ],
+    "gear_set": "Qingbo",
+    "set_id": "qingbo",
+    "set_effect_text": "Bonus Stat: Wearer's Combo Skill Cooldown Reduction +15%. \nSet Effect: When the wearer casts a combo skill, the wearer gains Skill DMG Dealt +20% (for every skill) for 15s. This effect can reach 2 stacks. Duration of each stack is counted separately.",
+    "image": "https://img.game8.co/4471170/0f38ecea201a2bc172bb4022903dbd7d.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/594199",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576227"
+  },
+  "qingbo_gloves": {
+    "id": "qingbo_gloves",
+    "name": "Qingbo Gloves",
+    "type": "Gloves",
+    "rarity": "Gold",
+    "level": 70,
+    "stats": [
+      "Defense: 42",
+      "Intellect: 65",
+      "Will: 43",
+      "Ultimate Gain Efficiency: 20.50%"
+    ],
+    "gear_set": "Qingbo",
+    "set_id": "qingbo",
+    "set_effect_text": "Bonus Stat: Wearer's Combo Skill Cooldown Reduction +15%. \nSet Effect: When the wearer casts a combo skill, the wearer gains Skill DMG Dealt +20% (for every skill) for 15s. This effect can reach 2 stacks. Duration of each stack is counted separately.",
+    "image": "https://img.game8.co/4471132/5203558efa834f058f501341914156d1.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/594199",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576227"
+  },
+  "redeemer_gloves": {
+    "id": "redeemer_gloves",
+    "name": "Redeemer Gloves",
+    "type": "Gloves",
+    "rarity": "Gold",
+    "level": 70,
+    "stats": [
+      "Defense: 42",
+      "Agility: 86",
+      "Ultimate DMG Bonus: 45.00%"
+    ],
+    "gear_set": "Redeemer Gear Pack",
+    "set_id": "",
+    "set_effect_text": "No 3-pc Set Effect",
+    "image": "https://img.game8.co/4441099/c5f2742f096185747750186ab9a89970.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/587155",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576227"
+  },
+  "redeemer_hands": {
+    "id": "redeemer_hands",
+    "name": "Redeemer Hands",
+    "type": "Gloves",
+    "rarity": "Gold",
+    "level": 70,
+    "stats": [
+      "Defense: 42",
+      "Strength: 86",
+      "All Skill DMG Dealt Bonus: 24.00%"
+    ],
+    "gear_set": "Redeemer Gear Pack",
+    "set_id": "",
+    "set_effect_text": "No 3-pc Set Effect",
+    "image": "https://img.game8.co/4442646/ee2291566f0d93868e2abad9644a8441.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/587152",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576227"
+  },
+  "swordmancer_tac_gauntlets": {
+    "id": "swordmancer_tac_gauntlets",
+    "name": "Swordmancer TAC Gauntlets",
+    "type": "Gloves",
+    "rarity": "Gold",
+    "level": 70,
+    "stats": [
+      "Defense: 42",
+      "Strength: 43",
+      "Agility: 65",
+      "Ultimate DMG Bonus: 43.1%"
+    ],
+    "gear_set": "Swordmancer",
+    "set_id": "swordmancer",
+    "set_effect_text": "Bonus Stat: Wearer's Stagger Efficiency Bonus +20% \nSet Effect: After the wearer applies a Physical Status, the wearer also performs 1 hit that deals 250% ATK of Physical DMG and [10 Stagger]. Effect trigger cooldown: 15s.",
+    "image": "https://img.game8.co/4394519/547be14ce1e76fe134db6a61323c4c7f.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575943",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576227"
+  },
+  "swordmancer_tac_gauntlets_t1": {
+    "id": "swordmancer_tac_gauntlets_t1",
+    "name": "Swordmancer TAC Gauntlets T1",
+    "type": "Gloves",
+    "rarity": "Gold",
+    "level": 70,
+    "stats": [
+      "Defense: 42",
+      "Strength: 65",
+      "Will: 43",
+      "Arts Intensity: 34"
+    ],
+    "gear_set": "Swordmancer",
+    "set_id": "swordmancer",
+    "set_effect_text": "Bonus Stat: Wearer's Stagger Efficiency Bonus +20% \nSet Effect: After the wearer applies a Physical Status, the wearer also performs 1 hit that deals 250% ATK of Physical DMG and [10 Stagger]. Effect trigger cooldown: 15s.",
+    "image": "https://img.game8.co/4471218/b9454a7bb3a21cdafcea5bc17b3a12b3.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575943",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576227"
+  },
+  "swordmancer_tac_gloves": {
+    "id": "swordmancer_tac_gloves",
+    "name": "Swordmancer TAC Gloves",
+    "type": "Gloves",
+    "rarity": "Gold",
+    "level": 70,
+    "stats": [
+      "Defense: 42",
+      "Strength: 65",
+      "Will: 43",
+      "Physical DMG Bonus: 19.2%"
+    ],
+    "gear_set": "Swordmancer",
+    "set_id": "swordmancer",
+    "set_effect_text": "Bonus Stat: Wearer's Stagger Efficiency Bonus +20% \nSet Effect: After the wearer applies a Physical Status, the wearer also performs 1 hit that deals 250% ATK of Physical DMG and [10 Stagger]. Effect trigger cooldown: 15s.",
+    "image": "https://img.game8.co/4394518/ac245b3bead271674481c50551f0b7a7.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575943",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576227"
+  },
+  "tide_surge_gauntlets": {
+    "id": "tide_surge_gauntlets",
+    "name": "Tide Surge Gauntlets",
+    "type": "Gloves",
+    "rarity": "Gold",
+    "level": 70,
+    "stats": [
+      "Defense: 42",
+      "Strength: 65",
+      "Will: 43",
+      "Cryo and Electric DMG: 19.2%"
+    ],
+    "gear_set": "Tide Surge",
+    "set_id": "tide_surge",
+    "set_effect_text": "Bonus Stat: Wearer's Skill DMG Dealt +20% \nSet Effect: After the wearer applies 2 or more stacks of Arts Infliction on the enemy, the wearer gains Arts DMG Dealt +35% for 15s. This effect cannot stack.",
+    "image": "https://img.game8.co/4394826/847c1608ecb89119f520c5ea999c8838.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575957",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576227"
+  },
+  "type_50_yinglung_gloves": {
+    "id": "type_50_yinglung_gloves",
+    "name": "Type 50 Yinglung Gloves",
+    "type": "Gloves",
+    "rarity": "Gold",
+    "level": 70,
+    "stats": [
+      "Defense: 42",
+      "Agility: 65",
+      "Intellect: 43",
+      "Combo Skill DMG Bonus: 34.5%"
+    ],
+    "gear_set": "Type 50 Yinglung",
+    "set_id": "type_50_yinglung",
+    "set_effect_text": "Bonus Stat: Wearer's ATK +15% \nSet Effect: When any operator in the team casts a battle skill, the wearer gains 1 stack of Yinglung's Edge that gives DMG +20% to the wearer's next combo skill. Yinglung's Edge can stack 3 time(s).",
+    "image": "https://img.game8.co/4394856/cf3ccf2a1f35979035b0584b06b94273.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575951",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576227"
+  },
+  "type_50_yinglung_gloves_t1": {
+    "id": "type_50_yinglung_gloves_t1",
+    "name": "Type 50 Yinglung Gloves T1",
+    "type": "Gloves",
+    "rarity": "Gold",
+    "level": 70,
+    "stats": [
+      "Defense: 42",
+      "Agility: 43",
+      "Will: 65",
+      "Combo Skill DMG Bonus: 34.5%"
+    ],
+    "gear_set": "Type 50 Yinglung",
+    "set_id": "type_50_yinglung",
+    "set_effect_text": "Bonus Stat: Wearer's ATK +15% \nSet Effect: When any operator in the team casts a battle skill, the wearer gains 1 stack of Yinglung's Edge that gives DMG +20% to the wearer's next combo skill. Yinglung's Edge can stack 3 time(s).",
+    "image": "https://img.game8.co/4394856/cf3ccf2a1f35979035b0584b06b94273.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575951",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576227"
+  },
+  "xiranflow_gloves": {
+    "id": "xiranflow_gloves",
+    "name": "Xiranflow Gloves",
+    "type": "Gloves",
+    "rarity": "Gold",
+    "level": 70,
+    "stats": [
+      "Defense: 42",
+      "Intellect: 43",
+      "Will: 65",
+      "Cryo and Electric DMG Dealt Bonus: 19.20%"
+    ],
+    "gear_set": "Xiranflow",
+    "set_id": "xiranflow",
+    "set_effect_text": "Bonus Stat: Wearer's ATK +10% \nSet Effect: Whenever the wearer consumes Electrification or Corrosion, the wearer gains a number of buff stacks equal to the Status Level of the Arts Reaction consumed, with each buff stack giving Electric DMG Dealt and Nature DMG Dealt +15% for 25s. The number of buff stacks maxes out at 3 stacks. Duration of each stack is counted separately.",
+    "image": "https://img.game8.co/4471212/b2539bb8e24c2c34a8914c573a1896c6.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/594210",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576227"
+  },
+  "emergency_comm": {
+    "id": "emergency_comm",
+    "name": "Emergency Comm",
+    "type": "Kit",
+    "rarity": "Green",
+    "level": 20,
+    "stats": [
+      "Defense: 6",
+      "Critical Rate: 6.6%"
+    ],
+    "gear_set": "Miner \u03b1 Gear Pack",
+    "set_id": "",
+    "set_effect_text": "No 3-pc Set Effect",
+    "image": "https://img.game8.co/4393336/1ff3190c292185d1d64292ae9aeb7961.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575930",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576223"
+  },
+  "emergency_compression_core": {
+    "id": "emergency_compression_core",
+    "name": "Emergency Compression Core",
+    "type": "Kit",
+    "rarity": "Green",
+    "level": 20,
+    "stats": [
+      "Defense: 6",
+      "Attack: 13.2%"
+    ],
+    "gear_set": "Miner \u03b1 Gear Pack",
+    "set_id": "",
+    "set_effect_text": "No 3-pc Set Effect",
+    "image": "https://img.game8.co/4393328/4b12cc1bd89275ace2afc6956078ee6c.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575931",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576223"
+  },
+  "aic_alloy_plate": {
+    "id": "aic_alloy_plate",
+    "name": "AIC Alloy Plate",
+    "type": "Kit",
+    "rarity": "Green",
+    "level": 28,
+    "stats": [
+      "Defense: 8",
+      "Agility: 16",
+      "Final DMG Reduction: 7.5%"
+    ],
+    "gear_set": "AIC Heavy",
+    "set_id": "aic_heavy",
+    "set_effect_text": "Bonus Stat: Wearer's HP +500 \nSet Effect: When the wearer defeats an enemy, restore 100 HP. Effect trigger cooldown: 5s.",
+    "image": "https://img.game8.co/4393339/74d85a5d3c66eb72b35039ad618a7700.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575940",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576223"
+  },
+  "aic_ceramic_plate": {
+    "id": "aic_ceramic_plate",
+    "name": "AIC Ceramic Plate",
+    "type": "Kit",
+    "rarity": "Green",
+    "level": 28,
+    "stats": [
+      "Defense: 8",
+      "Will: 16",
+      "Battle Skill DMG Bonus: 16.20%"
+    ],
+    "gear_set": "AIC Light",
+    "set_id": "aic_light",
+    "set_effect_text": "Bonus Stat: Wearer's HP +500 \nSet Effect: When the wearer defeats an enemy, ATK +20 for 5s.",
+    "image": "https://img.game8.co/4393315/a5f90b5213636be0ef3fbdddd9eb1b14.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575941",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576223"
+  },
+  "aic_heavy_plate": {
+    "id": "aic_heavy_plate",
+    "name": "AIC Heavy Plate",
+    "type": "Kit",
+    "rarity": "Green",
+    "level": 28,
+    "stats": [
+      "Defense: 8",
+      "Strength: 16",
+      "Final DMG Reduction: 7.5%"
+    ],
+    "gear_set": "AIC Heavy",
+    "set_id": "aic_heavy",
+    "set_effect_text": "Bonus Stat: Wearer's HP +500 \nSet Effect: When the wearer defeats an enemy, restore 100 HP. Effect trigger cooldown: 5s.",
+    "image": "https://img.game8.co/4393325/f8f2b639ea456d829c6684bd583500c2.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575940",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576223"
+  },
+  "aic_light_plate": {
+    "id": "aic_light_plate",
+    "name": "AIC Light Plate",
+    "type": "Kit",
+    "rarity": "Green",
+    "level": 28,
+    "stats": [
+      "Defense: 8",
+      "Intellect: 16",
+      "Combo Skill DMG Bonus: 16.20%"
+    ],
+    "gear_set": "AIC Light",
+    "set_id": "aic_light",
+    "set_effect_text": "Bonus Stat: Wearer's HP +500 \nSet Effect: When the wearer defeats an enemy, ATK +20 for 5s.",
+    "image": "https://img.game8.co/4393316/3e473c5539d23e9a7704ce5a0a2660f1.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575941",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576223"
+  },
+  "armored_msgr_flashlight": {
+    "id": "armored_msgr_flashlight",
+    "name": "Armored MSGR Flashlight",
+    "type": "Kit",
+    "rarity": "Blue",
+    "level": 36,
+    "stats": [
+      "Defense: 10",
+      "Strength: 21",
+      "HP: 21.0%"
+    ],
+    "gear_set": "Armored MSGR",
+    "set_id": "armored_msgr",
+    "set_effect_text": "Bonus Stat: Wearer's Strength +50 \nSet Effect: When the wearer's HP is below 50%, the wearer gains 30% DMG Reduction against all types of DMG.",
+    "image": "https://img.game8.co/4393345/b3e570d5cb53445ca88a034517c3806c.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575956",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576223"
+  },
+  "armored_msgr_gyro": {
+    "id": "armored_msgr_gyro",
+    "name": "Armored MSGR Gyro",
+    "type": "Kit",
+    "rarity": "Blue",
+    "level": 36,
+    "stats": [
+      "Defense: 10",
+      "Strength: 21",
+      "Attack: 10.5%"
+    ],
+    "gear_set": "Armored MSGR",
+    "set_id": "armored_msgr",
+    "set_effect_text": "Bonus Stat: Wearer's Strength +50 \nSet Effect: When the wearer's HP is below 50%, the wearer gains 30% DMG Reduction against all types of DMG.",
+    "image": "https://img.game8.co/4393335/0ef1ecd4d6f900976f2eebb89423d776.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575956",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576223"
+  },
+  "miner_comm": {
+    "id": "miner_comm",
+    "name": "Miner Comm",
+    "type": "Kit",
+    "rarity": "Blue",
+    "level": 36,
+    "stats": [
+      "Defense: 10",
+      "Will: 22",
+      "HP: 22.8%"
+    ],
+    "gear_set": "Miner \u03b2 Gear Pack",
+    "set_id": "",
+    "set_effect_text": "No 3-pc Set Effect",
+    "image": "https://img.game8.co/4393355/fa78cfd93684442969d86eb9184e9cae.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575936",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576223"
+  },
+  "miner_compression_core": {
+    "id": "miner_compression_core",
+    "name": "Miner Compression Core",
+    "type": "Kit",
+    "rarity": "Blue",
+    "level": 36,
+    "stats": [
+      "Defense: 10",
+      "Intellect: 22",
+      "Critical Rate: 5.7%"
+    ],
+    "gear_set": "Miner \u03b2 Gear Pack",
+    "set_id": "",
+    "set_effect_text": "No 3-pc Set Effect",
+    "image": "https://img.game8.co/4393344/9010c03a78dfd555704a7c118b919d7c.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575937",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576223"
+  },
+  "miner_drive_wheel": {
+    "id": "miner_drive_wheel",
+    "name": "Miner Drive Wheel",
+    "type": "Kit",
+    "rarity": "Blue",
+    "level": 36,
+    "stats": [
+      "Defense: 10",
+      "Agility: 22",
+      "Critical Rate: 5.7%"
+    ],
+    "gear_set": "Miner \u03b2 Gear Pack",
+    "set_id": "",
+    "set_effect_text": "No 3-pc Set Effect",
+    "image": "https://img.game8.co/4393311/850f68f3059c62bddfe044da3b2d9f88.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575938",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576223"
+  },
+  "miner_turbine": {
+    "id": "miner_turbine",
+    "name": "Miner Turbine",
+    "type": "Kit",
+    "rarity": "Blue",
+    "level": 36,
+    "stats": [
+      "Defense: 10",
+      "Strength: 22",
+      "Combo Skill DMG: 22.8%"
+    ],
+    "gear_set": "Miner \u03b2 Gear Pack",
+    "set_id": "",
+    "set_effect_text": "No 3-pc Set Effect",
+    "image": "https://img.game8.co/4393334/bae9ca2eeda585f185768b352add740f.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575939",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576223"
+  },
+  "mordvolt_insulation_battery": {
+    "id": "mordvolt_insulation_battery",
+    "name": "Mordvolt Insulation Battery",
+    "type": "Kit",
+    "rarity": "Blue",
+    "level": 36,
+    "stats": [
+      "Defense: 10",
+      "Intellect: 21",
+      "Critical Rate: 5.3%"
+    ],
+    "gear_set": "Mordvolt Insulation",
+    "set_id": "mordvolt_insulation",
+    "set_effect_text": "Bonus Stat: Wearer's Intellect +50 \nSet Effect: When the wearer's HP is above 80%, Arts DMG +20%.",
+    "image": "https://img.game8.co/4393321/6587e814fb8233c14d2f4a805382e488.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575954",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576223"
+  },
+  "mordvolt_insulation_wrench": {
+    "id": "mordvolt_insulation_wrench",
+    "name": "Mordvolt Insulation Wrench",
+    "type": "Kit",
+    "rarity": "Blue",
+    "level": 36,
+    "stats": [
+      "Defense: 10",
+      "Intellect: 21",
+      "Attack: 10.50%"
+    ],
+    "gear_set": "Mordvolt Insulation",
+    "set_id": "mordvolt_insulation",
+    "set_effect_text": "Bonus Stat: Wearer's Intellect +50 \nSet Effect: When the wearer's HP is above 80%, Arts DMG +20%.",
+    "image": "https://img.game8.co/4393310/e21323c00b990abc3d6082d1fc300238.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575954",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576223"
+  },
+  "mordvolt_insulation_wrench_t1": {
+    "id": "mordvolt_insulation_wrench_t1",
+    "name": "Mordvolt Insulation Wrench T1",
+    "type": "Kit",
+    "rarity": "Blue",
+    "level": 36,
+    "stats": [
+      "Defense: 10",
+      "Intellect: 21",
+      "Cryo and Electric DMG Dealt Bonus: 11.7%"
+    ],
+    "gear_set": "Mordvolt Insulation",
+    "set_id": "mordvolt_insulation",
+    "set_effect_text": "Bonus Stat: Wearer's Intellect +50 \nSet Effect: When the wearer's HP is above 80%, Arts DMG +20%.",
+    "image": "https://img.game8.co/4393323/9e39130ae1fc0352fef875b18ddf66c0.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575954",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576223"
+  },
+  "mordvolt_resistant_battery": {
+    "id": "mordvolt_resistant_battery",
+    "name": "Mordvolt Resistant Battery",
+    "type": "Kit",
+    "rarity": "Blue",
+    "level": 36,
+    "stats": [
+      "Defense: 10",
+      "Will: 21",
+      "Treatment Bonus: 10.50%"
+    ],
+    "gear_set": "Mordvolt Resistant",
+    "set_id": "mordvolt_resistant",
+    "set_effect_text": "Bonus Stat: Wearer's Will +50 \nSet Effect: When the wearer's HP is below 50%, Treatment Effect +30%.",
+    "image": "https://img.game8.co/4393317/1b2917baacc5654dfb43b45825362442.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575953",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576223"
+  },
+  "mordvolt_resistant_wrench": {
+    "id": "mordvolt_resistant_wrench",
+    "name": "Mordvolt Resistant Wrench",
+    "type": "Kit",
+    "rarity": "Blue",
+    "level": 36,
+    "stats": [
+      "Defense: 10",
+      "Will: 21",
+      "Attack: 10.5%"
+    ],
+    "gear_set": "Mordvolt Resistant",
+    "set_id": "mordvolt_resistant",
+    "set_effect_text": "Bonus Stat: Wearer's Will +50 \nSet Effect: When the wearer's HP is below 50%, Treatment Effect +30%.",
+    "image": "https://img.game8.co/4393320/9d32fea2c0743f3eb7134df402d9d28a.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575953",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576223"
+  },
+  "roving_msgr_flashlight": {
+    "id": "roving_msgr_flashlight",
+    "name": "Roving MSGR Flashlight",
+    "type": "Kit",
+    "rarity": "Blue",
+    "level": 36,
+    "stats": [
+      "Defense: 10",
+      "Agility: 21",
+      "Combo Skill DMG: 21.0%"
+    ],
+    "gear_set": "Roving MSGR",
+    "set_id": "roving_msgr",
+    "set_effect_text": "Bonus Stat: Wearer's Agility +50 \nSet Effect: When the wearer's HP is above 80%, Physical DMG +20%",
+    "image": "https://img.game8.co/4393319/39946a6dec4cf6af8441456fea1a2d38.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575955",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576223"
+  },
+  "roving_msgr_gyro": {
+    "id": "roving_msgr_gyro",
+    "name": "Roving MSGR Gyro",
+    "type": "Kit",
+    "rarity": "Blue",
+    "level": 36,
+    "stats": [
+      "Defense: 10",
+      "Agility: 21",
+      "Attack: 10.5%"
+    ],
+    "gear_set": "Roving MSGR",
+    "set_id": "roving_msgr",
+    "set_effect_text": "Bonus Stat: Wearer's Agility +50 \nSet Effect: When the wearer's HP is above 80%, Physical DMG +20%",
+    "image": "https://img.game8.co/4393333/a27755f530751b9ca34235c2fe7603e6.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575955",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576223"
+  },
+  "aburrey_auditory_chip": {
+    "id": "aburrey_auditory_chip",
+    "name": "Aburrey Auditory Chip",
+    "type": "Kit",
+    "rarity": "Purple",
+    "level": 50,
+    "stats": [
+      "Defense: 15",
+      "Strength: 23",
+      "Will: 15",
+      "DMG Bonus vs. Staggered: 29.40%"
+    ],
+    "gear_set": "Aburrey's Legacy",
+    "set_id": "aburreys_legacy",
+    "set_effect_text": "Bonus Stat: Wearer's Skill DMG +24% \nSet Effect: When the wearer casts a battle skill, combo skill, or ultimate, gain ATK +5% for 15s. The buff from each of the three skill types is unique and does not stack with itself.",
+    "image": "https://img.game8.co/4393652/5e9c012e31e1813d08b42d5359404092.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575952",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576223"
+  },
+  "aburrey_auditory_chip_t1": {
+    "id": "aburrey_auditory_chip_t1",
+    "name": "Aburrey Auditory Chip T1",
+    "type": "Kit",
+    "rarity": "Purple",
+    "level": 50,
+    "stats": [
+      "Defense: 15",
+      "Strength: 15",
+      "Agility: 23",
+      "Combo Skill DMG Bonus: 29.40%"
+    ],
+    "gear_set": "Aburrey's Legacy",
+    "set_id": "aburreys_legacy",
+    "set_effect_text": "Bonus Stat: Wearer's Skill DMG +24% \nSet Effect: When the wearer casts a battle skill, combo skill, or ultimate, gain ATK +5% for 15s. The buff from each of the three skill types is unique and does not stack with itself.",
+    "image": "https://img.game8.co/4393658/84ac411077c073a7fa644f15f966fd1e.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575952",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576223"
+  },
+  "aburrey_flashlight": {
+    "id": "aburrey_flashlight",
+    "name": "Aburrey Flashlight",
+    "type": "Kit",
+    "rarity": "Purple",
+    "level": 50,
+    "stats": [
+      "Defense: 15",
+      "Strength: 15",
+      "Intellect: 23",
+      "Ultimate Gain Efficiency: 17.50%"
+    ],
+    "gear_set": "Aburrey's Legacy",
+    "set_id": "aburreys_legacy",
+    "set_effect_text": "Bonus Stat: Wearer's Skill DMG +24% \nSet Effect: When the wearer casts a battle skill, combo skill, or ultimate, gain ATK +5% for 15s. The buff from each of the three skill types is unique and does not stack with itself.",
+    "image": "https://img.game8.co/4393655/28ca789fa8617acdceb5cfa99c986250.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575952",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576223"
+  },
+  "aburrey_sensor_chip": {
+    "id": "aburrey_sensor_chip",
+    "name": "Aburrey Sensor Chip",
+    "type": "Kit",
+    "rarity": "Purple",
+    "level": 50,
+    "stats": [
+      "Defense: 15",
+      "Agility: 15",
+      "Will: 23",
+      "Battle Skill DMG Bonus: 29.40%"
+    ],
+    "gear_set": "Aburrey's Legacy",
+    "set_id": "aburreys_legacy",
+    "set_effect_text": "Bonus Stat: Wearer's Skill DMG +24% \nSet Effect: When the wearer casts a battle skill, combo skill, or ultimate, gain ATK +5% for 15s. The buff from each of the three skill types is unique and does not stack with itself.",
+    "image": "https://img.game8.co/4393665/d7a68edbb96f4794030038de9b530555.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575952",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576223"
+  },
+  "aburrey_sensor_chip_t1": {
+    "id": "aburrey_sensor_chip_t1",
+    "name": "Aburrey Sensor Chip T1",
+    "type": "Kit",
+    "rarity": "Purple",
+    "level": 50,
+    "stats": [
+      "Defense: 15",
+      "Intellect: 15",
+      "Will: 23",
+      "Battle Skill DMG Bonus: 29.40%"
+    ],
+    "gear_set": "Aburrey's Legacy",
+    "set_id": "aburreys_legacy",
+    "set_effect_text": "Bonus Stat: Wearer's Skill DMG +24% \nSet Effect: When the wearer casts a battle skill, combo skill, or ultimate, gain ATK +5% for 15s. The buff from each of the three skill types is unique and does not stack with itself.",
+    "image": "https://img.game8.co/4393656/18794b1a92add042ab9c161e2e670433.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575952",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576223"
+  },
+  "aburrey_uv_lamp": {
+    "id": "aburrey_uv_lamp",
+    "name": "Aburrey UV Lamp",
+    "type": "Kit",
+    "rarity": "Purple",
+    "level": 50,
+    "stats": [
+      "Defense: 15",
+      "Strength: 23",
+      "Agility: 15",
+      "All Skill DMG Dealt Bonus: 19.60%"
+    ],
+    "gear_set": "Aburrey's Legacy",
+    "set_id": "aburreys_legacy",
+    "set_effect_text": "Bonus Stat: Wearer's Skill DMG +24% \nSet Effect: When the wearer casts a battle skill, combo skill, or ultimate, gain ATK +5% for 15s. The buff from each of the three skill types is unique and does not stack with itself.",
+    "image": "https://img.game8.co/4393653/b94fcc09570f9149149023ced0c0aed6.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575952",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576223"
+  },
+  "armored_msgr_flashlight_t1": {
+    "id": "armored_msgr_flashlight_t1",
+    "name": "Armored MSGR Flashlight T1",
+    "type": "Kit",
+    "rarity": "Purple",
+    "level": 50,
+    "stats": [
+      "Defense: 15",
+      "Strength: 23",
+      "Agility: 15",
+      "Critical Rate: 7.40%"
+    ],
+    "gear_set": "Armored MSGR",
+    "set_id": "armored_msgr",
+    "set_effect_text": "Bonus Stat: Wearer's Strength +50 \nSet Effect: When the wearer's HP is below 50%, the wearer gains 30% DMG Reduction against all types of DMG.",
+    "image": "https://img.game8.co/4393624/fa83231962e9f0b1d4e9e468930a2d4b.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575956",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576223"
+  },
+  "armored_msgr_gyro_t1": {
+    "id": "armored_msgr_gyro_t1",
+    "name": "Armored MSGR Gyro T1",
+    "type": "Kit",
+    "rarity": "Purple",
+    "level": 50,
+    "stats": [
+      "Defense: 15",
+      "Strength: 23",
+      "Will: 15",
+      "Attack: 14.70%"
+    ],
+    "gear_set": "Armored MSGR",
+    "set_id": "armored_msgr",
+    "set_effect_text": "Bonus Stat: Wearer's Strength +50 \nSet Effect: When the wearer's HP is below 50%, the wearer gains 30% DMG Reduction against all types of DMG.",
+    "image": "https://img.game8.co/4393626/df1c917b2ff84c1f596408e86a6db037.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575956",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576223"
+  },
+  "catastrophe_filter": {
+    "id": "catastrophe_filter",
+    "name": "Catastrophe Filter",
+    "type": "Kit",
+    "rarity": "Purple",
+    "level": 50,
+    "stats": [
+      "Defense: 15",
+      "Intellect: 15",
+      "Will: 23",
+      "Arts Intensity: 29"
+    ],
+    "gear_set": "Catastrophe",
+    "set_id": "catastrophe",
+    "set_effect_text": "Bonus Stat: Wearer's Ultimate Gain Efficiency +20%. \nSet Effect: At the start of battle, the wearer immediately recovers 50 SP.",
+    "image": "https://img.game8.co/4394497/3674e4ceb76618b60127b91184251871.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575942",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576223"
+  },
+  "catastrophe_gauze_cartridge": {
+    "id": "catastrophe_gauze_cartridge",
+    "name": "Catastrophe Gauze Cartridge",
+    "type": "Kit",
+    "rarity": "Purple",
+    "level": 50,
+    "stats": [
+      "Defense: 15",
+      "Strength: 23",
+      "Intellect: 15",
+      "Ultimate DMG Bonus: 36.80%"
+    ],
+    "gear_set": "Catastrophe",
+    "set_id": "catastrophe",
+    "set_effect_text": "Bonus Stat: Wearer's Ultimate Gain Efficiency +20%. \nSet Effect: At the start of battle, the wearer immediately recovers 50 SP.",
+    "image": "https://img.game8.co/4394498/1e4ab1d12bb9d372538d8f19a3a7609f.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575942",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576223"
+  },
+  "catastrophe_gauze_cartridge_t1": {
+    "id": "catastrophe_gauze_cartridge_t1",
+    "name": "Catastrophe Gauze Cartridge T1",
+    "type": "Kit",
+    "rarity": "Purple",
+    "level": 50,
+    "stats": [
+      "Defense: 15",
+      "Strength: 23",
+      "Will: 15",
+      "Secondary Attribute: 14.70%"
+    ],
+    "gear_set": "Catastrophe",
+    "set_id": "catastrophe",
+    "set_effect_text": "Bonus Stat: Wearer's Ultimate Gain Efficiency +20%. \nSet Effect: At the start of battle, the wearer immediately recovers 50 SP.",
+    "image": "https://img.game8.co/4394496/32eb0384e275bb978fccf1156d439941.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575942",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576223"
+  },
+  "miner_comm_t1": {
+    "id": "miner_comm_t1",
+    "name": "Miner Comm T1",
+    "type": "Kit",
+    "rarity": "Purple",
+    "level": 50,
+    "stats": [
+      "Defense: 15",
+      "Will: 31",
+      "Treatment Bonus: 15.6%"
+    ],
+    "gear_set": "Miner \u03b3 Gear Pack",
+    "set_id": "",
+    "set_effect_text": "No 3-pc Set Effect",
+    "image": "https://img.game8.co/4445011/5a855bdfaac95731364dff0a904f5454.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/587159",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576223"
+  },
+  "miner_compression_core_t1": {
+    "id": "miner_compression_core_t1",
+    "name": "Miner Compression Core T1",
+    "type": "Kit",
+    "rarity": "Purple",
+    "level": 50,
+    "stats": [
+      "Defense: 15",
+      "Intellect: 31",
+      "Ultimate Gain Efficiency: 18.6%"
+    ],
+    "gear_set": "Miner \u03b3 Gear Pack",
+    "set_id": "",
+    "set_effect_text": "No 3-pc Set Effect",
+    "image": "https://img.game8.co/4445012/2baf7684220c56cc2d7a59104f6a7152.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/587158",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576223"
+  },
+  "miner_drive_wheel_t1": {
+    "id": "miner_drive_wheel_t1",
+    "name": "Miner Drive Wheel T1",
+    "type": "Kit",
+    "rarity": "Purple",
+    "level": 50,
+    "stats": [
+      "Defense: 15",
+      "Agility: 31",
+      "Combo Skill DMG Bonus: 31.2%"
+    ],
+    "gear_set": "Miner \u03b3 Gear Pack",
+    "set_id": "",
+    "set_effect_text": "No 3-pc Set Effect",
+    "image": "https://img.game8.co/4445009/53f175785c698743df5d99734bb2baee.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/587157",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576223"
+  },
+  "miner_turbine_t1": {
+    "id": "miner_turbine_t1",
+    "name": "Miner Turbine T1",
+    "type": "Kit",
+    "rarity": "Purple",
+    "level": 50,
+    "stats": [
+      "Defense: 15",
+      "Strength: 31",
+      "Final DMG Reduction: 13.5%"
+    ],
+    "gear_set": "Miner \u03b3 Gear Pack",
+    "set_id": "",
+    "set_effect_text": "No 3-pc Set Effect",
+    "image": "https://img.game8.co/4445005/1f92f731dee3762eb5bf85cb66a556f7.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/587156",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576223"
+  },
+  "mordvolt_insulation_battery_t1": {
+    "id": "mordvolt_insulation_battery_t1",
+    "name": "Mordvolt Insulation Battery T1",
+    "type": "Kit",
+    "rarity": "Purple",
+    "level": 50,
+    "stats": [
+      "Defense: 15",
+      "Intellect: 29",
+      "Ultimate Gain Efficiency: 17.5%"
+    ],
+    "gear_set": "Mordvolt Insulation",
+    "set_id": "mordvolt_insulation",
+    "set_effect_text": "Bonus Stat: Wearer's Intellect +50 \nSet Effect: When the wearer's HP is above 80%, Arts DMG +20%.",
+    "image": "https://img.game8.co/4445007/b3296f247378a9c742aca5b69635a818.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575954",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576223"
+  },
+  "mordvolt_resistant_battery_t1": {
+    "id": "mordvolt_resistant_battery_t1",
+    "name": "Mordvolt Resistant Battery T1",
+    "type": "Kit",
+    "rarity": "Purple",
+    "level": 50,
+    "stats": [
+      "Defense: 15",
+      "Agility: 15",
+      "Will: 23",
+      "Treatment Bonus: 14.7%"
+    ],
+    "gear_set": "Mordvolt Resistant",
+    "set_id": "mordvolt_resistant",
+    "set_effect_text": "Bonus Stat: Wearer's Will +50 \nSet Effect: When the wearer's HP is below 50%, Treatment Effect +30%.",
+    "image": "https://img.game8.co/4445010/662da92200056e67a209aef5d66c2368.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575953",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576223"
+  },
+  "roving_msgr_flashlight_t1": {
+    "id": "roving_msgr_flashlight_t1",
+    "name": "Roving MSGR Flashlight T1",
+    "type": "Kit",
+    "rarity": "Purple",
+    "level": 50,
+    "stats": [
+      "Defense: 15",
+      "Strength: 15",
+      "Agility: 23",
+      "Combo Skill DMG Bonus: 29.4%"
+    ],
+    "gear_set": "Roving MSGR",
+    "set_id": "roving_msgr",
+    "set_effect_text": "Bonus Stat: Wearer's Agility +50 \nSet Effect: When the wearer's HP is above 80%, Physical DMG +20%",
+    "image": "https://img.game8.co/4445008/a760f9567fea47bdaac80bebd46656b6.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575955",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576223"
+  },
+  "roving_msgr_flashlight_t2": {
+    "id": "roving_msgr_flashlight_t2",
+    "name": "Roving MSGR Flashlight T2",
+    "type": "Kit",
+    "rarity": "Purple",
+    "level": 50,
+    "stats": [
+      "Defense: 15",
+      "Strength: 15",
+      "Agility: 23",
+      "Ultimate DMG Bonus: 36.8%"
+    ],
+    "gear_set": "Roving MSGR",
+    "set_id": "roving_msgr",
+    "set_effect_text": "Bonus Stat: Wearer's Agility +50 \nSet Effect: When the wearer's HP is above 80%, Physical DMG +20%",
+    "image": "https://img.game8.co/4445008/a760f9567fea47bdaac80bebd46656b6.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575955",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576223"
+  },
+  "roving_msgr_gyro_t1": {
+    "id": "roving_msgr_gyro_t1",
+    "name": "Roving MSGR Gyro T1",
+    "type": "Kit",
+    "rarity": "Purple",
+    "level": 50,
+    "stats": [
+      "Defense: 15",
+      "Agility: 23",
+      "Intellect: 15",
+      "Attack: 14.7%"
+    ],
+    "gear_set": "Roving MSGR",
+    "set_id": "roving_msgr",
+    "set_effect_text": "Bonus Stat: Wearer's Agility +50 \nSet Effect: When the wearer's HP is above 80%, Physical DMG +20%",
+    "image": "https://img.game8.co/4445006/fc855c7a86376405a876bcad82333775.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575955",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576223"
+  },
+  "aethertech_analysis_band": {
+    "id": "aethertech_analysis_band",
+    "name": "Aethertech Analysis Band",
+    "type": "Kit",
+    "rarity": "Gold",
+    "level": 70,
+    "stats": [
+      "Defense: 21",
+      "Strength: 32",
+      "Will: 21",
+      "Physical DMG Bonus: 23%"
+    ],
+    "gear_set": "Aethertech",
+    "set_id": "aethertech",
+    "set_effect_text": "Bonus Stat: Wearer's ATK +8% \nSet Effect: After the wearer applies Vulnerability, the wearer gains Physical DMG +8% for 15s. This effect can reach 4 stacks. If the target already has 4 stack(s) of Vulnerability, the wearer gains an additional Physical DMG +16% for 10s. This effect cannot stack.",
+    "image": "https://img.game8.co/4395105/aa22f3491b9977b4de0007a07825a43d.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575945",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576223"
+  },
+  "aethertech_stabilizer": {
+    "id": "aethertech_stabilizer",
+    "name": "Aethertech Stabilizer",
+    "type": "Kit",
+    "rarity": "Gold",
+    "level": 70,
+    "stats": [
+      "Defense: 21",
+      "Strength: 21",
+      "Agility: 32",
+      "Arts Intensity: 41"
+    ],
+    "gear_set": "Aethertech",
+    "set_id": "aethertech",
+    "set_effect_text": "Bonus Stat: Wearer's ATK +8% \nSet Effect: After the wearer applies Vulnerability, the wearer gains Physical DMG +8% for 15s. This effect can reach 4 stacks. If the target already has 4 stack(s) of Vulnerability, the wearer gains an additional Physical DMG +16% for 10s. This effect cannot stack.",
+    "image": "https://img.game8.co/4395107/30f9bd9da26fa68d3f1379b3d775abcf.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575945",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576223"
+  },
+  "aethertech_stabilizer_t1": {
+    "id": "aethertech_stabilizer_t1",
+    "name": "Aethertech Stabilizer T1",
+    "type": "Kit",
+    "rarity": "Gold",
+    "level": 70,
+    "stats": [
+      "Defense: 21",
+      "Strength: 21",
+      "Agility: 32",
+      "Physical DMG Bonus: 23.00%"
+    ],
+    "gear_set": "Aethertech",
+    "set_id": "aethertech",
+    "set_effect_text": "Bonus Stat: Wearer's ATK +8% \nSet Effect: After the wearer applies Vulnerability, the wearer gains Physical DMG +8% for 15s. This effect can reach 4 stacks. If the target already has 4 stack(s) of Vulnerability, the wearer gains an additional Physical DMG +16% for 10s. This effect cannot stack.",
+    "image": "https://img.game8.co/4442644/8938cbab9bb686b08f071e473fa9d862.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575945",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576223"
+  },
+  "aethertech_watch": {
+    "id": "aethertech_watch",
+    "name": "Aethertech Watch",
+    "type": "Kit",
+    "rarity": "Gold",
+    "level": 70,
+    "stats": [
+      "Defense: 21",
+      "Strength: 32",
+      "Agility: 21",
+      "Battle Skill DMG Bonus: 41.40%"
+    ],
+    "gear_set": "Aethertech",
+    "set_id": "aethertech",
+    "set_effect_text": "Bonus Stat: Wearer's ATK +8% \nSet Effect: After the wearer applies Vulnerability, the wearer gains Physical DMG +8% for 15s. This effect can reach 4 stacks. If the target already has 4 stack(s) of Vulnerability, the wearer gains an additional Physical DMG +16% for 10s. This effect cannot stack.",
+    "image": "https://img.game8.co/4442641/5bb7a5e8028888513f7d4b662f6e8550.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575945",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576223"
+  },
+  "bonekrusha_figurine": {
+    "id": "bonekrusha_figurine",
+    "name": "Bonekrusha Figurine",
+    "type": "Kit",
+    "rarity": "Gold",
+    "level": 70,
+    "stats": [
+      "Defense: 21",
+      "Agility: 21",
+      "Will: 32",
+      "Battle Skill DMG Bonus: 41.4%"
+    ],
+    "gear_set": "Bonekrusha",
+    "set_id": "bonekrusha",
+    "set_effect_text": "Bonus Stat: Wearer's ATK +15% \nSet Effect: When the wearer casts a combo skill, gain 1 stack of Bonekrushing Smash that grants the wearer's next battle skill DMG +30%. Bonekrushing Smash can stack 2 time(s).",
+    "image": "https://img.game8.co/4395085/9d1c1b16c1e9e2b0c0fe8ceaf8873923.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575946",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576223"
+  },
+  "bonekrusha_figurine_t1": {
+    "id": "bonekrusha_figurine_t1",
+    "name": "Bonekrusha Figurine T1",
+    "type": "Kit",
+    "rarity": "Gold",
+    "level": 70,
+    "stats": [
+      "Defense: 21",
+      "Intellect: 21",
+      "Will: 32",
+      "Combo Skill DMG Bonus: 41.4%"
+    ],
+    "gear_set": "Bonekrusha",
+    "set_id": "bonekrusha",
+    "set_effect_text": "Bonus Stat: Wearer's ATK +15% \nSet Effect: When the wearer casts a combo skill, gain 1 stack of Bonekrushing Smash that grants the wearer's next battle skill DMG +30%. Bonekrushing Smash can stack 2 time(s).",
+    "image": "https://img.game8.co/4395085/9d1c1b16c1e9e2b0c0fe8ceaf8873923.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575946",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576223"
+  },
+  "bonekrusha_figurine_t2": {
+    "id": "bonekrusha_figurine_t2",
+    "name": "Bonekrusha Figurine T2",
+    "type": "Kit",
+    "rarity": "Gold",
+    "level": 70,
+    "stats": [
+      "Defense: 21",
+      "Intellect: 21",
+      "Will: 32",
+      "Battle Skill DMG Bonus: 41.40%"
+    ],
+    "gear_set": "Bonekrusha",
+    "set_id": "bonekrusha",
+    "set_effect_text": "Bonus Stat: Wearer's ATK +15% \nSet Effect: When the wearer casts a combo skill, gain 1 stack of Bonekrushing Smash that grants the wearer's next battle skill DMG +30%. Bonekrushing Smash can stack 2 time(s).",
+    "image": "https://img.game8.co/4471200/567a487e76a551a931cbc560c310029d.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575946",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576223"
+  },
+  "bonekrusha_mask": {
+    "id": "bonekrusha_mask",
+    "name": "Bonekrusha Mask",
+    "type": "Kit",
+    "rarity": "Gold",
+    "level": 70,
+    "stats": [
+      "Defense: 21",
+      "Strength: 21",
+      "Agility: 32",
+      "DMG Bonus vs. Staggered: 41.4%"
+    ],
+    "gear_set": "Bonekrusha",
+    "set_id": "bonekrusha",
+    "set_effect_text": "Bonus Stat: Wearer's ATK +15% \nSet Effect: When the wearer casts a combo skill, gain 1 stack of Bonekrushing Smash that grants the wearer's next battle skill DMG +30%. Bonekrushing Smash can stack 2 time(s).",
+    "image": "https://img.game8.co/4395089/62a4667a063caecd68861b4d15a575d4.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575946",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576223"
+  },
+  "bonekrusha_mask_t1": {
+    "id": "bonekrusha_mask_t1",
+    "name": "Bonekrusha Mask T1",
+    "type": "Kit",
+    "rarity": "Gold",
+    "level": 70,
+    "stats": [
+      "Defense: 21",
+      "Strength: 21",
+      "Agility: 32",
+      "Critical Rate: 10.4%"
+    ],
+    "gear_set": "Bonekrusha",
+    "set_id": "bonekrusha",
+    "set_effect_text": "Bonus Stat: Wearer's ATK +15% \nSet Effect: When the wearer casts a combo skill, gain 1 stack of Bonekrushing Smash that grants the wearer's next battle skill DMG +30%. Bonekrushing Smash can stack 2 time(s).",
+    "image": "https://img.game8.co/4395084/9b6111ab21e14faa319f055dd111ff31.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575946",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576223"
+  },
+  "bonekrusha_mask_t2": {
+    "id": "bonekrusha_mask_t2",
+    "name": "Bonekrusha Mask T2",
+    "type": "Kit",
+    "rarity": "Gold",
+    "level": 70,
+    "stats": [
+      "Defense: 21",
+      "Strength: 21",
+      "Agility: 32",
+      "Battle Skill DMG Bonus: 41.40%"
+    ],
+    "gear_set": "Bonekrusha",
+    "set_id": "bonekrusha",
+    "set_effect_text": "Bonus Stat: Wearer's ATK +15% \nSet Effect: When the wearer casts a combo skill, gain 1 stack of Bonekrushing Smash that grants the wearer's next battle skill DMG +30%. Bonekrushing Smash can stack 2 time(s).",
+    "image": "https://img.game8.co/4437723/9444b7c0e907acc1ca69a18bb91ccade.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575946",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576223"
+  },
+  "eternal_xiranite_auxiliary_arm": {
+    "id": "eternal_xiranite_auxiliary_arm",
+    "name": "Eternal Xiranite Auxiliary Arm",
+    "type": "Kit",
+    "rarity": "Gold",
+    "level": 70,
+    "stats": [
+      "Defense: 21",
+      "Intellect: 21",
+      "Will: 32",
+      "Ultimate Gain Efficiency: 24.6%"
+    ],
+    "gear_set": "Eternal Xiranite",
+    "set_id": "eternal_xiranite",
+    "set_effect_text": "Bonus Stat: Wearer's HP +1000 \nSet Effect: After the wearer applies Amp, Protected, Susceptibility, or Weakened, other teammates also gain DMG Dealt +16% for 15s. This effect cannot stack.",
+    "image": "https://img.game8.co/4394808/ccf224e9d15caad6a27c62550d670590.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575958",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576223"
+  },
+  "eternal_xiranite_power_core": {
+    "id": "eternal_xiranite_power_core",
+    "name": "Eternal Xiranite Power Core",
+    "type": "Kit",
+    "rarity": "Gold",
+    "level": 70,
+    "stats": [
+      "Defense: 21",
+      "Strength: 21",
+      "Intellect: 32",
+      "Ultimate Gain Efficiency: 24.6%"
+    ],
+    "gear_set": "Eternal Xiranite",
+    "set_id": "eternal_xiranite",
+    "set_effect_text": "Bonus Stat: Wearer's HP +1000 \nSet Effect: After the wearer applies Amp, Protected, Susceptibility, or Weakened, other teammates also gain DMG Dealt +16% for 15s. This effect cannot stack.",
+    "image": "https://img.game8.co/4394812/5f50d4441659998868f4f665f6e907ea.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575958",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576223"
+  },
+  "eternal_xiranite_power_core_t1": {
+    "id": "eternal_xiranite_power_core_t1",
+    "name": "Eternal Xiranite Power Core T1",
+    "type": "Kit",
+    "rarity": "Gold",
+    "level": 70,
+    "stats": [
+      "Defense: 21",
+      "Intellect: 32",
+      "Will: 21",
+      "Treatment Bonus: 20.7%"
+    ],
+    "gear_set": "Eternal Xiranite",
+    "set_id": "eternal_xiranite",
+    "set_effect_text": "Bonus Stat: Wearer's HP +1000 \nSet Effect: After the wearer applies Amp, Protected, Susceptibility, or Weakened, other teammates also gain DMG Dealt +16% for 15s. This effect cannot stack.",
+    "image": "https://img.game8.co/4394813/737e69dbc86e6eb6fef2e0bced6954f1.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575958",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576223"
+  },
+  "frontiers_analyzer": {
+    "id": "frontiers_analyzer",
+    "name": "Frontiers Analyzer",
+    "type": "Kit",
+    "rarity": "Gold",
+    "level": 70,
+    "stats": [
+      "Defense: 21",
+      "Strength: 41",
+      "Ultimate DMG Bonus: 51.80%"
+    ],
+    "gear_set": "Frontiers",
+    "set_id": "frontiers",
+    "set_effect_text": "Bonus Stat: Wearer's Combo Skill Cooldown Reduction +15%. \nSet Effect: After the wearer recovers SP with a skill, the team gains DMG +16% for 15s. This effect cannot stack.",
+    "image": "https://img.game8.co/4438143/0622539cc8df163a7d330595e21858ce.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575948",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576223"
+  },
+  "frontiers_comm": {
+    "id": "frontiers_comm",
+    "name": "Frontiers Comm",
+    "type": "Kit",
+    "rarity": "Gold",
+    "level": 70,
+    "stats": [
+      "Defense: 21",
+      "Strength: 32",
+      "Agility: 21",
+      "Combo Skill DMG Bonus: 41.4%"
+    ],
+    "gear_set": "Frontiers",
+    "set_id": "frontiers",
+    "set_effect_text": "Bonus Stat: Wearer's Combo Skill Cooldown Reduction +15%. \nSet Effect: After the wearer recovers SP with a skill, the team gains DMG +16% for 15s. This effect cannot stack.",
+    "image": "https://img.game8.co/4394956/49376ddc7a8ab74d29733e979ff4927a.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575948",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576223"
+  },
+  "frontiers_comm_t1": {
+    "id": "frontiers_comm_t1",
+    "name": "Frontiers Comm T1",
+    "type": "Kit",
+    "rarity": "Gold",
+    "level": 70,
+    "stats": [
+      "Defense: 21",
+      "Strength: 32",
+      "Intellect: 21",
+      "Cryo and Electric DMG Dealt Bonus: 23%"
+    ],
+    "gear_set": "Frontiers",
+    "set_id": "frontiers",
+    "set_effect_text": "Bonus Stat: Wearer's Combo Skill Cooldown Reduction +15%. \nSet Effect: After the wearer recovers SP with a skill, the team gains DMG +16% for 15s. This effect cannot stack.",
+    "image": "https://img.game8.co/4394946/ded67075f908301f43bc86beb345a90b.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575948",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576223"
+  },
+  "frontiers_extra_o2_tube": {
+    "id": "frontiers_extra_o2_tube",
+    "name": "Frontiers Extra O2 Tube",
+    "type": "Kit",
+    "rarity": "Gold",
+    "level": 70,
+    "stats": [
+      "Defense: 21",
+      "Agility: 32",
+      "Intellect: 21",
+      "Secondary Attribute: 20.70%"
+    ],
+    "gear_set": "Frontiers",
+    "set_id": "frontiers",
+    "set_effect_text": "Bonus Stat: Wearer's Combo Skill Cooldown Reduction +15%. \nSet Effect: After the wearer recovers SP with a skill, the team gains DMG +16% for 15s. This effect cannot stack.",
+    "image": "https://img.game8.co/4394950/f22d632d9e52aff2903eb4d9c3096dc3.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575948",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576223"
+  },
+  "frontiers_extra_o2_tube_t1": {
+    "id": "frontiers_extra_o2_tube_t1",
+    "name": "Frontiers Extra O2 Tube T1",
+    "type": "Kit",
+    "rarity": "Gold",
+    "level": 70,
+    "stats": [
+      "Defense: 21",
+      "Agility: 21",
+      "Intellect: 32",
+      "Secondary Attribute: 20.70%"
+    ],
+    "gear_set": "Frontiers",
+    "set_id": "frontiers",
+    "set_effect_text": "Bonus Stat: Wearer's Combo Skill Cooldown Reduction +15%. \nSet Effect: After the wearer recovers SP with a skill, the team gains DMG +16% for 15s. This effect cannot stack.",
+    "image": "https://img.game8.co/4471139/e5a40c6f0e047cc182fad679a7b10844.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575948",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576223"
+  },
+  "frontiers_o2_tube": {
+    "id": "frontiers_o2_tube",
+    "name": "Frontiers O2 Tube",
+    "type": "Kit",
+    "rarity": "Gold",
+    "level": 70,
+    "stats": [
+      "Defense: 21",
+      "Will: 41",
+      "Physical DMG Bonus: 23%"
+    ],
+    "gear_set": "Frontiers",
+    "set_id": "frontiers",
+    "set_effect_text": "Bonus Stat: Wearer's Combo Skill Cooldown Reduction +15%. \nSet Effect: After the wearer recovers SP with a skill, the team gains DMG +16% for 15s. This effect cannot stack.",
+    "image": "https://img.game8.co/4438141/699a5290d00a39b0f4c9662f9ce8f8bf.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575948",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576223"
+  },
+  "hanging_river_o2_tube": {
+    "id": "hanging_river_o2_tube",
+    "name": "Hanging River O2 Tube",
+    "type": "Kit",
+    "rarity": "Gold",
+    "level": 70,
+    "stats": [
+      "Defense: 21",
+      "Strength: 32",
+      "Will: 21",
+      "Cryo and Electric DMG: 23%"
+    ],
+    "gear_set": "Tide Surge",
+    "set_id": "tide_surge",
+    "set_effect_text": "Bonus Stat: Wearer's Skill DMG Dealt +20% \nSet Effect: After the wearer applies 2 or more stacks of Arts Infliction on the enemy, the wearer gains Arts DMG Dealt +35% for 15s. This effect cannot stack.",
+    "image": "https://img.game8.co/4394828/88da66e1522a35a02e77b0b63e4eb1d9.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575957",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576223"
+  },
+  "hot_work_power_bank": {
+    "id": "hot_work_power_bank",
+    "name": "Hot Work Power Bank",
+    "type": "Kit",
+    "rarity": "Gold",
+    "level": 70,
+    "stats": [
+      "Defense: 21",
+      "Strength: 32",
+      "Agility: 21",
+      "Arts Intensity: 41"
+    ],
+    "gear_set": "Hot Work",
+    "set_id": "hot_work",
+    "set_effect_text": "Bonus Stat: Wearer's Arts Intensity +30 \nSet Effect: After the wearer applies Combustion, Heat DMG +50% for 10s. After the wearer applies Corrosion, Nature DMG +50% for 10s. The aforementioned effects cannot stack.",
+    "image": "https://img.game8.co/4394885/ce57a9e5787b0d98e445a255abe51a40.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575949",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576223"
+  },
+  "hot_work_power_cartridge": {
+    "id": "hot_work_power_cartridge",
+    "name": "Hot Work Power Cartridge",
+    "type": "Kit",
+    "rarity": "Gold",
+    "level": 70,
+    "stats": [
+      "Defense: 21",
+      "Intellect: 21",
+      "Will: 32",
+      "Arts Intensity: 41"
+    ],
+    "gear_set": "Hot Work",
+    "set_id": "hot_work",
+    "set_effect_text": "Bonus Stat: Wearer's Arts Intensity +30 \nSet Effect: After the wearer applies Combustion, Heat DMG +50% for 10s. After the wearer applies Corrosion, Nature DMG +50% for 10s. The aforementioned effects cannot stack.",
+    "image": "https://img.game8.co/4395920/6b4aea4b257dfb98b84058dcfc6afe9d.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575949",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576223"
+  },
+  "hot_work_pyrometer": {
+    "id": "hot_work_pyrometer",
+    "name": "Hot Work Pyrometer",
+    "type": "Kit",
+    "rarity": "Gold",
+    "level": 70,
+    "stats": [
+      "Defense: 21",
+      "Intellect: 41",
+      "Battle Skill DMG Bonus: 41.4%"
+    ],
+    "gear_set": "Hot Work",
+    "set_id": "hot_work",
+    "set_effect_text": "Bonus Stat: Wearer's Arts Intensity +30 \nSet Effect: After the wearer applies Combustion, Heat DMG +50% for 10s. After the wearer applies Corrosion, Nature DMG +50% for 10s. The aforementioned effects cannot stack.",
+    "image": "https://img.game8.co/4394884/e78eb37fdaf696ba09e96e0b4efaa346.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575949",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576223"
+  },
+  "lynx_aegis_injector": {
+    "id": "lynx_aegis_injector",
+    "name": "LYNX Aegis Injector",
+    "type": "Kit",
+    "rarity": "Gold",
+    "level": 70,
+    "stats": [
+      "Defense: 21",
+      "Will: 41",
+      "Treatment Bonus: 20.7%"
+    ],
+    "gear_set": "LYNX",
+    "set_id": "lynx",
+    "set_effect_text": "Bonus Stat: Wearer's HP Treatment Efficiency +20% \nSet Effect: After the wearer gives HP treatment to an allied target, that target also gains 15% DMG Reduction against all types of DMG for 10s. If the said treatment exceeds the target's Max HP, the target gains 30% DMG Reduction against all types of DMG. The aforementioned effects cannot stack.",
+    "image": "https://img.game8.co/4491541/2aca63897a0571c57131bb8fae93b3a3.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575944",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576223"
+  },
+  "lynx_connector": {
+    "id": "lynx_connector",
+    "name": "LYNX Connector",
+    "type": "Kit",
+    "rarity": "Gold",
+    "level": 70,
+    "stats": [
+      "Defense: 21",
+      "Strength: 32",
+      "Will: 21",
+      "Final DMG Reduction: 17.2%"
+    ],
+    "gear_set": "LYNX",
+    "set_id": "lynx",
+    "set_effect_text": "Bonus Stat: Wearer's HP Treatment Efficiency +20% \nSet Effect: After the wearer gives HP treatment to an allied target, that target also gains 15% DMG Reduction against all types of DMG for 10s. If the said treatment exceeds the target's Max HP, the target gains 30% DMG Reduction against all types of DMG. The aforementioned effects cannot stack.",
+    "image": "https://img.game8.co/4491543/1d564031b0b9eafe4ac7a3c677a2ec6f.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575944",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576223"
+  },
+  "lynx_connector_t1": {
+    "id": "lynx_connector_t1",
+    "name": "LYNX Connector T1",
+    "type": "Kit",
+    "rarity": "Gold",
+    "level": 70,
+    "stats": [
+      "Defense: 21",
+      "Strength: 32",
+      "Will: 21",
+      "HP: 41.40%"
+    ],
+    "gear_set": "LYNX",
+    "set_id": "lynx",
+    "set_effect_text": "Bonus Stat: Wearer's HP Treatment Efficiency +20% \nSet Effect: After the wearer gives HP treatment to an allied target, that target also gains 15% DMG Reduction against all types of DMG for 10s. If the said treatment exceeds the target's Max HP, the target gains 30% DMG Reduction against all types of DMG. The aforementioned effects cannot stack.",
+    "image": "https://img.game8.co/4491545/c3a76a8c824da9383ff860bcc3f20a5c.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575944",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576223"
+  },
+  "lynx_connector_t2": {
+    "id": "lynx_connector_t2",
+    "name": "LYNX Connector T2",
+    "type": "Kit",
+    "rarity": "Gold",
+    "level": 70,
+    "stats": [
+      "Defense: 21",
+      "Strength: 41",
+      "HP: 41.40%"
+    ],
+    "gear_set": "LYNX",
+    "set_id": "lynx",
+    "set_effect_text": "Bonus Stat: Wearer's HP Treatment Efficiency +20% \nSet Effect: After the wearer gives HP treatment to an allied target, that target also gains 15% DMG Reduction against all types of DMG for 10s. If the said treatment exceeds the target's Max HP, the target gains 30% DMG Reduction against all types of DMG. The aforementioned effects cannot stack.",
+    "image": "https://img.game8.co/4491542/be1391b08bd92d2b980a2319bdcd164b.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575944",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576223"
+  },
+  "lynx_slab": {
+    "id": "lynx_slab",
+    "name": "LYNX Slab",
+    "type": "Kit",
+    "rarity": "Gold",
+    "level": 70,
+    "stats": [
+      "Defense: 21",
+      "Intellect: 21",
+      "Will: 32",
+      "Main Attribute: 20.7%"
+    ],
+    "gear_set": "LYNX",
+    "set_id": "lynx",
+    "set_effect_text": "Bonus Stat: Wearer's HP Treatment Efficiency +20% \nSet Effect: After the wearer gives HP treatment to an allied target, that target also gains 15% DMG Reduction against all types of DMG for 10s. If the said treatment exceeds the target's Max HP, the target gains 30% DMG Reduction against all types of DMG. The aforementioned effects cannot stack.",
+    "image": "https://img.game8.co/4491546/4ee1fe8590037fd370f2d876746bc1bd.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575944",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576223"
+  },
+  "mi_security_armband": {
+    "id": "mi_security_armband",
+    "name": "MI Security Armband",
+    "type": "Kit",
+    "rarity": "Gold",
+    "level": 70,
+    "stats": [
+      "Defense: 21",
+      "Strength: 32",
+      "Will: 21",
+      "Cryo and Electric DMG Dealt Bonus: 23.00%"
+    ],
+    "gear_set": "MI Security",
+    "set_id": "mi_security",
+    "set_effect_text": "Bonus Stat: Wearer's Critical Rate +5% \nSet Effect: After the wearer scores a critical hit, gain ATK +5% for 5s. This effect can reach 5 stacks. At max stacks, grant an additional Critical Rate +5%. This effect cannot stack.",
+    "image": "https://img.game8.co/4395885/2bd484981acffc1f9f9fbee3d671c836.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575950",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576223"
+  },
+  "mi_security_push_knife": {
+    "id": "mi_security_push_knife",
+    "name": "MI Security Push Knife",
+    "type": "Kit",
+    "rarity": "Gold",
+    "level": 70,
+    "stats": [
+      "Defense: 21",
+      "Intellect: 21",
+      "Will: 32",
+      "Heat and Nature DMG Dealt Bonus: 23.0%"
+    ],
+    "gear_set": "MI Security",
+    "set_id": "mi_security",
+    "set_effect_text": "Bonus Stat: Wearer's Critical Rate +5% \nSet Effect: After the wearer scores a critical hit, gain ATK +5% for 5s. This effect can reach 5 stacks. At max stacks, grant an additional Critical Rate +5%. This effect cannot stack.",
+    "image": "https://img.game8.co/4395887/7ec2527a71a52cab608b7d6ae56b9402.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575950",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576223"
+  },
+  "mi_security_push_knife_t1": {
+    "id": "mi_security_push_knife_t1",
+    "name": "MI Security Push Knife T1",
+    "type": "Kit",
+    "rarity": "Gold",
+    "level": 70,
+    "stats": [
+      "Defense: 21",
+      "Agility: 21",
+      "Will: 32",
+      "Battle Skill DMG Bonus: 41.4%"
+    ],
+    "gear_set": "MI Security",
+    "set_id": "mi_security",
+    "set_effect_text": "Bonus Stat: Wearer's Critical Rate +5% \nSet Effect: After the wearer scores a critical hit, gain ATK +5% for 5s. This effect can reach 5 stacks. At max stacks, grant an additional Critical Rate +5%. This effect cannot stack.",
+    "image": "https://img.game8.co/4395887/7ec2527a71a52cab608b7d6ae56b9402.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575950",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576223"
+  },
+  "mi_security_scope": {
+    "id": "mi_security_scope",
+    "name": "MI Security Scope",
+    "type": "Kit",
+    "rarity": "Gold",
+    "level": 70,
+    "stats": [
+      "Defense: 21",
+      "Strength: 21",
+      "Agility: 32",
+      "Battle Skill DMG Bonus: 41.4%"
+    ],
+    "gear_set": "MI Security",
+    "set_id": "mi_security",
+    "set_effect_text": "Bonus Stat: Wearer's Critical Rate +5% \nSet Effect: After the wearer scores a critical hit, gain ATK +5% for 5s. This effect can reach 5 stacks. At max stacks, grant an additional Critical Rate +5%. This effect cannot stack.",
+    "image": "https://img.game8.co/4395889/e9c202c72cd159775341a529f6e3d8d7.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575950",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576223"
+  },
+  "mi_security_scope_t1": {
+    "id": "mi_security_scope_t1",
+    "name": "MI Security Scope T1",
+    "type": "Kit",
+    "rarity": "Gold",
+    "level": 70,
+    "stats": [
+      "Defense: 21",
+      "Agility: 32",
+      "Intellect: 21",
+      "Critical Rate: 10.40%"
+    ],
+    "gear_set": "MI Security",
+    "set_id": "mi_security",
+    "set_effect_text": "Bonus Stat: Wearer's Critical Rate +5% \nSet Effect: After the wearer scores a critical hit, gain ATK +5% for 5s. This effect can reach 5 stacks. At max stacks, grant an additional Critical Rate +5%. This effect cannot stack.",
+    "image": "https://img.game8.co/4438146/1624e9d143dc8a489caf7034f62615f2.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575950",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576223"
+  },
+  "mi_security_toolkit": {
+    "id": "mi_security_toolkit",
+    "name": "MI Security Toolkit",
+    "type": "Kit",
+    "rarity": "Gold",
+    "level": 70,
+    "stats": [
+      "Defense: 21",
+      "Agility: 21",
+      "Intellect: 32",
+      "Critical Rate: 10.4%"
+    ],
+    "gear_set": "MI Security",
+    "set_id": "mi_security",
+    "set_effect_text": "Bonus Stat: Wearer's Critical Rate +5% \nSet Effect: After the wearer scores a critical hit, gain ATK +5% for 5s. This effect can reach 5 stacks. At max stacks, grant an additional Critical Rate +5%. This effect cannot stack.",
+    "image": "https://img.game8.co/4395888/97e2d0fc7cd547991e1d0d59ef41980a.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575950",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576223"
+  },
+  "pulser_labs_calibrator": {
+    "id": "pulser_labs_calibrator",
+    "name": "Pulser Labs Calibrator",
+    "type": "Kit",
+    "rarity": "Gold",
+    "level": 70,
+    "stats": [
+      "Defense: 21",
+      "Intellect: 41",
+      "Arts Intensity: 41"
+    ],
+    "gear_set": "Pulser Labs",
+    "set_id": "pulser_labs",
+    "set_effect_text": "Bonus Stat: Wearer's Arts Intensity +30 \nSet Effect: After the wearer applies Electrification, Electric DMG +50% for 10s. After the wearer applies Solidification, Cryo DMG +50% for 10s. The aforementioned effects cannot stack.",
+    "image": "https://img.game8.co/4394991/a0e60e28cf2d926a6f885cde6c74f870.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575947",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576223"
+  },
+  "pulser_labs_invasion_core": {
+    "id": "pulser_labs_invasion_core",
+    "name": "Pulser Labs Invasion Core",
+    "type": "Kit",
+    "rarity": "Gold",
+    "level": 70,
+    "stats": [
+      "Defense: 21",
+      "Will: 41",
+      "Ultimate DMG Bonus: 51.80%"
+    ],
+    "gear_set": "Pulser Labs",
+    "set_id": "pulser_labs",
+    "set_effect_text": "Bonus Stat: Wearer's Arts Intensity +30 \nSet Effect: After the wearer applies Electrification, Electric DMG +50% for 10s. After the wearer applies Solidification, Cryo DMG +50% for 10s. The aforementioned effects cannot stack.",
+    "image": "https://img.game8.co/4442643/604520a95f0616edc84b4bd17c4f0732.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575947",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576223"
+  },
+  "pulser_labs_probe": {
+    "id": "pulser_labs_probe",
+    "name": "Pulser Labs Probe",
+    "type": "Kit",
+    "rarity": "Gold",
+    "level": 70,
+    "stats": [
+      "Defense: 21",
+      "Agility: 21",
+      "Intellect: 32",
+      "Arts Intensity: 41"
+    ],
+    "gear_set": "Pulser Labs",
+    "set_id": "pulser_labs",
+    "set_effect_text": "Bonus Stat: Wearer's Arts Intensity +30 \nSet Effect: After the wearer applies Electrification, Electric DMG +50% for 10s. After the wearer applies Solidification, Cryo DMG +50% for 10s. The aforementioned effects cannot stack.",
+    "image": "https://img.game8.co/4442653/dac417b30951fb5be1797a54c76f5fe2.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575947",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576223"
+  },
+  "qingbo_bamboo_cutter": {
+    "id": "qingbo_bamboo_cutter",
+    "name": "Qingbo Bamboo Cutter",
+    "type": "Kit",
+    "rarity": "Gold",
+    "level": 70,
+    "stats": [
+      "Defense: 21",
+      "Strength: 21",
+      "Agility: 32",
+      "Heat and Nature DMG Dealt Bonus: 23.00%"
+    ],
+    "gear_set": "Qingbo",
+    "set_id": "qingbo",
+    "set_effect_text": "Bonus Stat: Wearer's Combo Skill Cooldown Reduction +15%. \nSet Effect: When the wearer casts a combo skill, the wearer gains Skill DMG Dealt +20% (for every skill) for 15s. This effect can reach 2 stacks. Duration of each stack is counted separately.",
+    "image": "https://img.game8.co/4471173/dd67346bb7934b054b4c0b69265d0bcd.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/594199",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576223"
+  },
+  "qingbo_cask": {
+    "id": "qingbo_cask",
+    "name": "Qingbo Cask",
+    "type": "Kit",
+    "rarity": "Gold",
+    "level": 70,
+    "stats": [
+      "Defense: 21",
+      "Intellect: 32",
+      "Will: 21",
+      "Arts Intensity: 41"
+    ],
+    "gear_set": "Qingbo",
+    "set_id": "qingbo",
+    "set_effect_text": "Bonus Stat: Wearer's Combo Skill Cooldown Reduction +15%. \nSet Effect: When the wearer casts a combo skill, the wearer gains Skill DMG Dealt +20% (for every skill) for 15s. This effect can reach 2 stacks. Duration of each stack is counted separately.",
+    "image": "https://img.game8.co/4471177/01be0549fa64b2aeeca28154f2c461e7.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/594199",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576223"
+  },
+  "qingbo_positioning_kit": {
+    "id": "qingbo_positioning_kit",
+    "name": "Qingbo Positioning Kit",
+    "type": "Kit",
+    "rarity": "Gold",
+    "level": 70,
+    "stats": [
+      "Defense: 21",
+      "Strength: 21",
+      "Agility: 32",
+      "Battle Skill DMG Bonus: 41.40%"
+    ],
+    "gear_set": "Qingbo",
+    "set_id": "qingbo",
+    "set_effect_text": "Bonus Stat: Wearer's Combo Skill Cooldown Reduction +15%. \nSet Effect: When the wearer casts a combo skill, the wearer gains Skill DMG Dealt +20% (for every skill) for 15s. This effect can reach 2 stacks. Duration of each stack is counted separately.",
+    "image": "https://img.game8.co/4471171/85c1c99e33bd332f522a22f45052a32d.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/594199",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576223"
+  },
+  "redeemer_seal": {
+    "id": "redeemer_seal",
+    "name": "Redeemer Seal",
+    "type": "Kit",
+    "rarity": "Gold",
+    "level": 70,
+    "stats": [
+      "Defense: 21",
+      "Intellect: 43",
+      "Ultimate Gain Efficiency: 25.70%"
+    ],
+    "gear_set": "Redeemer Gear Pack",
+    "set_id": "",
+    "set_effect_text": "No 3-pc Set Effect",
+    "image": "https://img.game8.co/4395928/b5b0ae0da58d9d798606af6696e27a59.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/576132",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576223"
+  },
+  "redeemer_seal_t1": {
+    "id": "redeemer_seal_t1",
+    "name": "Redeemer Seal T1",
+    "type": "Kit",
+    "rarity": "Gold",
+    "level": 70,
+    "stats": [
+      "Defense: 21",
+      "Will: 43",
+      "Critical Rate: 10.80%"
+    ],
+    "gear_set": "Redeemer Gear Pack",
+    "set_id": "",
+    "set_effect_text": "No 3-pc Set Effect",
+    "image": "https://img.game8.co/4395928/b5b0ae0da58d9d798606af6696e27a59.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/576131",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576223"
+  },
+  "redeemer_tag": {
+    "id": "redeemer_tag",
+    "name": "Redeemer Tag",
+    "type": "Kit",
+    "rarity": "Gold",
+    "level": 70,
+    "stats": [
+      "Defense: 21",
+      "Strength: 43",
+      "Final DMG Reduction: 17.80%"
+    ],
+    "gear_set": "Redeemer Gear Pack",
+    "set_id": "",
+    "set_effect_text": "No 3-pc Set Effect",
+    "image": "https://img.game8.co/4395927/926691276c424b02b9292b1bb27c3d93.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/576134",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576223"
+  },
+  "redeemer_tag_t1": {
+    "id": "redeemer_tag_t1",
+    "name": "Redeemer Tag T1",
+    "type": "Kit",
+    "rarity": "Gold",
+    "level": 70,
+    "stats": [
+      "Defense: 21",
+      "Agility: 43",
+      "Combo Skill DMG Bonus: 43.20%"
+    ],
+    "gear_set": "Redeemer Gear Pack",
+    "set_id": "",
+    "set_effect_text": "No 3-pc Set Effect",
+    "image": "https://img.game8.co/4395927/926691276c424b02b9292b1bb27c3d93.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/576133",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576223"
+  },
+  "swordmancer_dagger": {
+    "id": "swordmancer_dagger",
+    "name": "Swordmancer Dagger",
+    "type": "Kit",
+    "rarity": "Gold",
+    "level": 70,
+    "stats": [
+      "Defense: 21",
+      "Strength: 21",
+      "Agility: 32",
+      "Ultimate DMG Bonus: 51.80%"
+    ],
+    "gear_set": "Swordmancer",
+    "set_id": "swordmancer",
+    "set_effect_text": "Bonus Stat: Wearer's Stagger Efficiency Bonus +20% \nSet Effect: After the wearer applies a Physical Status, the wearer also performs 1 hit that deals 250% ATK of Physical DMG and [10 Stagger]. Effect trigger cooldown: 15s.",
+    "image": "https://img.game8.co/4471183/a5a88a34640e7a4132684455c1ca44b0.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575943",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576223"
+  },
+  "swordmancer_flint": {
+    "id": "swordmancer_flint",
+    "name": "Swordmancer Flint",
+    "type": "Kit",
+    "rarity": "Gold",
+    "level": 70,
+    "stats": [
+      "Defense: 21",
+      "Strength: 21",
+      "Agility: 32",
+      "Physical DMG Bonus: 23.0%"
+    ],
+    "gear_set": "Swordmancer",
+    "set_id": "swordmancer",
+    "set_effect_text": "Bonus Stat: Wearer's Stagger Efficiency Bonus +20% \nSet Effect: After the wearer applies a Physical Status, the wearer also performs 1 hit that deals 250% ATK of Physical DMG and [10 Stagger]. Effect trigger cooldown: 15s.",
+    "image": "https://img.game8.co/4394517/9bef9aebb3df3027a7f93e14730cbc98.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575943",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576223"
+  },
+  "swordmancer_micro_filter": {
+    "id": "swordmancer_micro_filter",
+    "name": "Swordmancer Micro Filter",
+    "type": "Kit",
+    "rarity": "Gold",
+    "level": 70,
+    "stats": [
+      "Defense: 21",
+      "Strength: 32",
+      "Will: 21",
+      "Physical DMG Bonus: 23.00%"
+    ],
+    "gear_set": "Swordmancer",
+    "set_id": "swordmancer",
+    "set_effect_text": "Bonus Stat: Wearer's Stagger Efficiency Bonus +20% \nSet Effect: After the wearer applies a Physical Status, the wearer also performs 1 hit that deals 250% ATK of Physical DMG and [10 Stagger]. Effect trigger cooldown: 15s.",
+    "image": "https://img.game8.co/4442650/7d431dfa24d2426940662548cb9df47e.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575943",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576223"
+  },
+  "swordmancer_nav_beacon": {
+    "id": "swordmancer_nav_beacon",
+    "name": "Swordmancer NAV Beacon",
+    "type": "Kit",
+    "rarity": "Gold",
+    "level": 70,
+    "stats": [
+      "Defense: 21",
+      "Strength: 41",
+      "Arts Intensity: 41"
+    ],
+    "gear_set": "Swordmancer",
+    "set_id": "swordmancer",
+    "set_effect_text": "Bonus Stat: Wearer's Stagger Efficiency Bonus +20% \nSet Effect: After the wearer applies a Physical Status, the wearer also performs 1 hit that deals 250% ATK of Physical DMG and [10 Stagger]. Effect trigger cooldown: 15s.",
+    "image": "https://img.game8.co/4442652/8daf53c3c06b25aabb1437c636207230.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575943",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576223"
+  },
+  "turbid_cutting_torch": {
+    "id": "turbid_cutting_torch",
+    "name": "Turbid Cutting Torch",
+    "type": "Kit",
+    "rarity": "Gold",
+    "level": 70,
+    "stats": [
+      "Defense: 21",
+      "Strength: 21",
+      "Intellect: 32",
+      "Basic Attack DMG Bonus: 27.6%"
+    ],
+    "gear_set": "Tide Surge",
+    "set_id": "tide_surge",
+    "set_effect_text": "Bonus Stat: Wearer's Skill DMG Dealt +20% \nSet Effect: After the wearer applies 2 or more stacks of Arts Infliction on the enemy, the wearer gains Arts DMG Dealt +35% for 15s. This effect cannot stack.",
+    "image": "https://img.game8.co/4394825/4a4766549b50e6d2bded5c2bf529a604.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575957",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576223"
+  },
+  "type_50_yinglung_knife": {
+    "id": "type_50_yinglung_knife",
+    "name": "Type 50 Yinglung Knife",
+    "type": "Kit",
+    "rarity": "Gold",
+    "level": 70,
+    "stats": [
+      "Defense: 21",
+      "Agility: 21",
+      "Will: 32",
+      "Combo Skill DMG Bonus: 41.40%"
+    ],
+    "gear_set": "Type 50 Yinglung",
+    "set_id": "type_50_yinglung",
+    "set_effect_text": "Bonus Stat: Wearer's ATK +15% \nSet Effect: When any operator in the team casts a battle skill, the wearer gains 1 stack of Yinglung's Edge that gives DMG +20% to the wearer's next combo skill. Yinglung's Edge can stack 3 time(s).",
+    "image": "https://img.game8.co/4395883/e8560e3039fe57adc85b3dc3ab712d05.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575951",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576223"
+  },
+  "type_50_yinglung_knife_t1": {
+    "id": "type_50_yinglung_knife_t1",
+    "name": "Type 50 Yinglung Knife T1",
+    "type": "Kit",
+    "rarity": "Gold",
+    "level": 70,
+    "stats": [
+      "Defense: 21",
+      "Strength: 21",
+      "Intellect: 32",
+      "All Skill DMG Dealt Bonus: 27.60%"
+    ],
+    "gear_set": "Type 50 Yinglung",
+    "set_id": "type_50_yinglung",
+    "set_effect_text": "Bonus Stat: Wearer's ATK +15% \nSet Effect: When any operator in the team casts a battle skill, the wearer gains 1 stack of Yinglung's Edge that gives DMG +20% to the wearer's next combo skill. Yinglung's Edge can stack 3 time(s).",
+    "image": "https://img.game8.co/4395883/e8560e3039fe57adc85b3dc3ab712d05.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575951",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576223"
+  },
+  "type_50_yinglung_radar": {
+    "id": "type_50_yinglung_radar",
+    "name": "Type 50 Yinglung Radar",
+    "type": "Kit",
+    "rarity": "Gold",
+    "level": 70,
+    "stats": [
+      "Defense: 21",
+      "Strength: 32",
+      "Will: 21",
+      "Physical DMG Bonus: 23%"
+    ],
+    "gear_set": "Type 50 Yinglung",
+    "set_id": "type_50_yinglung",
+    "set_effect_text": "Bonus Stat: Wearer's ATK +15% \nSet Effect: When any operator in the team casts a battle skill, the wearer gains 1 stack of Yinglung's Edge that gives DMG +20% to the wearer's next combo skill. Yinglung's Edge can stack 3 time(s).",
+    "image": "https://img.game8.co/4394858/052b945adb7c3234851e3c8f36cb9fb4.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575951",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576223"
+  },
+  "type_50_yinglung_radar_t1": {
+    "id": "type_50_yinglung_radar_t1",
+    "name": "Type 50 Yinglung Radar T1",
+    "type": "Kit",
+    "rarity": "Gold",
+    "level": 70,
+    "stats": [
+      "Defense: 21",
+      "Strength: 21",
+      "Agility: 32",
+      "Ultimate DMG Bonus: 51.80%"
+    ],
+    "gear_set": "Type 50 Yinglung",
+    "set_id": "type_50_yinglung",
+    "set_effect_text": "Bonus Stat: Wearer's ATK +15% \nSet Effect: When any operator in the team casts a battle skill, the wearer gains 1 stack of Yinglung's Edge that gives DMG +20% to the wearer's next combo skill. Yinglung's Edge can stack 3 time(s).",
+    "image": "https://img.game8.co/4438227/cf477f9d1a2391041a4385a0a39de9d4.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575951",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576223"
+  },
+  "type_50_yinglung_radar_t2": {
+    "id": "type_50_yinglung_radar_t2",
+    "name": "Type 50 Yinglung Radar T2",
+    "type": "Kit",
+    "rarity": "Gold",
+    "level": 70,
+    "stats": [
+      "Defense: 21",
+      "Agility: 32",
+      "Intellect: 21",
+      "Combo Skill DMG Bonus: 41.40%"
+    ],
+    "gear_set": "Type 50 Yinglung",
+    "set_id": "type_50_yinglung",
+    "set_effect_text": "Bonus Stat: Wearer's ATK +15% \nSet Effect: When any operator in the team casts a battle skill, the wearer gains 1 stack of Yinglung's Edge that gives DMG +20% to the wearer's next combo skill. Yinglung's Edge can stack 3 time(s).",
+    "image": "https://img.game8.co/4438226/23e889139bb5ade95372bc510ca7f391.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/575951",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576223"
+  },
+  "xiranflow_baton": {
+    "id": "xiranflow_baton",
+    "name": "Xiranflow Baton",
+    "type": "Kit",
+    "rarity": "Gold",
+    "level": 70,
+    "stats": [
+      "Defense: 21",
+      "Intellect: 21",
+      "Will: 32",
+      "Battle Skill DMG Bonus: 41.40%"
+    ],
+    "gear_set": "Xiranflow",
+    "set_id": "xiranflow",
+    "set_effect_text": "Bonus Stat: Wearer's ATK +10% \nSet Effect: Whenever the wearer consumes Electrification or Corrosion, the wearer gains a number of buff stacks equal to the Status Level of the Arts Reaction consumed, with each buff stack giving Electric DMG Dealt and Nature DMG Dealt +15% for 25s. The number of buff stacks maxes out at 3 stacks. Duration of each stack is counted separately.",
+    "image": "https://img.game8.co/4471106/f63d21e6cb51e0aa5f3be9d64ea4abd6.png/show",
+    "source_url": "https://game8.co/games/Arknights-Endfield/archives/594210",
+    "source_list_url": "https://game8.co/games/Arknights-Endfield/archives/576223"
+  }
+}

@@ -202,6 +202,29 @@ button {
     text-transform: uppercase;
 }
 
+.page-back-link {
+    width: max-content;
+    margin: 0 0 14px;
+    color: var(--ink);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.page-back-link:hover {
+    color: var(--yellow);
+    text-decoration: underline;
+}
+
+.page-back-link span {
+    font-family: Arial, sans-serif;
+    font-size: 18px;
+    line-height: 1;
+}
+
 .avatar {
     width: 70px;
     height: 70px;
@@ -600,6 +623,23 @@ button {
     line-height: 1.5;
     font-family: Arial, sans-serif;
     letter-spacing: 0;
+}
+
+.preferred-stats {
+    min-height: 48px;
+    padding-left: 18px;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    border: none;
+    background: transparent;
+    color: var(--muted);
+    font-family: Arial, sans-serif;
+    line-height: 1.4;
+    margin: 0;
+}
+.preferred-stats li {
+    margin: 8px 0;
+    list-style-position: inside;
 }
 
 .theme-setting {
@@ -1125,6 +1165,8 @@ button {
     border: 2px solid var(--line);
     border-radius: 8px;
     background: var(--card-bg);
+    color: var(--ink);
+    text-decoration: none;
     display: grid;
     gap: 12px;
     align-content: start;
@@ -1224,6 +1266,83 @@ button {
     line-height: 1.45;
 }
 
+.relic-detail {
+    display: grid;
+    grid-template-columns: minmax(220px, 300px) 1fr;
+    gap: 24px;
+    align-items: start;
+}
+
+.relic-detail-emblem {
+    min-height: 300px;
+    padding: 22px;
+    border: 3px solid var(--yellow);
+    border-radius: 8px;
+    background: var(--card-bg);
+    display: grid;
+    gap: 14px;
+    place-items: center;
+    text-align: center;
+    box-shadow: var(--shadow);
+}
+
+.relic-image-large {
+    width: 160px;
+    height: 160px;
+}
+
+.relic-detail-emblem span {
+    color: var(--muted);
+}
+
+.relic-detail-emblem strong {
+    font-size: 32px;
+}
+
+.relic-piece-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 12px;
+}
+
+.gear-type-title {
+    margin: 18px 0 10px;
+    color: var(--muted);
+    font-size: 13px;
+    text-transform: uppercase;
+}
+
+.relic-piece-card {
+    padding: 12px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: var(--soft-bg);
+    color: var(--ink);
+    text-decoration: none;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 12px;
+    transition: border-color 0.18s ease, transform 0.18s ease;
+}
+
+.relic-piece-card:hover {
+    border-color: var(--yellow);
+    transform: translateY(-2px);
+}
+
+.relic-piece-card strong {
+    display: block;
+    margin-bottom: 4px;
+}
+
+.relic-piece-card span,
+.relic-piece-card p {
+    color: var(--muted);
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    letter-spacing: 0;
+}
+
 .weapon-list {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -1289,6 +1408,12 @@ button {
     font-family: Arial, sans-serif;
     letter-spacing: 0;
     line-height: 1.45;
+}
+
+.gear-stat-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+    gap: 8px 18px;
 }
 
 .weapon-character-list {
@@ -1780,13 +1905,15 @@ html[data-theme="dark"] .chat-message.user {
     .toolbar,
     .character-detail,
     .weapon-detail,
+    .relic-detail,
     .team-layout,
     .optimizer-layout {
         display: block;
     }
 
     .character-portrait-panel,
-    .weapon-emblem-panel {
+    .weapon-emblem-panel,
+    .relic-detail-emblem {
         margin-bottom: 18px;
     }
 

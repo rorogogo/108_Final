@@ -10,7 +10,7 @@
     <script src="/static/theme.js"></script>
     <link rel="stylesheet" href="/static/sidebar.css">
     <script src="/static/music.js" defer></script>
-    <title>{{ weapon.name }} - Endfield</title>
+    <title>{{ relic.name }} - Endfield</title>
 </head>
 <body data-logged-in="{{ 'true' if is_logged_in else 'false' }}" data-reset-chatbot="{{ 'true' if reset_chatbot_on_load else 'false' }}">
     <nav id="navigation-bar" aria-label="Primary navigation">
@@ -27,7 +27,7 @@
             <span class="nav-icon" aria-hidden="true">CB</span>
             <span class="nav-text">Shared Builds</span>
         </a>
-        <a class="nav-item active" href="/weapons">
+        <a class="nav-item" href="/weapons">
             <span class="nav-icon" aria-hidden="true">WP</span>
             <span class="nav-text">Weapons</span>
         </a>
@@ -35,7 +35,7 @@
             <span class="nav-icon" aria-hidden="true">OP</span>
             <span class="nav-text">Optimizer</span>
         </a>
-        <a class="nav-item" href="/gear">
+        <a class="nav-item active" href="/gear">
             <span class="nav-icon" aria-hidden="true">GR</span>
             <span class="nav-text">Gear</span>
         </a>
@@ -48,8 +48,12 @@
     <main class="shell">
         <header class="page-header">
             <div>
-                <p class="page-kicker">Weapon Profile</p>
-                <h1 class="page-title">{{ weapon.name }}</h1>
+                <a class="page-back-link" href="/gear">
+                    <span aria-hidden="true">&larr;</span>
+                    Back to Gear
+                </a>
+                <p class="page-kicker">Gear Set Profile</p>
+                <h1 class="page-title">{{ relic.name }}</h1>
             </div>
             <div class="account-menu" id="account-menu">
                 <button class="avatar-button" type="button" id="account-menu-button" aria-label="Open account menu" aria-expanded="false" onclick="toggleAccountMenu(event)">
@@ -74,54 +78,78 @@
             </div>
         </header>
 
-        <section class="content weapon-detail {% if not owned %}not-owned{% endif %}">
-            <div class="weapon-emblem-panel">
-                <span>{{ weapon.type_label }}</span>
-                <strong>{{ weapon.rarity }} star</strong>
-                <em>ATK Lv.90 {{ weapon.base_atk }}</em>
-            </div>
-            <div class="panel character-info-panel">
-                <div class="button-row">
-                    <span class="status-pill">{{ 'Owned' if owned else 'Not owned' }}</span>
-                    {% if not is_logged_in %}
-                    <a class="secondary-button" href="/login">Log in to track</a>
+        <section class="content relic-detail">
+            <div class="relic-detail-emblem">
+                <div class="relic-image-slot relic-image-large">
+                    {% if relic.image %}
+                    <img src="{{ relic.image }}" alt="{{ relic.name }}">
+                    {% else %}
+                    <span>IMG</span>
                     {% endif %}
                 </div>
+                <span>Tier {{ relic.tier }}</span>
+                <strong>{{ relic.rarity }}</strong>
+            </div>
 
-                <h2>{{ weapon.name }}</h2>
+            <div class="panel character-info-panel">
+                <div class="button-row">
+                    <span class="status-pill">{{ relic.rarity }}</span>
+                </div>
+
+                <h2>{{ relic.name }}</h2>
                 <div class="team-members">
-                    <span class="member-chip">{{ weapon.type_label }}</span>
-                    <span class="member-chip">{{ weapon.rarity }} star</span>
-                    <span class="member-chip">ATK {{ weapon.base_atk }}</span>
+                    <span class="member-chip">Tier {{ relic.tier }}</span>
+                    <span class="member-chip">{{ relic.rarity }}</span>
+                    {% for tag in relic.tags[:4] %}
+                    <span class="member-chip">{{ tag }}</span>
+                    {% endfor %}
                 </div>
 
                 <div class="character-build-list">
-                    <h3>Weapon Stats</h3>
-                    <ul class="weapon-detail-stats">
-                        {% for stat in weapon.stats %}
-                        <li>{{ stat }}</li>
-                        {% endfor %}
-                    </ul>
+                    <h3>Set Bonus</h3>
+                    <p><strong>Bonus:</strong> {{ relic.bonus_stat }}</p>
+                    <p><strong>Effect:</strong> {{ relic.set_effect }}</p>
                 </div>
 
-                {% if compatible_characters %}
                 <div class="character-build-list">
-                    <h3>Compatible Characters</h3>
-                    <div class="weapon-character-list">
-                        {% for character in compatible_characters %}
-                        <a class="weapon-character-chip" href="/character/{{ character.id }}">
-                            <img src="{{ character.image }}" alt="">
-                            <span>{{ character.name }}</span>
-                        </a>
+                    <h3>Pieces</h3>
+                    {% if gear_groups %}
+                        {% for gear_type, pieces in gear_groups %}
+                        <h4 class="gear-type-title">{{ gear_type }}</h4>
+                        <div class="relic-piece-grid">
+                            {% for piece in pieces %}
+                            <a class="relic-piece-card" href="/gear/{{ piece.id }}">
+                                <div class="relic-image-slot">
+                                    {% if piece.image %}
+                                    <img src="{{ piece.image }}" alt="{{ piece.name }}">
+                                    {% else %}
+                                    <span>IMG</span>
+                                    {% endif %}
+                                </div>
+                                <div>
+                                    <strong>{{ piece.name or 'Unnamed piece' }}</strong>
+                                    <span>{{ piece.type or 'Piece' }}{% if piece.rarity %} / {{ piece.rarity }}{% endif %}{% if piece.level %} / Lv. {{ piece.level }}{% endif %}</span>
+                                    {% if piece.stats %}
+                                    <ul class="weapon-stats">
+                                        {% for stat in piece.stats[:4] %}
+                                        <li>{{ stat }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                    {% endif %}
+                                </div>
+                            </a>
+                            {% endfor %}
+                        </div>
                         {% endfor %}
-                    </div>
+                    {% else %}
+                    <p>No gear pieces are linked to this set yet.</p>
+                    {% endif %}
                 </div>
-                {% endif %}
             </div>
         </section>
     </main>
 
-    <section class="chatbot-widget" id="chatbot-widget" aria-label="Weapon chatbot">
+    <section class="chatbot-widget" id="chatbot-widget" aria-label="Gear chatbot">
         <button class="chatbot-launcher" type="button" onclick="toggleChatbot()" aria-expanded="false" id="chatbot-launcher">BOT</button>
         <div class="chatbot-panel" id="chatbot-panel">
             <div class="chatbot-header">
