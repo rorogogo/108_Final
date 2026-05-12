@@ -1673,4 +1673,5 @@ def chatbot():
     return jsonify({"reply": remove_missing_info_lines(reply)})
 
 if __name__ == '__main__':
-    app.run()
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port)
