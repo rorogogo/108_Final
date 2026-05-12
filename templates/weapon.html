@@ -68,6 +68,14 @@
 
         <section class="content weapon-detail {% if not owned %}not-owned{% endif %}">
             <div class="weapon-emblem-panel">
+                {% if weapon.image %}
+                <img 
+                    src="{{ weapon.image }}" 
+                    alt="{{ weapon.name }}"
+                    class="weapon-detail-image"
+                >
+                {% endif %}
+                
                 <span>{{ weapon.type_label }}</span>
                 <strong>{{ weapon.rarity }} star</strong>
                 <em>ATK Lv.90 {{ weapon.base_atk }}</em>

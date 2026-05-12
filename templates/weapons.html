@@ -300,12 +300,16 @@
                     </label>
                     <a class="weapon-link" href="/weapon/${weaponId}">
                         <span class="weapon-rarity">${weapon.rarity} star</span>
+                        <img 
+                            src="${weapon.image}" 
+                            alt="${weapon.name}" 
+                            class="weapon-image"
+                        >
                         <strong>${weapon.name}</strong>
                         <span>${weapon.type_label}</span>
                         <em>ATK ${weapon.base_atk}</em>
                     </a>
                 `;
-                
                 grid.appendChild(article);
             });
 
