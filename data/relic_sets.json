@@ -11,7 +11,7 @@
       "attack",
       "starter"
     ],
-    "image": ""
+    "image": "https://cdn.end.wiki/images/materials/item-equip-t1-suit-wisdwill01-body-01__128x128__179867110f92.webp"
   },
   "aic_heavy": {
     "id": "aic_heavy",
@@ -26,7 +26,7 @@
       "survivability",
       "starter"
     ],
-    "image": ""
+    "image": "https://cdn.end.wiki/images/materials/item-equip-t1-suit-stragi01-body-01__112x126__fa590c5988bc.webp"
   },
   "roving_msgr": {
     "id": "roving_msgr",
@@ -40,7 +40,7 @@
       "physical damage",
       "attack"
     ],
-    "image": ""
+    "image": "https://cdn.end.wiki/images/materials/item-equip-t3-suit-agi01-body-01__128x128__ee510dae107d.webp"
   },
   "armored_msgr": {
     "id": "armored_msgr",
@@ -55,7 +55,7 @@
       "max hp",
       "survivability"
     ],
-    "image": ""
+    "image": "https://cdn.end.wiki/images/materials/item-equip-t3-suit-str01-body-01__114x119__303c80f83f4c.webp"
   },
   "mordvolt_resistant": {
     "id": "mordvolt_resistant",
@@ -70,7 +70,7 @@
       "healing",
       "support bonus"
     ],
-    "image": ""
+    "image": "https://cdn.end.wiki/images/materials/item-equip-t3-suit-will01-body-01__108x126__8badececfea0.webp"
   },
   "mordvolt_insulation": {
     "id": "mordvolt_insulation",
@@ -84,7 +84,7 @@
       "arts damage",
       "attack"
     ],
-    "image": ""
+    "image": "https://cdn.end.wiki/images/materials/item-equip-t3-suit-wisd01-body-01__128x128__ef0ae99ab59c.webp"
   },
   "aburreys_legacy": {
     "id": "aburreys_legacy",
@@ -100,7 +100,7 @@
       "ultimate damage",
       "attack"
     ],
-    "image": ""
+    "image": "https://cdn.end.wiki/images/materials/item-equip-t3-suit-atk01-body-01__112x125__e5cd4fe2e4b7.webp"
   },
   "catastrophe": {
     "id": "catastrophe",
@@ -115,7 +115,7 @@
       "ultimate damage",
       "skill uptime"
     ],
-    "image": ""
+    "image": "https://cdn.end.wiki/images/materials/item-equip-t3-suit-usp01-body-01__126x126__7e7ee09b7c91.webp"
   },
   "aethertech": {
     "id": "aethertech",
@@ -129,7 +129,7 @@
       "physical damage",
       "vulnerability"
     ],
-    "image": ""
+    "image": "https://cdn.end.wiki/images/materials/item-equip-t4-suit-poise01-body-01__119x120__7a3f74d37a21.webp"
   },
   "bonekrusha": {
     "id": "bonekrusha",
@@ -144,7 +144,7 @@
       "combo skill",
       "battle skill"
     ],
-    "image": ""
+    "image": "https://cdn.end.wiki/images/materials/item-equip-t4-suit-attri01-body-01__107x126__3e150ba4e56c.webp"
   },
   "eternal_xiranite": {
     "id": "eternal_xiranite",
@@ -160,7 +160,7 @@
       "support bonus",
       "attack"
     ],
-    "image": ""
+    "image": "https://cdn.end.wiki/images/materials/item-equip-t4-suit-usp02-body-01__112x126__655668c48ef0.webp"
   },
   "frontiers": {
     "id": "frontiers",
@@ -175,7 +175,7 @@
       "team damage",
       "support bonus"
     ],
-    "image": ""
+    "image": "https://cdn.end.wiki/images/materials/item-equip-t4-suit-atb01-body-01__128x128__bc21f8a5b4a2.webp"
   },
   "hot_work": {
     "id": "hot_work",
@@ -190,7 +190,7 @@
       "nature damage",
       "arts damage"
     ],
-    "image": ""
+    "image": "https://cdn.end.wiki/images/materials/item-equip-t4-suit-fire-natr01-body-02__128x128__8c43cb612bea.webp"
   },
   "lynx": {
     "id": "lynx",
@@ -205,7 +205,7 @@
       "defense",
       "support bonus"
     ],
-    "image": ""
+    "image": "https://cdn.end.wiki/images/materials/item-equip-t4-suit-heal01-body-01__126x112__38e2314b8ff1.webp"
   },
   "mi_security": {
     "id": "mi_security",
@@ -219,7 +219,7 @@
       "attack",
       "skill damage"
     ],
-    "image": ""
+    "image": "https://cdn.end.wiki/images/materials/item-equip-t4-suit-criti01-body-01__128x128__03c0a886c597.webp"
   },
   "pulser_labs": {
     "id": "pulser_labs",
@@ -234,7 +234,7 @@
       "cryo damage",
       "arts damage"
     ],
-    "image": ""
+    "image": "https://cdn.end.wiki/images/materials/item-equip-t4-suit-pulse-cryst01-body-01__128x128__d641cd2118ac.webp"
   },
   "swordmancer": {
     "id": "swordmancer",
@@ -249,7 +249,7 @@
       "stagger",
       "skill damage"
     ],
-    "image": ""
+    "image": "https://cdn.end.wiki/images/materials/item-equip-t4-suit-phy01-body-02__119x122__d202ba651dd7.webp"
   },
   "tide_surge": {
     "id": "tide_surge",
@@ -267,7 +267,7 @@
       "heat damage",
       "nature damage"
     ],
-    "image": ""
+    "image": "https://cdn.end.wiki/images/materials/item-equip-t4-suit-burst01-hand-01__109x124__4be2908b1f50.webp"
   },
   "type_50_yinglung": {
     "id": "type_50_yinglung",
@@ -282,6 +282,6 @@
       "skill damage",
       "team damage"
     ],
-    "image": ""
+    "image": "https://cdn.end.wiki/images/materials/item-equip-t4-suit-atk02-body-01__113x126__b5afb53c28a2.webp"
   }
 }
